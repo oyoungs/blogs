@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="预备篇编程技术预备知识二进制、十进制、十六进制 十进制思想到n进制思想的转化 二进制、十进制、十六进制的书面表示, 比如：15,  二进制: 0b00001111, 十进制: 15, 十六进制: 0x0F 进制之间的转化 流程图 顺序结构  条件分支结构 循环结构 常见术语 编辑器: 用来编写代码的工具，比如vim vscode nodepad nodepad++ sublime text ato">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;C++学习历程汇总">
+<meta property="og:url" content="http:&#x2F;&#x2F;www.oyoung.xyz&#x2F;2019&#x2F;12&#x2F;15&#x2F;C-tutorials&#x2F;index.html">
+<meta property="og:site_name" content="逗神大人的个人小站">
+<meta property="og:description" content="预备篇编程技术预备知识二进制、十进制、十六进制 十进制思想到n进制思想的转化 二进制、十进制、十六进制的书面表示, 比如：15,  二进制: 0b00001111, 十进制: 15, 十六进制: 0x0F 进制之间的转化 流程图 顺序结构  条件分支结构 循环结构 常见术语 编辑器: 用来编写代码的工具，比如vim vscode nodepad nodepad++ sublime text ato">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-20T05:56:33.318Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.oyoung.xyz/2019/12/15/C-tutorials/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>C/C++学习历程汇总 | 逗神大人的个人小站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">逗神大人的个人小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">20</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/oyoungs" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.oyoung.xyz/2019/12/15/C-tutorials/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C/C++学习历程汇总
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-15 20:00:06" itemprop="dateCreated datePublished" datetime="2019-12-15T20:00:06+08:00">2019-12-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-20 13:56:33" itemprop="dateModified" datetime="2019-12-20T13:56:33+08:00">2019-12-20</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="预备篇"><a href="#预备篇" class="headerlink" title="预备篇"></a>预备篇</h1><h2 id="编程技术预备知识"><a href="#编程技术预备知识" class="headerlink" title="编程技术预备知识"></a>编程技术预备知识</h2><h3 id="二进制、十进制、十六进制"><a href="#二进制、十进制、十六进制" class="headerlink" title="二进制、十进制、十六进制"></a>二进制、十进制、十六进制</h3><ol>
+<li><strong>十进制思想</strong>到<strong>n进制思想</strong>的转化</li>
+<li><strong>二进制</strong>、<strong>十进制</strong>、<strong>十六进制</strong>的书面表示, 比如：15,  二进制: 0b00001111, 十进制: 15, 十六进制: 0x0F</li>
+<li>进制之间的转化</li>
+</ol><h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><ol>
+<li>顺序结构 </li>
+<li>条件分支结构</li>
+<li>循环结构</li>
+</ol><h3 id="常见术语"><a href="#常见术语" class="headerlink" title="常见术语"></a>常见术语</h3><ol>
+<li><strong>编辑器</strong>: 用来编写代码的工具，比如<code>vim</code> <code>vscode</code> <code>nodepad</code> <code>nodepad++</code> <code>sublime text</code> <code>atom</code> 等</li>
+<li><strong>编译器</strong>: 用来将源码装换为库文件和可执行二进制文件的命+令行工具套件, 比如 <code>gcc</code>, <code>g++</code>, <code>cl.exe</code>, <code>clang</code>, <code>clang++</code></li>
+<li>项目构建: 管理项目源码与编译生成脚本的工具软件, 比如 <code>make</code>, <code>cmake, scons</code>, <code>gradle</code>, <code>maven</code></li>
+<li><strong>IDE</strong>: 集成了<code>编辑器</code>、<code>编译器调用自动化</code>和<code>项目构建自动化</code>的一种功能更强大的软件, 比如<code>QtCreator</code>, <code>XCode</code>, <code>Visual Studio</code>, <code>Clion</code>, <code>Code Blocks</code>, <code>Eclipse</code></li>
+</ol><a id="more"></a>
+
+
+<h2 id="C-开发环境安装"><a href="#C-开发环境安装" class="headerlink" title="C++开发环境安装"></a>C++开发环境安装</h2><h3 id="Windows平台环境安装"><a href="#Windows平台环境安装" class="headerlink" title="Windows平台环境安装"></a>Windows平台环境安装</h3><ol>
+<li>winddows系统下环境安装(Visual Studio)</li>
+<li>WSL(Windows Subsystem Linux)下环境安装</li>
+</ol>
+<h3 id="Ubuntu-linux平台-环境安装"><a href="#Ubuntu-linux平台-环境安装" class="headerlink" title="Ubuntu(linux平台)环境安装"></a>Ubuntu(linux平台)环境安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install build-essential git cmake qtcreator</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="macOS平台环境安装-XCode安装"><a href="#macOS平台环境安装-XCode安装" class="headerlink" title="macOS平台环境安装(XCode安装)"></a>macOS平台环境安装(XCode安装)</h3><p>打开<code>AppStore</code>, 搜索 <code>Xcode</code>, 找到右侧的<code>Xcode</code> 点击 <code>获取</code>, 待 <code>获取</code>变为 <code>安装</code>后, 点击安装</p>
+<h2 id="IDE的选择"><a href="#IDE的选择" class="headerlink" title="IDE的选择"></a>IDE的选择</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows:"></a>Windows:</h3><ul>
+<li><code>Visual Studio Community/Professional/Ultimate</code> <strong>(Windows平台开发必备)</strong></li>
+<li><code>Visual Studio Code</code> (跨平台可扩展的编辑器, 可以配置成像IDE一样功能强大)</li>
+<li><code>QtCreator</code></li>
+<li><code>Clion</code></li>
+</ul>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux:"></a>Linux:</h3><ul>
+<li><code>Visual Studio Code</code></li>
+<li><code>QtCreator</code></li>
+<li><code>Clion</code></li>
+<li><code>Code Blocks</code></li>
+</ul>
+<h3 id="macOS"><a href="#macOS" class="headerlink" title="macOS:"></a>macOS:</h3><ul>
+<li><code>XCode</code></li>
+<li><code>Clion</code></li>
+<li><code>Visual Studio Code</code></li>
+<li><code>QtCreator</code></li>
+</ul>
+<h1 id="入门篇"><a href="#入门篇" class="headerlink" title="入门篇"></a>入门篇</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h3><ol>
+<li><p>使用一部分参数经过特定的计算规则得到特定结果(可以没有结果值)的一句话， 通每行一条语句, 英文分号(;)结尾(仅当前C/C++语言, 部分其他编程语言语句法则不一样，有的无需分号结尾， 有的可有可无)</p>
+</li>
+<li><p>示例:</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">和 等于 参数<span class="number">1</span> + 参数<span class="number">2</span> +...+ 参数n</span><br></pre></td></tr></table></figure>
+
+<p>C/C++代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="number">2</span> + <span class="number">3</span>;</span><br><span class="line"><span class="number">10</span> * <span class="number">5</span> / <span class="number">2</span> + <span class="number">6</span> / <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ol>
+<li>当我们需要临时保存记录下某个语句的结果时， 变量就应运而生了, 比如</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = <span class="number">1</span> + <span class="number">2</span> + <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> result = <span class="number">10</span> * <span class="number">5</span> / <span class="number">2</span> + <span class="number">6</span> / <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>为什么要用变量呢？比如, 你有<code>100</code>元人民币, 早上买早餐用掉<code>10</code>元，中午买午餐又花掉了<code>20</code>元， 晚上没忍住多吃了点， 花了<code>50</code>， 那么请问，你早上、中午、晚上分别剩下多少钱呢？</li>
+</ol>
+<p>不用变量时:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 一开始100RMB</span></span><br><span class="line"></span><br><span class="line"><span class="number">100</span> - <span class="number">10</span>; <span class="comment">/// 这是早上剩余的</span></span><br><span class="line"></span><br><span class="line"><span class="number">100</span> - <span class="number">10</span> - <span class="number">20</span>; <span class="comment">///这是中午剩余的</span></span><br><span class="line"></span><br><span class="line"><span class="number">100</span> - <span class="number">10</span> - <span class="number">20</span> - <span class="number">50</span>; <span class="comment">///这是晚上剩下的</span></span><br></pre></td></tr></table></figure>
+
+<p>现在我们使用变量:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> total = <span class="number">100</span>; <span class="comment">/// 一开始的100RMB</span></span><br><span class="line"></span><br><span class="line">total = total - <span class="number">10</span>; <span class="comment">/// 早上用掉10元， 剩下 total - 10 , 然后在吧剩下的值记录到total， 此时的total才是真正意义上的剩下的钱</span></span><br><span class="line"></span><br><span class="line">total = total - <span class="number">20</span>; <span class="comment">/// 在早上剩下的基础上中午再花20元, 剩下的再次记录到total</span></span><br><span class="line"></span><br><span class="line">total = total - <span class="number">50</span>; <span class="comment">/// 中午剩下的钱晚上再划掉 50元</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>对比发现:</strong></p>
+<ul>
+<li>当没有使用变量时, 如果是在同一个概念上的数值有变动, 每次变动都要把完整的变动过程写一遍，变动的次数越多， 书写的过程越繁琐, 如此下去，简直灭绝人性</li>
+<li>使用了变量以后, 我们不仅可以把变量当成我们的原始数值一样进行计算, 还能把计算的结果进行保存留到后续的变动，而且不管多少次的变动， 计算表达式的语句也能一直保持很简洁</li>
+</ul>
+<ol start="3">
+<li><p>变量与变量有时候是会有区别的， 比如你18岁, 身高1.60米, 名字叫二愣子, 这种变量与变量之间的区别叫 <code>变量类型</code>，<code>18</code>岁: 这是个整数, <code>1.60</code>米: 这是实数，<code>二愣子</code>:这是文本也叫字符串</p>
+</li>
+<li><p>变量有哪些类型呢？ 基本的变量类型有以下几种:</p>
+</li>
+</ol>
+<ul>
+<li><code>整形</code>: 对应整数 </li>
+<li><code>浮点型</code>: 对应实数 </li>
+<li><code>布尔型</code>: 表示具有对立属性的状态, 一般可以表示为<code>真</code>/<code>假</code>, 0 &lt; 1 真， 1 == 2 假 </li>
+<li><code>字符型</code>: 用来表示显示在屏幕上给我们看的文本</li>
+</ul>
+<ol start="5">
+<li>变量类型的具体C/C++语言中的类型有哪些呢？</li>
+</ol>
+<ul>
+<li><code>整形</code>: (unsigned ) char/short/int/long/long long</li>
+<li><code>浮点型</code>: float, double</li>
+<li><code>布尔型</code>: bool</li>
+<li><code>字符型</code>: char , wchar</li>
+</ul>
+<ol start="6">
+<li>有啥区别? 每种大类型里面的具体类型之间, 一般都只有存储空间和符号性的区别, 比如</li>
+</ol>
+<ul>
+<li><code>整形</code>: </li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> (<span class="number">1</span>字节, <span class="number">-2</span>^<span class="number">7</span>~<span class="number">2</span>^<span class="number">7</span><span class="number">-1</span>), <span class="function"><span class="keyword">unsigned</span> <span class="title">char</span> <span class="params">(<span class="number">1</span>字节, <span class="number">0</span>~<span class="number">2</span>^<span class="number">8</span><span class="number">-1</span>)</span></span></span><br><span class="line">short(2字节，-2^15~2^15-1), unsigned char(2字节, 0~2^16-1)</span><br><span class="line"><span class="keyword">int</span> (<span class="number">4</span>字节, <span class="number">-2</span>^<span class="number">31</span>~ <span class="number">2</span>^<span class="number">31</span><span class="number">-1</span>), <span class="function"><span class="keyword">unsigned</span> <span class="title">int</span><span class="params">(<span class="number">4</span>字节, <span class="number">0</span>~<span class="number">2</span>^<span class="number">32</span><span class="number">-1</span>)</span></span></span><br><span class="line">long/ unsigned long(平台相关，一般不小于4字节，不大于 long long 的字节数)</span><br><span class="line">long long (8字节， -2^63~2^63-1), unsigned long long(8字节, 0~2^64-1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>浮点型</code>:</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span>(<span class="number">4</span>字节), <span class="keyword">double</span>(<span class="number">8</span>字节)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>布尔型</code>:</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span>(<span class="number">1</span>字节), 只有两个值, <span class="literal">true</span>: 真，<span class="literal">false</span>: 假</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>字符型</code>(使用单引号引用起来的单个内容):<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>(<span class="number">1</span>字节): <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'0'</span> ...</span><br><span class="line">wchar_t(2字节): L'A', L'B', L'C'...</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="7">
+<li>基本类型之间可否转换?</li>
+</ol>
+<ul>
+<li><code>整形</code> -&gt; <code>布尔型</code>: </li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>: <span class="literal">false</span></span><br><span class="line">非<span class="number">0</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>整形</code> -&gt; <code>浮点型</code>: </li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> -&gt; <span class="number">0.0f</span>, <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span> -&gt; <span class="number">1.0f</span>, <span class="number">0.0</span></span><br><span class="line">n -&gt; n<span class="number">.0f</span>, n<span class="number">.0</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>浮点数</code> -&gt; <code>整数</code>, 直接取整数部分, 小数部分会直接丢弃， 因此可能会有精度损失, 比如<code>1.5</code>转化为<code>int</code>以后值为<code>1</code>, 并且不会有像我们数学意义上的四舍五入发生</li>
+</ul>
+<h3 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h3><ol>
+<li>操作符分为 一元操作符、二元操作符、三元操作符, 所谓的元， 就是参数，一元表示只有一个参数…以此类推</li>
+<li>一元操作符: <code>-</code>(取负, a = 1, -a = -1)  <code>~</code>(按位取反, ~0b00000000 = 0b11111111) <code>!</code>(逻辑取反, !true = false, !false = true)</li>
+<li>二元操作符: <code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>、<code>&lt;</code>、<code>&gt;</code> 、<code>&lt;=</code>、<code>&gt;=</code> 、<code>==</code> (相等)、<code>!=</code>(不等) 、<code>&lt;&lt;</code>(左移或者流输出)、<code>&gt;&gt;</code>(右移或者流输入) 、<code>+=</code> (自增)、<code>-=</code>(自减)、<code>*=</code> 、<code>/=</code> 、<code>&amp;</code>(位与)、<code>|</code>(位或)、<code>^</code>(异或)、<code>&amp;&amp;</code>(逻辑与)、<code>||</code>(逻辑或) 、<code>&amp;=</code> 、<code>|=</code>、<code>&lt;&lt;=</code> 、<code>&gt;&gt;=</code></li>
+<li>三元操作符: <code>?:</code>(用法, 条件 ? 值1: 值2, 表达含义: 条件成立时， 返回值1， 不成立则返回值2) </li>
+</ol>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ol>
+<li>如果从某些已有的值，计算得到某个结果值， 需要执行的语句超过<code>1条</code>时, 我们要怎么做呢？比如计算一个两个实数和的小数部分:</li>
+</ol>
+<p>如果直接把每一组都计算一遍</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> sum = <span class="number">1.5</span> + <span class="number">2.1</span>; <span class="comment">/// 结果为 3.6</span></span><br><span class="line"><span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line"><span class="keyword">double</span> result1 = sum - part; <span class="comment">/// 3.6 - 3 = 0.6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">///...中间还有很多组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> sum = <span class="number">9.5</span> + <span class="number">0.7</span>; <span class="comment">/// 结果为 10.2</span></span><br><span class="line"><span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line"><span class="keyword">double</span> resultn = sum - part; <span class="comment">/// 10.2- 10 = 0.2</span></span><br></pre></td></tr></table></figure>
+
+<p>改为使用函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">double</span> sum = a + b; </span><br><span class="line">  <span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line">  <span class="keyword">return</span> sum - part; <span class="comment">/// </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> result1 = calc(<span class="number">1.5</span>, <span class="number">2.1</span>); <span class="comment">/// 结果0.6</span></span><br><span class="line"><span class="comment">/// ...</span></span><br><span class="line"><span class="keyword">double</span> resultn = calc(<span class="number">9.5</span>, <span class="number">0.2</span>); <span class="comment">/// 结果时0.2</span></span><br></pre></td></tr></table></figure>
+<p>其中的<code>calc</code>便叫做函数, 所谓函数， 其实就是特定流程的多条语句的包装，使用函数可以避免编写大量重读的代码</p>
+<ol start="2">
+<li>函数的声明与定义</li>
+</ol>
+<ul>
+<li>函数声明: 告知下文函数的形式, 一般可以编写成</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">返回类型 函数名(参数<span class="number">1</span>类型 参数<span class="number">1</span>名称, ..., 参数n类型 参数名称)；</span><br></pre></td></tr></table></figure>
+<p>比如上面的<code>calc</code>函数:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>返回类型是double, 有2个参数, 第一个参数名叫 a, double 类型, 第二个参数名叫b， 也是double类型</p>
+<ul>
+<li>函数定义: 函数的具体内容, 形式大致为:</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">返回值 函数名(参数<span class="number">1</span>类型 参数<span class="number">1</span>名称, ... , 参数n类型 参数n名称)</span><br><span class="line">&#123;</span><br><span class="line">  具体实现细节，...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如上面的 <code>calc</code>函数的定义:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">double</span> sum = a + b; </span><br><span class="line">  <span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line">  <span class="keyword">return</span> sum - part; <span class="comment">/// </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意: 同一个函数， 只能定义一次， 但是可以在多处声明</strong></p>
+<ol start="3">
+<li>只有 返回值、函数名、参数的类型、个数、位置完全一致的情况下，才能被称为同一个函数</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="comment">// 与</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> c, <span class="keyword">int</span> d)</span></span>;</span><br><span class="line"><span class="comment">// 是同一个函数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="comment">// 与</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">bool</span> b, <span class="keyword">char</span> c)</span></span>;</span><br><span class="line"><span class="comment">// 不是同一个函数</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>在C中, 同一个函数名只能用在一个函数中，不支持使用同一个函数名字定义多个函数, 但是C++中却可以同一个函数名用于多个函数, 叫做<code>函数重载</code>， 比如:</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a &lt; b ? b: a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a &lt; b ? b : a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//虽然用的函数名都是max</span></span><br><span class="line"><span class="comment">//但是</span></span><br><span class="line">max(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 与</span></span><br><span class="line">max(<span class="number">2.0</span>, <span class="number">3.0</span>);</span><br><span class="line"><span class="comment">// 使用的不是同一个函数</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><h3 id="原生数组"><a href="#原生数组" class="headerlink" title="原生数组"></a>原生数组</h3><h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><h3 id="枚举、-结构体、联合体"><a href="#枚举、-结构体、联合体" class="headerlink" title="枚举、 结构体、联合体"></a>枚举、 结构体、联合体</h3><h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><h1 id="提高篇"><a href="#提高篇" class="headerlink" title="提高篇"></a>提高篇</h1><h1 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h1><h1 id="高级篇"><a href="#高级篇" class="headerlink" title="高级篇"></a>高级篇</h1>
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>感谢您对本站的支持.</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/wxpay.jpg" alt="逗神大人 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/alipay.jpg" alt="逗神大人 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>逗神大人
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.oyoung.xyz/2019/12/15/C-tutorials/" title="C&#x2F;C++学习历程汇总">http://www.oyoung.xyz/2019/12/15/C-tutorials/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/16/gradle-create-springboot/" rel="next" title="Gradle从零开始创建SpringBoot项目">
+                  <i class="fa fa-chevron-left"></i> Gradle从零开始创建SpringBoot项目
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#预备篇"><span class="nav-number">1.</span> <span class="nav-text">预备篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编程技术预备知识"><span class="nav-number">1.1.</span> <span class="nav-text">编程技术预备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二进制、十进制、十六进制"><span class="nav-number">1.1.1.</span> <span class="nav-text">二进制、十进制、十六进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程图"><span class="nav-number">1.1.2.</span> <span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见术语"><span class="nav-number">1.1.3.</span> <span class="nav-text">常见术语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-开发环境安装"><span class="nav-number">1.2.</span> <span class="nav-text">C++开发环境安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows平台环境安装"><span class="nav-number">1.2.1.</span> <span class="nav-text">Windows平台环境安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu-linux平台-环境安装"><span class="nav-number">1.2.2.</span> <span class="nav-text">Ubuntu(linux平台)环境安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#macOS平台环境安装-XCode安装"><span class="nav-number">1.2.3.</span> <span class="nav-text">macOS平台环境安装(XCode安装)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDE的选择"><span class="nav-number">1.3.</span> <span class="nav-text">IDE的选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows"><span class="nav-number">1.3.1.</span> <span class="nav-text">Windows:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux"><span class="nav-number">1.3.2.</span> <span class="nav-text">Linux:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#macOS"><span class="nav-number">1.3.3.</span> <span class="nav-text">macOS:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#入门篇"><span class="nav-number">2.</span> <span class="nav-text">入门篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语句"><span class="nav-number">2.1.1.</span> <span class="nav-text">语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">2.1.2.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符"><span class="nav-number">2.1.3.</span> <span class="nav-text">操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">2.1.4.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换"><span class="nav-number">2.1.5.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原生数组"><span class="nav-number">2.1.6.</span> <span class="nav-text">原生数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指针"><span class="nav-number">2.1.7.</span> <span class="nav-text">指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举、-结构体、联合体"><span class="nav-number">2.1.8.</span> <span class="nav-text">枚举、 结构体、联合体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">2.1.9.</span> <span class="nav-text">常量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#提高篇"><span class="nav-number">3.</span> <span class="nav-text">提高篇</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进阶篇"><span class="nav-number">4.</span> <span class="nav-text">进阶篇</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级篇"><span class="nav-number">5.</span> <span class="nav-text">高级篇</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="逗神大人"
+    src="/assets/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">逗神大人</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">逗神大人</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="/js/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '500px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

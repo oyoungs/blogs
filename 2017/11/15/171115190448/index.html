@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="原文链接:https:&#x2F;&#x2F;blog.csdn.net&#x2F;oyoung_2012&#x2F;article&#x2F;details&#x2F;785439791.  变量与数据类型a)   数据类型i.     基本数据类型整数类型 1Int, UInt, Int8, UInt8, Int16,UInt16, Int32, UInt32, Int64, UInt64">
+<meta name="keywords" content="Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="零基础学iOS系列之swift语法基础">
+<meta property="og:url" content="http:&#x2F;&#x2F;www.oyoung.xyz&#x2F;2017&#x2F;11&#x2F;15&#x2F;171115190448&#x2F;index.html">
+<meta property="og:site_name" content="逗神大人的个人小站">
+<meta property="og:description" content="原文链接:https:&#x2F;&#x2F;blog.csdn.net&#x2F;oyoung_2012&#x2F;article&#x2F;details&#x2F;785439791.  变量与数据类型a)   数据类型i.     基本数据类型整数类型 1Int, UInt, Int8, UInt8, Int16,UInt16, Int32, UInt32, Int64, UInt64">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-31T23:05:50.535Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.oyoung.xyz/2017/11/15/171115190448/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>零基础学iOS系列之swift语法基础 | 逗神大人的个人小站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">逗神大人的个人小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">20</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/oyoungs" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.oyoung.xyz/2017/11/15/171115190448/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          零基础学iOS系列之swift语法基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-15 19:04:48" itemprop="dateCreated datePublished" datetime="2017-11-15T19:04:48+08:00">2017-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-01 07:05:50" itemprop="dateModified" datetime="2019-11-01T07:05:50+08:00">2019-11-01</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/78543979" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/78543979</a></p><h1 id="1-变量与数据类型"><a href="#1-变量与数据类型" class="headerlink" title="1.  变量与数据类型"></a>1.  变量与数据类型</h1><h2 id="a-数据类型"><a href="#a-数据类型" class="headerlink" title="a)   数据类型"></a>a)   数据类型</h2><h3 id="i-基本数据类型"><a href="#i-基本数据类型" class="headerlink" title="i.     基本数据类型"></a>i.     基本数据类型</h3><p>整数类型 </p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Int</span>, <span class="type">UInt</span>, <span class="type">Int8</span>, <span class="type">UInt8</span>, <span class="type">Int16</span>,<span class="type">UInt16</span>, <span class="type">Int32</span>, <span class="type">UInt32</span>, <span class="type">Int64</span>, <span class="type">UInt64</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>实数类型 </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Double</span>, <span class="type">CGFloat</span></span><br></pre></td></tr></table></figure>
+<p>字符串 </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span></span><br></pre></td></tr></table></figure>
+<p>集合类型 </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Array</span>, <span class="type">Dictionary</span></span><br></pre></td></tr></table></figure>
+<h3 id="ii-类型之间的转换-调用目标类型的构造函数"><a href="#ii-类型之间的转换-调用目标类型的构造函数" class="headerlink" title="ii.     类型之间的转换(调用目标类型的构造函数)"></a>ii.     类型之间的转换(调用目标类型的构造函数)</h3><p>整数类型 –&gt; 实数类型:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> n: <span class="type">Int</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="type">Double</span> = <span class="type">Double</span>(n)</span><br></pre></td></tr></table></figure>
+<p>数字类型 -&gt; 字符串类型：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> number = <span class="number">4</span></span><br><span class="line"><span class="keyword">let</span> stringValue = <span class="type">String</span>(number)</span><br></pre></td></tr></table></figure>
+<h2 id="b-变量的声明"><a href="#b-变量的声明" class="headerlink" title="b)   变量的声明"></a>b)   变量的声明</h2><h3 id="i-基本声明方法"><a href="#i-基本声明方法" class="headerlink" title="i.     基本声明方法"></a>i.     基本声明方法</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span>/<span class="keyword">var</span> name[: <span class="type">Type</span>][ = <span class="type">Initialization</span>]</span><br></pre></td></tr></table></figure>
+<p>中括号内表示可省略, 但第一个中括号与第二个中括号内的内容只能省略一处， 除了类成员属性有默认值的情况不需要省略，其他均建议采用省略形式， 如</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> number = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> string: <span class="type">String?</span></span><br></pre></td></tr></table></figure>
+<h3 id="ii-使用let声明"><a href="#ii-使用let声明" class="headerlink" title="ii.     使用let声明"></a>ii.     使用let声明</h3><p>表示常量，声明之后只允许有一次赋值， 如</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">10</span></span><br><span class="line">x = <span class="number">100</span> <span class="comment">//编译不通过</span></span><br></pre></td></tr></table></figure>
+<h3 id="iii-使用var声明"><a href="#iii-使用var声明" class="headerlink" title="iii.     使用var声明"></a>iii.     使用var声明</h3><p>表示变量， 一次声明，可以多次修改其值， 但效率没有let高</p>
+<h3 id="iv-let-与var的区别与使用规则"><a href="#iv-let-与var的区别与使用规则" class="headerlink" title="iv.     let 与var的区别与使用规则"></a>iv.     let 与var的区别与使用规则</h3><p>区别在于前者声明的变量为值不可变，后者值可变，前者效率更高，使用原则：<br>方法体中，<strong>优先使用let, 当需要修改变量值的时候， 根据编译器提示和修改建议进行修改即可</strong></p>
+<h3 id="v-语法糖"><a href="#v-语法糖" class="headerlink" title="v.     语法糖"></a>v.     语法糖</h3><p>适用于Array，Dictionary和Optional， 但写法更简洁，<br>对于数组， 应该写成</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array: [<span class="type">Int</span>]</span><br></pre></td></tr></table></figure>
+<p>而不建议写成</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array: <span class="type">Array</span>&lt;<span class="type">Int</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>对于字典， 应该写成</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dict: [<span class="type">String</span>: <span class="type">String</span>]</span><br></pre></td></tr></table></figure>
+<p>而不应该写成</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dict: <span class="type">Dictionary</span>&lt;<span class="type">String</span>,<span class="type">String</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>对于Optional，从名字上看叫可选值， 也就是可空值， 表示该类型的变量的值可以是nil(或者.None)， 建议使用简洁形式声明可选类型变量, 如</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name: <span class="type">String?</span></span><br></pre></td></tr></table></figure>
+<p>而不要使用</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name: <span class="type">Optional</span>(<span class="type">String</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="c-区间"><a href="#c-区间" class="headerlink" title="c)  区间"></a>c)  区间</h3><p>区间分为半开区间和闭区间，区间值必须为整数， 半开区间用..&lt;表示， 如0到99， 则可以表示为</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> ..&lt; <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<p>闭区间用…表示， 如0到99表示为 </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> … <span class="number">99</span></span><br></pre></td></tr></table></figure>
+
+<p>早期版本中, <code>..&lt;</code> 和<code>...</code>后面的数字或者变量需要紧跟，不得有空格, 比较新的版本中去掉了这个限制</p>
+<h1 id="2-控制语句"><a href="#2-控制语句" class="headerlink" title="2.  控制语句"></a>2.  控制语句</h1><h2 id="a-条件语句"><a href="#a-条件语句" class="headerlink" title="a) 条件语句"></a>a) 条件语句</h2><h3 id="i-if-else语句"><a href="#i-if-else语句" class="headerlink" title="i. if else语句"></a>i. if else语句</h3><p>最基本的条件判断，</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> 条件 &#123;</span><br><span class="line">    <span class="comment">//条件为真的时候的操作</span></span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//条件为假时的操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>else 后仍可接ifelse完成语句，如：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> 条件<span class="number">1</span> &#123;</span><br><span class="line">    <span class="comment">//条件1为真的时候的操作</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> 条件<span class="number">2</span> &#123;</span><br><span class="line">    <span class="comment">//条件2为真的时候的操作</span></span><br><span class="line">&#125; <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//条件为假时的操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ii-guard-else-语句"><a href="#ii-guard-else-语句" class="headerlink" title="ii. guard else 语句"></a>ii. guard else 语句</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">guard</span> 条件 <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span>/<span class="keyword">break</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>表示确保条件成立的情况下继续往下执行，否则执行完else中的内容后退出，break/return要求必须写一个，因此guard语句一般在方法体中或者循环中使用，具体看使用情况，guardelse语句一般用来避免嵌套ifelse 语句造成的代码结构混乱</p>
+<h3 id="iii-if-let-语句"><a href="#iii-if-let-语句" class="headerlink" title="iii. if let 语句"></a>iii. if let 语句</h3><p>表示可选值的绑定，如果可选值非空，可以绑定成功，则执行后面{ }中的语句，否则跳过{ }<br>形式：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> some = someOptioal &#123;</span><br><span class="line">    <span class="comment">//如果someOptional的值不是nil，则执行此处代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>if let语句也可以和if else语句一样，可以有else分支，如果有多个可选值需要绑定，只需要在{ }前面增加let 语句即可，然后与前面的语句用英文逗号隔开<br><strong>if let 语句可以用来避免使用！进行强制拆包导致的nil异常</strong></p>
+<h3 id="iv-guard-let-…-else语句"><a href="#iv-guard-let-…-else语句" class="headerlink" title="iv. guard let … else语句"></a>iv. guard let … else语句</h3><p>类似于if let，同样用于可选值绑定，绑定失败则执行else 后面的{ }里面的语句并退出</p>
+<h2 id="b-选择语句"><a href="#b-选择语句" class="headerlink" title="b)   选择语句"></a>b)   选择语句</h2><p>switch case语句<br>使用形式：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> some &#123;</span><br><span class="line"><span class="keyword">case</span> value1:</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">case</span> value2:</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">default</span>: <span class="keyword">break</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用要求， 如果some为枚举类型的变量，则不建议使用default分支, 应该将所有枚举值case 出来， 如果some为非枚举类型变量，则要求必须有default分支，且每一个case分支下如果语句非空， 则不需要使用break，否则需要在该分支使用break，case 分支的值除了可以是单个的值之外，也可以是区间</p>
+<h2 id="c-循环语句"><a href="#c-循环语句" class="headerlink" title="c) 循环语句"></a>c) 循环语句</h2><h3 id="i-传统的for循环，-不建议使用"><a href="#i-传统的for循环，-不建议使用" class="headerlink" title="i.  传统的for循环， 不建议使用"></a>i.  传统的for循环， 不建议使用</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="keyword">init</span>; condition; change&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ii-用于对集合类型的遍历-建议使用"><a href="#ii-用于对集合类型的遍历-建议使用" class="headerlink" title="ii. 用于对集合类型的遍历, 建议使用"></a>ii. 用于对集合类型的遍历, 建议使用</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> some <span class="keyword">in</span> collection &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="iii-while循环"><a href="#iii-while循环" class="headerlink" title="iii.  while循环"></a>iii.  while循环</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">while</span> condition &#123;</span><br><span class="line"><span class="comment">///循环体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="iv-repeat-while循环"><a href="#iv-repeat-while循环" class="headerlink" title="iv.  repeat while循环"></a>iv.  repeat while循环</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">repeat</span> &#123;</span><br><span class="line"><span class="comment">//循环体</span></span><br><span class="line">&#125; <span class="keyword">while</span> condition</span><br></pre></td></tr></table></figure>
+<p>与while循环功能相同， 但是区别在于while循环先判断在执行， repeat while语句先执行后判断</p>
+<h2 id="d-循环中的跳转"><a href="#d-循环中的跳转" class="headerlink" title="d)   循环中的跳转"></a>d)   循环中的跳转</h2><p>跳过当前循环，使用continue, 终止当前循环，使用break， break可以终止多层循环，配合标签使用， 如</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">lp:</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="number">10</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="number">5</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> i* i == j * j * j &#123;</span><br><span class="line">           <span class="keyword">break</span> lp</span><br><span class="line">       &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-自定义类型"><a href="#3-自定义类型" class="headerlink" title="3.  自定义类型"></a>3.  自定义类型</h1><h2 id="a-typealias使用"><a href="#a-typealias使用" class="headerlink" title="a)   typealias使用"></a>a)   typealias使用</h2><p>给已有类型取别名， 如 </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> <span class="type">Point</span> = (<span class="type">Double</span>, <span class="type">Double</span>)</span><br></pre></td></tr></table></figure>
+<p>表示将(Double， Double)类型的元组取别名为Point</p>
+<h2 id="b-enum"><a href="#b-enum" class="headerlink" title="b)   enum"></a>b)   enum</h2><p>定义枚举类型， 枚举值以case 为前缀列举, 如</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">School</span></span>&#123;</span><br><span class="line"><span class="keyword">case</span> primary</span><br><span class="line"><span class="keyword">case</span> middleSchool</span><br><span class="line"><span class="keyword">case</span> university</span><br><span class="line"><span class="keyword">case</span> college</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与其他语言不同， 枚举值中也可以有包括构造方法在内的方法存在，也可以以其他如Int 类型为父类进行继承<br>除此之外 Swift中的枚举类型还可以有附加值, 比如:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Property</span> </span>&#123;</span><br><span class="line">	<span class="keyword">case</span> name(<span class="type">String</span>)</span><br><span class="line">	<span class="keyword">case</span> age(<span class="type">Int</span>)</span><br><span class="line">	<span class="keyword">case</span> gender(<span class="type">Bool</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在使用switch语句的时候，除了可以根据类型选择分支， 还能获取到改枚举类型的附加值, 比如:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> prop = <span class="type">Property</span>.name(<span class="string">"Who"</span>)</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">switch</span> prop &#123;</span><br><span class="line">	<span class="keyword">case</span> .name(<span class="keyword">let</span> name): &#123;</span><br><span class="line">		<span class="built_in">print</span>(name)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> .age(<span class="keyword">let</span> age): &#123;</span><br><span class="line">		<span class="built_in">print</span>(age)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> .gender(<span class="keyword">let</span> gender): &#123;</span><br><span class="line">		<span class="built_in">print</span>(gender)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="c-struct"><a href="#c-struct" class="headerlink" title="c)   struct"></a>c)   struct</h2><p>声明一个类，但是该类属于值类型，每一个该类型的变量之间互不相关，修改任何一个该类型变量不会影响到其他同类型变量的值</p>
+<h2 id="d-class"><a href="#d-class" class="headerlink" title="d)   class"></a>d)   class</h2><p>与struct相同，也是声明一个类， 但区别在于， 声明的类为引用类型，如果将该类型的一个变量赋值给另一个同类型变量，则这两个变量指向的是同一个实体，如果有其中一个变量修改了实体的某个值， 另一个变量的实体的值会跟着修改</p>
+<h2 id="e-protocol"><a href="#e-protocol" class="headerlink" title="e)   protocol"></a>e)   protocol</h2><p>表示协议， 用来声明接口， 声明后不可直接使用，只能使用class或者struct声明的类实现该协议</p>
+
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>感谢您对本站的支持.</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/wxpay.jpg" alt="逗神大人 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/alipay.jpg" alt="逗神大人 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>逗神大人
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.oyoung.xyz/2017/11/15/171115190448/" title="零基础学iOS系列之swift语法基础">http://www.oyoung.xyz/2017/11/15/171115190448/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Swift/" rel="tag"><i class="fa fa-tag"></i> Swift</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2017/11/09/171109110650/" rel="next" title="cocos2d-x的运行框架思维导图">
+                  <i class="fa fa-chevron-left"></i> cocos2d-x的运行框架思维导图
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/09/20/190920182322/" rel="prev" title="MySQL C/C++客户端api(libmysqlclient-dev) 的使用笔记">
+                  MySQL C/C++客户端api(libmysqlclient-dev) 的使用笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-变量与数据类型"><span class="nav-number">1.</span> <span class="nav-text">1.  变量与数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">a)   数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-基本数据类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">i.     基本数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-类型之间的转换-调用目标类型的构造函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">ii.     类型之间的转换(调用目标类型的构造函数)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#b-变量的声明"><span class="nav-number">1.2.</span> <span class="nav-text">b)   变量的声明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-基本声明方法"><span class="nav-number">1.2.1.</span> <span class="nav-text">i.     基本声明方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-使用let声明"><span class="nav-number">1.2.2.</span> <span class="nav-text">ii.     使用let声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-使用var声明"><span class="nav-number">1.2.3.</span> <span class="nav-text">iii.     使用var声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-let-与var的区别与使用规则"><span class="nav-number">1.2.4.</span> <span class="nav-text">iv.     let 与var的区别与使用规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-语法糖"><span class="nav-number">1.2.5.</span> <span class="nav-text">v.     语法糖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-区间"><span class="nav-number">1.2.6.</span> <span class="nav-text">c)  区间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-控制语句"><span class="nav-number">2.</span> <span class="nav-text">2.  控制语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-条件语句"><span class="nav-number">2.1.</span> <span class="nav-text">a) 条件语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-if-else语句"><span class="nav-number">2.1.1.</span> <span class="nav-text">i. if else语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-guard-else-语句"><span class="nav-number">2.1.2.</span> <span class="nav-text">ii. guard else 语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-if-let-语句"><span class="nav-number">2.1.3.</span> <span class="nav-text">iii. if let 语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-guard-let-…-else语句"><span class="nav-number">2.1.4.</span> <span class="nav-text">iv. guard let … else语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#b-选择语句"><span class="nav-number">2.2.</span> <span class="nav-text">b)   选择语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-循环语句"><span class="nav-number">2.3.</span> <span class="nav-text">c) 循环语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-传统的for循环，-不建议使用"><span class="nav-number">2.3.1.</span> <span class="nav-text">i.  传统的for循环， 不建议使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ii-用于对集合类型的遍历-建议使用"><span class="nav-number">2.3.2.</span> <span class="nav-text">ii. 用于对集合类型的遍历, 建议使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iii-while循环"><span class="nav-number">2.3.3.</span> <span class="nav-text">iii.  while循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iv-repeat-while循环"><span class="nav-number">2.3.4.</span> <span class="nav-text">iv.  repeat while循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#d-循环中的跳转"><span class="nav-number">2.4.</span> <span class="nav-text">d)   循环中的跳转</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-自定义类型"><span class="nav-number">3.</span> <span class="nav-text">3.  自定义类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-typealias使用"><span class="nav-number">3.1.</span> <span class="nav-text">a)   typealias使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#b-enum"><span class="nav-number">3.2.</span> <span class="nav-text">b)   enum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-struct"><span class="nav-number">3.3.</span> <span class="nav-text">c)   struct</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#d-class"><span class="nav-number">3.4.</span> <span class="nav-text">d)   class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#e-protocol"><span class="nav-number">3.5.</span> <span class="nav-text">e)   protocol</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="逗神大人"
+    src="/assets/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">逗神大人</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">逗神大人</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="/js/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '500px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="原文链接:https:&#x2F;&#x2F;blog.csdn.net&#x2F;oyoung_2012&#x2F;article&#x2F;details&#x2F;54601314 我们都知道C是一门面相过程的语言，在C的世界里是没有面相对象这个概念的，但是C语言为我们提供的神兵利器，仍旧可以让我们使用面相对象的思维方式在C语言里，我们每做一个操作，都需要写一个函数，但是该函数都是过程化的，但是我们有两种神兵利器，一个叫指针，一个叫结构体为什么这么说">
+<meta name="keywords" content="C&#x2F;C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从C到C++看面相对象(深入了解C++的成员函数)">
+<meta property="og:url" content="http:&#x2F;&#x2F;www.oyoung.xyz&#x2F;2017&#x2F;01&#x2F;18&#x2F;170118150250&#x2F;index.html">
+<meta property="og:site_name" content="逗神大人的个人小站">
+<meta property="og:description" content="原文链接:https:&#x2F;&#x2F;blog.csdn.net&#x2F;oyoung_2012&#x2F;article&#x2F;details&#x2F;54601314 我们都知道C是一门面相过程的语言，在C的世界里是没有面相对象这个概念的，但是C语言为我们提供的神兵利器，仍旧可以让我们使用面相对象的思维方式在C语言里，我们每做一个操作，都需要写一个函数，但是该函数都是过程化的，但是我们有两种神兵利器，一个叫指针，一个叫结构体为什么这么说">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-29T11:50:07.419Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.oyoung.xyz/2017/01/18/170118150250/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>从C到C++看面相对象(深入了解C++的成员函数) | 逗神大人的个人小站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">逗神大人的个人小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">20</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/oyoungs" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.oyoung.xyz/2017/01/18/170118150250/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从C到C++看面相对象(深入了解C++的成员函数)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-18 15:02:50" itemprop="dateCreated datePublished" datetime="2017-01-18T15:02:50+08:00">2017-01-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-29 19:50:07" itemprop="dateModified" datetime="2019-10-29T19:50:07+08:00">2019-10-29</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/54601314" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/54601314</a></p><p> 我们都知道C是一门面相过程的语言，在C的世界里是没有面相对象这个概念的，但是C语言为我们提供的神兵利器，仍旧可以让我们使用面相对象的思维方式<br>在C语言里，我们每做一个操作，都需要写一个函数，但是该函数都是过程化的，但是我们有两种神兵利器，一个叫指针，一个叫结构体<br>为什么这么说呢？<br>面相对象的最基本的功能就是对数据的封装，在C语言的世界里，我们有结构体这个法宝，同样可以将数据打包整整体，然后通过指针的方式，将结构体作为参数在函数中进行传递<br>举个例子</p><a id="more"></a>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> &#123;</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">32</span>]; <span class="comment">//书名</span></span><br><span class="line">	<span class="keyword">char</span> author[<span class="number">32</span>]; <span class="comment">//作者名</span></span><br><span class="line">	<span class="keyword">int</span> total; <span class="comment">//总页数</span></span><br><span class="line">	<span class="keyword">int</span> price;<span class="comment">//价格</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">Book</span>;</span></span><br><span class="line"><span class="comment">//初始化一本书</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">book_init</span><span class="params">(Book *book, <span class="keyword">const</span> <span class="keyword">char</span> *name, <span class="keyword">const</span> <span class="keyword">char</span> *author, <span class="keyword">int</span> total, <span class="keyword">int</span> price)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">strcpy</span>(book-&gt;name, name);</span><br><span class="line">	<span class="built_in">strcpy</span>(book-&gt;author, author);</span><br><span class="line">	book-&gt;total = total;</span><br><span class="line">	book-&gt;price = price;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">book_update_price</span><span class="params">(Book *book, <span class="keyword">int</span> newPrice)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	book-&gt;price = price;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上的例子很简单，初始化一本书以及更新书价，在使用的时候，我们只需要像以下方式调用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Book book;</span><br><span class="line">book_init(&amp;book, <span class="string">"WPF 编程宝典"</span>, <span class="string">"Matthew MacDonald"</span>, <span class="number">934</span>, <span class="number">128</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">book_update_price(&amp;book, <span class="number">100</span>); <span class="comment">//降价</span></span><br></pre></td></tr></table></figure>
+<p>以上的这些使用的都是面相过程的思维。<br>所谓面向过程编程，就好比“让某某去做某事”，而面向对象呢，就好比“某某去做某事”。从字面意思来看，面向过程貌似多了个“高级领导”，而面向对象显得更自由。<br>###我们再变一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">32</span>];</span><br><span class="line">	<span class="keyword">char</span> author[<span class="number">32</span>];</span><br><span class="line">	<span class="keyword">int</span> price;</span><br><span class="line">	<span class="keyword">void</span> (*init)(Book *book, <span class="keyword">const</span> <span class="keyword">char</span> *name, <span class="keyword">const</span> <span class="keyword">char</span> *author, <span class="keyword">int</span> price);</span><br><span class="line">	<span class="keyword">void</span> (*update_price)(Book *book, <span class="keyword">int</span> newPrice);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化一本书</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">book_init</span><span class="params">(Book *book, <span class="keyword">const</span> <span class="keyword">char</span> *name, <span class="keyword">const</span> <span class="keyword">char</span> *author, <span class="keyword">int</span> price)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">strcpy</span>(book-&gt;name, name);</span><br><span class="line">	<span class="built_in">strcpy</span>(book-&gt;author, author);</span><br><span class="line">	book-&gt;total = total;</span><br><span class="line">	book-&gt;price = price;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">book_update_price</span><span class="params">(Book *book, <span class="keyword">int</span> newPrice)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	book-&gt;price = price;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一本书</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">book_create</span><span class="params">(Book *book)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	book-&gt;init = book_init;</span><br><span class="line">	book-&gt;update_price = book_update_price;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后你就可以像以下一样使用了</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Book book;</span><br><span class="line">book_create(&amp;book);</span><br><span class="line"></span><br><span class="line">book.init(&amp;book, <span class="string">"WPF 编程宝典"</span>, <span class="string">"Matthew MacDonald"</span>, <span class="number">128</span>);</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">book.update_price(&amp;book, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<p>使用这种方式来调用，看起来有了一种“书做了某某事”的面向对象的错觉<br>###C++正是借鉴了这一点，从而产生了Class（类）<br>当我们定义一个class的时候，我们自己定义的成员函数就使用了我们上面的思想，参考如下代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span> &#123;</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">32</span>];</span><br><span class="line">	<span class="keyword">char</span> author[<span class="number">32</span>;</span><br><span class="line">	<span class="keyword">int</span> price;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name, <span class="keyword">const</span> <span class="keyword">char</span> *author, <span class="keyword">int</span> price)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">strcpy</span>(<span class="keyword">this</span>-&gt;name, name);</span><br><span class="line">		<span class="built_in">strcpy</span>(<span class="keyword">this</span>-&gt;author, author);</span><br><span class="line">		<span class="keyword">this</span>-&gt;price = price;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">updatePrice</span><span class="params">(<span class="keyword">int</span> price)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;price = price;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们是用起来显得更简单</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Book book;</span><br><span class="line">book.init(<span class="string">"WPF 编程宝典"</span>, <span class="string">"Matthew MacDonald"</span>, <span class="number">128</span>):</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">book.updatePrice(<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<p>看起来与我们使用C语言模仿的面向对象是不是很像？<br>接下来我们注意到一个关键字this, 指的是调用函数的某个对象，谁调用了，this指的就是谁，上面的book调用init和updatePrice的时候，this指的就是book这个对象。</p>
+<p>我想你应该明白了，C++的面向对象，就是使用了我们的上述模拟面向对象的思维，然后C++自己将对象本身作为一个隐含的参数传递给了我们的成员函数，当然，这些并不包括C++面向对象中更强大的继承和多态。<br>到此我觉得你应该明白了C++成员函数与普通函数之间的区别以及其内部的原理。<br>再看下面代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Student(<span class="keyword">const</span> <span class="keyword">char</span> *name) &#123; <span class="built_in">strcpy</span>(<span class="keyword">this</span>-&gt;name, name);&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">makeTest</span><span class="params">()</span> </span>&#123; <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"我在考试"</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">appear</span><span class="params">()</span> </span>&#123; <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"My name is "</span>&lt;&lt;name&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">32</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们在看如下调用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Student *pStu;</span><br><span class="line"></span><br><span class="line">pStu-&gt;makeTest(); <span class="comment">// ①</span></span><br><span class="line">pStu-&gt;appear(); <span class="comment">// ②</span></span><br></pre></td></tr></table></figure>
+<p>很多人都会想到，pStu是一个未初始化的变量，以上①②两种调用都会导致崩溃。再仔细想想看，真的是这样吗？<br>比较细心的同学会发现，在某些编译器上运行，我们却可以看到①调用后的打印信息，而运行②以后，程序崩溃掉了，我想细心的你应该知道这是什么原因了。<br>很简单，我们在①处调用的makeTest()函数，翻译成C语言的形式应该是</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">makeTest</span><span class="params">(Student *<span class="keyword">this</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//打印“我在考试”</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">makeTest(pStu);</span><br></pre></td></tr></table></figure>
+<p>在代码里面，pStu虽然没有初始化，但是在上面的C语言版的makeTest中，我们并没有使用到this这个参数，所以即使这个参数指针是一个野指针或者空指针，都不会出现崩溃现象，但是对于②处的调用，使用的appear()函数中使用到了this, 也就是说，此时的this是一个未初始化的指针（我们称为野指针，不是空指针），这个指针指向什么地方我们并不知道，可能是没有权限操作的一块内存，也可能正好是空指针，也可能是已经分配的某个内存</p>
+<p>我们再做一个小实验</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">this</span> != <span class="literal">nullptr</span>) <span class="comment">//C++11中引入的nullptr， 表示空指针，感兴趣的可以自己去多多了解C++11</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"我不是空的"</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"我是空的"</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Test t;</span><br><span class="line">	Test *p = <span class="literal">nullptr</span>; <span class="comment">//设置初始值，防止使用未初始化指针	</span></span><br><span class="line">	p-&gt;test();</span><br><span class="line">	</span><br><span class="line">	p = &amp;t;</span><br><span class="line">	p-&gt;test();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你能猜出最终的打印信息吗？(</p>
+
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>感谢您对本站的支持.</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/wxpay.jpg" alt="逗神大人 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/alipay.jpg" alt="逗神大人 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>逗神大人
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.oyoung.xyz/2017/01/18/170118150250/" title="从C到C++看面相对象(深入了解C++的成员函数)">http://www.oyoung.xyz/2017/01/18/170118150250/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C/C++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2017/01/10/170110173549/" rel="next" title="针对第三方SDK中不恰当的char *类型的几点看法">
+                  <i class="fa fa-chevron-left"></i> 针对第三方SDK中不恰当的char *类型的几点看法
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2017/01/20/170120143234/" rel="prev" title="C#调用C/C++的dll须知">
+                  C#调用C/C++的dll须知 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="逗神大人"
+    src="/assets/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">逗神大人</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">逗神大人</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="/js/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '500px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

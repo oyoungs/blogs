@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="问题描述在使用hexo开发个人博客时, 开启了不蒜子的统计选项， 但是在部署到Github Pages上或者本地使用serve -s 以及python -m SimpleHTTPServer的时候，经常会出现不显示数字问题由于已经是使用最新的域名来下载的, 应该不存在busuanzi.pure.min.js 的URL不对的情况使用最新的URL可以直接将脚本下载到本地">
+<meta name="keywords" content="busuanzi,不蒜子">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决不蒜子(busuanzi)不显示数字问题记录">
+<meta property="og:url" content="http:&#x2F;&#x2F;www.oyoung.xyz&#x2F;2019&#x2F;10&#x2F;30&#x2F;busuanzi&#x2F;index.html">
+<meta property="og:site_name" content="逗神大人的个人小站">
+<meta property="og:description" content="问题描述在使用hexo开发个人博客时, 开启了不蒜子的统计选项， 但是在部署到Github Pages上或者本地使用serve -s 以及python -m SimpleHTTPServer的时候，经常会出现不显示数字问题由于已经是使用最新的域名来下载的, 应该不存在busuanzi.pure.min.js 的URL不对的情况使用最新的URL可以直接将脚本下载到本地">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-29T23:46:30.354Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.oyoung.xyz/2019/10/30/busuanzi/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>解决不蒜子(busuanzi)不显示数字问题记录 | 逗神大人的个人小站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">逗神大人的个人小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">20</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/oyoungs" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.oyoung.xyz/2019/10/30/busuanzi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          解决不蒜子(busuanzi)不显示数字问题记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-10-30 07:18:53 / 修改时间：07:46:30" itemprop="dateCreated datePublished" datetime="2019-10-30T07:18:53+08:00">2019-10-30</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在使用hexo开发个人博客时, 开启了不蒜子的统计选项， 但是在部署到Github Pages上或者本地使用serve -s 以及python -m SimpleHTTPServer的时候，经常会出现不显示数字问题<br>由于已经是使用最新的域名来下载的, 应该不存在busuanzi.pure.min.js 的URL不对的情况<br>使用最新的URL可以直接将脚本下载到本地</p><a id="more"></a>
+<h1 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h1><p>将busuanzi.pure.min.js下载到本地后，显示这么一大坨</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bszCaller,bszTag;!<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">var</span> c,d,e,a=!<span class="number">1</span>,b=[];ready=<span class="function"><span class="keyword">function</span>(<span class="params">c</span>)</span>&#123;<span class="keyword">return</span> a||<span class="string">"interactive"</span>===<span class="built_in">document</span>.readyState||<span class="string">"complete"</span>===<span class="built_in">document</span>.readyState?c.call(<span class="built_in">document</span>):b.push(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> c.call(<span class="keyword">this</span>)&#125;),<span class="keyword">this</span>&#125;,d=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">for</span>(<span class="keyword">var</span> a=<span class="number">0</span>,c=b.length;c&gt;a;a++)b[a].apply(<span class="built_in">document</span>);b=[]&#125;,e=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;a||(a=!<span class="number">0</span>,d.call(<span class="built_in">window</span>),<span class="built_in">document</span>.removeEventListener?<span class="built_in">document</span>.removeEventListener(<span class="string">"DOMContentLoaded"</span>,e,!<span class="number">1</span>):<span class="built_in">document</span>.attachEvent&amp;&amp;(<span class="built_in">document</span>.detachEvent(<span class="string">"onreadystatechange"</span>,e),<span class="built_in">window</span>==<span class="built_in">window</span>.top&amp;&amp;(clearInterval(c),c=<span class="literal">null</span>)))&#125;,<span class="built_in">document</span>.addEventListener?<span class="built_in">document</span>.addEventListener(<span class="string">"DOMContentLoaded"</span>,e,!<span class="number">1</span>):<span class="built_in">document</span>.attachEvent&amp;&amp;(<span class="built_in">document</span>.attachEvent(<span class="string">"onreadystatechange"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;/loaded|complete/.test(<span class="built_in">document</span>.readyState)&amp;&amp;e()&#125;),<span class="built_in">window</span>==<span class="built_in">window</span>.top&amp;&amp;(c=setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">try</span>&#123;a||<span class="built_in">document</span>.documentElement.doScroll(<span class="string">"left"</span>)&#125;<span class="keyword">catch</span>(b)&#123;<span class="keyword">return</span>&#125;e()&#125;,<span class="number">5</span>)))&#125;(),bszCaller=&#123;<span class="attr">fetch</span>:<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">var</span> c=<span class="string">"BusuanziCallback_"</span>+<span class="built_in">Math</span>.floor(<span class="number">1099511627776</span>*<span class="built_in">Math</span>.random());<span class="built_in">window</span>[c]=<span class="keyword">this</span>.evalCall(b),a=a.replace(<span class="string">"=BusuanziCallback"</span>,<span class="string">"="</span>+c),scriptTag=<span class="built_in">document</span>.createElement(<span class="string">"script"</span>),scriptTag.type=<span class="string">"text/javascript"</span>,scriptTag.defer=!<span class="number">0</span>,scriptTag.src=a,<span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(scriptTag)&#125;,<span class="attr">evalCall</span>:<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">b</span>)</span>&#123;ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">try</span>&#123;a(b); scriptTag.parentElement.removeChild(scriptTag)&#125;<span class="keyword">catch</span>(c)&#123;bszTag.hides()&#125;&#125;)&#125;&#125;&#125;,bszCaller.fetch(<span class="string">"//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;bszTag.texts(a),bszTag.shows()&#125;),bszTag=&#123;<span class="attr">bszs</span>:[<span class="string">"site_pv"</span>,<span class="string">"page_pv"</span>,<span class="string">"site_uv"</span>],<span class="attr">texts</span>:<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;<span class="keyword">this</span>.bszs.map(<span class="function"><span class="keyword">function</span>(<span class="params">b</span>)</span>&#123;<span class="keyword">var</span> c=<span class="built_in">document</span>.getElementById(<span class="string">"busuanzi_value_"</span>+b);c&amp;&amp;(c.innerHTML=a[b])&#125;)&#125;,<span class="attr">hides</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">this</span>.bszs.map(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;<span class="keyword">var</span> b=<span class="built_in">document</span>.getElementById(<span class="string">"busuanzi_container_"</span>+a);b&amp;&amp;(b.style.display=<span class="string">"none"</span>)&#125;)&#125;,<span class="attr">shows</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">this</span>.bszs.map(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;<span class="keyword">var</span> b=<span class="built_in">document</span>.getElementById(<span class="string">"busuanzi_container_"</span>+a);b&amp;&amp;(b.style.display=<span class="string">"inline"</span>)&#125;)&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>经过格式化后:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bszCaller, bszTag;</span><br><span class="line">! <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> c, d, e, a = !<span class="number">1</span>,</span><br><span class="line">        b = [];</span><br><span class="line">    ready = <span class="function"><span class="keyword">function</span> (<span class="params">c</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a || <span class="string">"interactive"</span> === <span class="built_in">document</span>.readyState || <span class="string">"complete"</span> === <span class="built_in">document</span>.readyState ? c.call(<span class="built_in">document</span>) : b.push(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> c.call(<span class="keyword">this</span>)</span><br><span class="line">        &#125;), <span class="keyword">this</span></span><br><span class="line">    &#125;, d = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> a = <span class="number">0</span>, c = b.length; c &gt; a; a++) b[a].apply(<span class="built_in">document</span>);</span><br><span class="line">        b = []</span><br><span class="line">    &#125;, e = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        a || (a = !<span class="number">0</span>, d.call(<span class="built_in">window</span>), <span class="built_in">document</span>.removeEventListener ? <span class="built_in">document</span>.removeEventListener(<span class="string">"DOMContentLoaded"</span>, e, !<span class="number">1</span>) : <span class="built_in">document</span>.attachEvent &amp;&amp; (<span class="built_in">document</span>.detachEvent(<span class="string">"onreadystatechange"</span>, e), <span class="built_in">window</span> == <span class="built_in">window</span>.top &amp;&amp; (clearInterval(c), c = <span class="literal">null</span>)))</span><br><span class="line">    &#125;, <span class="built_in">document</span>.addEventListener ? <span class="built_in">document</span>.addEventListener(<span class="string">"DOMContentLoaded"</span>, e, !<span class="number">1</span>) : <span class="built_in">document</span>.attachEvent &amp;&amp; (<span class="built_in">document</span>.attachEvent(<span class="string">"onreadystatechange"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        /loaded|complete/.test(<span class="built_in">document</span>.readyState) &amp;&amp; e()</span><br><span class="line">    &#125;), <span class="built_in">window</span> == <span class="built_in">window</span>.top &amp;&amp; (c = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            a || <span class="built_in">document</span>.documentElement.doScroll(<span class="string">"left"</span>)</span><br><span class="line">        &#125; <span class="keyword">catch</span> (b) &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        e()</span><br><span class="line">    &#125;, <span class="number">5</span>)))</span><br><span class="line">&#125;(), bszCaller = &#123;</span><br><span class="line">    fetch: <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> c = <span class="string">"BusuanziCallback_"</span> + <span class="built_in">Math</span>.floor(<span class="number">1099511627776</span> * <span class="built_in">Math</span>.random());</span><br><span class="line">        <span class="built_in">window</span>[c] = <span class="keyword">this</span>.evalCall(b), a = a.replace(<span class="string">"=BusuanziCallback"</span>, <span class="string">"="</span> + c), scriptTag = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>), scriptTag.type = <span class="string">"text/javascript"</span>, scriptTag.defer = !<span class="number">0</span>, scriptTag.src = a, <span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(scriptTag)</span><br><span class="line">    &#125;,</span><br><span class="line">    evalCall: <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">b</span>) </span>&#123;</span><br><span class="line">            ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    a(b);</span><br><span class="line">                    scriptTag.parentElement.removeChild(scriptTag)</span><br><span class="line">                &#125; <span class="keyword">catch</span> (c) &#123;</span><br><span class="line">                    bszTag.hides()</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, bszCaller.fetch(<span class="string">"//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">    bszTag.texts(a), bszTag.shows()</span><br><span class="line">&#125;), bszTag = &#123;</span><br><span class="line">    bszs: [<span class="string">"site_pv"</span>, <span class="string">"page_pv"</span>, <span class="string">"site_uv"</span>],</span><br><span class="line">    texts: <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.bszs.map(<span class="function"><span class="keyword">function</span> (<span class="params">b</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> c = <span class="built_in">document</span>.getElementById(<span class="string">"busuanzi_value_"</span> + b);</span><br><span class="line">            c &amp;&amp; (c.innerHTML = a[b])</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    hides: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.bszs.map(<span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> b = <span class="built_in">document</span>.getElementById(<span class="string">"busuanzi_container_"</span> + a);</span><br><span class="line">            b &amp;&amp; (b.style.display = <span class="string">"none"</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    shows: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.bszs.map(<span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> b = <span class="built_in">document</span>.getElementById(<span class="string">"busuanzi_container_"</span> + a);</span><br><span class="line">            b &amp;&amp; (b.style.display = <span class="string">"inline"</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>于是分析, 其中bszTag起到了控制显示和隐藏功能<br>搜索 <code>bszTag.hides()</code> 调用<br>发现了这个部分</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    a(b);</span><br><span class="line">    scriptTag.parentElement.removeChild(scriptTag)</span><br><span class="line">&#125; <span class="keyword">catch</span> (c) &#123;</span><br><span class="line">    bszTag.hides()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <code>bszTag.hides()</code> 前加上console日志, </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    a(b);</span><br><span class="line">    scriptTag.parentElement.removeChild(scriptTag)</span><br><span class="line">&#125; <span class="keyword">catch</span> (c) &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(c), bszTag.hides()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后把js的资源URL替换到站内，再次重新打开页面时, 打印出了报错 </p>
+<p><strong>call removeChild of null</strong></p>
+<p>然后在浏览器打开调试终端, 输入 <code>scriptTag</code>, 打印出了</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">defer</span>=<span class="string">""</span> <span class="attr">src</span>=<span class="string">"//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback_95341178475"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>再输入 <code>scriptTag.parentElement</code>, 打印出了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<p>于是确定问题出现在了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scriptTag.parentElement.removeChild(scriptTag)</span><br></pre></td></tr></table></figure>
+<p>这一行</p>
+<p>为了不更改这一行代码的功能, 又要避免出现上面的 <code>removeChild of null</code> 问题</p>
+<p>于是修改为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    a(b);</span><br><span class="line">    <span class="keyword">if</span>(scriptTag.parentElement) scriptTag.parentElement.removeChild(scriptTag)</span><br><span class="line">&#125; <span class="keyword">catch</span> (c) &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(c), bszTag.hides()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后重新build并打开本地服务器, 终于显示除了localhost这个使用最广的站点名的访问数字</p>
+<p>然后重新压缩脚本, 扔到站内的lib/js目录， 重新build完推送至Github Pages</p>
+<p>刷新页面, 终于一切恢复正常</p>
+
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>感谢您对本站的支持.</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/wxpay.jpg" alt="逗神大人 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/alipay.jpg" alt="逗神大人 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>逗神大人
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.oyoung.xyz/2019/10/30/busuanzi/" title="解决不蒜子(busuanzi)不显示数字问题记录">http://www.oyoung.xyz/2019/10/30/busuanzi/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/busuanzi/" rel="tag"><i class="fa fa-tag"></i> busuanzi</a>
+              <a href="/tags/%E4%B8%8D%E8%92%9C%E5%AD%90/" rel="tag"><i class="fa fa-tag"></i> 不蒜子</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/29/191029191500/" rel="next" title="C++网络库cpp-netlib的简单使用">
+                  <i class="fa fa-chevron-left"></i> C++网络库cpp-netlib的简单使用
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/01/licecap-not-working/" rel="prev" title="解决屏幕录制工具LICEcap在macOS 10.15 (Catalina) 无法工作问题记录">
+                  解决屏幕录制工具LICEcap在macOS 10.15 (Catalina) 无法工作问题记录 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决思路"><span class="nav-number">2.</span> <span class="nav-text">解决思路</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="逗神大人"
+    src="/assets/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">逗神大人</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">逗神大人</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="/js/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '500px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
