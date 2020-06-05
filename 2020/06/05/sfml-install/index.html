@@ -50,14 +50,21 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="逗神大人的个人小站">
-<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;tags&#x2F;MySQL&#x2F;index.html">
+  <meta name="description" content="1. 下载SFML的SDK进入SFML官网的下载页下载最新稳定版的SFML SDK选择对应的版本后，找到如下的下载链接:下载完成后解压到指定目录2. 安装SFML SDK的头文件和库文件frameworks 将解压目录下的Frameworks拷贝到系统目录下的 &#x2F;Library&#x2F;Frameworks（&#x2F;System&#x2F;Library&#x2F;Frameworks也可以， 但不建议，这个是系统相关的框架）">
+<meta name="keywords" content="C++,SFML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SFML 在macOS的安装">
+<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;2020&#x2F;06&#x2F;05&#x2F;sfml-install&#x2F;index.html">
 <meta property="og:site_name" content="逗神大人的个人小站">
+<meta property="og:description" content="1. 下载SFML的SDK进入SFML官网的下载页下载最新稳定版的SFML SDK选择对应的版本后，找到如下的下载链接:下载完成后解压到指定目录2. 安装SFML SDK的头文件和库文件frameworks 将解压目录下的Frameworks拷贝到系统目录下的 &#x2F;Library&#x2F;Frameworks（&#x2F;System&#x2F;Library&#x2F;Frameworks也可以， 但不建议，这个是系统相关的框架）">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;assets&#x2F;images&#x2F;sfml-download.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;assets&#x2F;images&#x2F;sfml-templates.jpg">
+<meta property="og:updated_time" content="2020-06-05T09:10:50.226Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;assets&#x2F;images&#x2F;sfml-download.jpg">
 
-<link rel="canonical" href="http://oyoung.cc/blogs/tags/MySQL/">
+<link rel="canonical" href="http://oyoung.cc/blogs/2020/06/05/sfml-install/">
 
 
 <script id="page-configurations">
@@ -65,13 +72,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>标签: MySQL | 逗神大人的个人小站</title>
+  <title>SFML 在macOS的安装 | 逗神大人的个人小站</title>
   
 
 
@@ -182,50 +189,165 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">MySQL
-          <small>标签</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/06/05/sfml-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SFML 在macOS的安装
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-05 17:00:00 / 修改时间：17:10:50" itemprop="dateCreated datePublished" datetime="2020-06-05T17:00:00+08:00">2020-06-05</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>823</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
+        <h2 id="1-下载SFML的SDK"><a href="#1-下载SFML的SDK" class="headerlink" title="1. 下载SFML的SDK"></a>1. 下载SFML的SDK</h2><p>进入SFML官网的<a href="https://www.sfml-dev.org/download.php" target="_blank" rel="noopener">下载页</a>下载最新稳定版的SFML SDK</p><p>选择对应的版本后，找到如下的下载链接:</p><p><img src="/assets/images/sfml-download.jpg" alt></p><p>下载完成后解压到指定目录</p><h2 id="2-安装SFML-SDK的头文件和库文件"><a href="#2-安装SFML-SDK的头文件和库文件" class="headerlink" title="2. 安装SFML SDK的头文件和库文件"></a>2. 安装SFML SDK的头文件和库文件</h2><h3 id="frameworks"><a href="#frameworks" class="headerlink" title="frameworks"></a>frameworks</h3><ul>
+<li>将解压目录下的Frameworks拷贝到系统目录下的 <code>/Library/Frameworks</code>（<code>/System/Library/Frameworks</code>也可以， 但不建议，这个是系统相关的框架）</li>
+</ul><a id="more"></a>
+
+
+
+
+<h3 id="dylib"><a href="#dylib" class="headerlink" title="dylib"></a>dylib</h3><ul>
+<li>将<code>include</code>目录拷贝到 <code>/usr/local/</code>（出现合并选是, 或者拷贝<code>include</code>目录下的所有内容拷贝到<code>/usr/local/include</code>目录下）</li>
+<li>将<code>lib</code>目录拷贝到<code>/usr/local</code>（出现合并选是, 或者拷贝<code>include</code>目录下的所有内容拷贝到<code>/usr/local/lib</code>目录下）</li>
+</ul>
+<h2 id="3-安装SFML的依赖库"><a href="#3-安装SFML的依赖库" class="headerlink" title="3. 安装SFML的依赖库"></a>3. 安装SFML的依赖库</h2><p>在SFML SDK的解压目录下， 还有个很重要的目录<code>extlibs</code></p>
+<p>这个目录是 SFML SDK的依赖库所在目录(其实很人性化了，毕竟没让我们自己去导出找依赖库源码来自己build)</p>
+<p>这个安装比较简单, 但是很有必要:</p>
+<blockquote>
+<p>将<code>extlibs</code>下的所有<code>.framework</code>拷贝到 <code>/Library/Frameworks</code>即可</p>
+</blockquote>
+<p><strong>其实到这已经算是安装完成了，剩下的就是在Xcode里面使用验证安装了。但SFML SDK为我们提供了一个很有帮助的Xcode插件工具，也就是SFML 的Xcode工程模板创建引导</strong></p>
+<h2 id="4-安装Xcode工程模板"><a href="#4-安装Xcode工程模板" class="headerlink" title="4. 安装Xcode工程模板"></a>4. 安装Xcode工程模板</h2><p>在SFML SDK解压目录下，找到<code>templates</code>目录， 将改目录下的<code>SFML</code>目录整个拷贝到 <code>/Library/Developer/Xcode/Templates</code>下(如果<code>/Library/Developer/Xcode/Templates</code>不存在就自己创建一个)。</p>
+<h2 id="5-验证安装"><a href="#5-验证安装" class="headerlink" title="5. 验证安装"></a>5. 验证安装</h2><p>我们打开Xcode, 然后创建新工程，在工程模板选择的时候，往下拉，就会看到SFML的模板了，选择该模板，一路点击下一步即可(中间肯定会有一些命名相关的需要填的，按自己喜好填就行)</p>
+<p><img src="/assets/images/sfml-templates.jpg" alt></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-20T18:23:22+08:00"
-              content="2019-09-20">
-          09-20
-        </time>
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>感谢您对本站的支持.</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/wxpay.jpg" alt="逗神大人 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/alipay.jpg" alt="逗神大人 支付宝">
+        <p>支付宝</p>
       </div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/09/20/190920182322/" itemprop="url">
-            <span itemprop="name">MySQL C/C++客户端api(libmysqlclient-dev) 的使用笔记</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-    </div>
   </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>逗神大人
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://oyoung.cc/blogs/2020/06/05/sfml-install/" title="SFML 在macOS的安装">http://oyoung.cc/blogs/2020/06/05/sfml-install/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+              <a href="/tags/SFML/" rel="tag"><i class="fa fa-tag"></i> SFML</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/05/19/%E5%BC%82%E6%AD%A5-%E8%B6%85%E6%97%B6%E7%AD%89%E5%BE%85%E7%9A%84C-%E5%AE%9E%E7%8E%B0/" rel="next" title="异步+超时等待的C++实现">
+                  <i class="fa fa-chevron-left"></i> 异步+超时等待的C++实现
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
   
   
   
 
-  
-
+  </div>
 
 
           </div>
@@ -254,6 +376,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-下载SFML的SDK"><span class="nav-number">1.</span> <span class="nav-text">1. 下载SFML的SDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装SFML-SDK的头文件和库文件"><span class="nav-number">2.</span> <span class="nav-text">2. 安装SFML SDK的头文件和库文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#frameworks"><span class="nav-number">2.1.</span> <span class="nav-text">frameworks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dylib"><span class="nav-number">2.2.</span> <span class="nav-text">dylib</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-安装SFML的依赖库"><span class="nav-number">3.</span> <span class="nav-text">3. 安装SFML的依赖库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-安装Xcode工程模板"><span class="nav-number">4.</span> <span class="nav-text">4. 安装Xcode工程模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-验证安装"><span class="nav-number">5.</span> <span class="nav-text">5. 验证安装</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
