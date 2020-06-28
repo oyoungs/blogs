@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="下载与安装进入官网下载页面找到对应平台的下载链接, 比如:macOS平台 Windows平台Visual C++ 32&#x2F;64-bitWindows平台mingw接口说明基础接口初始化与退出(SDL.h)SDL_Init 接口定义:  1int SDL_Init(Uint32 flags); 功能说明">
+<meta name="keywords" content="C++,SDL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SDL编程手册">
+<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;2020&#x2F;06&#x2F;28&#x2F;SDL%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C&#x2F;index.html">
+<meta property="og:site_name" content="逗神大人的个人小站">
+<meta property="og:description" content="下载与安装进入官网下载页面找到对应平台的下载链接, 比如:macOS平台 Windows平台Visual C++ 32&#x2F;64-bitWindows平台mingw接口说明基础接口初始化与退出(SDL.h)SDL_Init 接口定义:  1int SDL_Init(Uint32 flags); 功能说明">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-28T09:00:33.017Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://oyoung.cc/blogs/2020/06/28/SDL%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>SDL编程手册 | 逗神大人的个人小站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">逗神大人的个人小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">23</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">28</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/oyoungs" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/06/28/SDL%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SDL编程手册
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-28 14:56:27 / 修改时间：17:00:33" itemprop="dateCreated datePublished" datetime="2020-06-28T14:56:27+08:00">2020-06-28</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h1><p>进入<a href="https://www.libsdl.org/download-2.0.php" target="_blank" rel="noopener">官网下载页面</a></p><p>找到对应平台的下载链接, 比如:</p><p><a href="https://www.libsdl.org/release/SDL2-2.0.12.dmg" target="_blank" rel="noopener">macOS平台</a> </p><p><a href="https://www.libsdl.org/release/SDL2-devel-2.0.12-VC.zip" target="_blank" rel="noopener">Windows平台Visual C++ 32/64-bit</a></p><p><a href="https://www.libsdl.org/release/SDL2-devel-2.0.12-mingw.tar.gz" target="_blank" rel="noopener">Windows平台mingw</a></p><h1 id="接口说明"><a href="#接口说明" class="headerlink" title="接口说明"></a>接口说明</h1><h2 id="基础接口"><a href="#基础接口" class="headerlink" title="基础接口"></a>基础接口</h2><h3 id="初始化与退出-SDL-h"><a href="#初始化与退出-SDL-h" class="headerlink" title="初始化与退出(SDL.h)"></a>初始化与退出(SDL.h)</h3><h4 id="SDL-Init"><a href="#SDL-Init" class="headerlink" title="SDL_Init"></a>SDL_Init</h4><ul>
+<li>接口定义: </li>
+</ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SDL_Init</span><span class="params">(Uint32 flags)</span></span>;</span><br></pre></td></tr></table></figure><ul>
+<li>功能说明</li>
+</ul><a id="more"></a>
+
+
+
+
+
+
+
+
+<blockquote>
+<p>初始化SDL的各个子系统</p>
+</blockquote>
+<ul>
+<li>参数说明:</li>
+</ul>
+<blockquote>
+<p>flags:  子系统初始化使能标志位, 可以使用如下表所示枚举值进行或操作</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>枚举值</th>
+<th>子系统</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SDL_INIT_AUDIO</td>
+<td>音频子系统</td>
+</tr>
+<tr>
+<td>SDL_INIT_EVENTS</td>
+<td>事件子系统</td>
+</tr>
+<tr>
+<td>SDL_INIT_TIMER</td>
+<td>定时器子系统</td>
+</tr>
+<tr>
+<td>SDL_INIT_VIDEO</td>
+<td>图形图像子系统</td>
+</tr>
+<tr>
+<td>SDL_INIT_JOYSTICK</td>
+<td>游戏摇杆子系统</td>
+</tr>
+<tr>
+<td>SDL_INIT_HAPTIC</td>
+<td>触觉子系统</td>
+</tr>
+<tr>
+<td>SDL_INIT_CAMECONTROLLER</td>
+<td>游戏控制器子系统(包含摇杆子系统)</td>
+</tr>
+<tr>
+<td>SDL_INIT_EVERYTHING</td>
+<td>所有子系统</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>返回值说明:</p>
+<ul>
+<li>0： 成功</li>
+<li>&lt; 0: 失败错误码,  可以通过<code>SDL_GetError()</code>获取错误信息</li>
+</ul>
+</li>
+<li><p>示例代码：</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SDL2/SDL.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (SDL_Init(SDL_INIT_EVERYTHING)) &#123;</span><br><span class="line">    SDL_Log(<span class="string">"SDL Initialize failed: %s"</span>, SDL_GetError());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="SDL-InitSubSystem"><a href="#SDL-InitSubSystem" class="headerlink" title="SDL_InitSubSystem"></a>SDL_InitSubSystem</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SDL_InitSubSystem</span><span class="params">(Uint32 flags)</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>功能说明</p>
+<blockquote>
+<p>初始化SDL指定的子系统</p>
+</blockquote>
+</li>
+<li><p>参数说明 (同 <a href="#SDL_Init">SDL_Init</a>)</p>
+</li>
+<li><p>返回值说明(同[SDL_Init](# SDL_Init))</p>
+</li>
+<li><p>示例代码</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  SDL_Init(SDL_INIT_VIDEO);</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  </span><br><span class="line">  SDL_InitSubSystem(SDL_INIT_JOYSTICK);</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  </span><br><span class="line">  SDL_Quit();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="SDL-Quit"><a href="#SDL-Quit" class="headerlink" title="SDL_Quit"></a>SDL_Quit</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SDL_Quit</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>清理所有初始化的的子系统</p>
+</blockquote>
+<ul>
+<li>示例代码</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">char</span>**)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(SDL_Init(SDL_INIT_EVERYTHING)) &#123;</span><br><span class="line">    SDL_Log(<span class="string">"SDL Initialize failed: %s"</span>, SDL_GetError());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  </span><br><span class="line">  SDL_Quit();</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="SDL-QuitSubSystem"><a href="#SDL-QuitSubSystem" class="headerlink" title="SDL_QuitSubSystem"></a>SDL_QuitSubSystem</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SDL_QuitSubSystem</span><span class="params">(Uint32 flags)</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>关闭指定子系统</p>
+</blockquote>
+<ul>
+<li>参数说明</li>
+</ul>
+<blockquote>
+<p>flags: 同[SDL_Init](# SDL_Init)</p>
+</blockquote>
+<ul>
+<li>示例代码</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> sdl_initialized = SDL_Init(<span class="number">0</span>) == <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (sdl_initialized <span class="keyword">and</span> SDL_InitSubSystem(SDL_INIT_VEDIO)) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    SDL_QuitSubSystem(SDL_INIT_VEDIO);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// others subsysyem ...</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (sdl_initialized) SDL_Quit();</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="SDL-SetMainReady"><a href="#SDL-SetMainReady" class="headerlink" title="SDL_SetMainReady"></a>SDL_SetMainReady</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SDL_SetMainReady</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>当不使用SDL_main函数作为入口函数时, 使用此函数来规避SDL_Init失败</p>
+</blockquote>
+<ul>
+<li>示例代码</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span> </span>&#123;</span><br><span class="line">  SDL_SetMainReady();</span><br><span class="line">  SDL_Init(SDL_INIT_EVERYTHING);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  SDL_Quit();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="SDL-WasInit"><a href="#SDL-WasInit" class="headerlink" title="SDL_WasInit"></a>SDL_WasInit</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Uint32 <span class="title">SDL_WasInit</span><span class="params">(Uint32 flags)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>获取已初始化的子系统掩码</p>
+</blockquote>
+<ul>
+<li>参数说明</li>
+</ul>
+<blockquote>
+<p>flags: 同[SDL_Init](# SDL_Init)</p>
+</blockquote>
+<ul>
+<li>返回值说明</li>
+</ul>
+<blockquote>
+<p>flags为0的时候， 返回所有已初始化子系统的掩码。</p>
+<p>否则返回指定子系统的初始化状态</p>
+</blockquote>
+<h4 id="SDL-WinRTRunApp"><a href="#SDL-WinRTRunApp" class="headerlink" title="SDL_WinRTRunApp"></a>SDL_WinRTRunApp</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SDL_WinRTRunApp</span><span class="params">(MainFunction main_func, <span class="keyword">void</span> *reserved)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>初始化和启动SDL/WinRT 应用程序</p>
+</blockquote>
+<ul>
+<li>参数说明</li>
+</ul>
+<blockquote>
+<p>main_func: C风格的main函数的函数类型 <code>int MainFunction(int,char **)</code></p>
+</blockquote>
+<ul>
+<li>返回值说明</li>
+</ul>
+<blockquote>
+<p>0: 成功</p>
+<p>-1： 失败, 可以通过SDL_GetError()获取错误信息</p>
+</blockquote>
+<h3 id="配置变量-SDL-hints-h"><a href="#配置变量-SDL-hints-h" class="headerlink" title="配置变量(SDL_hints.h)"></a>配置变量(SDL_hints.h)</h3><h3 id="错误处理-SDL-error-h"><a href="#错误处理-SDL-error-h" class="headerlink" title="错误处理(SDL_error.h)"></a>错误处理(SDL_error.h)</h3><h4 id="SDL-GetError"><a href="#SDL-GetError" class="headerlink" title="SDL_GetError()"></a>SDL_GetError()</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">char</span>* <span class="title">SDL_GetError</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>获取错误消息</p>
+</blockquote>
+<ul>
+<li>返回值说明</li>
+</ul>
+<blockquote>
+<p>有错误时， 返回长度非零的字符串首地址, 否则对应的字符串长度为0</p>
+</blockquote>
+<ul>
+<li>示例代码</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (SDL_Init(SDL_INIT_EVERYTHING)) &#123;</span><br><span class="line">    SDL_Log(<span class="string">"SDL initialize failed: %s"</span>, SDL_GetError());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  SDL_Quit();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="SDL-ClearError"><a href="#SDL-ClearError" class="headerlink" title="SDL_ClearError()"></a>SDL_ClearError()</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SDL_ClearError</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>清除已有错误</p>
+</blockquote>
+<ul>
+<li>示例代码</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> error  = SDL_GetError();</span><br><span class="line"><span class="keyword">if</span> (error[<span class="number">0</span>]) &#123;</span><br><span class="line">  SDL_Log(<span class="string">"SDL error: %s"</span>, error);</span><br><span class="line">  SDL_ClearError();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="SDL-SetError"><a href="#SDL-SetError" class="headerlink" title="SDL_SetError()"></a>SDL_SetError()</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SDL_SetError</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>*fmt, ...)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>设置错误信息</p>
+</blockquote>
+<ul>
+<li>参数说明</li>
+</ul>
+<blockquote>
+<p>printf() 风格的格式化输入参数</p>
+</blockquote>
+<ul>
+<li>返回值说明</li>
+</ul>
+<blockquote>
+<p>只返回 -1</p>
+</blockquote>
+<ul>
+<li>示例代码</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SDL_SetError(<span class="string">"Invalid render mode: %d"</span>, mode);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="日志处理-SDL-log-h"><a href="#日志处理-SDL-log-h" class="headerlink" title="日志处理(SDL_log.h)"></a>日志处理(SDL_log.h)</h3><h4 id="SDL-Log"><a href="#SDL-Log" class="headerlink" title="SDL_Log"></a>SDL_Log</h4><h4 id="SDL-LogCritical"><a href="#SDL-LogCritical" class="headerlink" title="SDL_LogCritical"></a>SDL_LogCritical</h4><h4 id="SDL-LogDebug"><a href="#SDL-LogDebug" class="headerlink" title="SDL_LogDebug"></a>SDL_LogDebug</h4><h4 id="SDL-LogError"><a href="#SDL-LogError" class="headerlink" title="SDL_LogError"></a>SDL_LogError</h4><h4 id="SDL-LogGetOutputFunction"><a href="#SDL-LogGetOutputFunction" class="headerlink" title="SDL_LogGetOutputFunction"></a>SDL_LogGetOutputFunction</h4><h4 id="SDL-GetPriority"><a href="#SDL-GetPriority" class="headerlink" title="SDL_GetPriority"></a>SDL_GetPriority</h4><h4 id="SDL-LogInfo"><a href="#SDL-LogInfo" class="headerlink" title="SDL_LogInfo"></a>SDL_LogInfo</h4><h4 id="SDL-LogMessage"><a href="#SDL-LogMessage" class="headerlink" title="SDL_LogMessage"></a>SDL_LogMessage</h4><h4 id="SDL-LogMessageV"><a href="#SDL-LogMessageV" class="headerlink" title="SDL_LogMessageV"></a>SDL_LogMessageV</h4><h4 id="SDL-LogResetPriorities"><a href="#SDL-LogResetPriorities" class="headerlink" title="SDL_LogResetPriorities"></a>SDL_LogResetPriorities</h4><h4 id="SDL-LogSetAllPriority"><a href="#SDL-LogSetAllPriority" class="headerlink" title="SDL_LogSetAllPriority"></a>SDL_LogSetAllPriority</h4><h4 id="SDL-LogSetOutputFunciton"><a href="#SDL-LogSetOutputFunciton" class="headerlink" title="SDL_LogSetOutputFunciton"></a>SDL_LogSetOutputFunciton</h4><h4 id="SDL-LogSetPriority"><a href="#SDL-LogSetPriority" class="headerlink" title="SDL_LogSetPriority"></a>SDL_LogSetPriority</h4><h4 id="SDL-LogVerbose"><a href="#SDL-LogVerbose" class="headerlink" title="SDL_LogVerbose"></a>SDL_LogVerbose</h4><h4 id="SDL-Warn"><a href="#SDL-Warn" class="headerlink" title="SDL_Warn"></a>SDL_Warn</h4><h3 id="断言-SDL-assert-h"><a href="#断言-SDL-assert-h" class="headerlink" title="断言(SDL_assert.h)"></a>断言(SDL_assert.h)</h3><h4 id="SDL-GetAssertionHandler"><a href="#SDL-GetAssertionHandler" class="headerlink" title="SDL_GetAssertionHandler"></a>SDL_GetAssertionHandler</h4><h4 id="SDL-GetAssertionReport"><a href="#SDL-GetAssertionReport" class="headerlink" title="SDL_GetAssertionReport"></a>SDL_GetAssertionReport</h4><h4 id="SDL-GetDefaultAssertionHandler"><a href="#SDL-GetDefaultAssertionHandler" class="headerlink" title="SDL_GetDefaultAssertionHandler"></a>SDL_GetDefaultAssertionHandler</h4><h4 id="SDL-ResetAssertionReport"><a href="#SDL-ResetAssertionReport" class="headerlink" title="SDL_ResetAssertionReport"></a>SDL_ResetAssertionReport</h4><h4 id="SDL-SetAssertionHandler"><a href="#SDL-SetAssertionHandler" class="headerlink" title="SDL_SetAssertionHandler"></a>SDL_SetAssertionHandler</h4><h4 id="SDL-TriggerBreakpoint"><a href="#SDL-TriggerBreakpoint" class="headerlink" title="SDL_TriggerBreakpoint"></a>SDL_TriggerBreakpoint</h4><h4 id="SDL-assert"><a href="#SDL-assert" class="headerlink" title="SDL_assert"></a>SDL_assert</h4><h4 id="SDL-assert-paranoid"><a href="#SDL-assert-paranoid" class="headerlink" title="SDL_assert_paranoid"></a>SDL_assert_paranoid</h4><h4 id="SDL-assert-release"><a href="#SDL-assert-release" class="headerlink" title="SDL_assert_release"></a>SDL_assert_release</h4><h3 id="版本查询-SDL-version-h"><a href="#版本查询-SDL-version-h" class="headerlink" title="版本查询(SDL_version.h)"></a>版本查询(SDL_version.h)</h3><h4 id="SDL-COMPILEDVERSION"><a href="#SDL-COMPILEDVERSION" class="headerlink" title="SDL_COMPILEDVERSION"></a>SDL_COMPILEDVERSION</h4><h4 id="SDL-GetRevision"><a href="#SDL-GetRevision" class="headerlink" title="SDL_GetRevision"></a>SDL_GetRevision</h4><h4 id="SDL-GetRevisionNumber"><a href="#SDL-GetRevisionNumber" class="headerlink" title="SDL_GetRevisionNumber"></a>SDL_GetRevisionNumber</h4><h4 id="SDL-GetVersion"><a href="#SDL-GetVersion" class="headerlink" title="SDL_GetVersion"></a>SDL_GetVersion</h4><h4 id="SDL-REVISION"><a href="#SDL-REVISION" class="headerlink" title="SDL_REVISION"></a>SDL_REVISION</h4><h4 id="SDL-VERSION"><a href="#SDL-VERSION" class="headerlink" title="SDL_VERSION"></a>SDL_VERSION</h4><h4 id="SDL-VERSIONNUM"><a href="#SDL-VERSIONNUM" class="headerlink" title="SDL_VERSIONNUM"></a>SDL_VERSIONNUM</h4><h4 id="SDL-VERSION-ATLEAST"><a href="#SDL-VERSION-ATLEAST" class="headerlink" title="SDL_VERSION_ATLEAST"></a>SDL_VERSION_ATLEAST</h4><h2 id="图形图像"><a href="#图形图像" class="headerlink" title="图形图像"></a>图形图像</h2><h3 id="显示与窗口管理-SDL-video-h"><a href="#显示与窗口管理-SDL-video-h" class="headerlink" title="显示与窗口管理(SDL_video.h)"></a>显示与窗口管理(SDL_video.h)</h3><p>SDL_CreateWindow<br>SDL_CreateWindowAndRenderer<br>SDL_CreateWindowFrom<br>SDL_DestroyWindow<br>SDL_DisableScreenSaver<br>SDL_EnableScreenSaver<br>SDL_GL_CreateContext<br>SDL_GL_DeleteContext<br>SDL_GL_ExtensionSupported<br>SDL_GL_GetAttribute<br>SDL_GL_GetCurrentContext<br>SDL_GL_GetCurrentWindow<br>SDL_GL_GetDrawableSize<br>SDL_GL_GetProcAddress<br>SDL_GL_GetSwapInterval<br>SDL_GL_LoadLibrary<br>SDL_GL_MakeCurrent<br>SDL_GL_ResetAttributes<br>SDL_GL_SetAttribute<br>SDL_GL_SetSwapInterval<br>SDL_GL_SwapWindow<br>SDL_GL_UnloadLibrary<br>SDL_GetClosestDisplayMode<br>SDL_GetCurrentDisplayMode<br>SDL_GetCurrentVideoDriver<br>SDL_GetDesktopDisplayMode<br>SDL_GetDisplayBounds<br>SDL_GetDisplayDPI<br>SDL_GetDisplayMode<br>SDL_GetDisplayName<br>SDL_GetDisplayUsableBounds<br>SDL_GetGrabbedWindow<br>SDL_GetNumDisplayModes</p>
+<h3 id="2D加速渲染-SDL-render-h"><a href="#2D加速渲染-SDL-render-h" class="headerlink" title="2D加速渲染(SDL_render.h)"></a>2D加速渲染(SDL_render.h)</h3><p>SDL_ComposeCustomBlendMode<br>SDL_CreateRenderer<br>SDL_CreateSoftwareRenderer<br>SDL_CreateTexture<br>SDL_CreateTextureFromSurface<br>SDL_CreateWindowAndRenderer<br>SDL_DestroyRenderer<br>SDL_DestroyTexture<br>SDL_GL_BindTexture<br>SDL_GL_UnbindTexture<br>SDL_GetNumRenderDrivers<br>SDL_GetRenderDrawBlendMode<br>SDL_GetRenderDrawColor<br>SDL_GetRenderDriverInfo<br>SDL_GetRenderTarget<br>SDL_GetRenderer<br>SDL_GetRendererInfo<br>SDL_GetRendererOutputSize<br>SDL_GetTextureAlphaMod<br>SDL_GetTextureBlendMode<br>SDL_GetTextureColorMod<br>SDL_LockTexture<br>SDL_QueryTexture<br>SDL_RenderClear<br>SDL_RenderCopy<br>SDL_RenderCopyEx<br>SDL_RenderDrawLine<br>SDL_RenderDrawLines<br>SDL_RenderDrawPoint<br>SDL_RenderDrawPoints<br>SDL_RenderDrawRect<br>SDL_RenderDrawRects<br>SDL_RenderFillRect<br>SDL_RenderFillRects<br>SDL_RenderGetClipRect<br>SDL_RenderGetIntegerScale<br>SDL_RenderGetLogicalSize<br>SDL_RenderGetScale<br>SDL_RenderGetViewport<br>SDL_RenderIsClipEnabled<br>SDL_RenderPresent<br>SDL_RenderReadPixels<br>SDL_RenderSetClipRect<br>SDL_RenderSetIntegerScale<br>SDL_RenderSetLogicalSize<br>SDL_RenderSetScale<br>SDL_RenderSetViewport<br>SDL_RenderTargetSupported<br>SDL_SetRenderDrawBlendMode<br>SDL_SetRenderDrawColor<br>SDL_SetRenderTarget<br>SDL_SetTextureAlphaMod<br>SDL_SetTextureBlendMode<br>SDL_SetTextureColorMod<br>SDL_UnlockTexture<br>SDL_UpdateTexture<br>SDL_UpdateYUVTexture</p>
+<h3 id="像素格式与转换例程-SDL-pixels-h"><a href="#像素格式与转换例程-SDL-pixels-h" class="headerlink" title="像素格式与转换例程(SDL_pixels.h)"></a>像素格式与转换例程(SDL_pixels.h)</h3><p>SDL_AllocFormat<br>SDL_AllocPalette<br>SDL_CalculateGammaRamp<br>SDL_FreeFormat<br>SDL_FreePalette<br>SDL_GetPixelFormatName<br>SDL_GetRGB<br>SDL_GetRGBA<br>SDL_MapRGB<br>SDL_MapRGBA<br>SDL_MasksToPixelFormatEnum<br>SDL_PixelFormatEnumToMasks<br>SDL_SetPaletteColors<br>SDL_SetPixelFormatPalette</p>
+<h3 id="矩形操作函数-SDL-rect-h"><a href="#矩形操作函数-SDL-rect-h" class="headerlink" title="矩形操作函数(SDL_rect.h)"></a>矩形操作函数(SDL_rect.h)</h3><p>SDL_EnclosePoints<br>SDL_HasIntersection<br>SDL_IntersectRect<br>SDL_IntersectRectAndLine<br>SDL_PointInRect<br>SDL_RectEmpty<br>SDL_RectEquals<br>SDL_UnionRect</p>
+<h3 id="表面创建于简单绘图-SDL-surface-h"><a href="#表面创建于简单绘图-SDL-surface-h" class="headerlink" title="表面创建于简单绘图(SDL_surface.h)"></a>表面创建于简单绘图(SDL_surface.h)</h3><p>SDL_BlitScaled<br>SDL_BlitSurface<br>SDL_ConvertPixels<br>SDL_ConvertSurface<br>SDL_ConvertSurfaceFormat<br>SDL_CreateRGBSurface<br>SDL_CreateRGBSurfaceFrom<br>SDL_CreateRGBSurfaceWithFormat<br>SDL_CreateRGBSurfaceWithFormatFrom<br>SDL_FillRect<br>SDL_FillRects<br>SDL_FreeSurface<br>SDL_GetClipRect<br>SDL_GetColorKey<br>SDL_GetSurfaceAlphaMod<br>SDL_GetSurfaceBlendMode<br>SDL_GetSurfaceColorMod<br>SDL_LoadBMP<br>SDL_LoadBMP_RW<br>SDL_LockSurface<br>SDL_LowerBlit<br>SDL_LowerBlitScaled<br>SDL_MUSTLOCK<br>SDL_SaveBMP<br>SDL_SaveBMP_RW<br>SDL_SetClipRect<br>SDL_SetColorKey<br>SDL_SetSurfaceAlphaMod<br>SDL_SetSurfaceBlendMode<br>SDL_SetSurfaceColorMod<br>SDL_SetSurfacePalette<br>SDL_SetSurfaceRLE<br>SDL_UnlockSurface</p>
+<h3 id="平台相关的窗口管理-SDL-syswm-h"><a href="#平台相关的窗口管理-SDL-syswm-h" class="headerlink" title="平台相关的窗口管理(SDL_syswm.h)"></a>平台相关的窗口管理(SDL_syswm.h)</h3><p>SDL_GetWindowWMInfo</p>
+<h3 id="剪贴板处理-SDL-clipboard-h"><a href="#剪贴板处理-SDL-clipboard-h" class="headerlink" title="剪贴板处理(SDL_clipboard.h)"></a>剪贴板处理(SDL_clipboard.h)</h3><p>SDL_GetClipboardText<br>SDL_HasClipboardText<br>SDL_SetClipboardText</p>
+<h3 id="Vulkan支持-SDL-Vulkan-h"><a href="#Vulkan支持-SDL-Vulkan-h" class="headerlink" title="Vulkan支持(SDL_Vulkan.h)"></a>Vulkan支持(SDL_Vulkan.h)</h3><p>SDL_Vulkan_CreateSurface<br>SDL_Vulkan_GetDrawableSize<br>SDL_Vulkan_GetInstanceExtensions<br>SDL_Vulkan_GetVkInstanceProcAddr<br>SDL_Vulkan_LoadLibrary<br>SDL_Vulkan_UnloadLibrary</p>
+<h2 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h2><h3 id="音频设备管理、音频播放与录音-SDL-audio-h"><a href="#音频设备管理、音频播放与录音-SDL-audio-h" class="headerlink" title="音频设备管理、音频播放与录音(SDL_audio.h)"></a>音频设备管理、音频播放与录音(SDL_audio.h)</h3><p>SDL_AudioInit<br>SDL_AudioQuit<br>SDL_BuildAudioCVT<br>SDL_ClearQueuedAudio<br>SDL_CloseAudio<br>SDL_CloseAudioDevice<br>SDL_ConvertAudio<br>SDL_DequeueAudio<br>SDL_FreeWAV<br>SDL_GetAudioDeviceName<br>SDL_GetAudioDeviceStatus<br>SDL_GetAudioDriver<br>SDL_GetAudioStatus<br>SDL_GetCurrentAudioDriver<br>SDL_GetNumAudioDevices<br>SDL_GetNumAudioDrivers<br>SDL_GetQueuedAudioSize<br>SDL_LoadWAV<br>SDL_LoadWAV_RW<br>SDL_LockAudio<br>SDL_LockAudioDevice<br>SDL_MixAudio<br>SDL_MixAudioFormat<br>SDL_OpenAudio<br>SDL_OpenAudioDevice<br>SDL_PauseAudio<br>SDL_PauseAudioDevice<br>SDL_QueueAudio<br>SDL_UnlockAudio<br>SDL_UnlockAudioDevice</p>
+<h2 id="系统输入事件"><a href="#系统输入事件" class="headerlink" title="系统输入事件"></a>系统输入事件</h2><h3 id="事件处理-SDL-events-h"><a href="#事件处理-SDL-events-h" class="headerlink" title="事件处理(SDL_events.h)"></a>事件处理(SDL_events.h)</h3><p>SDL_AddEventWatch<br>SDL_DelEventWatch<br>SDL_EventState<br>SDL_FilterEvents<br>SDL_FlushEvent<br>SDL_FlushEvents<br>SDL_GetEventFilter<br>SDL_GetEventState<br>SDL_GetNumTouchDevices<br>SDL_GetNumTouchFingers<br>SDL_GetTouchDevice<br>SDL_GetTouchFinger<br>SDL_HasEvent<br>SDL_HasEvents<br>SDL_LoadDollarTemplates<br>SDL_PeepEvents<br>SDL_PollEvent<br>SDL_PumpEvents<br>SDL_PushEvent<br>SDL_QuitRequested<br>SDL_RecordGesture<br>SDL_RegisterEvents<br>SDL_SaveAllDollarTemplates<br>SDL_SaveDollarTemplate<br>SDL_SetEventFilter<br>SDL_WaitEvent<br>SDL_WaitEventTimeout</p>
+<h3 id="键盘支持-SDL-keyboard-h"><a href="#键盘支持-SDL-keyboard-h" class="headerlink" title="键盘支持(SDL_keyboard.h)"></a>键盘支持(SDL_keyboard.h)</h3><p>SDL_GetKeyFromName<br>SDL_GetKeyFromScancode<br>SDL_GetKeyName<br>SDL_GetKeyboardFocus<br>SDL_GetKeyboardState<br>SDL_GetModState<br>SDL_GetScancodeFromKey<br>SDL_GetScancodeFromName<br>SDL_GetScancodeName<br>SDL_HasScreenKeyboardSupport<br>SDL_IsScreenKeyboardShown<br>SDL_IsTextInputActive<br>SDL_SetModState<br>SDL_SetTextInputRect<br>SDL_StartTextInput<br>SDL_StopTextInput</p>
+<h3 id="鼠标支持-SDL-mouse-h"><a href="#鼠标支持-SDL-mouse-h" class="headerlink" title="鼠标支持(SDL_mouse.h)"></a>鼠标支持(SDL_mouse.h)</h3><p>SDL_CaptureMouse<br>SDL_CreateColorCursor<br>SDL_CreateCursor<br>SDL_CreateSystemCursor<br>SDL_FreeCursor<br>SDL_GetCursor<br>SDL_GetDefaultCursor<br>SDL_GetGlobalMouseState<br>SDL_GetMouseFocus<br>SDL_GetMouseState<br>SDL_GetRelativeMouseMode<br>SDL_GetRelativeMouseState<br>SDL_SetCursor<br>SDL_SetRelativeMouseMode<br>SDL_ShowCursor<br>SDL_WarpMouseGlobal<br>SDL_WarpMouseInWindow</p>
+<h3 id="游戏摇杆支持-SDL-joystick-h"><a href="#游戏摇杆支持-SDL-joystick-h" class="headerlink" title="游戏摇杆支持(SDL_joystick.h)"></a>游戏摇杆支持(SDL_joystick.h)</h3><p>SDL_JoystickClose<br>SDL_JoystickCurrentPowerLevel<br>SDL_JoystickEventState<br>SDL_JoystickFromInstanceID<br>SDL_JoystickGetAttached<br>SDL_JoystickGetAxis<br>SDL_JoystickGetBall<br>SDL_JoystickGetButton<br>SDL_JoystickGetDeviceGUID<br>SDL_JoystickGetGUID<br>SDL_JoystickGetGUIDFromString<br>SDL_JoystickGetGUIDString<br>SDL_JoystickGetHat<br>SDL_JoystickInstanceID<br>SDL_JoystickName<br>SDL_JoystickNameForIndex<br>SDL_JoystickNumAxes<br>SDL_JoystickNumBalls<br>SDL_JoystickNumButtons<br>SDL_JoystickNumHats<br>SDL_JoystickOpen<br>SDL_JoystickUpdate<br>SDL_NumJoysticks</p>
+<h3 id="游戏控制器支持-SDL-gamecontroller-h"><a href="#游戏控制器支持-SDL-gamecontroller-h" class="headerlink" title="游戏控制器支持(SDL_gamecontroller.h)"></a>游戏控制器支持(SDL_gamecontroller.h)</h3><p>SDL_GameControllerAddMapping<br>SDL_GameControllerAddMappingsFromFile<br>SDL_GameControllerAddMappingsFromRW<br>SDL_GameControllerClose<br>SDL_GameControllerEventState<br>SDL_GameControllerFromInstanceID<br>SDL_GameControllerGetAttached<br>SDL_GameControllerGetAxis<br>SDL_GameControllerGetAxisFromString<br>SDL_GameControllerGetBindForAxis<br>SDL_GameControllerGetBindForButton<br>SDL_GameControllerGetButton<br>SDL_GameControllerGetButtonFromString<br>SDL_GameControllerGetJoystick<br>SDL_GameControllerGetStringForAxis<br>SDL_GameControllerGetStringForButton<br>SDL_GameControllerMapping<br>SDL_GameControllerMappingForGUID<br>SDL_GameControllerName<br>SDL_GameControllerNameForIndex<br>SDL_GameControllerOpen<br>SDL_GameControllerUpdate<br>SDL_IsGameController</p>
+<h3 id="传感器-SDL-sensor-h"><a href="#传感器-SDL-sensor-h" class="headerlink" title="传感器(SDL_sensor.h)"></a>传感器(SDL_sensor.h)</h3><p>SDL_NumSensors<br>SDL_SensorClose<br>SDL_SensorFromInstanceID<br>SDL_SensorGetData<br>SDL_SensorGetDeviceInstanceID<br>SDL_SensorGetDeviceName<br>SDL_SensorGetDeviceNonPortableType<br>SDL_SensorGetDeviceType<br>SDL_SensorGetInstanceID<br>SDL_SensorGetName<br>SDL_SensorGetNonPortableType<br>SDL_SensorGetType<br>SDL_SensorOpen<br>SDL_SensorType<br>SDL_SensorUpdate</p>
+<h2 id="力反馈"><a href="#力反馈" class="headerlink" title="力反馈"></a>力反馈</h2><h3 id="力反馈支持-SDL-haptic-h"><a href="#力反馈支持-SDL-haptic-h" class="headerlink" title="力反馈支持 (SDL_haptic.h)"></a>力反馈支持 (SDL_haptic.h)</h3><p>SDL_HapticClose<br>SDL_HapticDestroyEffect<br>SDL_HapticEffectSupported<br>SDL_HapticGetEffectStatus<br>SDL_HapticIndex<br>SDL_HapticName<br>SDL_HapticNewEffect<br>SDL_HapticNumAxes<br>SDL_HapticNumEffects<br>SDL_HapticNumEffectsPlaying<br>SDL_HapticOpen<br>SDL_HapticOpenFromJoystick<br>SDL_HapticOpenFromMouse<br>SDL_HapticOpened<br>SDL_HapticPause<br>SDL_HapticQuery<br>SDL_HapticRumbleInit<br>SDL_HapticRumblePlay<br>SDL_HapticRumbleStop<br>SDL_HapticRumbleSupported<br>SDL_HapticRunEffect<br>SDL_HapticSetAutocenter<br>SDL_HapticSetGain<br>SDL_HapticStopAll<br>SDL_HapticStopEffect<br>SDL_HapticUnpause<br>SDL_HapticUpdateEffect<br>SDL_JoystickIsHaptic<br>SDL_MouseIsHaptic<br>SDL_NumHaptics</p>
+<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><h3 id="定时器支持-SDL-timer-h"><a href="#定时器支持-SDL-timer-h" class="headerlink" title="定时器支持(SDL_timer.h)"></a>定时器支持(SDL_timer.h)</h3><p>SDL_AddTimer<br>SDL_Delay<br>SDL_GetPerformanceCounter<br>SDL_GetPerformanceFrequency<br>SDL_GetTicks<br>SDL_RemoveTimer<br>SDL_TICKS_PASSED</p>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><h3 id="线程管理-SDL-thread-h"><a href="#线程管理-SDL-thread-h" class="headerlink" title="线程管理(SDL_thread.h)"></a>线程管理(SDL_thread.h)</h3><p>SDL_CreateThread<br>SDL_DetachThread<br>SDL_GetThreadID<br>SDL_GetThreadName<br>SDL_SetThreadPriority<br>SDL_TLSCreate<br>SDL_TLSGet<br>SDL_TLSSet<br>SDL_ThreadID<br>SDL_WaitThread</p>
+<h3 id="线程同步-SDL-mutex-h"><a href="#线程同步-SDL-mutex-h" class="headerlink" title="线程同步(SDL_mutex.h)"></a>线程同步(SDL_mutex.h)</h3><p>SDL_CondBroadcast<br>SDL_CondSignal<br>SDL_CondWait<br>SDL_CondWaitTimeout<br>SDL_CreateCond<br>SDL_CreateMutex<br>SDL_CreateSemaphore<br>SDL_DestroyCond<br>SDL_DestroyMutex<br>SDL_DestroySemaphore<br>SDL_LockMutex<br>SDL_SemPost<br>SDL_SemTryWait<br>SDL_SemValue<br>SDL_SemWait<br>SDL_SemWaitTimeout<br>SDL_TryLockMutex<br>SDL_UnlockMutex</p>
+<h3 id="原子操作-SDL-atomic-h"><a href="#原子操作-SDL-atomic-h" class="headerlink" title="原子操作(SDL_atomic.h)"></a>原子操作(SDL_atomic.h)</h3><p>SDL_AtomicAdd<br>SDL_AtomicCAS<br>SDL_AtomicCASPtr<br>SDL_AtomicDecRef<br>SDL_AtomicGet<br>SDL_AtomicGetPtr<br>SDL_AtomicIncRef<br>SDL_AtomicLock<br>SDL_AtomicSet<br>SDL_AtomicSetPtr<br>SDL_AtomicTryLock<br>SDL_AtomicUnlock<br>SDL_CompilerBarrier</p>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="文件系统路径-SDL-filesystem-h"><a href="#文件系统路径-SDL-filesystem-h" class="headerlink" title="文件系统路径(SDL_filesystem.h)"></a>文件系统路径(SDL_filesystem.h)</h3><p>SDL_GetBasePath<br>SDL_GetPrefPath</p>
+<h3 id="文件IO抽象-SDL-rwops-h"><a href="#文件IO抽象-SDL-rwops-h" class="headerlink" title="文件IO抽象(SDL_rwops.h)"></a>文件IO抽象(SDL_rwops.h)</h3><p>SDL_AllocRW<br>SDL_FreeRW<br>SDL_RWFromConstMem<br>SDL_RWFromFP<br>SDL_RWFromFile<br>SDL_RWFromMem<br>SDL_RWclose<br>SDL_RWread<br>SDL_RWseek<br>SDL_RWsize<br>SDL_RWtell<br>SDL_RWwrite<br>SDL_ReadBE16<br>SDL_ReadBE32<br>SDL_ReadBE64<br>SDL_ReadLE16<br>SDL_ReadLE32<br>SDL_ReadLE64<br>SDL_ReadU8<br>SDL_WriteBE16<br>SDL_WriteBE32<br>SDL_WriteBE64<br>SDL_WriteLE16<br>SDL_WriteLE32<br>SDL_WriteLE64<br>SDL_WriteU8</p>
+
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>感谢您对本站的支持.</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/wxpay.jpg" alt="逗神大人 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/alipay.jpg" alt="逗神大人 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>逗神大人
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://oyoung.cc/blogs/2020/06/28/SDL%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C/" title="SDL编程手册">http://oyoung.cc/blogs/2020/06/28/SDL%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+              <a href="/tags/SDL/" rel="tag"><i class="fa fa-tag"></i> SDL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/06/05/sfml-install/" rel="next" title="SFML 在macOS的安装">
+                  <i class="fa fa-chevron-left"></i> SFML 在macOS的安装
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下载与安装"><span class="nav-number">1.</span> <span class="nav-text">下载与安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接口说明"><span class="nav-number">2.</span> <span class="nav-text">接口说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础接口"><span class="nav-number">2.1.</span> <span class="nav-text">基础接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化与退出-SDL-h"><span class="nav-number">2.1.1.</span> <span class="nav-text">初始化与退出(SDL.h)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-Init"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">SDL_Init</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-InitSubSystem"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">SDL_InitSubSystem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-Quit"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">SDL_Quit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-QuitSubSystem"><span class="nav-number">2.1.1.4.</span> <span class="nav-text">SDL_QuitSubSystem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-SetMainReady"><span class="nav-number">2.1.1.5.</span> <span class="nav-text">SDL_SetMainReady</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-WasInit"><span class="nav-number">2.1.1.6.</span> <span class="nav-text">SDL_WasInit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-WinRTRunApp"><span class="nav-number">2.1.1.7.</span> <span class="nav-text">SDL_WinRTRunApp</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置变量-SDL-hints-h"><span class="nav-number">2.1.2.</span> <span class="nav-text">配置变量(SDL_hints.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误处理-SDL-error-h"><span class="nav-number">2.1.3.</span> <span class="nav-text">错误处理(SDL_error.h)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-GetError"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">SDL_GetError()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-ClearError"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">SDL_ClearError()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-SetError"><span class="nav-number">2.1.3.3.</span> <span class="nav-text">SDL_SetError()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志处理-SDL-log-h"><span class="nav-number">2.1.4.</span> <span class="nav-text">日志处理(SDL_log.h)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-Log"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">SDL_Log</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-LogCritical"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">SDL_LogCritical</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-LogDebug"><span class="nav-number">2.1.4.3.</span> <span class="nav-text">SDL_LogDebug</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-LogError"><span class="nav-number">2.1.4.4.</span> <span class="nav-text">SDL_LogError</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-LogGetOutputFunction"><span class="nav-number">2.1.4.5.</span> <span class="nav-text">SDL_LogGetOutputFunction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-GetPriority"><span class="nav-number">2.1.4.6.</span> <span class="nav-text">SDL_GetPriority</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-LogInfo"><span class="nav-number">2.1.4.7.</span> <span class="nav-text">SDL_LogInfo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-LogMessage"><span class="nav-number">2.1.4.8.</span> <span class="nav-text">SDL_LogMessage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-LogMessageV"><span class="nav-number">2.1.4.9.</span> <span class="nav-text">SDL_LogMessageV</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-LogResetPriorities"><span class="nav-number">2.1.4.10.</span> <span class="nav-text">SDL_LogResetPriorities</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-LogSetAllPriority"><span class="nav-number">2.1.4.11.</span> <span class="nav-text">SDL_LogSetAllPriority</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-LogSetOutputFunciton"><span class="nav-number">2.1.4.12.</span> <span class="nav-text">SDL_LogSetOutputFunciton</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-LogSetPriority"><span class="nav-number">2.1.4.13.</span> <span class="nav-text">SDL_LogSetPriority</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-LogVerbose"><span class="nav-number">2.1.4.14.</span> <span class="nav-text">SDL_LogVerbose</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-Warn"><span class="nav-number">2.1.4.15.</span> <span class="nav-text">SDL_Warn</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断言-SDL-assert-h"><span class="nav-number">2.1.5.</span> <span class="nav-text">断言(SDL_assert.h)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-GetAssertionHandler"><span class="nav-number">2.1.5.1.</span> <span class="nav-text">SDL_GetAssertionHandler</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-GetAssertionReport"><span class="nav-number">2.1.5.2.</span> <span class="nav-text">SDL_GetAssertionReport</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-GetDefaultAssertionHandler"><span class="nav-number">2.1.5.3.</span> <span class="nav-text">SDL_GetDefaultAssertionHandler</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-ResetAssertionReport"><span class="nav-number">2.1.5.4.</span> <span class="nav-text">SDL_ResetAssertionReport</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-SetAssertionHandler"><span class="nav-number">2.1.5.5.</span> <span class="nav-text">SDL_SetAssertionHandler</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-TriggerBreakpoint"><span class="nav-number">2.1.5.6.</span> <span class="nav-text">SDL_TriggerBreakpoint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-assert"><span class="nav-number">2.1.5.7.</span> <span class="nav-text">SDL_assert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-assert-paranoid"><span class="nav-number">2.1.5.8.</span> <span class="nav-text">SDL_assert_paranoid</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-assert-release"><span class="nav-number">2.1.5.9.</span> <span class="nav-text">SDL_assert_release</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本查询-SDL-version-h"><span class="nav-number">2.1.6.</span> <span class="nav-text">版本查询(SDL_version.h)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-COMPILEDVERSION"><span class="nav-number">2.1.6.1.</span> <span class="nav-text">SDL_COMPILEDVERSION</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-GetRevision"><span class="nav-number">2.1.6.2.</span> <span class="nav-text">SDL_GetRevision</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-GetRevisionNumber"><span class="nav-number">2.1.6.3.</span> <span class="nav-text">SDL_GetRevisionNumber</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-GetVersion"><span class="nav-number">2.1.6.4.</span> <span class="nav-text">SDL_GetVersion</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-REVISION"><span class="nav-number">2.1.6.5.</span> <span class="nav-text">SDL_REVISION</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-VERSION"><span class="nav-number">2.1.6.6.</span> <span class="nav-text">SDL_VERSION</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-VERSIONNUM"><span class="nav-number">2.1.6.7.</span> <span class="nav-text">SDL_VERSIONNUM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDL-VERSION-ATLEAST"><span class="nav-number">2.1.6.8.</span> <span class="nav-text">SDL_VERSION_ATLEAST</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图形图像"><span class="nav-number">2.2.</span> <span class="nav-text">图形图像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#显示与窗口管理-SDL-video-h"><span class="nav-number">2.2.1.</span> <span class="nav-text">显示与窗口管理(SDL_video.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2D加速渲染-SDL-render-h"><span class="nav-number">2.2.2.</span> <span class="nav-text">2D加速渲染(SDL_render.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#像素格式与转换例程-SDL-pixels-h"><span class="nav-number">2.2.3.</span> <span class="nav-text">像素格式与转换例程(SDL_pixels.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩形操作函数-SDL-rect-h"><span class="nav-number">2.2.4.</span> <span class="nav-text">矩形操作函数(SDL_rect.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表面创建于简单绘图-SDL-surface-h"><span class="nav-number">2.2.5.</span> <span class="nav-text">表面创建于简单绘图(SDL_surface.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平台相关的窗口管理-SDL-syswm-h"><span class="nav-number">2.2.6.</span> <span class="nav-text">平台相关的窗口管理(SDL_syswm.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剪贴板处理-SDL-clipboard-h"><span class="nav-number">2.2.7.</span> <span class="nav-text">剪贴板处理(SDL_clipboard.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vulkan支持-SDL-Vulkan-h"><span class="nav-number">2.2.8.</span> <span class="nav-text">Vulkan支持(SDL_Vulkan.h)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#音频"><span class="nav-number">2.3.</span> <span class="nav-text">音频</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#音频设备管理、音频播放与录音-SDL-audio-h"><span class="nav-number">2.3.1.</span> <span class="nav-text">音频设备管理、音频播放与录音(SDL_audio.h)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统输入事件"><span class="nav-number">2.4.</span> <span class="nav-text">系统输入事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件处理-SDL-events-h"><span class="nav-number">2.4.1.</span> <span class="nav-text">事件处理(SDL_events.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#键盘支持-SDL-keyboard-h"><span class="nav-number">2.4.2.</span> <span class="nav-text">键盘支持(SDL_keyboard.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#鼠标支持-SDL-mouse-h"><span class="nav-number">2.4.3.</span> <span class="nav-text">鼠标支持(SDL_mouse.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#游戏摇杆支持-SDL-joystick-h"><span class="nav-number">2.4.4.</span> <span class="nav-text">游戏摇杆支持(SDL_joystick.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#游戏控制器支持-SDL-gamecontroller-h"><span class="nav-number">2.4.5.</span> <span class="nav-text">游戏控制器支持(SDL_gamecontroller.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传感器-SDL-sensor-h"><span class="nav-number">2.4.6.</span> <span class="nav-text">传感器(SDL_sensor.h)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#力反馈"><span class="nav-number">2.5.</span> <span class="nav-text">力反馈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#力反馈支持-SDL-haptic-h"><span class="nav-number">2.5.1.</span> <span class="nav-text">力反馈支持 (SDL_haptic.h)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定时器"><span class="nav-number">2.6.</span> <span class="nav-text">定时器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定时器支持-SDL-timer-h"><span class="nav-number">2.6.1.</span> <span class="nav-text">定时器支持(SDL_timer.h)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">2.7.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线程管理-SDL-thread-h"><span class="nav-number">2.7.1.</span> <span class="nav-text">线程管理(SDL_thread.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程同步-SDL-mutex-h"><span class="nav-number">2.7.2.</span> <span class="nav-text">线程同步(SDL_mutex.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原子操作-SDL-atomic-h"><span class="nav-number">2.7.3.</span> <span class="nav-text">原子操作(SDL_atomic.h)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统"><span class="nav-number">2.8.</span> <span class="nav-text">文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件系统路径-SDL-filesystem-h"><span class="nav-number">2.8.1.</span> <span class="nav-text">文件系统路径(SDL_filesystem.h)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件IO抽象-SDL-rwops-h"><span class="nav-number">2.8.2.</span> <span class="nav-text">文件IO抽象(SDL_rwops.h)</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="逗神大人"
+    src="/assets/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">逗神大人</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">逗神大人</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="/js/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '500px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
