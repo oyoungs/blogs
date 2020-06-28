@@ -66,14 +66,14 @@
 </tr>
 </tbody></table>
 <ul>
-<li><p>返回值说明:</p>
-<ul>
-<li>0： 成功</li>
-<li>&lt; 0: 失败错误码,  可以通过<code>SDL_GetError()</code>获取错误信息</li>
+<li>返回值说明:</li>
 </ul>
-</li>
-<li><p>示例代码：</p>
-</li>
+<blockquote>
+<p>0： 成功</p>
+<p>&lt; 0: 失败错误码,  可以通过<code>SDL_GetError()</code>获取错误信息</p>
+</blockquote>
+<ul>
+<li>示例代码：</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SDL2/SDL.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (SDL_Init(SDL_INIT_EVERYTHING)) &#123;</span><br><span class="line">    SDL_Log(<span class="string">"SDL Initialize failed: %s"</span>, SDL_GetError());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -92,9 +92,9 @@
 <p>初始化SDL指定的子系统</p>
 </blockquote>
 </li>
-<li><p>参数说明 (同 <a href="#SDL_Init">SDL_Init</a>)</p>
+<li><p>参数说明 (同 <a href="#SDL-Init">SDL_Init</a>)</p>
 </li>
-<li><p>返回值说明(同[SDL_Init](# SDL_Init))</p>
+<li><p>返回值说明(同<a href="#SDL-Init">SDL_Init</a>)</p>
 </li>
 <li><p>示例代码</p>
 </li>
@@ -140,7 +140,7 @@
 <li>参数说明</li>
 </ul>
 <blockquote>
-<p>flags: 同[SDL_Init](# SDL_Init)</p>
+<p>flags: 同<a href="#SDL-Init">SDL_Init</a></p>
 </blockquote>
 <ul>
 <li>示例代码</li>
@@ -186,7 +186,7 @@
 <li>参数说明</li>
 </ul>
 <blockquote>
-<p>flags: 同[SDL_Init](# SDL_Init)</p>
+<p>flags: 同<a href="#SDL-Init">SDL_Init</a></p>
 </blockquote>
 <ul>
 <li>返回值说明</li>
