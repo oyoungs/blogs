@@ -1,6 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Swift学习笔记之[UInt8]/[Int8]那些事</title>
+    <url>/2020/07/28/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B-UInt8-%E9%82%A3%E4%BA%9B%E4%BA%8B/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><code>[UInt8]</code>是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等</p><h1 id="字符串编解码"><a href="#字符串编解码" class="headerlink" title="字符串编解码"></a>字符串编解码</h1><ul>
+<li><code>[UInt8]</code>（或<code>[Int8]</code>）转 <code>String</code></li>
+</ul><p><strong>String有对应的直接从<code>[UInt8]</code>或<code>[Int8]</code>转换成String的构造函数</strong></p><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// "这是一个字符串" 的utf8编码</span></span><br><span class="line"><span class="keyword">let</span> bytes: [<span class="type">UInt8</span>] = [<span class="number">232</span>, <span class="number">191</span>, <span class="number">153</span>, <span class="number">230</span>, <span class="number">152</span>, <span class="number">175</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">128</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">170</span>, <span class="number">229</span>, <span class="number">173</span>, <span class="number">151</span>, <span class="number">231</span>, <span class="number">172</span>, <span class="number">166</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">178</span>]</span><br><span class="line"><span class="comment">/// 转换成字符串</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> msg = <span class="type">String</span>(bytes: bytes, encoding: .utf8) &#123;</span><br><span class="line">	<span class="built_in">print</span>(msg)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+
+<ul>
+<li><code>String</code> 转 <code>[UInt8]</code>(或<code>[Int8]</code>）</li>
+</ul>
+<p><strong><code>String</code>转<code>[UInt8]</code>或<code>[Int8]</code>时需要借助中间角色Data</strong></p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> msg = <span class="string">"这是一个字符串"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> data = msg.data(using: .utf8) &#123;</span><br><span class="line">  <span class="keyword">let</span> bytes = [<span class="type">UInt8</span>](data)</span><br><span class="line">  <span class="built_in">print</span>(bytes)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="底层交互"><a href="#底层交互" class="headerlink" title="底层交互"></a>底层交互</h1><h2 id="1-转换到C语言中的const-char-char-void-const-void"><a href="#1-转换到C语言中的const-char-char-void-const-void" class="headerlink" title="1. 转换到C语言中的const char*, char*, void*,const void*"></a>1. 转换到C语言中的<code>const char*</code>, <code>char*</code>, <code>void*</code>,<code>const void*</code></h2><p><strong>这里的转换指的是使用同一块内存地址</strong></p>
+<h3 id="指针类型对应关系"><a href="#指针类型对应关系" class="headerlink" title="指针类型对应关系"></a>指针类型对应关系</h3><table>
+<thead>
+<tr>
+<th>C语言指针类型</th>
+<th>swift语言指针对象类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>char *</td>
+<td><strong>UnsafeMutablePointer&lt;Int8&gt;</strong></td>
+</tr>
+<tr>
+<td>const char *</td>
+<td><strong>UnsafePointer&lt;Int8&gt;</strong></td>
+</tr>
+<tr>
+<td>unsigned char *</td>
+<td><strong>UnsafeMutablePointer&lt;UInt8&gt;</strong></td>
+</tr>
+<tr>
+<td>const unsigned char *</td>
+<td><strong>UnsafePointer&lt;UInt8&gt;</strong></td>
+</tr>
+<tr>
+<td>void *</td>
+<td><strong>UnsafeMutableRawPointer</strong></td>
+</tr>
+<tr>
+<td>const void *</td>
+<td><strong>UnsafeRawPointer</strong></td>
+</tr>
+</tbody></table>
+<h3 id="几种特殊的指针类型"><a href="#几种特殊的指针类型" class="headerlink" title="几种特殊的指针类型"></a>几种特殊的指针类型</h3><ul>
+<li><strong>UnsafeRawBufferPointer</strong></li>
+<li><strong>UnsafeMutableRawBufferPointer</strong></li>
+<li><strong>UnsafeBufferPointer</strong>&lt;<strong>T</strong>&gt;</li>
+<li><strong>UnsafeMutableBufferPointer</strong>&lt;<strong>T</strong>&gt;</li>
+</ul>
+<p><strong>这些带有Buffer的指针类型， 可以理解为对应的不带Buffer的指针类型加上了缓冲区大小</strong>, 比如:</p>
+<blockquote>
+<p>UnsafePointer&lt;Int&gt; 对应 const int *, 表示仅有地址</p>
+<p>那UnsafeBufferPointer&lt;Int&gt;对应 const int * 加 size, 表示该地址与内存大小所对应的一块缓冲区</p>
+</blockquote>
+<h3 id="从-UInt8-或-Int8-转换到-const-unsigned-char-或-const-char"><a href="#从-UInt8-或-Int8-转换到-const-unsigned-char-或-const-char" class="headerlink" title="从[UInt8]或[Int8] 转换到 const unsigned char*或 const char *"></a>从<code>[UInt8]</code>或<code>[Int8]</code> 转换到 <code>const unsigned char*</code>或 <code>const char *</code></h3><p><code>[UInt8]</code> -&gt; <code>UnsafeRawBufferPointer</code> -&gt; <code>UnsafeBufferPointer&lt;UInt8&gt;</code> -&gt; <code>UnsafePointer&lt;UInt8&gt;</code> (<strong>Int8同理</strong>)</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">let</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeRawBufferPointer</span></span><br><span class="line"><span class="keyword">let</span> unsafeRawBufferPointer = buffer.withUnsafeBytes &#123; $<span class="number">0</span> &#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2. UnsafeRawBufferPointer -&gt; UnsafeBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = unsafeRawBufferPointer.bindMemory(to: <span class="type">UInt8</span>.<span class="keyword">self</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 3. UnsafeBufferPointer&lt;UInt8&gt; -&gt; UnsafePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafePointer = unsafeBufferPointer.baseAddress</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>步骤1</code>和<code>步骤2</code>可以合并</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">let</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = buffer.withUnsafeBufferPointer &#123;$<span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2.. UnsafeBufferPointer&lt;UInt8&gt; -&gt; UnsafePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafePointer = unsafeBufferPointer.baseAddress</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="从-UInt8-或-Int8-转换到-unsigned-char-或-char"><a href="#从-UInt8-或-Int8-转换到-unsigned-char-或-char" class="headerlink" title="从[UInt8]或[Int8]转换到 unsigned char *或 char *"></a>从<code>[UInt8]</code>或<code>[Int8]</code>转换到 <code>unsigned char *</code>或 <code>char *</code></h3><p><code>[UInt8]</code> -&gt; <code>UnsafeMutableRawBufferPointer</code> -&gt; <code>UnsafeMutableBufferPointer&lt;UInt8&gt;</code> -&gt; <code>UnsafeMutablePointer&lt;UInt8&gt;</code> (<strong>Int8同理</strong>)</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">var</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeMutableRawBufferPointer</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableRawBufferPointer = buffer.withUnsafeMutableBytes &#123; $<span class="number">0</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2. UnsafeMutableRawBufferPointer -&gt; UnsafeMutableBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableBufferPointer = unsafeMutableRawBufferPointer.bindMemory(to: <span class="type">UInt8</span>.<span class="keyword">self</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 3. UnsafeMutableBufferPointer&lt;UInt8&gt; -&gt; UnsafeMutablePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutablePointer = unsafeMutableBufferPointer.baseAddress</span><br></pre></td></tr></table></figure>
+
+<p>其中的步骤1和步骤2也是可以合并的</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// [UInt8] -&gt; UnsafeMutableBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableBufferPointer = buffer.withUnsafeMutableBufferPointer &#123;$<span class="number">0</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="从-UInt8-或-Int8-转换成const-void-或者void"><a href="#从-UInt8-或-Int8-转换成const-void-或者void" class="headerlink" title="从[UInt8]或[Int8]转换成const void *或者void *"></a>从<code>[UInt8]</code>或<code>[Int8]</code>转换成<code>const void *</code>或者<code>void *</code></h3><p>在上述的步骤里, 在<code>步骤1</code>得到的<code>unsafeMutableRawBufferPointer</code>就可以通过该对象的<code>baseAddress</code>字段就能获取到对应的<code>void *</code></p>
+<p>如:</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// 获取 const void *</span></span><br><span class="line"><span class="keyword">let</span> unsafeRawPointer = unsafeRawBufferPointer.baseAddress</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 获取void *</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableRawPointer = unsafeMutableRawBufferPointer.baseAddress</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-从C语言中的const-char-char-const-unsigned-char-unsigned-char-const-void-void-对应缓冲区的数据创建-Data"><a href="#2-从C语言中的const-char-char-const-unsigned-char-unsigned-char-const-void-void-对应缓冲区的数据创建-Data" class="headerlink" title="2. 从C语言中的const char * , char *, const unsigned char *, unsigned char *, const void *, void *对应缓冲区的数据创建 Data"></a>2. 从C语言中的const char * , char *, const unsigned char *, unsigned char *, const void *, void *对应缓冲区的数据创建 Data</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// 这里是示例， 类型为 UnsafeMutablePointer&lt;Int8&gt;， 也就是 char *</span></span><br><span class="line"><span class="comment">/// message可能来自任何C语言的接口</span></span><br><span class="line"><span class="keyword">let</span> message = strerror(errno) </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 通过指针和大小来构造 UnsafeBufferPointer&lt;Int8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = <span class="type">UnsafeBufferPointer</span>&lt;<span class="type">Int8</span>&gt;(start: message, <span class="built_in">count</span>: strlen(msg!))</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 构造Data</span></span><br><span class="line"><span class="keyword">let</span> data = <span class="type">Data</span>(buffer: unsafeBufferPointer)</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-从Data得到-UInt8-或者-Int8-以及String"><a href="#3-从Data得到-UInt8-或者-Int8-以及String" class="headerlink" title="3. 从Data得到 [UInt8] 或者 [Int8]以及String"></a>3. 从<code>Data</code>得到 <code>[UInt8]</code> 或者 <code>[Int8]</code>以及String</h2><ul>
+<li>Data其实内部就是[UInt8]，在大部分情况下都可以直接当成[UInt8]来使用, 字节的append，remove, insert, find等等都有相同的操作</li>
+<li>但是如果需要拷贝出来一份 [UInt8]或者[Int8]，可以使用map函数</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// 缓冲区里的数据    </span></span><br><span class="line"><span class="keyword">let</span> data = <span class="type">Data</span>(buffer: unsafeBufferPointer)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// [UInt8]</span></span><br><span class="line"><span class="keyword">let</span> u8a = data.<span class="built_in">map</span> &#123;$<span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// [Int8]</span></span><br><span class="line"><span class="keyword">let</span> s8a = data.<span class="built_in">map</span> &#123;<span class="type">Int8</span>($<span class="number">0</span>)&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>String也自带从data数据的构造函数</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> text = <span class="type">String</span>(data: data, encoding: .utf8)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SDL编程手册</title>
     <url>/2020/06/28/SDL%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C/</url>
     <content><![CDATA[<h1 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h1><p>进入<a href="https://www.libsdl.org/download-2.0.php" target="_blank" rel="noopener">官网下载页面</a></p><p>找到对应平台的下载链接, 比如:</p><p><a href="https://www.libsdl.org/release/SDL2-2.0.12.dmg" target="_blank" rel="noopener">macOS平台</a> </p><p><a href="https://www.libsdl.org/release/SDL2-devel-2.0.12-VC.zip" target="_blank" rel="noopener">Windows平台Visual C++ 32/64-bit</a></p><p><a href="https://www.libsdl.org/release/SDL2-devel-2.0.12-mingw.tar.gz" target="_blank" rel="noopener">Windows平台mingw</a></p><h1 id="接口说明"><a href="#接口说明" class="headerlink" title="接口说明"></a>接口说明</h1><h2 id="基础接口"><a href="#基础接口" class="headerlink" title="基础接口"></a>基础接口</h2><h3 id="初始化与退出-SDL-h"><a href="#初始化与退出-SDL-h" class="headerlink" title="初始化与退出(SDL.h)"></a>初始化与退出(SDL.h)</h3><h4 id="SDL-Init"><a href="#SDL-Init" class="headerlink" title="SDL_Init"></a>SDL_Init</h4><ul>

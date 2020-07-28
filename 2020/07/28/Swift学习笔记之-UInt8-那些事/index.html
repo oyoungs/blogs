@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="简介[UInt8]是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等字符串编解码 [UInt8]（或[Int8]）转 String String有对应的直接从[UInt8]或[Int8]转换成String的构造函数123456&#x2F;&#x2F;&#x2F; &quot;这是一个字符串&quot; 的utf8编码let bytes: [UInt8] = [232">
+<meta name="keywords" content="Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift学习笔记之[UInt8]&#x2F;[Int8]那些事">
+<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;2020&#x2F;07&#x2F;28&#x2F;Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B-UInt8-%E9%82%A3%E4%BA%9B%E4%BA%8B&#x2F;index.html">
+<meta property="og:site_name" content="逗神大人的个人小站">
+<meta property="og:description" content="简介[UInt8]是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等字符串编解码 [UInt8]（或[Int8]）转 String String有对应的直接从[UInt8]或[Int8]转换成String的构造函数123456&#x2F;&#x2F;&#x2F; &quot;这是一个字符串&quot; 的utf8编码let bytes: [UInt8] = [232">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-07-28T02:35:39.156Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://oyoung.cc/blogs/2020/07/28/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B-UInt8-%E9%82%A3%E4%BA%9B%E4%BA%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Swift学习笔记之[UInt8]/[Int8]那些事 | 逗神大人的个人小站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">逗神大人的个人小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">25</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">30</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/oyoungs" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/07/28/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B-UInt8-%E9%82%A3%E4%BA%9B%E4%BA%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Swift学习笔记之[UInt8]/[Int8]那些事
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-28 08:53:57 / 修改时间：10:35:39" itemprop="dateCreated datePublished" datetime="2020-07-28T08:53:57+08:00">2020-07-28</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><code>[UInt8]</code>是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等</p><h1 id="字符串编解码"><a href="#字符串编解码" class="headerlink" title="字符串编解码"></a>字符串编解码</h1><ul>
+<li><code>[UInt8]</code>（或<code>[Int8]</code>）转 <code>String</code></li>
+</ul><p><strong>String有对应的直接从<code>[UInt8]</code>或<code>[Int8]</code>转换成String的构造函数</strong></p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// "这是一个字符串" 的utf8编码</span></span><br><span class="line"><span class="keyword">let</span> bytes: [<span class="type">UInt8</span>] = [<span class="number">232</span>, <span class="number">191</span>, <span class="number">153</span>, <span class="number">230</span>, <span class="number">152</span>, <span class="number">175</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">128</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">170</span>, <span class="number">229</span>, <span class="number">173</span>, <span class="number">151</span>, <span class="number">231</span>, <span class="number">172</span>, <span class="number">166</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">178</span>]</span><br><span class="line"><span class="comment">/// 转换成字符串</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> msg = <span class="type">String</span>(bytes: bytes, encoding: .utf8) &#123;</span><br><span class="line">	<span class="built_in">print</span>(msg)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+
+
+<ul>
+<li><code>String</code> 转 <code>[UInt8]</code>(或<code>[Int8]</code>）</li>
+</ul>
+<p><strong><code>String</code>转<code>[UInt8]</code>或<code>[Int8]</code>时需要借助中间角色Data</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> msg = <span class="string">"这是一个字符串"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> data = msg.data(using: .utf8) &#123;</span><br><span class="line">  <span class="keyword">let</span> bytes = [<span class="type">UInt8</span>](data)</span><br><span class="line">  <span class="built_in">print</span>(bytes)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="底层交互"><a href="#底层交互" class="headerlink" title="底层交互"></a>底层交互</h1><h2 id="1-转换到C语言中的const-char-char-void-const-void"><a href="#1-转换到C语言中的const-char-char-void-const-void" class="headerlink" title="1. 转换到C语言中的const char*, char*, void*,const void*"></a>1. 转换到C语言中的<code>const char*</code>, <code>char*</code>, <code>void*</code>,<code>const void*</code></h2><p><strong>这里的转换指的是使用同一块内存地址</strong></p>
+<h3 id="指针类型对应关系"><a href="#指针类型对应关系" class="headerlink" title="指针类型对应关系"></a>指针类型对应关系</h3><table>
+<thead>
+<tr>
+<th>C语言指针类型</th>
+<th>swift语言指针对象类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>char *</td>
+<td><strong>UnsafeMutablePointer&lt;Int8&gt;</strong></td>
+</tr>
+<tr>
+<td>const char *</td>
+<td><strong>UnsafePointer&lt;Int8&gt;</strong></td>
+</tr>
+<tr>
+<td>unsigned char *</td>
+<td><strong>UnsafeMutablePointer&lt;UInt8&gt;</strong></td>
+</tr>
+<tr>
+<td>const unsigned char *</td>
+<td><strong>UnsafePointer&lt;UInt8&gt;</strong></td>
+</tr>
+<tr>
+<td>void *</td>
+<td><strong>UnsafeMutableRawPointer</strong></td>
+</tr>
+<tr>
+<td>const void *</td>
+<td><strong>UnsafeRawPointer</strong></td>
+</tr>
+</tbody></table>
+<h3 id="几种特殊的指针类型"><a href="#几种特殊的指针类型" class="headerlink" title="几种特殊的指针类型"></a>几种特殊的指针类型</h3><ul>
+<li><strong>UnsafeRawBufferPointer</strong></li>
+<li><strong>UnsafeMutableRawBufferPointer</strong></li>
+<li><strong>UnsafeBufferPointer</strong>&lt;<strong>T</strong>&gt;</li>
+<li><strong>UnsafeMutableBufferPointer</strong>&lt;<strong>T</strong>&gt;</li>
+</ul>
+<p><strong>这些带有Buffer的指针类型， 可以理解为对应的不带Buffer的指针类型加上了缓冲区大小</strong>, 比如:</p>
+<blockquote>
+<p>UnsafePointer&lt;Int&gt; 对应 const int *, 表示仅有地址</p>
+<p>那UnsafeBufferPointer&lt;Int&gt;对应 const int * 加 size, 表示该地址与内存大小所对应的一块缓冲区</p>
+</blockquote>
+<h3 id="从-UInt8-或-Int8-转换到-const-unsigned-char-或-const-char"><a href="#从-UInt8-或-Int8-转换到-const-unsigned-char-或-const-char" class="headerlink" title="从[UInt8]或[Int8] 转换到 const unsigned char*或 const char *"></a>从<code>[UInt8]</code>或<code>[Int8]</code> 转换到 <code>const unsigned char*</code>或 <code>const char *</code></h3><p><code>[UInt8]</code> -&gt; <code>UnsafeRawBufferPointer</code> -&gt; <code>UnsafeBufferPointer&lt;UInt8&gt;</code> -&gt; <code>UnsafePointer&lt;UInt8&gt;</code> (<strong>Int8同理</strong>)</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">let</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeRawBufferPointer</span></span><br><span class="line"><span class="keyword">let</span> unsafeRawBufferPointer = buffer.withUnsafeBytes &#123; $<span class="number">0</span> &#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2. UnsafeRawBufferPointer -&gt; UnsafeBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = unsafeRawBufferPointer.bindMemory(to: <span class="type">UInt8</span>.<span class="keyword">self</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 3. UnsafeBufferPointer&lt;UInt8&gt; -&gt; UnsafePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafePointer = unsafeBufferPointer.baseAddress</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>步骤1</code>和<code>步骤2</code>可以合并</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">let</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = buffer.withUnsafeBufferPointer &#123;$<span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2.. UnsafeBufferPointer&lt;UInt8&gt; -&gt; UnsafePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafePointer = unsafeBufferPointer.baseAddress</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="从-UInt8-或-Int8-转换到-unsigned-char-或-char"><a href="#从-UInt8-或-Int8-转换到-unsigned-char-或-char" class="headerlink" title="从[UInt8]或[Int8]转换到 unsigned char *或 char *"></a>从<code>[UInt8]</code>或<code>[Int8]</code>转换到 <code>unsigned char *</code>或 <code>char *</code></h3><p><code>[UInt8]</code> -&gt; <code>UnsafeMutableRawBufferPointer</code> -&gt; <code>UnsafeMutableBufferPointer&lt;UInt8&gt;</code> -&gt; <code>UnsafeMutablePointer&lt;UInt8&gt;</code> (<strong>Int8同理</strong>)</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">var</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeMutableRawBufferPointer</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableRawBufferPointer = buffer.withUnsafeMutableBytes &#123; $<span class="number">0</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2. UnsafeMutableRawBufferPointer -&gt; UnsafeMutableBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableBufferPointer = unsafeMutableRawBufferPointer.bindMemory(to: <span class="type">UInt8</span>.<span class="keyword">self</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 3. UnsafeMutableBufferPointer&lt;UInt8&gt; -&gt; UnsafeMutablePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutablePointer = unsafeMutableBufferPointer.baseAddress</span><br></pre></td></tr></table></figure>
+
+<p>其中的步骤1和步骤2也是可以合并的</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// [UInt8] -&gt; UnsafeMutableBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableBufferPointer = buffer.withUnsafeMutableBufferPointer &#123;$<span class="number">0</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="从-UInt8-或-Int8-转换成const-void-或者void"><a href="#从-UInt8-或-Int8-转换成const-void-或者void" class="headerlink" title="从[UInt8]或[Int8]转换成const void *或者void *"></a>从<code>[UInt8]</code>或<code>[Int8]</code>转换成<code>const void *</code>或者<code>void *</code></h3><p>在上述的步骤里, 在<code>步骤1</code>得到的<code>unsafeMutableRawBufferPointer</code>就可以通过该对象的<code>baseAddress</code>字段就能获取到对应的<code>void *</code></p>
+<p>如:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 获取 const void *</span></span><br><span class="line"><span class="keyword">let</span> unsafeRawPointer = unsafeRawBufferPointer.baseAddress</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 获取void *</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableRawPointer = unsafeMutableRawBufferPointer.baseAddress</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-从C语言中的const-char-char-const-unsigned-char-unsigned-char-const-void-void-对应缓冲区的数据创建-Data"><a href="#2-从C语言中的const-char-char-const-unsigned-char-unsigned-char-const-void-void-对应缓冲区的数据创建-Data" class="headerlink" title="2. 从C语言中的const char * , char *, const unsigned char *, unsigned char *, const void *, void *对应缓冲区的数据创建 Data"></a>2. 从C语言中的const char * , char *, const unsigned char *, unsigned char *, const void *, void *对应缓冲区的数据创建 Data</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 这里是示例， 类型为 UnsafeMutablePointer&lt;Int8&gt;， 也就是 char *</span></span><br><span class="line"><span class="comment">/// message可能来自任何C语言的接口</span></span><br><span class="line"><span class="keyword">let</span> message = strerror(errno) </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 通过指针和大小来构造 UnsafeBufferPointer&lt;Int8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = <span class="type">UnsafeBufferPointer</span>&lt;<span class="type">Int8</span>&gt;(start: message, <span class="built_in">count</span>: strlen(msg!))</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 构造Data</span></span><br><span class="line"><span class="keyword">let</span> data = <span class="type">Data</span>(buffer: unsafeBufferPointer)</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-从Data得到-UInt8-或者-Int8-以及String"><a href="#3-从Data得到-UInt8-或者-Int8-以及String" class="headerlink" title="3. 从Data得到 [UInt8] 或者 [Int8]以及String"></a>3. 从<code>Data</code>得到 <code>[UInt8]</code> 或者 <code>[Int8]</code>以及String</h2><ul>
+<li>Data其实内部就是[UInt8]，在大部分情况下都可以直接当成[UInt8]来使用, 字节的append，remove, insert, find等等都有相同的操作</li>
+<li>但是如果需要拷贝出来一份 [UInt8]或者[Int8]，可以使用map函数</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 缓冲区里的数据    </span></span><br><span class="line"><span class="keyword">let</span> data = <span class="type">Data</span>(buffer: unsafeBufferPointer)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// [UInt8]</span></span><br><span class="line"><span class="keyword">let</span> u8a = data.<span class="built_in">map</span> &#123;$<span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// [Int8]</span></span><br><span class="line"><span class="keyword">let</span> s8a = data.<span class="built_in">map</span> &#123;<span class="type">Int8</span>($<span class="number">0</span>)&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>String也自带从data数据的构造函数</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> text = <span class="type">String</span>(data: data, encoding: .utf8)</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>感谢您对本站的支持.</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/wxpay.jpg" alt="逗神大人 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/alipay.jpg" alt="逗神大人 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>逗神大人
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://oyoung.cc/blogs/2020/07/28/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B-UInt8-%E9%82%A3%E4%BA%9B%E4%BA%8B/" title="Swift学习笔记之[UInt8]&#x2F;[Int8]那些事">http://oyoung.cc/blogs/2020/07/28/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B-UInt8-%E9%82%A3%E4%BA%9B%E4%BA%8B/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Swift/" rel="tag"><i class="fa fa-tag"></i> Swift</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/06/28/SDL%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C/" rel="next" title="SDL编程手册">
+                  <i class="fa fa-chevron-left"></i> SDL编程手册
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串编解码"><span class="nav-number">2.</span> <span class="nav-text">字符串编解码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#底层交互"><span class="nav-number">3.</span> <span class="nav-text">底层交互</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-转换到C语言中的const-char-char-void-const-void"><span class="nav-number">3.1.</span> <span class="nav-text">1. 转换到C语言中的const char*, char*, void*,const void*</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指针类型对应关系"><span class="nav-number">3.1.1.</span> <span class="nav-text">指针类型对应关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几种特殊的指针类型"><span class="nav-number">3.1.2.</span> <span class="nav-text">几种特殊的指针类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从-UInt8-或-Int8-转换到-const-unsigned-char-或-const-char"><span class="nav-number">3.1.3.</span> <span class="nav-text">从[UInt8]或[Int8] 转换到 const unsigned char*或 const char *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从-UInt8-或-Int8-转换到-unsigned-char-或-char"><span class="nav-number">3.1.4.</span> <span class="nav-text">从[UInt8]或[Int8]转换到 unsigned char *或 char *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从-UInt8-或-Int8-转换成const-void-或者void"><span class="nav-number">3.1.5.</span> <span class="nav-text">从[UInt8]或[Int8]转换成const void *或者void *</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-从C语言中的const-char-char-const-unsigned-char-unsigned-char-const-void-void-对应缓冲区的数据创建-Data"><span class="nav-number">3.2.</span> <span class="nav-text">2. 从C语言中的const char * , char *, const unsigned char *, unsigned char *, const void *, void *对应缓冲区的数据创建 Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-从Data得到-UInt8-或者-Int8-以及String"><span class="nav-number">3.3.</span> <span class="nav-text">3. 从Data得到 [UInt8] 或者 [Int8]以及String</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="逗神大人"
+    src="/assets/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">逗神大人</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">逗神大人</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="/js/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '500px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

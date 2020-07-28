@@ -143,7 +143,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">24</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">25</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -183,6 +183,90 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2019/11/16/gradle-create-springboot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/16/gradle-create-springboot/" class="post-title-link" itemprop="url">Gradle从零开始创建SpringBoot项目</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-16 21:18:46 / 修改时间：21:52:59" itemprop="dateCreated datePublished" datetime="2019-11-16T21:18:46+08:00">2019-11-16</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><h2 id="安装gradle"><a href="#安装gradle" class="headerlink" title="安装gradle"></a>安装<code>gradle</code></h2><ol>
+<li><a href="https://gradle.org/releases" target="_blank" rel="noopener">下载</a><code>Gradle</code>的安装包(可选择<a href="https://gradle.org/next-steps/?version=6.0&format=bin" target="_blank" rel="noopener">二进制包</a>或者<a href="https://gradle.org/next-steps/?version=6.0&format=all" target="_blank" rel="noopener">完整包</a></li>
+<li>解压压缩包到安装路径, 如:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~$ mkdir -p /usr/local/gradle</span><br><span class="line">~$ cd /usr/local/gradle</span><br><span class="line">~$ unzip ~/Downloads/gradle-6.0-bin.zip</span><br></pre></td></tr></table></figure></li>
+<li>导入环境 </li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/16/gradle-create-springboot/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -513,84 +597,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2019/10/26/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/images/avatar.jpg">
-      <meta itemprop="name" content="逗神大人">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逗神大人的个人小站">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/26/index/" class="post-title-link" itemprop="url">本站引导</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-10-26 10:06:20" itemprop="dateCreated datePublished" datetime="2019-10-26T10:06:20+08:00">2019-10-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-29 19:50:07" itemprop="dateModified" datetime="2019-10-29T19:50:07+08:00">2019-10-29</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>100</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="我的博文"><a href="#我的博文" class="headerlink" title="我的博文"></a>我的博文</h2><h2 id="我的开源项目"><a href="#我的开源项目" class="headerlink" title="我的开源项目"></a>我的开源项目</h2><p>C:<br><a href="https://github.com/oyoungs/libwebsockets" target="_blank" rel="noopener">libwebsockets(官方repo稍作改动)</a><br><a href="https://github.com/oyoungs/zbuffer" target="_blank" rel="noopener">zBuffer</a><br>C++:<br><a href="https://github.com/oyoungs/dispatch" target="_blank" rel="noopener">个人通用开发工具库</a><br><a href="https://github.com/oyoungs/SoundManager" target="_blank" rel="noopener">基于libasound库音频播放</a><br><a href="https://github.com/oyoungs/topice" target="_blank" rel="noopener">基于rostopic的服务调用封装</a><br>Qt:<br><a href="https://github.com/oyoungs/QAsyncTask" target="_blank" rel="noopener">Qt异步事件库</a></p>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -641,7 +647,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
