@@ -58,7 +58,7 @@
 <meta property="og:site_name" content="逗神大人的个人小站">
 <meta property="og:description" content="简介[UInt8]是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等字符串编解码 [UInt8]（或[Int8]）转 String String有对应的直接从[UInt8]或[Int8]转换成String的构造函数123456&#x2F;&#x2F;&#x2F; &quot;这是一个字符串&quot; 的utf8编码let bytes: [UInt8] = [232">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-28T02:35:39.156Z">
+<meta property="og:updated_time" content="2020-07-28T02:43:14.688Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://oyoung.cc/blogs/2020/07/28/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B-UInt8-%E9%82%A3%E4%BA%9B%E4%BA%8B/">
@@ -215,7 +215,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-07-28 08:53:57 / 修改时间：10:35:39" itemprop="dateCreated datePublished" datetime="2020-07-28T08:53:57+08:00">2020-07-28</time>
+              <time title="创建时间：2020-07-28 08:53:57 / 修改时间：10:43:14" itemprop="dateCreated datePublished" datetime="2020-07-28T08:53:57+08:00">2020-07-28</time>
             </span>
 
           
@@ -271,33 +271,33 @@
 <h3 id="指针类型对应关系"><a href="#指针类型对应关系" class="headerlink" title="指针类型对应关系"></a>指针类型对应关系</h3><table>
 <thead>
 <tr>
-<th>C语言指针类型</th>
-<th>swift语言指针对象类型</th>
+<th align="left">C语言指针类型</th>
+<th align="left">swift语言指针对象类型</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>char *</td>
-<td><strong>UnsafeMutablePointer&lt;Int8&gt;</strong></td>
+<td align="left">char *</td>
+<td align="left"><strong>UnsafeMutablePointer&lt;Int8&gt;</strong></td>
 </tr>
 <tr>
-<td>const char *</td>
-<td><strong>UnsafePointer&lt;Int8&gt;</strong></td>
+<td align="left">const char *</td>
+<td align="left"><strong>UnsafePointer&lt;Int8&gt;</strong></td>
 </tr>
 <tr>
-<td>unsigned char *</td>
-<td><strong>UnsafeMutablePointer&lt;UInt8&gt;</strong></td>
+<td align="left">unsigned char *</td>
+<td align="left"><strong>UnsafeMutablePointer&lt;UInt8&gt;</strong></td>
 </tr>
 <tr>
-<td>const unsigned char *</td>
-<td><strong>UnsafePointer&lt;UInt8&gt;</strong></td>
+<td align="left">const unsigned char *</td>
+<td align="left"><strong>UnsafePointer&lt;UInt8&gt;</strong></td>
 </tr>
 <tr>
-<td>void *</td>
-<td><strong>UnsafeMutableRawPointer</strong></td>
+<td align="left">void *</td>
+<td align="left"><strong>UnsafeMutableRawPointer</strong></td>
 </tr>
 <tr>
-<td>const void *</td>
-<td><strong>UnsafeRawPointer</strong></td>
+<td align="left">const void *</td>
+<td align="left"><strong>UnsafeRawPointer</strong></td>
 </tr>
 </tbody></table>
 <h3 id="几种特殊的指针类型"><a href="#几种特殊的指针类型" class="headerlink" title="几种特殊的指针类型"></a>几种特殊的指针类型</h3><ul>

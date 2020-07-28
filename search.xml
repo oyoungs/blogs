@@ -24,33 +24,33 @@
 <h3 id="指针类型对应关系"><a href="#指针类型对应关系" class="headerlink" title="指针类型对应关系"></a>指针类型对应关系</h3><table>
 <thead>
 <tr>
-<th>C语言指针类型</th>
-<th>swift语言指针对象类型</th>
+<th align="left">C语言指针类型</th>
+<th align="left">swift语言指针对象类型</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>char *</td>
-<td><strong>UnsafeMutablePointer&lt;Int8&gt;</strong></td>
+<td align="left">char *</td>
+<td align="left"><strong>UnsafeMutablePointer&lt;Int8&gt;</strong></td>
 </tr>
 <tr>
-<td>const char *</td>
-<td><strong>UnsafePointer&lt;Int8&gt;</strong></td>
+<td align="left">const char *</td>
+<td align="left"><strong>UnsafePointer&lt;Int8&gt;</strong></td>
 </tr>
 <tr>
-<td>unsigned char *</td>
-<td><strong>UnsafeMutablePointer&lt;UInt8&gt;</strong></td>
+<td align="left">unsigned char *</td>
+<td align="left"><strong>UnsafeMutablePointer&lt;UInt8&gt;</strong></td>
 </tr>
 <tr>
-<td>const unsigned char *</td>
-<td><strong>UnsafePointer&lt;UInt8&gt;</strong></td>
+<td align="left">const unsigned char *</td>
+<td align="left"><strong>UnsafePointer&lt;UInt8&gt;</strong></td>
 </tr>
 <tr>
-<td>void *</td>
-<td><strong>UnsafeMutableRawPointer</strong></td>
+<td align="left">void *</td>
+<td align="left"><strong>UnsafeMutableRawPointer</strong></td>
 </tr>
 <tr>
-<td>const void *</td>
-<td><strong>UnsafeRawPointer</strong></td>
+<td align="left">const void *</td>
+<td align="left"><strong>UnsafeRawPointer</strong></td>
 </tr>
 </tbody></table>
 <h3 id="几种特殊的指针类型"><a href="#几种特殊的指针类型" class="headerlink" title="几种特殊的指针类型"></a>几种特殊的指针类型</h3><ul>
