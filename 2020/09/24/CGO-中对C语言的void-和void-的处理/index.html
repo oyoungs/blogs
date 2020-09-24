@@ -50,22 +50,18 @@
   };
 </script>
 
-  <meta name="description" content="从升级macOS升级到10.15(Catalina)以后, 针对屏幕录制增加了权限管理, 所有的会录制屏幕的程序, 在首次开始录制屏幕时， 都会出现请求屏幕录制权限的弹窗但是升级LICEcap到1.29以后, 点击 record 输入文件名 没带.gif后缀, 因为有文件类型 Gif (*.gif) 然后点 Save， 发现并没有启动屏幕录制， 重试了好几次都无效">
-<meta name="keywords" content="macOS,licecap">
+  <meta name="description" content="CGO 中对C语言的void *和void **的处理1. void *与unsafe.Pointer CGO中的 unsafe.Pointer与C语言中的 void *是对应的 Go中的结构体如果要传入 C语言的某个函数作为参数, 可以使用 unsafe.Pointer来转化 123456789101112131415161718192021222324252627282930313233343">
+<meta name="keywords" content="CGO">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决屏幕录制工具LICEcap在macOS 10.15 (Catalina) 无法工作问题记录">
-<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;2019&#x2F;11&#x2F;01&#x2F;licecap-not-working&#x2F;index.html">
+<meta property="og:title" content="CGO 中对C语言的void *和void **的处理">
+<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;2020&#x2F;09&#x2F;24&#x2F;CGO-%E4%B8%AD%E5%AF%B9C%E8%AF%AD%E8%A8%80%E7%9A%84void-%E5%92%8Cvoid-%E7%9A%84%E5%A4%84%E7%90%86&#x2F;index.html">
 <meta property="og:site_name" content="逗神大人的个人小站">
-<meta property="og:description" content="从升级macOS升级到10.15(Catalina)以后, 针对屏幕录制增加了权限管理, 所有的会录制屏幕的程序, 在首次开始录制屏幕时， 都会出现请求屏幕录制权限的弹窗但是升级LICEcap到1.29以后, 点击 record 输入文件名 没带.gif后缀, 因为有文件类型 Gif (*.gif) 然后点 Save， 发现并没有启动屏幕录制， 重试了好几次都无效">
+<meta property="og:description" content="CGO 中对C语言的void *和void **的处理1. void *与unsafe.Pointer CGO中的 unsafe.Pointer与C语言中的 void *是对应的 Go中的结构体如果要传入 C语言的某个函数作为参数, 可以使用 unsafe.Pointer来转化 123456789101112131415161718192021222324252627282930313233343">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;assets&#x2F;images&#x2F;licecap_save.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;assets&#x2F;images&#x2F;licecap_not_working.gif">
-<meta property="og:image" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;assets&#x2F;images&#x2F;licecap_working.gif">
-<meta property="og:updated_time" content="2019-11-07T10:44:02.000Z">
+<meta property="og:updated_time" content="2020-09-24T08:43:13.848Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;assets&#x2F;images&#x2F;licecap_save.png">
 
-<link rel="canonical" href="http://oyoung.cc/blogs/2019/11/01/licecap-not-working/">
+<link rel="canonical" href="http://oyoung.cc/blogs/2020/09/24/CGO-%E4%B8%AD%E5%AF%B9C%E8%AF%AD%E8%A8%80%E7%9A%84void-%E5%92%8Cvoid-%E7%9A%84%E5%A4%84%E7%90%86/">
 
 
 <script id="page-configurations">
@@ -79,7 +75,7 @@
   };
 </script>
 
-  <title>解决屏幕录制工具LICEcap在macOS 10.15 (Catalina) 无法工作问题记录 | 逗神大人的个人小站</title>
+  <title>CGO 中对C语言的void *和void **的处理 | 逗神大人的个人小站</title>
   
 
 
@@ -195,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2019/11/01/licecap-not-working/">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/09/24/CGO-%E4%B8%AD%E5%AF%B9C%E8%AF%AD%E8%A8%80%E7%9A%84void-%E5%92%8Cvoid-%E7%9A%84%E5%A4%84%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/assets/images/avatar.jpg">
@@ -208,7 +204,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          解决屏幕录制工具LICEcap在macOS 10.15 (Catalina) 无法工作问题记录
+          CGO 中对C语言的void *和void **的处理
         </h1>
 
         <div class="post-meta">
@@ -217,16 +213,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-11-01 19:11:04" itemprop="dateCreated datePublished" datetime="2019-11-01T19:11:04+08:00">2019-11-01</time>
+              <time title="创建时间：2020-09-24 16:42:23 / 修改时间：16:43:13" itemprop="dateCreated datePublished" datetime="2020-09-24T16:42:23+08:00">2020-09-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-07 18:44:02" itemprop="dateModified" datetime="2019-11-07T18:44:02+08:00">2019-11-07</time>
-              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -241,7 +231,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>792</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -260,27 +250,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>从升级macOS升级到10.15(Catalina)以后, 针对屏幕录制增加了权限管理, 所有的会录制屏幕的程序, 在首次开始录制屏幕时， 都会出现请求屏幕录制权限的弹窗</p><p>但是升级LICEcap到1.29以后, 点击 <code>record</code> 输入文件名 <strong>没带.gif后缀, 因为有文件类型 Gif (*.gif)</strong> 然后点 <code>Save</code>， 发现并没有启动屏幕录制， 重试了好几次都无效</p><a id="more"></a>
+        <h1 id="CGO-中对C语言的void-和void-的处理"><a href="#CGO-中对C语言的void-和void-的处理" class="headerlink" title="CGO 中对C语言的void *和void **的处理"></a>CGO 中对C语言的<code>void *</code>和<code>void **</code>的处理</h1><h2 id="1-void-与unsafe-Pointer"><a href="#1-void-与unsafe-Pointer" class="headerlink" title="1. void *与unsafe.Pointer"></a>1. <code>void *</code>与<code>unsafe.Pointer</code></h2><ul>
+<li>CGO中的 <code>unsafe.Pointer</code>与C语言中的 <code>void *</code>是对应的</li>
+<li><code>Go</code>中的结构体如果要传入 <code>C语言</code>的某个函数作为参数, 可以使用 <code>unsafe.Pointer</code>来转化</li>
+</ul><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">//假设这段定义在外部C源码中对cgo不可见</span></span><br><span class="line"><span class="comment">//typedef struct User &#123;</span></span><br><span class="line"><span class="comment">//	int id;</span></span><br><span class="line"><span class="comment">//	int age;</span></span><br><span class="line"><span class="comment">//	int number;</span></span><br><span class="line"><span class="comment">//&#125; User;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">static void User_SetId(void *user, int id) &#123;</span></span><br><span class="line"><span class="comment">	((User *)user)-&gt;id = id;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">static void User_SetAge(void *user, int age) &#123;</span></span><br><span class="line"><span class="comment">	((User *)user)-&gt;age = age;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">static void User_SetNumber(void *user, int number) &#123;</span></span><br><span class="line"><span class="comment">	((User *)user)-&gt;number = number;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"unsafe"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">	Id <span class="keyword">int32</span></span><br><span class="line">	Age <span class="keyword">int32</span></span><br><span class="line">	Number <span class="keyword">int32</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> user User</span><br><span class="line"></span><br><span class="line">	pointer := unsafe.Pointer(&amp;user)</span><br><span class="line"></span><br><span class="line">	C.User_SetId(pointer, C.<span class="keyword">int</span>(<span class="number">1</span>))</span><br><span class="line">	C.User_setAge(pointer, C.<span class="keyword">int</span>(<span class="number">25</span>))</span><br><span class="line">	C.User_setNumber(pointer, C.<span class="keyword">int</span>(<span class="number">10001</span>))</span><br><span class="line"></span><br><span class="line">	fmt.Println(user)	</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
 
-<p>这时候去看屏幕录制权限, 发现并没有勾选 LICEcap的选项, 也不能手动添加</p>
-<p>于是到网上找前人经验学习, 发现有部分人的屏幕录制权限里面有LICEcap选项可以勾选</p>
-<p>所以猜想: LICEcap本身肯定有什么操作是会触发系统弹窗请求屏幕录制权限的</p>
-<p>搜罗了网上的各种方法, 大家都说有用的说的最多的是需要执行一条命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ xattr -d com.apple.quarantine /Applications/LICEcap.app</span><br></pre></td></tr></table></figure>
 
-<p>我尝试输入以后发现, 问题依旧， 仍是一头雾水</p>
-<p>然后试着将LICEcap点击 <code>record</code> 按钮以后的弹窗里面各个选项都分别单独启用一次, 一直都没什么变化</p>
-<p>突发奇想，想到把文件名写全 (自己把文件名带上 <code>.gif</code> 后缀, 比如原来一直都用 <code>record_yyyymmdd</code> 这种格式， 然后试着写成 <code>record_yyyymmdd.gif</code>)</p>
-<p><img src="/assets/images/licecap_save.png" alt="示例图"></p>
-<p>此时奇迹出现, 终于弹出了 LICEcap 请求录制屏幕的警告窗口了, 但是只有拒绝和进入权限设置两个选项</p>
-<p>这当然不敢拒绝啊， 点击权限设置后， 发现果然多了一个 LICEcap的勾选处于未选中状态, 而且此时….LICEcap好像已经在录制gif了</p>
-<p>LICEcap真NB, 我还没授权呢， 都能直接录制了。。。就因为我 <strong>文件多输入了.gif后缀补全</strong>了？</p>
-<p>此刻表示: 黑人问号尼克杨！！！</p>
-<p>然后发现, 没有勾选权限的时候, 虽然能启动录制, 但是只能录制屏幕桌面壁纸</p>
-<p><img src="/assets/images/licecap_not_working.gif" alt="屏幕壁纸动图"></p>
-<p>勾选了权限以后, 可以录制屏幕上的内容了</p>
-<p><img src="/assets/images/licecap_working.gif" alt="屏幕内容动图"></p>
-<p>不过问题总算解决, 可以继续愉快的使用LICEcap录制我的动图了</p>
+<h2 id="2-对应的-void-只需要在现有的-void-类型-CGO中的unsafe-Pointer-的对象上取地址就可以了"><a href="#2-对应的-void-只需要在现有的-void-类型-CGO中的unsafe-Pointer-的对象上取地址就可以了" class="headerlink" title="2. 对应的 void **只需要在现有的 void *类型(CGO中的unsafe.Pointer)的对象上取地址就可以了"></a>2. 对应的 <code>void **</code>只需要在现有的 <code>void *</code>类型(CGO中的<code>unsafe.Pointer</code>)的对象上取地址就可以了</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">typedef struct User &#123;</span></span><br><span class="line"><span class="comment">	int id;</span></span><br><span class="line"><span class="comment">	int age;</span></span><br><span class="line"><span class="comment">	int number;</span></span><br><span class="line"><span class="comment">&#125; User;</span></span><br><span class="line"><span class="comment">static void createUser(void **pUser) &#123;</span></span><br><span class="line"><span class="comment">	if(pUser) *pUser = malloc(sizeof(User))</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"unsafe"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> User C.User</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	pointer := unsafe.Pointer(<span class="literal">nil</span>)</span><br><span class="line"></span><br><span class="line">	C.createUser(&amp;pointer)</span><br><span class="line"></span><br><span class="line">	user := (*User)(pointer)</span><br><span class="line"></span><br><span class="line">	fmt.Println(user)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -317,7 +293,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://oyoung.cc/blogs/2019/11/01/licecap-not-working/" title="解决屏幕录制工具LICEcap在macOS 10.15 (Catalina) 无法工作问题记录">http://oyoung.cc/blogs/2019/11/01/licecap-not-working/</a>
+    <a href="http://oyoung.cc/blogs/2020/09/24/CGO-%E4%B8%AD%E5%AF%B9C%E8%AF%AD%E8%A8%80%E7%9A%84void-%E5%92%8Cvoid-%E7%9A%84%E5%A4%84%E7%90%86/" title="CGO 中对C语言的void *和void **的处理">http://oyoung.cc/blogs/2020/09/24/CGO-%E4%B8%AD%E5%AF%B9C%E8%AF%AD%E8%A8%80%E7%9A%84void-%E5%92%8Cvoid-%E7%9A%84%E5%A4%84%E7%90%86/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -329,24 +305,23 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/macOS/" rel="tag"><i class="fa fa-tag"></i> macOS</a>
-              <a href="/tags/licecap/" rel="tag"><i class="fa fa-tag"></i> licecap</a>
+              <a href="/tags/CGO/" rel="tag"><i class="fa fa-tag"></i> CGO</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/10/30/busuanzi/" rel="next" title="解决不蒜子(busuanzi)不显示数字问题记录">
-                  <i class="fa fa-chevron-left"></i> 解决不蒜子(busuanzi)不显示数字问题记录
+                <a href="/2020/09/24/CGO%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" rel="next" title="CGO中的一些使用注意事项">
+                  <i class="fa fa-chevron-left"></i> CGO中的一些使用注意事项
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/16/gradle-create-springboot/" rel="prev" title="Gradle从零开始创建SpringBoot项目">
-                  Gradle从零开始创建SpringBoot项目 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/09/24/CGO%E4%B8%AD%E5%A4%84%E7%90%86C%E4%B8%AD%E7%9A%84%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/" rel="prev" title="CGO中处理C中的回调函数">
+                  CGO中处理C中的回调函数 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -386,6 +361,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CGO-中对C语言的void-和void-的处理"><span class="nav-number">1.</span> <span class="nav-text">CGO 中对C语言的void *和void **的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-void-与unsafe-Pointer"><span class="nav-number">1.1.</span> <span class="nav-text">1. void *与unsafe.Pointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-对应的-void-只需要在现有的-void-类型-CGO中的unsafe-Pointer-的对象上取地址就可以了"><span class="nav-number">1.2.</span> <span class="nav-text">2. 对应的 void **只需要在现有的 void *类型(CGO中的unsafe.Pointer)的对象上取地址就可以了</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
