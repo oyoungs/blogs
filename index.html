@@ -143,12 +143,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">25</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">26</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">30</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">32</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -183,6 +183,86 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/09/24/C-%E5%B0%8F%E6%8A%80%E5%B7%A7-%E9%9B%86%E5%90%88-vector-list-map-set-%E7%9A%84%E5%8F%8D%E5%90%91%E9%81%8D%E5%8E%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/24/C-%E5%B0%8F%E6%8A%80%E5%B7%A7-%E9%9B%86%E5%90%88-vector-list-map-set-%E7%9A%84%E5%8F%8D%E5%90%91%E9%81%8D%E5%8E%86/" class="post-title-link" itemprop="url">C++小技巧: 集合(vector, list, map, set)的反向遍历</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-24 16:06:34 / 修改时间：16:13:24" itemprop="dateCreated datePublished" datetime="2020-09-24T16:06:34+08:00">2020-09-24</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一般的正向集合遍历"><a href="#一般的正向集合遍历" class="headerlink" title="一般的正向集合遍历"></a>一般的正向集合遍历</h1><h2 id="for-index-size模式"><a href="#for-index-size模式" class="headerlink" title="for/index/size模式"></a>for/index/size模式</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; collection.size(); ++i) &#123;</span><br><span class="line"> <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; collection[i] &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>弊端</strong>: 只适合<code>std::vector</code>这种可以通过下标随机O(1)时间访问的集合类型</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/24/C-%E5%B0%8F%E6%8A%80%E5%B7%A7-%E9%9B%86%E5%90%88-vector-list-map-set-%E7%9A%84%E5%8F%8D%E5%90%91%E9%81%8D%E5%8E%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -521,110 +601,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2019/12/15/C-tutorials/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/images/avatar.jpg">
-      <meta itemprop="name" content="逗神大人">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逗神大人的个人小站">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/15/C-tutorials/" class="post-title-link" itemprop="url">C/C++学习历程汇总</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-15 20:00:06" itemprop="dateCreated datePublished" datetime="2019-12-15T20:00:06+08:00">2019-12-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-20 13:56:33" itemprop="dateModified" datetime="2019-12-20T13:56:33+08:00">2019-12-20</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="预备篇"><a href="#预备篇" class="headerlink" title="预备篇"></a>预备篇</h1><h2 id="编程技术预备知识"><a href="#编程技术预备知识" class="headerlink" title="编程技术预备知识"></a>编程技术预备知识</h2><h3 id="二进制、十进制、十六进制"><a href="#二进制、十进制、十六进制" class="headerlink" title="二进制、十进制、十六进制"></a>二进制、十进制、十六进制</h3><ol>
-<li><strong>十进制思想</strong>到<strong>n进制思想</strong>的转化</li>
-<li><strong>二进制</strong>、<strong>十进制</strong>、<strong>十六进制</strong>的书面表示, 比如：15,  二进制: 0b00001111, 十进制: 15, 十六进制: 0x0F</li>
-<li>进制之间的转化</li>
-</ol><h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><ol>
-<li>顺序结构 </li>
-<li>条件分支结构</li>
-<li>循环结构</li>
-</ol><h3 id="常见术语"><a href="#常见术语" class="headerlink" title="常见术语"></a>常见术语</h3><ol>
-<li><strong>编辑器</strong>: 用来编写代码的工具，比如<code>vim</code> <code>vscode</code> <code>nodepad</code> <code>nodepad++</code> <code>sublime text</code> <code>atom</code> 等</li>
-<li><strong>编译器</strong>: 用来将源码装换为库文件和可执行二进制文件的命+令行工具套件, 比如 <code>gcc</code>, <code>g++</code>, <code>cl.exe</code>, <code>clang</code>, <code>clang++</code></li>
-<li>项目构建: 管理项目源码与编译生成脚本的工具软件, 比如 <code>make</code>, <code>cmake, scons</code>, <code>gradle</code>, <code>maven</code></li>
-<li><strong>IDE</strong>: 集成了<code>编辑器</code>、<code>编译器调用自动化</code>和<code>项目构建自动化</code>的一种功能更强大的软件, 比如<code>QtCreator</code>, <code>XCode</code>, <code>Visual Studio</code>, <code>Clion</code>, <code>Code Blocks</code>, <code>Eclipse</code></li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/15/C-tutorials/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -670,12 +651,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
