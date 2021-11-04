@@ -56,9 +56,9 @@
       </tags>
   </entry>
   <entry>
-    <title>OD机考:找到它</title>
-    <url>/2020/11/29/OD%E6%9C%BA%E8%80%83-%E6%89%BE%E5%88%B0%E5%AE%83/</url>
-    <content><![CDATA[<h1 id="OD机考题目-找到它"><a href="#OD机考题目-找到它" class="headerlink" title="OD机考题目: 找到它"></a>OD机考题目: 找到它</h1><h2 id="标题-找到它"><a href="#标题-找到它" class="headerlink" title="标题: 找到它"></a>标题: 找到它</h2><h2 id="题描述"><a href="#题描述" class="headerlink" title="题描述"></a>题描述</h2><p>找到它是一个小游戏,你需要在一个矩阵中找到给定的单词。假定给定的单词是HELLOWORLD,在矩阵中只需要找到H-&gt;E-&gt;L-&gt;L-&gt;O-&gt;W-&gt;O-&gt;R-&gt;L-&gt;D连成的单词,就算通过。<br>注意区分英文字母大小写, 并且只能上下左右行走，不可以回头</p><a id="more"></a>
+    <title>算法题:找到它</title>
+    <url>/2020/11/29/%E7%AE%97%E6%B3%95%E9%A2%98-%E6%89%BE%E5%88%B0%E5%AE%83/</url>
+    <content><![CDATA[<h1 id="算法题-找到它"><a href="#算法题-找到它" class="headerlink" title="算法题: 找到它"></a>算法题: 找到它</h1><h2 id="标题-找到它"><a href="#标题-找到它" class="headerlink" title="标题: 找到它"></a>标题: 找到它</h2><h2 id="题描述"><a href="#题描述" class="headerlink" title="题描述"></a>题描述</h2><p>找到它是一个小游戏,你需要在一个矩阵中找到给定的单词。假定给定的单词是HELLOWORLD,在矩阵中只需要找到H-&gt;E-&gt;L-&gt;L-&gt;O-&gt;W-&gt;O-&gt;R-&gt;L-&gt;D连成的单词,就算通过。<br>注意区分英文字母大小写, 并且只能上下左右行走，不可以回头</p><a id="more"></a>
 <h2 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述"></a>输入描述</h2><p>输入第一行包含两个整数rows,cols(0 &lt; rows,cols &lt; 21)分别表示矩阵的行数rows和列数cols.<br>第二行是一个长度不超过100的单词，在给定的矩阵中，整个单词只会出现一次，从第三行到第rows + 2行是包含大小写英文字母的长度为cols的字符矩阵</p>
 <h2 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述"></a>输出描述</h2><p>如果能在矩阵中找到对应的单词, 输入所在对应单词第一个字母所在的行和列，否则输出<code>NO</code></p>
 <h2 id="测试示例"><a href="#测试示例" class="headerlink" title="测试示例"></a>测试示例</h2><p>输入:</p>
