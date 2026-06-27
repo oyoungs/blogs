@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/douxuetang-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="如何编写Claude Code SkillsClaude Code 的 Skills 是一种强大的扩展机制，允许开发者创建可复用的指令集，通过斜杠命令快速调用。本文将详细介绍 Skills 的概念、结构和编写技巧。 1. 什么是 SkillSkill（技能）是 Claude Code 中的一种扩展机制，它本质上是一组预定义的指令集，可以让 AI 代理执行特定的任务。通过 Skills，你可以：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何编写Claude Code Skills">
+<meta property="og:url" content="http://oyoung.cc/blogs/2026/06/27/how-to-write-claude-code-skills/index.html">
+<meta property="og:site_name" content="逗神大人的个人小站">
+<meta property="og:description" content="如何编写Claude Code SkillsClaude Code 的 Skills 是一种强大的扩展机制，允许开发者创建可复用的指令集，通过斜杠命令快速调用。本文将详细介绍 Skills 的概念、结构和编写技巧。 1. 什么是 SkillSkill（技能）是 Claude Code 中的一种扩展机制，它本质上是一组预定义的指令集，可以让 AI 代理执行特定的任务。通过 Skills，你可以：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-27T07:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-27T15:29:45.186Z">
+<meta property="article:author" content="逗神大人">
+<meta property="article:tag" content="Claude Code">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Skills">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://oyoung.cc/blogs/2026/06/27/how-to-write-claude-code-skills/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>如何编写Claude Code Skills | 逗神大人的个人小站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta custom-logo">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">逗神大人的个人小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      <a>
+        <img class="custom-logo-image" src="/images/douxuetang-logo.svg" alt="逗神大人的个人小站">
+      </a>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">35</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">49</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/oyoungs" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2026/06/27/how-to-write-claude-code-skills/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何编写Claude Code Skills
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-06-27 15:00:00 / 修改时间：23:29:45" itemprop="dateCreated datePublished" datetime="2026-06-27T15:00:00+08:00">2026-06-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">AI开发</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <html><head></head><body></body></html><html><head></head><body><h1 id="如何编写Claude-Code-Skills"><a href="#如何编写Claude-Code-Skills" class="headerlink" title="如何编写Claude Code Skills"></a>如何编写Claude Code Skills</h1><p>Claude Code 的 Skills 是一种强大的扩展机制，允许开发者创建可复用的指令集，通过斜杠命令快速调用。本文将详细介绍 Skills 的概念、结构和编写技巧。</p>
+<h2 id="1-什么是-Skill"><a href="#1-什么是-Skill" class="headerlink" title="1. 什么是 Skill"></a>1. 什么是 Skill</h2><p>Skill（技能）是 Claude Code 中的一种扩展机制，它本质上是一组预定义的指令集，可以让 AI 代理执行特定的任务。通过 Skills，你可以：</p>
+<ul>
+<li>封装常用的工作流程</li>
+<li>标准化代码生成模板</li>
+<li>自动化复杂的开发任务</li>
+<li>团队共享最佳实践</li>
+</ul>
+<p><strong>调用方式：</strong></p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过斜杠命令调用</span></span><br><span class="line">/skill-name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 带参数调用</span></span><br><span class="line">/skill-name arg1 arg2</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="2-Skill-包含哪些部分"><a href="#2-Skill-包含哪些部分" class="headerlink" title="2. Skill 包含哪些部分"></a>2. Skill 包含哪些部分</h2><p>一个完整的 Skill 由以下部分组成：</p>
+<h3 id="2-1-目录结构"><a href="#2-1-目录结构" class="headerlink" title="2.1 目录结构"></a>2.1 目录结构</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">my-skill/</span><br><span class="line">├── SKILL.md          # 必需：指令 + 元数据</span><br><span class="line">├── README.md         # 可选：人类可读描述</span><br><span class="line">├── metadata.json     # 可选：发布用扩展元数据</span><br><span class="line">├── references/       # 可选：文档、指南、API 参考</span><br><span class="line">├── examples/         # 可选：示例输出</span><br><span class="line">├── scripts/          # 可选：可执行代码</span><br><span class="line">└── assets/           # 可选：模板、图片、数据文件</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="2-2-核心文件-SKILL-md"><a href="#2-2-核心文件-SKILL-md" class="headerlink" title="2.2 核心文件 - SKILL.md"></a>2.2 核心文件 - SKILL.md</h3><p>SKILL.md 是 Skill 的核心，包含两部分：</p>
+<p><strong>Frontmatter（元数据）：</strong></p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">my-skill</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">"What this skill does and when to use it."</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>指令内容：</strong> 具体的执行步骤和要求。</p>
+<h3 id="2-3-元数据字段说明"><a href="#2-3-元数据字段说明" class="headerlink" title="2.3 元数据字段说明"></a>2.3 元数据字段说明</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必需</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>是</td>
+<td>1-64字符，小写字母+连字符，必须匹配文件夹名</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>是</td>
+<td>1-1024字符，描述功能和使用场景</td>
+</tr>
+<tr>
+<td><code>license</code></td>
+<td>string</td>
+<td>否</td>
+<td>许可证信息</td>
+</tr>
+<tr>
+<td><code>compatibility</code></td>
+<td>string</td>
+<td>否</td>
+<td>环境要求</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>object</td>
+<td>否</td>
+<td>附加元数据（author, version等）</td>
+</tr>
+</tbody></table>
+<p><strong>高级字段（Claude Code 特有）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>disable-model-invocation</code></td>
+<td>设为 true 时仅用户可调用，agent 不能自动调用</td>
+</tr>
+<tr>
+<td><code>user-invocable</code></td>
+<td>设为 false 时从菜单隐藏，仅 agent 可加载</td>
+</tr>
+<tr>
+<td><code>allowed-tools</code></td>
+<td>预批准的工具列表，如 <code>Read Grep Glob</code></td>
+</tr>
+<tr>
+<td><code>context</code></td>
+<td>设为 <code>fork</code> 在子 agent 上下文中运行</td>
+</tr>
+<tr>
+<td><code>agent</code></td>
+<td>子 agent 类型：<code>Explore</code>、<code>Plan</code></td>
+</tr>
+</tbody></table>
+<h2 id="3-如何创建一个初始-Skill"><a href="#3-如何创建一个初始-Skill" class="headerlink" title="3. 如何创建一个初始 Skill"></a>3. 如何创建一个初始 Skill</h2><h3 id="3-1-基本步骤"><a href="#3-1-基本步骤" class="headerlink" title="3.1 基本步骤"></a>3.1 基本步骤</h3><ol>
+<li><strong>创建文件夹：</strong> 在 <code>.claude/skills/</code> 目录下创建以 skill 名称命名的文件夹</li>
+</ol>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p .claude/skills/hexo-deploy</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li><strong>创建 SKILL.md：</strong> 编写元数据和指令</li>
+</ol>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">name: hexo-deploy</span><br><span class="line">description: "Deploy Hexo blog to GitHub Pages. Covers build and deploy workflow."</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># Hexo Deploy Skill</span></span><br><span class="line"></span><br><span class="line">部署 Hexo 博客到 GitHub Pages。</span><br><span class="line"></span><br><span class="line"><span class="section">## 步骤</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">1. </span>清理旧文件：</span><br><span class="line"><span class="code">```bash</span></span><br><span class="line"><span class="code">hexo clean</span></span><br><span class="line"><span class="code">```</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">2. </span>生成静态文件：</span><br><span class="line"><span class="code">```bash</span></span><br><span class="line"><span class="code">hexo generate</span></span><br><span class="line"><span class="code">```</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">3. </span>部署到 GitHub：</span><br><span class="line"><span class="code">```bash</span></span><br><span class="line"><span class="code">hexo deploy</span></span><br><span class="line"><span class="code">```</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 注意事项</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>确保 <span class="code">`_config.yml`</span> 中的 deploy 配置正确</span><br><span class="line"><span class="bullet">- </span>部署前建议先本地预览</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="3">
+<li><strong>测试 Skill：</strong> 在 Claude Code 中输入 <code>/hexo-deploy</code> 测试</li>
+</ol>
+<h3 id="3-2-完整示例"><a href="#3-2-完整示例" class="headerlink" title="3.2 完整示例"></a>3.2 完整示例</h3><p>以下是一个代码审查 Skill 的示例：</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">name: code-review</span><br><span class="line">description: "Review code for best practices and potential issues."</span><br><span class="line">license: MIT</span><br><span class="line">compatibility: Requires git</span><br><span class="line">allowed-tools: Read Grep Glob</span><br><span class="line">metadata:</span><br><span class="line">  author: your-name</span><br><span class="line">  version: "1.0.0"</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># Code Review Skill</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 审查内容</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">1. </span><span class="strong">**代码风格**</span></span><br><span class="line"><span class="bullet">   - </span>命名规范</span><br><span class="line"><span class="bullet">   - </span>代码格式</span><br><span class="line"><span class="bullet">   - </span>注释质量</span><br><span class="line"></span><br><span class="line"><span class="bullet">2. </span><span class="strong">**潜在问题**</span></span><br><span class="line"><span class="bullet">   - </span>安全漏洞</span><br><span class="line"><span class="bullet">   - </span>性能问题</span><br><span class="line"><span class="bullet">   - </span>错误处理</span><br><span class="line"></span><br><span class="line"><span class="bullet">3. </span><span class="strong">**最佳实践**</span></span><br><span class="line"><span class="bullet">   - </span>设计模式</span><br><span class="line"><span class="bullet">   - </span>单一职责</span><br><span class="line"><span class="bullet">   - </span>代码复用</span><br><span class="line"></span><br><span class="line"><span class="section">## 输出格式</span></span><br><span class="line"></span><br><span class="line"><span class="code">```markdown</span></span><br><span class="line"><span class="code">## 审查结果</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">### 优点</span></span><br><span class="line"><span class="code">- [列出优点]</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">### 问题</span></span><br><span class="line"><span class="code">- [列出问题及建议]</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">### 建议</span></span><br><span class="line"><span class="code">- [改进建议]</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="4-怎样写出一个好的-Skill"><a href="#4-怎样写出一个好的-Skill" class="headerlink" title="4. 怎样写出一个好的 Skill"></a>4. 怎样写出一个好的 Skill</h2><h3 id="4-1-Description-编写技巧"><a href="#4-1-Description-编写技巧" class="headerlink" title="4.1 Description 编写技巧"></a>4.1 Description 编写技巧</h3><p><strong>公式：</strong></p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[产品] [核心功能]. Covers [关键主题]. Keywords: [关键词].</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>好的示例：</strong></p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">description:</span> <span class="string">"Hexo blog deployment. Covers build, deploy, and preview. Keywords: Hexo, GitHub Pages, deployment."</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>差的示例：</strong></p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">description:</span> <span class="string">"Helps with deployment."</span>  <span class="comment"># 太模糊</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">"A powerful deployment tool."</span>  <span class="comment"># 营销语言</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>规则：</strong></p>
+<ul>
+<li>目标：80-150 字符</li>
+<li>包含触发关键词</li>
+<li>避免营销词汇（”powerful”, “comprehensive”）</li>
+<li>避免填充词（”this skill”, “use this for”）</li>
+</ul>
+<h3 id="4-2-保持-SKILL-md-简洁"><a href="#4-2-保持-SKILL-md-简洁" class="headerlink" title="4.2 保持 SKILL.md 简洁"></a>4.2 保持 SKILL.md 简洁</h3><p><strong>关键规则：</strong> SKILL.md 不要超过 500 行。</p>
+<p><strong>解决方案：使用 Router 模式</strong></p>
+<p>对于复杂的 Skill，将详细内容放在 <code>references/</code> 目录：</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">name: complex-skill</span><br><span class="line">description: "Complex skill with multiple topics."</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># Complex Skill</span></span><br><span class="line"></span><br><span class="line">本文件是路由文件，请根据需要阅读对应文档。</span><br><span class="line"></span><br><span class="line"><span class="section">## 入门</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>新手？阅读：<span class="code">`references/getting-started.md`</span></span><br><span class="line"><span class="bullet">- </span>快速设置？阅读：<span class="code">`references/quickstart.md`</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 按场景选择</span></span><br><span class="line"></span><br><span class="line"><span class="section">### 功能 A</span></span><br><span class="line"><span class="bullet">- </span>详细说明：<span class="code">`references/feature-a.md`</span></span><br><span class="line"></span><br><span class="line"><span class="section">### 功能 B</span></span><br><span class="line"><span class="bullet">- </span>详细说明：<span class="code">`references/feature-b.md`</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="4-3-使用变量和动态注入"><a href="#4-3-使用变量和动态注入" class="headerlink" title="4.3 使用变量和动态注入"></a>4.3 使用变量和动态注入</h3><p><strong>变量替换：</strong></p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">name: pr-review</span><br><span class="line">description: "Review pull request."</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># PR Review</span></span><br><span class="line"></span><br><span class="line">审查 PR: $ARGUMENTS</span><br><span class="line"></span><br><span class="line">请分析代码变更并提供反馈。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>动态上下文注入：</strong></p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">name: pr-review</span><br><span class="line">description: "Review pull request with diff context."</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># PR Review</span></span><br><span class="line"></span><br><span class="line"><span class="section">## PR 上下文</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>PR diff: !<span class="code">`gh pr diff`</span></span><br><span class="line"><span class="bullet">- </span>变更文件: !<span class="code">`gh pr diff --name-only`</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 任务</span></span><br><span class="line"></span><br><span class="line">审查这个 PR 的代码变更...</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="4-4-工具限制"><a href="#4-4-工具限制" class="headerlink" title="4.4 工具限制"></a>4.4 工具限制</h3><p>合理限制 Skill 可使用的工具，提高安全性：</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只读分析</span></span><br><span class="line"><span class="attr">allowed-tools:</span> <span class="string">Read</span> <span class="string">Grep</span> <span class="string">Glob</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Git 操作</span></span><br><span class="line"><span class="attr">allowed-tools:</span> <span class="string">Bash(git:*)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 特定命令</span></span><br><span class="line"><span class="attr">allowed-tools:</span> <span class="string">Bash(npm:*)</span> <span class="string">Bash(pnpm:*)</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="4-5-调用控制"><a href="#4-5-调用控制" class="headerlink" title="4.5 调用控制"></a>4.5 调用控制</h3><p>根据使用场景设置调用权限：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户和 agent 都可调用</td>
+<td>默认，无需配置</td>
+</tr>
+<tr>
+<td>仅用户手动调用</td>
+<td><code>disable-model-invocation: true</code></td>
+</tr>
+<tr>
+<td>仅 agent 后台调用</td>
+<td><code>user-invocable: false</code></td>
+</tr>
+</tbody></table>
+<h3 id="4-6-最佳实践清单"><a href="#4-6-最佳实践清单" class="headerlink" title="4.6 最佳实践清单"></a>4.6 最佳实践清单</h3><ul>
+<li><input disabled="" type="checkbox"> Name 使用小写字母和连字符，匹配文件夹名</li>
+<li><input disabled="" type="checkbox"> Description 包含关键词，80-150 字符</li>
+<li><input disabled="" type="checkbox"> SKILL.md 控制在 500 行以内</li>
+<li><input disabled="" type="checkbox"> 复杂内容放入 <code>references/</code> 目录</li>
+<li><input disabled="" type="checkbox"> 合理使用变量和动态注入</li>
+<li><input disabled="" type="checkbox"> 设置适当的工具限制</li>
+<li><input disabled="" type="checkbox"> 添加示例和说明文档</li>
+<li><input disabled="" type="checkbox"> 测试 Skill 的各种调用方式</li>
+</ul>
+<h2 id="5-实战案例"><a href="#5-实战案例" class="headerlink" title="5. 实战案例"></a>5. 实战案例</h2><h3 id="案例-1：Hexo-文章发布-Skill"><a href="#案例-1：Hexo-文章发布-Skill" class="headerlink" title="案例 1：Hexo 文章发布 Skill"></a>案例 1：Hexo 文章发布 Skill</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">name: hexo-post</span><br><span class="line">description: "Create and publish Hexo blog post. Covers frontmatter, tags, categories."</span><br><span class="line">argument-hint: [title]</span><br><span class="line">allowed-tools: Read Write Bash(hexo:*)</span><br><span class="line">metadata:</span><br><span class="line">  author: your-name</span><br><span class="line">  version: "1.0.0"</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># Hexo Post Skill</span></span><br><span class="line"></span><br><span class="line">创建新的 Hexo 博客文章。</span><br><span class="line"></span><br><span class="line"><span class="section">## 参数</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span><span class="code">`$ARGUMENTS`</span>: 文章标题</span><br><span class="line"></span><br><span class="line"><span class="section">## 步骤</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">1. </span>创建新文章：</span><br><span class="line">   <span class="code">```</span>bash</span><br><span class="line">   hexo new "$ARGUMENTS"</span><br><span class="line">   <span class="code">```</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">2. </span>编辑 frontmatter：</span><br><span class="line">   <span class="code">```</span>yaml</span><br><span class="line">   ---</span><br><span class="line">   title: $ARGUMENTS</span><br><span class="line">   date: YYYY-MM-DD HH:MM:SS</span><br><span class="line">   tags: [tag1, tag2]</span><br><span class="line">   categories: [category]</span><br><span class="line">   ---</span><br><span class="line">   <span class="code">```</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">3. </span>添加内容...</span><br><span class="line"></span><br><span class="line"><span class="section">## 注意事项</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>标签使用小写</span><br><span class="line"><span class="bullet">- </span>分类保持简洁</span><br><span class="line"><span class="bullet">- </span>日期格式：YYYY-MM-DD HH:MM:SS</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="案例-2：代码重构-Skill"><a href="#案例-2：代码重构-Skill" class="headerlink" title="案例 2：代码重构 Skill"></a>案例 2：代码重构 Skill</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">name: refactor-code</span><br><span class="line">description: "Refactor code following best practices. Covers naming, structure, patterns."</span><br><span class="line">allowed-tools: Read Write Edit Grep Glob</span><br><span class="line">context: fork</span><br><span class="line">agent: Explore</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section"># Code Refactoring Skill</span></span><br><span class="line"></span><br><span class="line">重构代码，遵循最佳实践。</span><br><span class="line"></span><br><span class="line"><span class="section">## 重构内容</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">1. </span><span class="strong">**命名优化**</span></span><br><span class="line"><span class="bullet">   - </span>变量名清晰表达意图</span><br><span class="line"><span class="bullet">   - </span>函数名体现功能</span><br><span class="line"><span class="bullet">   - </span>类名使用名词</span><br><span class="line"></span><br><span class="line"><span class="bullet">2. </span><span class="strong">**结构调整**</span></span><br><span class="line"><span class="bullet">   - </span>函数职责单一</span><br><span class="line"><span class="bullet">   - </span>减少嵌套层级</span><br><span class="line"><span class="bullet">   - </span>提取重复代码</span><br><span class="line"></span><br><span class="line"><span class="bullet">3. </span><span class="strong">**设计模式**</span></span><br><span class="line"><span class="bullet">   - </span>识别可应用的模式</span><br><span class="line"><span class="bullet">   - </span>保持简单优先</span><br><span class="line"></span><br><span class="line"><span class="section">## 输出</span></span><br><span class="line"></span><br><span class="line"><span class="code">```markdown</span></span><br><span class="line"><span class="code">## 重构结果</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">### 变更列表</span></span><br><span class="line"><span class="code">- [文件]: [变更说明]</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">### 改进点</span></span><br><span class="line"><span class="code">- [改进说明]</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>编写高质量的 Claude Code Skill 需要注意：</p>
+<ol>
+<li><strong>清晰的命名和描述</strong> - 让用户和 agent 快速理解用途</li>
+<li><strong>合理的结构</strong> - 核心指令简洁，详细内容分离</li>
+<li><strong>安全的工具限制</strong> - 只授予必要的权限</li>
+<li><strong>良好的文档</strong> - 示例和说明帮助理解</li>
+<li><strong>持续优化</strong> - 根据使用反馈改进</li>
+</ol>
+<p>通过遵循这些原则，你可以创建出强大、易用、安全的 Skills，提升开发效率。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://code.claude.com/docs/en/skills" target="_blank" rel="noopener">Claude Code 官方文档</a></li>
+<li><a href="https://agentskills.io/specification" target="_blank" rel="noopener">Agent Skills 规范</a></li>
+<li>本地 Skill 文件：<code>~/.agents/skills/</code></li>
+</ul>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>感谢您对本站的支持.</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/wxpay.jpg" alt="逗神大人 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/alipay.jpg" alt="逗神大人 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>逗神大人
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://oyoung.cc/blogs/2026/06/27/how-to-write-claude-code-skills/" title="如何编写Claude Code Skills">http://oyoung.cc/blogs/2026/06/27/how-to-write-claude-code-skills/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Claude-Code/" rel="tag"><i class="fa fa-tag"></i> Claude Code</a>
+              <a href="/tags/AI/" rel="tag"><i class="fa fa-tag"></i> AI</a>
+              <a href="/tags/Skills/" rel="tag"><i class="fa fa-tag"></i> Skills</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2026/02/02/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAopencode/" rel="next" title="快速搭建 OpenCode">
+                  <i class="fa fa-chevron-left"></i> 快速搭建 OpenCode
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何编写Claude-Code-Skills"><span class="nav-number">1.</span> <span class="nav-text">如何编写Claude Code Skills</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是-Skill"><span class="nav-number">1.1.</span> <span class="nav-text">1. 什么是 Skill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Skill-包含哪些部分"><span class="nav-number">1.2.</span> <span class="nav-text">2. Skill 包含哪些部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-目录结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-核心文件-SKILL-md"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 核心文件 - SKILL.md</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-元数据字段说明"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 元数据字段说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-如何创建一个初始-Skill"><span class="nav-number">1.3.</span> <span class="nav-text">3. 如何创建一个初始 Skill</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-基本步骤"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 基本步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-完整示例"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 完整示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-怎样写出一个好的-Skill"><span class="nav-number">1.4.</span> <span class="nav-text">4. 怎样写出一个好的 Skill</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Description-编写技巧"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 Description 编写技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-保持-SKILL-md-简洁"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 保持 SKILL.md 简洁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-使用变量和动态注入"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 使用变量和动态注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-工具限制"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.4 工具限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-调用控制"><span class="nav-number">1.4.5.</span> <span class="nav-text">4.5 调用控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-最佳实践清单"><span class="nav-number">1.4.6.</span> <span class="nav-text">4.6 最佳实践清单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-实战案例"><span class="nav-number">1.5.</span> <span class="nav-text">5. 实战案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#案例-1：Hexo-文章发布-Skill"><span class="nav-number">1.5.1.</span> <span class="nav-text">案例 1：Hexo 文章发布 Skill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例-2：代码重构-Skill"><span class="nav-number">1.5.2.</span> <span class="nav-text">案例 2：代码重构 Skill</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.7.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="逗神大人"
+    src="/assets/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">逗神大人</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/oyoungs" title="GitHub &rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/3497551915" title="微博 &rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">逗神大人</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="/js/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '500px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

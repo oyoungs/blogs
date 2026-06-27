@@ -147,12 +147,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">35</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">49</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -187,6 +187,178 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/07/28/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B-UInt8-%E9%82%A3%E4%BA%9B%E4%BA%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/28/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B-UInt8-%E9%82%A3%E4%BA%9B%E4%BA%8B/" class="post-title-link" itemprop="url">Swift学习笔记之[UInt8]/[Int8]那些事</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-28 08:53:57" itemprop="dateCreated datePublished" datetime="2020-07-28T08:53:57+08:00">2020-07-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <html><head></head><body></body></html><html><head></head><body><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><code>[UInt8]</code>是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等</p>
+<h1 id="字符串编解码"><a href="#字符串编解码" class="headerlink" title="字符串编解码"></a>字符串编解码</h1><ul>
+<li><code>[UInt8]</code>（或<code>[Int8]</code>）转 <code>String</code></li>
+</ul>
+<p><strong>String有对应的直接从<code>[UInt8]</code>或<code>[Int8]</code>转换成String的构造函数</strong></p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// "这是一个字符串" 的utf8编码</span></span><br><span class="line"><span class="keyword">let</span> bytes: [<span class="type">UInt8</span>] = [<span class="number">232</span>, <span class="number">191</span>, <span class="number">153</span>, <span class="number">230</span>, <span class="number">152</span>, <span class="number">175</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">128</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">170</span>, <span class="number">229</span>, <span class="number">173</span>, <span class="number">151</span>, <span class="number">231</span>, <span class="number">172</span>, <span class="number">166</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">178</span>]</span><br><span class="line"><span class="comment">/// 转换成字符串</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> msg = <span class="type">String</span>(bytes: bytes, encoding: .utf8) {</span><br><span class="line">	<span class="built_in">print</span>(msg)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<ul>
+<li><code>String</code> 转 <code>[UInt8]</code>(或<code>[Int8]</code>）</li>
+</ul>
+<p><strong><code>String</code>转<code>[UInt8]</code>或<code>[Int8]</code>时需要借助中间角色Data</strong></p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> msg = <span class="string">"这是一个字符串"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> data = msg.data(using: .utf8) {</span><br><span class="line">  <span class="keyword">let</span> bytes = [<span class="type">UInt8</span>](data)</span><br><span class="line">  <span class="built_in">print</span>(bytes)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h1 id="底层交互"><a href="#底层交互" class="headerlink" title="底层交互"></a>底层交互</h1><h2 id="1-转换到C语言中的const-char-char-void-const-void"><a href="#1-转换到C语言中的const-char-char-void-const-void" class="headerlink" title="1. 转换到C语言中的const char*, char*, void*,const void*"></a>1. 转换到C语言中的<code>const char*</code>, <code>char*</code>, <code>void*</code>,<code>const void*</code></h2><p><strong>这里的转换指的是使用同一块内存地址</strong></p>
+<h3 id="指针类型对应关系"><a href="#指针类型对应关系" class="headerlink" title="指针类型对应关系"></a>指针类型对应关系</h3><table>
+<thead>
+<tr>
+<th align="left">C语言指针类型</th>
+<th align="left">swift语言指针对象类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">char *</td>
+<td align="left"><strong>UnsafeMutablePointer&lt;Int8&gt;</strong></td>
+</tr>
+<tr>
+<td align="left">const char *</td>
+<td align="left"><strong>UnsafePointer&lt;Int8&gt;</strong></td>
+</tr>
+<tr>
+<td align="left">unsigned char *</td>
+<td align="left"><strong>UnsafeMutablePointer&lt;UInt8&gt;</strong></td>
+</tr>
+<tr>
+<td align="left">const unsigned char *</td>
+<td align="left"><strong>UnsafePointer&lt;UInt8&gt;</strong></td>
+</tr>
+<tr>
+<td align="left">void *</td>
+<td align="left"><strong>UnsafeMutableRawPointer</strong></td>
+</tr>
+<tr>
+<td align="left">const void *</td>
+<td align="left"><strong>UnsafeRawPointer</strong></td>
+</tr>
+</tbody></table>
+<h3 id="几种特殊的指针类型"><a href="#几种特殊的指针类型" class="headerlink" title="几种特殊的指针类型"></a>几种特殊的指针类型</h3><ul>
+<li><strong>UnsafeRawBufferPointer</strong></li>
+<li><strong>UnsafeMutableRawBufferPointer</strong></li>
+<li><strong>UnsafeBufferPointer</strong>&lt;<strong>T</strong>&gt;</li>
+<li><strong>UnsafeMutableBufferPointer</strong>&lt;<strong>T</strong>&gt;</li>
+</ul>
+<p><strong>这些带有Buffer的指针类型， 可以理解为对应的不带Buffer的指针类型加上了缓冲区大小</strong>, 比如:</p>
+<blockquote>
+<p>UnsafePointer&lt;Int&gt; 对应 const int *, 表示仅有地址</p>
+<p>那UnsafeBufferPointer&lt;Int&gt;对应 const int * 加 size, 表示该地址与内存大小所对应的一块缓冲区</p>
+</blockquote>
+<h3 id="从-UInt8-或-Int8-转换到-const-unsigned-char-或-const-char"><a href="#从-UInt8-或-Int8-转换到-const-unsigned-char-或-const-char" class="headerlink" title="从[UInt8]或[Int8] 转换到 const unsigned char*或 const char *"></a>从<code>[UInt8]</code>或<code>[Int8]</code> 转换到 <code>const unsigned char*</code>或 <code>const char *</code></h3><p><code>[UInt8]</code> -&gt; <code>UnsafeRawBufferPointer</code> -&gt; <code>UnsafeBufferPointer&lt;UInt8&gt;</code> -&gt; <code>UnsafePointer&lt;UInt8&gt;</code> (<strong>Int8同理</strong>)</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">let</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeRawBufferPointer</span></span><br><span class="line"><span class="keyword">let</span> unsafeRawBufferPointer = buffer.withUnsafeBytes { $<span class="number">0</span> } </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2. UnsafeRawBufferPointer -&gt; UnsafeBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = unsafeRawBufferPointer.bindMemory(to: <span class="type">UInt8</span>.<span class="keyword">self</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 3. UnsafeBufferPointer&lt;UInt8&gt; -&gt; UnsafePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafePointer = unsafeBufferPointer.baseAddress</span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中 <code>步骤1</code>和<code>步骤2</code>可以合并</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">let</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = buffer.withUnsafeBufferPointer {$<span class="number">0</span>}</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2.. UnsafeBufferPointer&lt;UInt8&gt; -&gt; UnsafePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafePointer = unsafeBufferPointer.baseAddress</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="从-UInt8-或-Int8-转换到-unsigned-char-或-char"><a href="#从-UInt8-或-Int8-转换到-unsigned-char-或-char" class="headerlink" title="从[UInt8]或[Int8]转换到 unsigned char *或 char *"></a>从<code>[UInt8]</code>或<code>[Int8]</code>转换到 <code>unsigned char *</code>或 <code>char *</code></h3><p><code>[UInt8]</code> -&gt; <code>UnsafeMutableRawBufferPointer</code> -&gt; <code>UnsafeMutableBufferPointer&lt;UInt8&gt;</code> -&gt; <code>UnsafeMutablePointer&lt;UInt8&gt;</code> (<strong>Int8同理</strong>)</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">var</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeMutableRawBufferPointer</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableRawBufferPointer = buffer.withUnsafeMutableBytes { $<span class="number">0</span> }</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2. UnsafeMutableRawBufferPointer -&gt; UnsafeMutableBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableBufferPointer = unsafeMutableRawBufferPointer.bindMemory(to: <span class="type">UInt8</span>.<span class="keyword">self</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 3. UnsafeMutableBufferPointer&lt;UInt8&gt; -&gt; UnsafeMutablePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutablePointer = unsafeMutableBufferPointer.baseAddress</span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中的步骤1和步骤2也是可以合并的</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// [UInt8] -&gt; UnsafeMutableBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableBufferPointer = buffer.withUnsafeMutableBufferPointer {$<span class="number">0</span> }</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="从-UInt8-或-Int8-转换成const-void-或者void"><a href="#从-UInt8-或-Int8-转换成const-void-或者void" class="headerlink" title="从[UInt8]或[Int8]转换成const void *或者void *"></a>从<code>[UInt8]</code>或<code>[Int8]</code>转换成<code>const void *</code>或者<code>void *</code></h3><p>在上述的步骤里, 在<code>步骤1</code>得到的<code>unsafeMutableRawBufferPointer</code>就可以通过该对象的<code>baseAddress</code>字段就能获取到对应的<code>void *</code></p>
+<p>如:</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 获取 const void *</span></span><br><span class="line"><span class="keyword">let</span> unsafeRawPointer = unsafeRawBufferPointer.baseAddress</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 获取void *</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableRawPointer = unsafeMutableRawBufferPointer.baseAddress</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="2-从C语言中的const-char-char-const-unsigned-char-unsigned-char-const-void-void-对应缓冲区的数据创建-Data"><a href="#2-从C语言中的const-char-char-const-unsigned-char-unsigned-char-const-void-void-对应缓冲区的数据创建-Data" class="headerlink" title="2. 从C语言中的const char * , char *, const unsigned char *, unsigned char *, const void *, void *对应缓冲区的数据创建 Data"></a>2. 从C语言中的const char * , char *, const unsigned char *, unsigned char *, const void *, void *对应缓冲区的数据创建 Data</h2><figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 这里是示例， 类型为 UnsafeMutablePointer&lt;Int8&gt;， 也就是 char *</span></span><br><span class="line"><span class="comment">/// message可能来自任何C语言的接口</span></span><br><span class="line"><span class="keyword">let</span> message = strerror(errno) </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 通过指针和大小来构造 UnsafeBufferPointer&lt;Int8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = <span class="type">UnsafeBufferPointer</span>&lt;<span class="type">Int8</span>&gt;(start: message, <span class="built_in">count</span>: strlen(msg!))</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 构造Data</span></span><br><span class="line"><span class="keyword">let</span> data = <span class="type">Data</span>(buffer: unsafeBufferPointer)</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="3-从Data得到-UInt8-或者-Int8-以及String"><a href="#3-从Data得到-UInt8-或者-Int8-以及String" class="headerlink" title="3. 从Data得到 [UInt8] 或者 [Int8]以及String"></a>3. 从<code>Data</code>得到 <code>[UInt8]</code> 或者 <code>[Int8]</code>以及String</h2><ul>
+<li>Data其实内部就是[UInt8]，在大部分情况下都可以直接当成[UInt8]来使用, 字节的append，remove, insert, find等等都有相同的操作</li>
+<li>但是如果需要拷贝出来一份 [UInt8]或者[Int8]，可以使用map函数</li>
+</ul>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 缓冲区里的数据    </span></span><br><span class="line"><span class="keyword">let</span> data = <span class="type">Data</span>(buffer: unsafeBufferPointer)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// [UInt8]</span></span><br><span class="line"><span class="keyword">let</span> u8a = data.<span class="built_in">map</span> {$<span class="number">0</span>}</span><br><span class="line"></span><br><span class="line"><span class="comment">/// [Int8]</span></span><br><span class="line"><span class="keyword">let</span> s8a = data.<span class="built_in">map</span> {<span class="type">Int8</span>($<span class="number">0</span>)}</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>String也自带从data数据的构造函数</li>
+</ul>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> text = <span class="type">String</span>(data: data, encoding: .utf8)</span><br></pre></td></tr></tbody></table></figure>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -1104,135 +1276,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2019/11/16/gradle-create-springboot/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/images/avatar.jpg">
-      <meta itemprop="name" content="逗神大人">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逗神大人的个人小站">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/16/gradle-create-springboot/" class="post-title-link" itemprop="url">Gradle从零开始创建SpringBoot项目</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-16 21:18:46" itemprop="dateCreated datePublished" datetime="2019-11-16T21:18:46+08:00">2019-11-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <html><head></head><body></body></html><html><head></head><body><h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><h2 id="安装gradle"><a href="#安装gradle" class="headerlink" title="安装gradle"></a>安装<code>gradle</code></h2><ol>
-<li><a href="https://gradle.org/releases" target="_blank" rel="noopener">下载</a><code>Gradle</code>的安装包(可选择<a href="https://gradle.org/next-steps/?version=6.0&amp;format=bin" target="_blank" rel="noopener">二进制包</a>或者<a href="https://gradle.org/next-steps/?version=6.0&amp;format=all" target="_blank" rel="noopener">完整包</a></li>
-<li>解压压缩包到安装路径, 如:<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~$ mkdir -p /usr/local/gradle</span><br><span class="line">~$ cd /usr/local/gradle</span><br><span class="line">~$ unzip ~/Downloads/gradle-6.0-bin.zip</span><br></pre></td></tr></tbody></table></figure></li>
-<li>导入环境 </li>
-</ol>
-<ul>
-<li>将<code>Gradle</code>的 <code>bin</code>目录添加到<code>PATH</code>环境变量<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~$ echo "export PATH=$GRADLE_HOME/bin:$PATH" &gt;&gt; ~/.bashrc # ~/.bash_profile ~/.zshrc</span><br><span class="line">~$ source ~/.bashrc</span><br></pre></td></tr></tbody></table></figure></li>
-<li>或者将 <code>Gradle</code>的可执行文件软连接到 <code>/usr/local/bin</code><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ ln -s $GRADLE_HOME/bin/gradle /usr/local/bin/gradle</span><br></pre></td></tr></tbody></table></figure></li>
-</ul>
-<p><strong>提示: <code>$GRADLE_HOME</code>指的是<code>gradle</code>解压后的目录, 比如 <code>/usr/local/gradle/6.0</code></strong></p>
-<h1 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h1><h2 id="使用gradle-创建初始工程"><a href="#使用gradle-创建初始工程" class="headerlink" title="使用gradle 创建初始工程"></a>使用<code>gradle</code> 创建初始工程</h2><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">➜  Kotlin mkdir project</span><br><span class="line">➜  Kotlin cd project</span><br><span class="line">➜  project gradle init</span><br><span class="line">Configuration on demand is an incubating feature.</span><br><span class="line"></span><br><span class="line">Select type of project to generate:</span><br><span class="line">  1: basic</span><br><span class="line">  2: application</span><br><span class="line">  3: library</span><br><span class="line">  4: Gradle plugin</span><br><span class="line">Enter selection (default: basic) [1..4] 2</span><br><span class="line"></span><br><span class="line">Select implementation language:</span><br><span class="line">  1: C++</span><br><span class="line">  2: Groovy</span><br><span class="line">  3: Java</span><br><span class="line">  4: Kotlin</span><br><span class="line">  5: Swift</span><br><span class="line">Enter selection (default: Java) [1..5] 4</span><br><span class="line"></span><br><span class="line">Select build script DSL:</span><br><span class="line">  1: Groovy</span><br><span class="line">  2: Kotlin</span><br><span class="line">Enter selection (default: Kotlin) [1..2] 2</span><br><span class="line"></span><br><span class="line">Project name (default: project): app</span><br><span class="line"></span><br><span class="line">Source package (default: app): com.oyoung</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BUILD SUCCESSFUL in 24s</span><br><span class="line">2 actionable tasks: 2 executed</span><br><span class="line">➜  project</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="使用IntelliJ-Idea打开刚刚创建的项目"><a href="#使用IntelliJ-Idea打开刚刚创建的项目" class="headerlink" title="使用IntelliJ Idea打开刚刚创建的项目"></a>使用<code>IntelliJ Idea</code>打开刚刚创建的项目</h2><p><img src="/assets/images/open_gradle_proj.gif" alt="在这里插入图片描述"></p>
-<h1 id="配置工程"><a href="#配置工程" class="headerlink" title="配置工程"></a>配置工程</h1><h2 id="修改build-gradle-kts文件"><a href="#修改build-gradle-kts文件" class="headerlink" title="修改build.gradle.kts文件"></a>修改<code>build.gradle.kts</code>文件</h2><ol>
-<li>简化<code>kotlin</code>相关的依赖导入<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dependencies {</span><br><span class="line">  <span class="comment">// Align versions of all Kotlin components</span></span><br><span class="line">  implementation(platform(<span class="string">"org.jetbrains.kotlin:kotlin-bom"</span>))</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Use the Kotlin JDK 8 standard library.</span></span><br><span class="line">  implementation(<span class="string">"org.jetbrains.kotlin:kotlin-stdlib-jdk8"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Use the Kotlin test library.</span></span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Use the Kotlin JUnit integration.</span></span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test-junit"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-改为<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dependencies {</span><br><span class="line">  implementation(kotlin(<span class="string">"stdlib"</span>, <span class="string">"1.3.50"</span>))</span><br><span class="line">  implementation(kotlin(<span class="string">"reflect"</span>, <span class="string">"1.3.50"</span>)) <span class="comment">/// kotlin 反射机制需要的库</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/// 暂时不需要改动</span></span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test"</span>)</span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test-junit"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
-<li>导入<code>springboot</code> 相关插件<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plugins {</span><br><span class="line">  kotlin(<span class="string">"jvm"</span>) version <span class="string">"1.3.50"</span></span><br><span class="line">  kotlin(<span class="string">"plugin.spring"</span>) version <span class="string">"1.3.50"</span>  </span><br><span class="line">  id(<span class="string">"org.springframework.boot"</span>) version <span class="string">"2.2.1.RELEASE"</span></span><br><span class="line">  id(<span class="string">"io.spring.dependency-management"</span>) version <span class="string">"1.0.8.RELEASE"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-其中 使用 <code>kotlin()</code>方法包裹的, 属于<code>kotlin</code>模块，使用 <code>id()</code>方法的是第三方模块</li>
-<li>增加 <code>mavenCentral()</code>仓库<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">repositories {</span><br><span class="line">  mavenCentral()</span><br><span class="line">  jcenter()</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
-<li>导入 <code>"org.springframework.boot:spring-boot-starter-web"</code><figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dependencies {</span><br><span class="line">  <span class="comment">/// ...</span></span><br><span class="line">  implementation(<span class="string">"org.springframework.boot"</span>, <span class="string">"spring-boot-starter-web"</span>)</span><br><span class="line">  <span class="comment">/// implementation("org.springframework.boot:spring-boot-starter-web")</span></span><br><span class="line">  <span class="comment">/// ...</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-</li>
-</ol>
-<h2 id="打开我们的程序入口App-kt"><a href="#打开我们的程序入口App-kt" class="headerlink" title="打开我们的程序入口App.kt"></a>打开我们的程序入口<code>App.kt</code></h2><figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oyoung</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>{</span><br><span class="line">    <span class="keyword">val</span> greeting: String</span><br><span class="line">        <span class="keyword">get</span>() {</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Hello world."</span></span><br><span class="line">        }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> {</span><br><span class="line">    println(App().greeting)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>改成如下:</p>
-<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oyoung <span class="comment">/// 这里改成自己明明的包</span></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.runApplication</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> {</span><br><span class="line">  runApplication&lt;App&gt;(*args)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>此刻我们看到<code>runApplication</code>这一行有红色波浪线，鼠标移到上面提示:<br><img src="/assets/images/run_app_error.png" alt="错误提示"><br>这表示我们的kotlin build的字节码的jvm版本与我们实际设定的不一致</p>
-<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">group = <span class="string">"com.oyoung"</span></span><br><span class="line">version = <span class="string">"0.0.1-SNAPSHOT"</span></span><br><span class="line">java.sourceCompatibility = JavaVersion.VERSION_1_8</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="按提示增加-jvm-target-参数"><a href="#按提示增加-jvm-target-参数" class="headerlink" title="按提示增加 -jvm-target 参数"></a>按提示增加 <code>-jvm-target</code> 参数</h2><ol>
-<li>删除最下面自动生成的     <code>application</code> 任务</li>
-<li>增加一个<code>KotlinCompile</code>任务<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tasks.withType&lt;KotlinCompile&gt;() {</span><br><span class="line">    kotlinOptions {</span><br><span class="line">        jvmTarget = <span class="string">"1.8"</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-建议自己敲上面的代码, 在敲代码的过程中会有一个自动导入的import 添加到文件开头<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.jetbrains.kotlin.gradle.tasks.KotlinCompile</span><br></pre></td></tr></tbody></table></figure>
-当然了, 如果IDE响应太慢没有自动import，也可以手动导入</li>
-</ol>
-<h2 id="首次尝试启动"><a href="#首次尝试启动" class="headerlink" title="首次尝试启动"></a>首次尝试启动</h2><p>打开定位为<code>App.kt</code>文件<br>在 <code>main</code> 函数的左侧, 显示行号的附近有一个<code>三角形</code>箭头, 点击, 然后会有弹出来的菜单, 之后的操作, 你懂的…<br><img src="/assets/images/run_main.png" alt="运行"></p>
-<p>此时, 如果一切正常的话, 将会以默认的8080端口号启动一个没有任何路由请求的SpringBoot应用程序, 如果需要修改为自定义的端口号, 需要在<code>$PROJECT/src/main/resources</code>路径下新建一个<code>application.yml</code>(或者<code>application.properties</code>)文件：</p>
-<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">4000</span></span><br></pre></td></tr></tbody></table></figure>
-
-<ul>
-<li>第二次启动应用时 端口号即可改为自定义的端口号</li>
-</ul>
-<h2 id="增加controller"><a href="#增加controller" class="headerlink" title="增加controller"></a>增加controller</h2><ol>
-<li>新建一个 <code>com.oyoung.controller</code>包 (或者使用自己的包前缀)</li>
-<li>新建一个 <code>Controller</code>类, 比如 <code>TestController</code></li>
-<li>在自定义的Controller上面添加注解 <code>@RestController</code>， 一般会自动导入 所需要的包, 没有自动导入的话, 可以按照提示按 <code>Alt + Enter</code>组合按键手动导入</li>
-<li>添加第一个路由，比如 /test, 返回任意一个对象</li>
-<li>重新启动程序</li>
-<li>如果在上面的依赖中没有添加 <figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dependencies {</span><br><span class="line">	<span class="comment">/// ...</span></span><br><span class="line">	implementation(kotlin(<span class="string">"reflect"</span>, <span class="string">"1.3.50"</span>))</span><br><span class="line">	<span class="comment">/// ...</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-的话, 一般会启动失败， 至于使用什么版本, 看具体情况，我自己选择的是当前最新的稳定版<br>至此一个完整的SpringBoot初始项目就创建完成了, </li>
-</ol>
-<h2 id="撒花✿✿ヽ-°▽°-ノ✿"><a href="#撒花✿✿ヽ-°▽°-ノ✿" class="headerlink" title="撒花✿✿ヽ(°▽°)ノ✿"></a>撒花✿✿ヽ(°▽°)ノ✿</h2><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1283,16 +1326,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
