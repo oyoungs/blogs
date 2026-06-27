@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="mask-icon" href="/images/douxuetang-favicon.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -52,9 +52,10 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="逗神大人的个人小站">
-<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;page&#x2F;3&#x2F;index.html">
+<meta property="og:url" content="http://oyoung.cc/blogs/page/3/index.html">
 <meta property="og:site_name" content="逗神大人的个人小站">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="逗神大人">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://oyoung.cc/blogs/page/3/">
@@ -112,7 +113,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -121,6 +122,9 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+      <a>
+        <img class="custom-logo-image" src="/images/douxuetang-logo.svg" alt="逗神大人的个人小站">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -143,12 +147,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">36</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -187,6 +191,673 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/06/28/SDL%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/28/SDL%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C/" class="post-title-link" itemprop="url">SDL编程手册</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-28 14:56:27" itemprop="dateCreated datePublished" datetime="2020-06-28T14:56:27+08:00">2020-06-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <html><head></head><body></body></html><html><head></head><body><h1 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h1><p>进入<a href="https://www.libsdl.org/download-2.0.php" target="_blank" rel="noopener">官网下载页面</a></p>
+<p>找到对应平台的下载链接, 比如:</p>
+<p><a href="https://www.libsdl.org/release/SDL2-2.0.12.dmg" target="_blank" rel="noopener">macOS平台</a> </p>
+<p><a href="https://www.libsdl.org/release/SDL2-devel-2.0.12-VC.zip" target="_blank" rel="noopener">Windows平台Visual C++ 32/64-bit</a></p>
+<p><a href="https://www.libsdl.org/release/SDL2-devel-2.0.12-mingw.tar.gz" target="_blank" rel="noopener">Windows平台mingw</a></p>
+<h1 id="接口说明"><a href="#接口说明" class="headerlink" title="接口说明"></a>接口说明</h1><h2 id="基础接口"><a href="#基础接口" class="headerlink" title="基础接口"></a>基础接口</h2><h3 id="初始化与退出-SDL-h"><a href="#初始化与退出-SDL-h" class="headerlink" title="初始化与退出(SDL.h)"></a>初始化与退出(SDL.h)</h3><h4 id="SDL-Init"><a href="#SDL-Init" class="headerlink" title="SDL_Init"></a>SDL_Init</h4><ul>
+<li>接口定义: </li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SDL_Init</span><span class="params">(Uint32 flags)</span></span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>初始化SDL的各个子系统</p>
+</blockquote>
+<ul>
+<li>参数说明:</li>
+</ul>
+<blockquote>
+<p>flags:  子系统初始化使能标志位, 可以使用如下表所示枚举值进行或操作</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>枚举值</th>
+<th>子系统</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SDL_INIT_AUDIO</td>
+<td>音频子系统</td>
+</tr>
+<tr>
+<td>SDL_INIT_EVENTS</td>
+<td>事件子系统</td>
+</tr>
+<tr>
+<td>SDL_INIT_TIMER</td>
+<td>定时器子系统</td>
+</tr>
+<tr>
+<td>SDL_INIT_VIDEO</td>
+<td>图形图像子系统</td>
+</tr>
+<tr>
+<td>SDL_INIT_JOYSTICK</td>
+<td>游戏摇杆子系统</td>
+</tr>
+<tr>
+<td>SDL_INIT_HAPTIC</td>
+<td>触觉子系统</td>
+</tr>
+<tr>
+<td>SDL_INIT_CAMECONTROLLER</td>
+<td>游戏控制器子系统(包含摇杆子系统)</td>
+</tr>
+<tr>
+<td>SDL_INIT_EVERYTHING</td>
+<td>所有子系统</td>
+</tr>
+</tbody></table>
+<ul>
+<li>返回值说明:</li>
+</ul>
+<blockquote>
+<p>0： 成功</p>
+<p>&lt; 0: 失败错误码,  可以通过<code>SDL_GetError()</code>获取错误信息</p>
+</blockquote>
+<ul>
+<li>示例代码：</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SDL2/SDL.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>{</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (SDL_Init(SDL_INIT_EVERYTHING)) {</span><br><span class="line">    SDL_Log(<span class="string">"SDL Initialize failed: %s"</span>, SDL_GetError());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  }</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="SDL-InitSubSystem"><a href="#SDL-InitSubSystem" class="headerlink" title="SDL_InitSubSystem"></a>SDL_InitSubSystem</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SDL_InitSubSystem</span><span class="params">(Uint32 flags)</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<ul>
+<li><p>功能说明</p>
+<blockquote>
+<p>初始化SDL指定的子系统</p>
+</blockquote>
+</li>
+<li><p>参数说明 (同 <a href="#SDL-Init">SDL_Init</a>)</p>
+</li>
+<li><p>返回值说明(同<a href="#SDL-Init">SDL_Init</a>)</p>
+</li>
+<li><p>示例代码</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span> </span>{</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  SDL_Init(SDL_INIT_VIDEO);</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  </span><br><span class="line">  SDL_InitSubSystem(SDL_INIT_JOYSTICK);</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  </span><br><span class="line">  SDL_Quit();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="SDL-Quit"><a href="#SDL-Quit" class="headerlink" title="SDL_Quit"></a>SDL_Quit</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SDL_Quit</span><span class="params">()</span></span>;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>清理所有初始化的的子系统</p>
+</blockquote>
+<ul>
+<li>示例代码</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">char</span>**)</span> </span>{</span><br><span class="line">  <span class="keyword">if</span>(SDL_Init(SDL_INIT_EVERYTHING)) {</span><br><span class="line">    SDL_Log(<span class="string">"SDL Initialize failed: %s"</span>, SDL_GetError());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  }</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  </span><br><span class="line">  SDL_Quit();</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="SDL-QuitSubSystem"><a href="#SDL-QuitSubSystem" class="headerlink" title="SDL_QuitSubSystem"></a>SDL_QuitSubSystem</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SDL_QuitSubSystem</span><span class="params">(Uint32 flags)</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>关闭指定子系统</p>
+</blockquote>
+<ul>
+<li>参数说明</li>
+</ul>
+<blockquote>
+<p>flags: 同<a href="#SDL-Init">SDL_Init</a></p>
+</blockquote>
+<ul>
+<li>示例代码</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span> </span>{</span><br><span class="line">  <span class="keyword">auto</span> sdl_initialized = SDL_Init(<span class="number">0</span>) == <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (sdl_initialized <span class="keyword">and</span> SDL_InitSubSystem(SDL_INIT_VEDIO)) {</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    SDL_QuitSubSystem(SDL_INIT_VEDIO);</span><br><span class="line">  }</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// others subsysyem ...</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (sdl_initialized) SDL_Quit();</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="SDL-SetMainReady"><a href="#SDL-SetMainReady" class="headerlink" title="SDL_SetMainReady"></a>SDL_SetMainReady</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SDL_SetMainReady</span><span class="params">()</span></span>;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>当不使用SDL_main函数作为入口函数时, 使用此函数来规避SDL_Init失败</p>
+</blockquote>
+<ul>
+<li>示例代码</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span> </span>{</span><br><span class="line">  SDL_SetMainReady();</span><br><span class="line">  SDL_Init(SDL_INIT_EVERYTHING);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  SDL_Quit();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="SDL-WasInit"><a href="#SDL-WasInit" class="headerlink" title="SDL_WasInit"></a>SDL_WasInit</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Uint32 <span class="title">SDL_WasInit</span><span class="params">(Uint32 flags)</span></span>;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>获取已初始化的子系统掩码</p>
+</blockquote>
+<ul>
+<li>参数说明</li>
+</ul>
+<blockquote>
+<p>flags: 同<a href="#SDL-Init">SDL_Init</a></p>
+</blockquote>
+<ul>
+<li>返回值说明</li>
+</ul>
+<blockquote>
+<p>flags为0的时候， 返回所有已初始化子系统的掩码。</p>
+<p>否则返回指定子系统的初始化状态</p>
+</blockquote>
+<h4 id="SDL-WinRTRunApp"><a href="#SDL-WinRTRunApp" class="headerlink" title="SDL_WinRTRunApp"></a>SDL_WinRTRunApp</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SDL_WinRTRunApp</span><span class="params">(MainFunction main_func, <span class="keyword">void</span> *reserved)</span></span>;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>初始化和启动SDL/WinRT 应用程序</p>
+</blockquote>
+<ul>
+<li>参数说明</li>
+</ul>
+<blockquote>
+<p>main_func: C风格的main函数的函数类型 <code>int MainFunction(int,char **)</code></p>
+</blockquote>
+<ul>
+<li>返回值说明</li>
+</ul>
+<blockquote>
+<p>0: 成功</p>
+<p>-1： 失败, 可以通过SDL_GetError()获取错误信息</p>
+</blockquote>
+<h3 id="配置变量-SDL-hints-h"><a href="#配置变量-SDL-hints-h" class="headerlink" title="配置变量(SDL_hints.h)"></a>配置变量(SDL_hints.h)</h3><h3 id="错误处理-SDL-error-h"><a href="#错误处理-SDL-error-h" class="headerlink" title="错误处理(SDL_error.h)"></a>错误处理(SDL_error.h)</h3><h4 id="SDL-GetError"><a href="#SDL-GetError" class="headerlink" title="SDL_GetError()"></a>SDL_GetError()</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">char</span>* <span class="title">SDL_GetError</span><span class="params">()</span></span>;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>获取错误消息</p>
+</blockquote>
+<ul>
+<li>返回值说明</li>
+</ul>
+<blockquote>
+<p>有错误时， 返回长度非零的字符串首地址, 否则对应的字符串长度为0</p>
+</blockquote>
+<ul>
+<li>示例代码</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span> </span>{</span><br><span class="line">  <span class="keyword">if</span> (SDL_Init(SDL_INIT_EVERYTHING)) {</span><br><span class="line">    SDL_Log(<span class="string">"SDL initialize failed: %s"</span>, SDL_GetError());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  }</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  SDL_Quit();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="SDL-ClearError"><a href="#SDL-ClearError" class="headerlink" title="SDL_ClearError()"></a>SDL_ClearError()</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SDL_ClearError</span><span class="params">()</span></span>;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>清除已有错误</p>
+</blockquote>
+<ul>
+<li>示例代码</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> error  = SDL_GetError();</span><br><span class="line"><span class="keyword">if</span> (error[<span class="number">0</span>]) {</span><br><span class="line">  SDL_Log(<span class="string">"SDL error: %s"</span>, error);</span><br><span class="line">  SDL_ClearError();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="SDL-SetError"><a href="#SDL-SetError" class="headerlink" title="SDL_SetError()"></a>SDL_SetError()</h4><ul>
+<li>接口定义</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SDL_SetError</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>*fmt, ...)</span></span>;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<ul>
+<li>功能说明</li>
+</ul>
+<blockquote>
+<p>设置错误信息</p>
+</blockquote>
+<ul>
+<li>参数说明</li>
+</ul>
+<blockquote>
+<p>printf() 风格的格式化输入参数</p>
+</blockquote>
+<ul>
+<li>返回值说明</li>
+</ul>
+<blockquote>
+<p>只返回 -1</p>
+</blockquote>
+<ul>
+<li>示例代码</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SDL_SetError(<span class="string">"Invalid render mode: %d"</span>, mode);</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="日志处理-SDL-log-h"><a href="#日志处理-SDL-log-h" class="headerlink" title="日志处理(SDL_log.h)"></a>日志处理(SDL_log.h)</h3><h4 id="SDL-Log"><a href="#SDL-Log" class="headerlink" title="SDL_Log"></a>SDL_Log</h4><h4 id="SDL-LogCritical"><a href="#SDL-LogCritical" class="headerlink" title="SDL_LogCritical"></a>SDL_LogCritical</h4><h4 id="SDL-LogDebug"><a href="#SDL-LogDebug" class="headerlink" title="SDL_LogDebug"></a>SDL_LogDebug</h4><h4 id="SDL-LogError"><a href="#SDL-LogError" class="headerlink" title="SDL_LogError"></a>SDL_LogError</h4><h4 id="SDL-LogGetOutputFunction"><a href="#SDL-LogGetOutputFunction" class="headerlink" title="SDL_LogGetOutputFunction"></a>SDL_LogGetOutputFunction</h4><h4 id="SDL-GetPriority"><a href="#SDL-GetPriority" class="headerlink" title="SDL_GetPriority"></a>SDL_GetPriority</h4><h4 id="SDL-LogInfo"><a href="#SDL-LogInfo" class="headerlink" title="SDL_LogInfo"></a>SDL_LogInfo</h4><h4 id="SDL-LogMessage"><a href="#SDL-LogMessage" class="headerlink" title="SDL_LogMessage"></a>SDL_LogMessage</h4><h4 id="SDL-LogMessageV"><a href="#SDL-LogMessageV" class="headerlink" title="SDL_LogMessageV"></a>SDL_LogMessageV</h4><h4 id="SDL-LogResetPriorities"><a href="#SDL-LogResetPriorities" class="headerlink" title="SDL_LogResetPriorities"></a>SDL_LogResetPriorities</h4><h4 id="SDL-LogSetAllPriority"><a href="#SDL-LogSetAllPriority" class="headerlink" title="SDL_LogSetAllPriority"></a>SDL_LogSetAllPriority</h4><h4 id="SDL-LogSetOutputFunciton"><a href="#SDL-LogSetOutputFunciton" class="headerlink" title="SDL_LogSetOutputFunciton"></a>SDL_LogSetOutputFunciton</h4><h4 id="SDL-LogSetPriority"><a href="#SDL-LogSetPriority" class="headerlink" title="SDL_LogSetPriority"></a>SDL_LogSetPriority</h4><h4 id="SDL-LogVerbose"><a href="#SDL-LogVerbose" class="headerlink" title="SDL_LogVerbose"></a>SDL_LogVerbose</h4><h4 id="SDL-Warn"><a href="#SDL-Warn" class="headerlink" title="SDL_Warn"></a>SDL_Warn</h4><h3 id="断言-SDL-assert-h"><a href="#断言-SDL-assert-h" class="headerlink" title="断言(SDL_assert.h)"></a>断言(SDL_assert.h)</h3><h4 id="SDL-GetAssertionHandler"><a href="#SDL-GetAssertionHandler" class="headerlink" title="SDL_GetAssertionHandler"></a>SDL_GetAssertionHandler</h4><h4 id="SDL-GetAssertionReport"><a href="#SDL-GetAssertionReport" class="headerlink" title="SDL_GetAssertionReport"></a>SDL_GetAssertionReport</h4><h4 id="SDL-GetDefaultAssertionHandler"><a href="#SDL-GetDefaultAssertionHandler" class="headerlink" title="SDL_GetDefaultAssertionHandler"></a>SDL_GetDefaultAssertionHandler</h4><h4 id="SDL-ResetAssertionReport"><a href="#SDL-ResetAssertionReport" class="headerlink" title="SDL_ResetAssertionReport"></a>SDL_ResetAssertionReport</h4><h4 id="SDL-SetAssertionHandler"><a href="#SDL-SetAssertionHandler" class="headerlink" title="SDL_SetAssertionHandler"></a>SDL_SetAssertionHandler</h4><h4 id="SDL-TriggerBreakpoint"><a href="#SDL-TriggerBreakpoint" class="headerlink" title="SDL_TriggerBreakpoint"></a>SDL_TriggerBreakpoint</h4><h4 id="SDL-assert"><a href="#SDL-assert" class="headerlink" title="SDL_assert"></a>SDL_assert</h4><h4 id="SDL-assert-paranoid"><a href="#SDL-assert-paranoid" class="headerlink" title="SDL_assert_paranoid"></a>SDL_assert_paranoid</h4><h4 id="SDL-assert-release"><a href="#SDL-assert-release" class="headerlink" title="SDL_assert_release"></a>SDL_assert_release</h4><h3 id="版本查询-SDL-version-h"><a href="#版本查询-SDL-version-h" class="headerlink" title="版本查询(SDL_version.h)"></a>版本查询(SDL_version.h)</h3><h4 id="SDL-COMPILEDVERSION"><a href="#SDL-COMPILEDVERSION" class="headerlink" title="SDL_COMPILEDVERSION"></a>SDL_COMPILEDVERSION</h4><h4 id="SDL-GetRevision"><a href="#SDL-GetRevision" class="headerlink" title="SDL_GetRevision"></a>SDL_GetRevision</h4><h4 id="SDL-GetRevisionNumber"><a href="#SDL-GetRevisionNumber" class="headerlink" title="SDL_GetRevisionNumber"></a>SDL_GetRevisionNumber</h4><h4 id="SDL-GetVersion"><a href="#SDL-GetVersion" class="headerlink" title="SDL_GetVersion"></a>SDL_GetVersion</h4><h4 id="SDL-REVISION"><a href="#SDL-REVISION" class="headerlink" title="SDL_REVISION"></a>SDL_REVISION</h4><h4 id="SDL-VERSION"><a href="#SDL-VERSION" class="headerlink" title="SDL_VERSION"></a>SDL_VERSION</h4><h4 id="SDL-VERSIONNUM"><a href="#SDL-VERSIONNUM" class="headerlink" title="SDL_VERSIONNUM"></a>SDL_VERSIONNUM</h4><h4 id="SDL-VERSION-ATLEAST"><a href="#SDL-VERSION-ATLEAST" class="headerlink" title="SDL_VERSION_ATLEAST"></a>SDL_VERSION_ATLEAST</h4><h2 id="图形图像"><a href="#图形图像" class="headerlink" title="图形图像"></a>图形图像</h2><h3 id="显示与窗口管理-SDL-video-h"><a href="#显示与窗口管理-SDL-video-h" class="headerlink" title="显示与窗口管理(SDL_video.h)"></a>显示与窗口管理(SDL_video.h)</h3><p>SDL_CreateWindow<br>SDL_CreateWindowAndRenderer<br>SDL_CreateWindowFrom<br>SDL_DestroyWindow<br>SDL_DisableScreenSaver<br>SDL_EnableScreenSaver<br>SDL_GL_CreateContext<br>SDL_GL_DeleteContext<br>SDL_GL_ExtensionSupported<br>SDL_GL_GetAttribute<br>SDL_GL_GetCurrentContext<br>SDL_GL_GetCurrentWindow<br>SDL_GL_GetDrawableSize<br>SDL_GL_GetProcAddress<br>SDL_GL_GetSwapInterval<br>SDL_GL_LoadLibrary<br>SDL_GL_MakeCurrent<br>SDL_GL_ResetAttributes<br>SDL_GL_SetAttribute<br>SDL_GL_SetSwapInterval<br>SDL_GL_SwapWindow<br>SDL_GL_UnloadLibrary<br>SDL_GetClosestDisplayMode<br>SDL_GetCurrentDisplayMode<br>SDL_GetCurrentVideoDriver<br>SDL_GetDesktopDisplayMode<br>SDL_GetDisplayBounds<br>SDL_GetDisplayDPI<br>SDL_GetDisplayMode<br>SDL_GetDisplayName<br>SDL_GetDisplayUsableBounds<br>SDL_GetGrabbedWindow<br>SDL_GetNumDisplayModes</p>
+<h3 id="2D加速渲染-SDL-render-h"><a href="#2D加速渲染-SDL-render-h" class="headerlink" title="2D加速渲染(SDL_render.h)"></a>2D加速渲染(SDL_render.h)</h3><p>SDL_ComposeCustomBlendMode<br>SDL_CreateRenderer<br>SDL_CreateSoftwareRenderer<br>SDL_CreateTexture<br>SDL_CreateTextureFromSurface<br>SDL_CreateWindowAndRenderer<br>SDL_DestroyRenderer<br>SDL_DestroyTexture<br>SDL_GL_BindTexture<br>SDL_GL_UnbindTexture<br>SDL_GetNumRenderDrivers<br>SDL_GetRenderDrawBlendMode<br>SDL_GetRenderDrawColor<br>SDL_GetRenderDriverInfo<br>SDL_GetRenderTarget<br>SDL_GetRenderer<br>SDL_GetRendererInfo<br>SDL_GetRendererOutputSize<br>SDL_GetTextureAlphaMod<br>SDL_GetTextureBlendMode<br>SDL_GetTextureColorMod<br>SDL_LockTexture<br>SDL_QueryTexture<br>SDL_RenderClear<br>SDL_RenderCopy<br>SDL_RenderCopyEx<br>SDL_RenderDrawLine<br>SDL_RenderDrawLines<br>SDL_RenderDrawPoint<br>SDL_RenderDrawPoints<br>SDL_RenderDrawRect<br>SDL_RenderDrawRects<br>SDL_RenderFillRect<br>SDL_RenderFillRects<br>SDL_RenderGetClipRect<br>SDL_RenderGetIntegerScale<br>SDL_RenderGetLogicalSize<br>SDL_RenderGetScale<br>SDL_RenderGetViewport<br>SDL_RenderIsClipEnabled<br>SDL_RenderPresent<br>SDL_RenderReadPixels<br>SDL_RenderSetClipRect<br>SDL_RenderSetIntegerScale<br>SDL_RenderSetLogicalSize<br>SDL_RenderSetScale<br>SDL_RenderSetViewport<br>SDL_RenderTargetSupported<br>SDL_SetRenderDrawBlendMode<br>SDL_SetRenderDrawColor<br>SDL_SetRenderTarget<br>SDL_SetTextureAlphaMod<br>SDL_SetTextureBlendMode<br>SDL_SetTextureColorMod<br>SDL_UnlockTexture<br>SDL_UpdateTexture<br>SDL_UpdateYUVTexture</p>
+<h3 id="像素格式与转换例程-SDL-pixels-h"><a href="#像素格式与转换例程-SDL-pixels-h" class="headerlink" title="像素格式与转换例程(SDL_pixels.h)"></a>像素格式与转换例程(SDL_pixels.h)</h3><p>SDL_AllocFormat<br>SDL_AllocPalette<br>SDL_CalculateGammaRamp<br>SDL_FreeFormat<br>SDL_FreePalette<br>SDL_GetPixelFormatName<br>SDL_GetRGB<br>SDL_GetRGBA<br>SDL_MapRGB<br>SDL_MapRGBA<br>SDL_MasksToPixelFormatEnum<br>SDL_PixelFormatEnumToMasks<br>SDL_SetPaletteColors<br>SDL_SetPixelFormatPalette</p>
+<h3 id="矩形操作函数-SDL-rect-h"><a href="#矩形操作函数-SDL-rect-h" class="headerlink" title="矩形操作函数(SDL_rect.h)"></a>矩形操作函数(SDL_rect.h)</h3><p>SDL_EnclosePoints<br>SDL_HasIntersection<br>SDL_IntersectRect<br>SDL_IntersectRectAndLine<br>SDL_PointInRect<br>SDL_RectEmpty<br>SDL_RectEquals<br>SDL_UnionRect</p>
+<h3 id="表面创建于简单绘图-SDL-surface-h"><a href="#表面创建于简单绘图-SDL-surface-h" class="headerlink" title="表面创建于简单绘图(SDL_surface.h)"></a>表面创建于简单绘图(SDL_surface.h)</h3><p>SDL_BlitScaled<br>SDL_BlitSurface<br>SDL_ConvertPixels<br>SDL_ConvertSurface<br>SDL_ConvertSurfaceFormat<br>SDL_CreateRGBSurface<br>SDL_CreateRGBSurfaceFrom<br>SDL_CreateRGBSurfaceWithFormat<br>SDL_CreateRGBSurfaceWithFormatFrom<br>SDL_FillRect<br>SDL_FillRects<br>SDL_FreeSurface<br>SDL_GetClipRect<br>SDL_GetColorKey<br>SDL_GetSurfaceAlphaMod<br>SDL_GetSurfaceBlendMode<br>SDL_GetSurfaceColorMod<br>SDL_LoadBMP<br>SDL_LoadBMP_RW<br>SDL_LockSurface<br>SDL_LowerBlit<br>SDL_LowerBlitScaled<br>SDL_MUSTLOCK<br>SDL_SaveBMP<br>SDL_SaveBMP_RW<br>SDL_SetClipRect<br>SDL_SetColorKey<br>SDL_SetSurfaceAlphaMod<br>SDL_SetSurfaceBlendMode<br>SDL_SetSurfaceColorMod<br>SDL_SetSurfacePalette<br>SDL_SetSurfaceRLE<br>SDL_UnlockSurface</p>
+<h3 id="平台相关的窗口管理-SDL-syswm-h"><a href="#平台相关的窗口管理-SDL-syswm-h" class="headerlink" title="平台相关的窗口管理(SDL_syswm.h)"></a>平台相关的窗口管理(SDL_syswm.h)</h3><p>SDL_GetWindowWMInfo</p>
+<h3 id="剪贴板处理-SDL-clipboard-h"><a href="#剪贴板处理-SDL-clipboard-h" class="headerlink" title="剪贴板处理(SDL_clipboard.h)"></a>剪贴板处理(SDL_clipboard.h)</h3><p>SDL_GetClipboardText<br>SDL_HasClipboardText<br>SDL_SetClipboardText</p>
+<h3 id="Vulkan支持-SDL-Vulkan-h"><a href="#Vulkan支持-SDL-Vulkan-h" class="headerlink" title="Vulkan支持(SDL_Vulkan.h)"></a>Vulkan支持(SDL_Vulkan.h)</h3><p>SDL_Vulkan_CreateSurface<br>SDL_Vulkan_GetDrawableSize<br>SDL_Vulkan_GetInstanceExtensions<br>SDL_Vulkan_GetVkInstanceProcAddr<br>SDL_Vulkan_LoadLibrary<br>SDL_Vulkan_UnloadLibrary</p>
+<h2 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h2><h3 id="音频设备管理、音频播放与录音-SDL-audio-h"><a href="#音频设备管理、音频播放与录音-SDL-audio-h" class="headerlink" title="音频设备管理、音频播放与录音(SDL_audio.h)"></a>音频设备管理、音频播放与录音(SDL_audio.h)</h3><p>SDL_AudioInit<br>SDL_AudioQuit<br>SDL_BuildAudioCVT<br>SDL_ClearQueuedAudio<br>SDL_CloseAudio<br>SDL_CloseAudioDevice<br>SDL_ConvertAudio<br>SDL_DequeueAudio<br>SDL_FreeWAV<br>SDL_GetAudioDeviceName<br>SDL_GetAudioDeviceStatus<br>SDL_GetAudioDriver<br>SDL_GetAudioStatus<br>SDL_GetCurrentAudioDriver<br>SDL_GetNumAudioDevices<br>SDL_GetNumAudioDrivers<br>SDL_GetQueuedAudioSize<br>SDL_LoadWAV<br>SDL_LoadWAV_RW<br>SDL_LockAudio<br>SDL_LockAudioDevice<br>SDL_MixAudio<br>SDL_MixAudioFormat<br>SDL_OpenAudio<br>SDL_OpenAudioDevice<br>SDL_PauseAudio<br>SDL_PauseAudioDevice<br>SDL_QueueAudio<br>SDL_UnlockAudio<br>SDL_UnlockAudioDevice</p>
+<h2 id="系统输入事件"><a href="#系统输入事件" class="headerlink" title="系统输入事件"></a>系统输入事件</h2><h3 id="事件处理-SDL-events-h"><a href="#事件处理-SDL-events-h" class="headerlink" title="事件处理(SDL_events.h)"></a>事件处理(SDL_events.h)</h3><p>SDL_AddEventWatch<br>SDL_DelEventWatch<br>SDL_EventState<br>SDL_FilterEvents<br>SDL_FlushEvent<br>SDL_FlushEvents<br>SDL_GetEventFilter<br>SDL_GetEventState<br>SDL_GetNumTouchDevices<br>SDL_GetNumTouchFingers<br>SDL_GetTouchDevice<br>SDL_GetTouchFinger<br>SDL_HasEvent<br>SDL_HasEvents<br>SDL_LoadDollarTemplates<br>SDL_PeepEvents<br>SDL_PollEvent<br>SDL_PumpEvents<br>SDL_PushEvent<br>SDL_QuitRequested<br>SDL_RecordGesture<br>SDL_RegisterEvents<br>SDL_SaveAllDollarTemplates<br>SDL_SaveDollarTemplate<br>SDL_SetEventFilter<br>SDL_WaitEvent<br>SDL_WaitEventTimeout</p>
+<h3 id="键盘支持-SDL-keyboard-h"><a href="#键盘支持-SDL-keyboard-h" class="headerlink" title="键盘支持(SDL_keyboard.h)"></a>键盘支持(SDL_keyboard.h)</h3><p>SDL_GetKeyFromName<br>SDL_GetKeyFromScancode<br>SDL_GetKeyName<br>SDL_GetKeyboardFocus<br>SDL_GetKeyboardState<br>SDL_GetModState<br>SDL_GetScancodeFromKey<br>SDL_GetScancodeFromName<br>SDL_GetScancodeName<br>SDL_HasScreenKeyboardSupport<br>SDL_IsScreenKeyboardShown<br>SDL_IsTextInputActive<br>SDL_SetModState<br>SDL_SetTextInputRect<br>SDL_StartTextInput<br>SDL_StopTextInput</p>
+<h3 id="鼠标支持-SDL-mouse-h"><a href="#鼠标支持-SDL-mouse-h" class="headerlink" title="鼠标支持(SDL_mouse.h)"></a>鼠标支持(SDL_mouse.h)</h3><p>SDL_CaptureMouse<br>SDL_CreateColorCursor<br>SDL_CreateCursor<br>SDL_CreateSystemCursor<br>SDL_FreeCursor<br>SDL_GetCursor<br>SDL_GetDefaultCursor<br>SDL_GetGlobalMouseState<br>SDL_GetMouseFocus<br>SDL_GetMouseState<br>SDL_GetRelativeMouseMode<br>SDL_GetRelativeMouseState<br>SDL_SetCursor<br>SDL_SetRelativeMouseMode<br>SDL_ShowCursor<br>SDL_WarpMouseGlobal<br>SDL_WarpMouseInWindow</p>
+<h3 id="游戏摇杆支持-SDL-joystick-h"><a href="#游戏摇杆支持-SDL-joystick-h" class="headerlink" title="游戏摇杆支持(SDL_joystick.h)"></a>游戏摇杆支持(SDL_joystick.h)</h3><p>SDL_JoystickClose<br>SDL_JoystickCurrentPowerLevel<br>SDL_JoystickEventState<br>SDL_JoystickFromInstanceID<br>SDL_JoystickGetAttached<br>SDL_JoystickGetAxis<br>SDL_JoystickGetBall<br>SDL_JoystickGetButton<br>SDL_JoystickGetDeviceGUID<br>SDL_JoystickGetGUID<br>SDL_JoystickGetGUIDFromString<br>SDL_JoystickGetGUIDString<br>SDL_JoystickGetHat<br>SDL_JoystickInstanceID<br>SDL_JoystickName<br>SDL_JoystickNameForIndex<br>SDL_JoystickNumAxes<br>SDL_JoystickNumBalls<br>SDL_JoystickNumButtons<br>SDL_JoystickNumHats<br>SDL_JoystickOpen<br>SDL_JoystickUpdate<br>SDL_NumJoysticks</p>
+<h3 id="游戏控制器支持-SDL-gamecontroller-h"><a href="#游戏控制器支持-SDL-gamecontroller-h" class="headerlink" title="游戏控制器支持(SDL_gamecontroller.h)"></a>游戏控制器支持(SDL_gamecontroller.h)</h3><p>SDL_GameControllerAddMapping<br>SDL_GameControllerAddMappingsFromFile<br>SDL_GameControllerAddMappingsFromRW<br>SDL_GameControllerClose<br>SDL_GameControllerEventState<br>SDL_GameControllerFromInstanceID<br>SDL_GameControllerGetAttached<br>SDL_GameControllerGetAxis<br>SDL_GameControllerGetAxisFromString<br>SDL_GameControllerGetBindForAxis<br>SDL_GameControllerGetBindForButton<br>SDL_GameControllerGetButton<br>SDL_GameControllerGetButtonFromString<br>SDL_GameControllerGetJoystick<br>SDL_GameControllerGetStringForAxis<br>SDL_GameControllerGetStringForButton<br>SDL_GameControllerMapping<br>SDL_GameControllerMappingForGUID<br>SDL_GameControllerName<br>SDL_GameControllerNameForIndex<br>SDL_GameControllerOpen<br>SDL_GameControllerUpdate<br>SDL_IsGameController</p>
+<h3 id="传感器-SDL-sensor-h"><a href="#传感器-SDL-sensor-h" class="headerlink" title="传感器(SDL_sensor.h)"></a>传感器(SDL_sensor.h)</h3><p>SDL_NumSensors<br>SDL_SensorClose<br>SDL_SensorFromInstanceID<br>SDL_SensorGetData<br>SDL_SensorGetDeviceInstanceID<br>SDL_SensorGetDeviceName<br>SDL_SensorGetDeviceNonPortableType<br>SDL_SensorGetDeviceType<br>SDL_SensorGetInstanceID<br>SDL_SensorGetName<br>SDL_SensorGetNonPortableType<br>SDL_SensorGetType<br>SDL_SensorOpen<br>SDL_SensorType<br>SDL_SensorUpdate</p>
+<h2 id="力反馈"><a href="#力反馈" class="headerlink" title="力反馈"></a>力反馈</h2><h3 id="力反馈支持-SDL-haptic-h"><a href="#力反馈支持-SDL-haptic-h" class="headerlink" title="力反馈支持 (SDL_haptic.h)"></a>力反馈支持 (SDL_haptic.h)</h3><p>SDL_HapticClose<br>SDL_HapticDestroyEffect<br>SDL_HapticEffectSupported<br>SDL_HapticGetEffectStatus<br>SDL_HapticIndex<br>SDL_HapticName<br>SDL_HapticNewEffect<br>SDL_HapticNumAxes<br>SDL_HapticNumEffects<br>SDL_HapticNumEffectsPlaying<br>SDL_HapticOpen<br>SDL_HapticOpenFromJoystick<br>SDL_HapticOpenFromMouse<br>SDL_HapticOpened<br>SDL_HapticPause<br>SDL_HapticQuery<br>SDL_HapticRumbleInit<br>SDL_HapticRumblePlay<br>SDL_HapticRumbleStop<br>SDL_HapticRumbleSupported<br>SDL_HapticRunEffect<br>SDL_HapticSetAutocenter<br>SDL_HapticSetGain<br>SDL_HapticStopAll<br>SDL_HapticStopEffect<br>SDL_HapticUnpause<br>SDL_HapticUpdateEffect<br>SDL_JoystickIsHaptic<br>SDL_MouseIsHaptic<br>SDL_NumHaptics</p>
+<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><h3 id="定时器支持-SDL-timer-h"><a href="#定时器支持-SDL-timer-h" class="headerlink" title="定时器支持(SDL_timer.h)"></a>定时器支持(SDL_timer.h)</h3><p>SDL_AddTimer<br>SDL_Delay<br>SDL_GetPerformanceCounter<br>SDL_GetPerformanceFrequency<br>SDL_GetTicks<br>SDL_RemoveTimer<br>SDL_TICKS_PASSED</p>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><h3 id="线程管理-SDL-thread-h"><a href="#线程管理-SDL-thread-h" class="headerlink" title="线程管理(SDL_thread.h)"></a>线程管理(SDL_thread.h)</h3><p>SDL_CreateThread<br>SDL_DetachThread<br>SDL_GetThreadID<br>SDL_GetThreadName<br>SDL_SetThreadPriority<br>SDL_TLSCreate<br>SDL_TLSGet<br>SDL_TLSSet<br>SDL_ThreadID<br>SDL_WaitThread</p>
+<h3 id="线程同步-SDL-mutex-h"><a href="#线程同步-SDL-mutex-h" class="headerlink" title="线程同步(SDL_mutex.h)"></a>线程同步(SDL_mutex.h)</h3><p>SDL_CondBroadcast<br>SDL_CondSignal<br>SDL_CondWait<br>SDL_CondWaitTimeout<br>SDL_CreateCond<br>SDL_CreateMutex<br>SDL_CreateSemaphore<br>SDL_DestroyCond<br>SDL_DestroyMutex<br>SDL_DestroySemaphore<br>SDL_LockMutex<br>SDL_SemPost<br>SDL_SemTryWait<br>SDL_SemValue<br>SDL_SemWait<br>SDL_SemWaitTimeout<br>SDL_TryLockMutex<br>SDL_UnlockMutex</p>
+<h3 id="原子操作-SDL-atomic-h"><a href="#原子操作-SDL-atomic-h" class="headerlink" title="原子操作(SDL_atomic.h)"></a>原子操作(SDL_atomic.h)</h3><p>SDL_AtomicAdd<br>SDL_AtomicCAS<br>SDL_AtomicCASPtr<br>SDL_AtomicDecRef<br>SDL_AtomicGet<br>SDL_AtomicGetPtr<br>SDL_AtomicIncRef<br>SDL_AtomicLock<br>SDL_AtomicSet<br>SDL_AtomicSetPtr<br>SDL_AtomicTryLock<br>SDL_AtomicUnlock<br>SDL_CompilerBarrier</p>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="文件系统路径-SDL-filesystem-h"><a href="#文件系统路径-SDL-filesystem-h" class="headerlink" title="文件系统路径(SDL_filesystem.h)"></a>文件系统路径(SDL_filesystem.h)</h3><p>SDL_GetBasePath<br>SDL_GetPrefPath</p>
+<h3 id="文件IO抽象-SDL-rwops-h"><a href="#文件IO抽象-SDL-rwops-h" class="headerlink" title="文件IO抽象(SDL_rwops.h)"></a>文件IO抽象(SDL_rwops.h)</h3><p>SDL_AllocRW<br>SDL_FreeRW<br>SDL_RWFromConstMem<br>SDL_RWFromFP<br>SDL_RWFromFile<br>SDL_RWFromMem<br>SDL_RWclose<br>SDL_RWread<br>SDL_RWseek<br>SDL_RWsize<br>SDL_RWtell<br>SDL_RWwrite<br>SDL_ReadBE16<br>SDL_ReadBE32<br>SDL_ReadBE64<br>SDL_ReadLE16<br>SDL_ReadLE32<br>SDL_ReadLE64<br>SDL_ReadU8<br>SDL_WriteBE16<br>SDL_WriteBE32<br>SDL_WriteBE64<br>SDL_WriteLE16<br>SDL_WriteLE32<br>SDL_WriteLE64<br>SDL_WriteU8</p>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/06/05/sfml-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/05/sfml-install/" class="post-title-link" itemprop="url">SFML 在macOS的安装</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-05 17:00:00" itemprop="dateCreated datePublished" datetime="2020-06-05T17:00:00+08:00">2020-06-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>823</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <html><head></head><body></body></html><html><head></head><body><h2 id="1-下载SFML的SDK"><a href="#1-下载SFML的SDK" class="headerlink" title="1. 下载SFML的SDK"></a>1. 下载SFML的SDK</h2><p>进入SFML官网的<a href="https://www.sfml-dev.org/download.php" target="_blank" rel="noopener">下载页</a>下载最新稳定版的SFML SDK</p>
+<p>选择对应的版本后，找到如下的下载链接:</p>
+<p><img src="/assets/images/sfml-download.jpg" alt=""></p>
+<p>下载完成后解压到指定目录</p>
+<h2 id="2-安装SFML-SDK的头文件和库文件"><a href="#2-安装SFML-SDK的头文件和库文件" class="headerlink" title="2. 安装SFML SDK的头文件和库文件"></a>2. 安装SFML SDK的头文件和库文件</h2><h3 id="frameworks"><a href="#frameworks" class="headerlink" title="frameworks"></a>frameworks</h3><ul>
+<li>将解压目录下的Frameworks拷贝到系统目录下的 <code>/Library/Frameworks</code>（<code>/System/Library/Frameworks</code>也可以， 但不建议，这个是系统相关的框架）</li>
+</ul>
+<h3 id="dylib"><a href="#dylib" class="headerlink" title="dylib"></a>dylib</h3><ul>
+<li>将<code>include</code>目录拷贝到 <code>/usr/local/</code>（出现合并选是, 或者拷贝<code>include</code>目录下的所有内容拷贝到<code>/usr/local/include</code>目录下）</li>
+<li>将<code>lib</code>目录拷贝到<code>/usr/local</code>（出现合并选是, 或者拷贝<code>include</code>目录下的所有内容拷贝到<code>/usr/local/lib</code>目录下）</li>
+</ul>
+<h2 id="3-安装SFML的依赖库"><a href="#3-安装SFML的依赖库" class="headerlink" title="3. 安装SFML的依赖库"></a>3. 安装SFML的依赖库</h2><p>在SFML SDK的解压目录下， 还有个很重要的目录<code>extlibs</code></p>
+<p>这个目录是 SFML SDK的依赖库所在目录(其实很人性化了，毕竟没让我们自己去导出找依赖库源码来自己build)</p>
+<p>这个安装比较简单, 但是很有必要:</p>
+<blockquote>
+<p>将<code>extlibs</code>下的所有<code>.framework</code>拷贝到 <code>/Library/Frameworks</code>即可</p>
+</blockquote>
+<p><strong>其实到这已经算是安装完成了，剩下的就是在Xcode里面使用验证安装了。但SFML SDK为我们提供了一个很有帮助的Xcode插件工具，也就是SFML 的Xcode工程模板创建引导</strong></p>
+<h2 id="4-安装Xcode工程模板"><a href="#4-安装Xcode工程模板" class="headerlink" title="4. 安装Xcode工程模板"></a>4. 安装Xcode工程模板</h2><p>在SFML SDK解压目录下，找到<code>templates</code>目录， 将改目录下的<code>SFML</code>目录整个拷贝到 <code>/Library/Developer/Xcode/Templates</code>下(如果<code>/Library/Developer/Xcode/Templates</code>不存在就自己创建一个)。</p>
+<h2 id="5-验证安装"><a href="#5-验证安装" class="headerlink" title="5. 验证安装"></a>5. 验证安装</h2><p>我们打开Xcode, 然后创建新工程，在工程模板选择的时候，往下拉，就会看到SFML的模板了，选择该模板，一路点击下一步即可(中间肯定会有一些命名相关的需要填的，按自己喜好填就行)</p>
+<p><img src="/assets/images/sfml-templates.jpg" alt=""></p>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/05/19/%E5%BC%82%E6%AD%A5-%E8%B6%85%E6%97%B6%E7%AD%89%E5%BE%85%E7%9A%84C-%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/19/%E5%BC%82%E6%AD%A5-%E8%B6%85%E6%97%B6%E7%AD%89%E5%BE%85%E7%9A%84C-%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">异步+超时等待的C++实现</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-19 17:37:39" itemprop="dateCreated datePublished" datetime="2020-05-19T17:37:39+08:00">2020-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <html><head></head><body></body></html><html><head></head><body><h1 id="异步-超时等待的C-实现与应用"><a href="#异步-超时等待的C-实现与应用" class="headerlink" title="异步+超时等待的C++实现与应用"></a>异步+超时等待的C++实现与应用</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在C++开发过程中，我们最常用的编程模式还是同步编程。原因很简单:</p>
+<ul>
+<li>流程简介明了，能明确知道程序的步骤流程</li>
+<li>作用域简单，能够更好的控制作用域内对象的生命周期</li>
+<li>历史原因, C++11才有的lambda表达式，是的异步编程的复杂度降低, 在此之前都比较复杂</li>
+</ul>
+<p>有了C++11以后，异步形式的接口越来越多，最基本就是 std::thread, std::async之类的接口</p>
+<p>如果我们需要在某个同步流程中去处理比较耗时的操作时， 我们的同步流程就会被堵住以至于后续的流程无法继续。如果我们在编写同步流程时，能控制这段同步代码的最大耗时， 那将是一个很有效的编程模式。</p>
+<p>于是 异步 + 超时等待的模式营运而生</p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><ul>
+<li><p>在C++11开始以后，我们能使用到的可以带超时等待的标准库接口都有哪些呢？</p>
+<ul>
+<li>std::future </li>
+<li>std::condition_variable</li>
+</ul>
+</li>
+<li><p>可以构造std::future对象的标准库接口有哪些呢？</p>
+<ul>
+<li>std::async</li>
+<li>std::promise</li>
+<li>std::packaged_task</li>
+</ul>
+</li>
+</ul>
+<h2 id="可选方案"><a href="#可选方案" class="headerlink" title="可选方案"></a>可选方案</h2><h3 id="使用std-async"><a href="#使用std-async" class="headerlink" title="使用std::async"></a>使用std::async</h3><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> <span class="built_in">future</span> = <span class="built_in">std</span>::async(<span class="built_in">std</span>::lauch::async, [=] {</span><br><span class="line">  <span class="comment">/// 异步操作</span></span><br><span class="line">  <span class="comment">/// 此处比较耗时，省略</span></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">});</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">future</span>.wait_for(<span class="number">10</span>s) == <span class="built_in">std</span>::future_status::timeout) {</span><br><span class="line">  <span class="comment">/// 此处为等待结果超时</span></span><br><span class="line">  <span class="comment">/// 但此处的return或者抛异常等退出作用域的行为都会导致阻塞直到异步操作完成</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>注意</strong>：</p>
+<blockquote>
+<ol>
+<li><p>std::async名字虽然带有<code>async</code>但能给人很大的误导， 使用std::async的时候, 如果没有获取返回值的future对象，那该异步函数便会成为同步函数。原因是: std::async返回的future对象由于是右值，但没有左值对象来接管该对象的生命周期, 因此在调用完std::async后，该future对象会自动析构， 析构时，会发生等待操作，一直等待异步操作的返回值，因此看起来就像是同步一样(<strong>见示例代码1</strong>)</p>
+</li>
+<li><p>如果获取了std::async的返回值future对象， 那std::async才能叫真正的异步调用。 这样可以在发起异步操作后立马去执行其他操作，执行完了其他必要操作再使用future对象来获取异步结果(也有可能获取不到仍需等待，<strong>见示例代码2</strong>)</p>
+</li>
+<li><p>使用std::async的时候, 如果异步操作的时间大于等待超时的时间，那么等待超时以后return也会阻塞到异步操作完成才会完全退出作用(<strong>见示例代码3</strong>)</p>
+</li>
+</ol>
+</blockquote>
+<p>示例代码1:</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;future&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>::literals::chrono_literals;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::async, [] {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"这里是异步操作"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="built_in">std</span>::this_thread::sleep_for(<span class="number">1</span>s);</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"异步操作结束"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    });</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"这里是异步操作发起后的同步操作"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>示例代码1输出:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这里是异步操作</span><br><span class="line">异步操作结束</span><br><span class="line">这里是异步操作发起后的同步操作</span><br><span class="line">Program ended with <span class="built_in">exit</span> code: 0</span><br></pre></td></tr></tbody></table></figure>
+
+<p>示例代码2</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;future&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>::literals::chrono_literals;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">auto</span> <span class="built_in">future</span> = <span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::async, [] {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"这里是异步操作"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="built_in">std</span>::this_thread::sleep_for(<span class="number">1</span>s);</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"异步操作结束"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1000</span>;</span><br><span class="line">    });</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"这里是异步操作发起后的同步操作"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::this_thread::sleep_for(<span class="number">500</span>ms);</span><br><span class="line">    <span class="keyword">auto</span> result = <span class="built_in">future</span>.get();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"异步操作结果为: "</span> &lt;&lt; result &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>示例代码2输出:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这里是异步操作发起后的同步操作</span><br><span class="line">这里是异步操作</span><br><span class="line">异步操作结束</span><br><span class="line">异步操作结果为: 1000</span><br><span class="line">Program ended with <span class="built_in">exit</span> code: 0</span><br></pre></td></tr></tbody></table></figure>
+
+<p>示例代码3：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;future&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>::literals::chrono_literals;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">now</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::chrono::duration_cast&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(<span class="built_in">std</span>::chrono::system_clock::now().time_since_epoch()).count();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_something_with_future</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">auto</span> <span class="built_in">future</span> = <span class="built_in">std</span>::async(<span class="built_in">std</span>::launch::async, [] {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"这里是异步操作"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="built_in">std</span>::this_thread::sleep_for(<span class="number">5</span>s);</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"异步操作结束"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1000</span>;</span><br><span class="line">    });</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"这里是异步操作发起后的同步操作"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::this_thread::sleep_for(<span class="number">500</span>ms);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">future</span>.wait_for(<span class="number">1</span>s) == <span class="built_in">std</span>::future_status::timeout) {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"等待异步结果超时"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">auto</span> result = <span class="built_in">future</span>.get();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"异步操作结果为: "</span> &lt;&lt; result &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">auto</span> n = now();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"还没有使用future"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    do_something_with_future();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"使用完future, 用时"</span> &lt;&lt; now() - n &lt;&lt; <span class="string">"s"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>示例代码3输出：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">还没有使用future</span><br><span class="line">这里是异步操作发起后的同步操作</span><br><span class="line">这里是异步操作</span><br><span class="line">等待异步结果超时</span><br><span class="line">异步操作结束</span><br><span class="line">使用完future, 用时5.00282s</span><br><span class="line">Program ended with <span class="built_in">exit</span> code: 0</span><br></pre></td></tr></tbody></table></figure>
+
+<p>说明: </p>
+<blockquote>
+<p> 这段代码乍一看，以为耗时是500ms，其实不然， 输出的总使用耗时是5s左右。 </p>
+</blockquote>
+<h2 id="使用std-promise"><a href="#使用std-promise" class="headerlink" title="使用std::promise"></a>使用std::promise</h2><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;future&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>::literals::chrono_literals;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">now</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::chrono::duration_cast&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(<span class="built_in">std</span>::chrono::system_clock::now().time_since_epoch()).count();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_something_with_promise</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">std</span>::promise&lt;<span class="keyword">int</span>&gt; promise;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"发起异步操作:"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">  	<span class="comment">/// 暂时用std::thread模拟下异步接口</span></span><br><span class="line">    <span class="built_in">std</span>::thread([&amp;] {</span><br><span class="line">        <span class="built_in">std</span>::this_thread::sleep_for(<span class="number">5</span>s);</span><br><span class="line">        promise.set_value(<span class="number">1000</span>);</span><br><span class="line">    }).detach();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> <span class="built_in">future</span> = promise.get_future();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">future</span>.wait_for(<span class="number">1</span>s) == <span class="built_in">std</span>::future_status::timeout) {</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">std</span>::runtime_error(<span class="string">"等待异步结果超时"</span>);</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> result = <span class="built_in">future</span>.get();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"异步操作结果为: "</span> &lt;&lt; result &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">auto</span> n = now();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"开始使用promise"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">try</span> {</span><br><span class="line">        do_something_with_promise();</span><br><span class="line">    } <span class="keyword">catch</span>(<span class="keyword">const</span> <span class="built_in">std</span>::exception&amp; e) {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; e.what() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"使用完promise, 用时: "</span> &lt;&lt; now() - n &lt;&lt; <span class="string">"s"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>输出:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">开始使用promise</span><br><span class="line">发起异步操作:</span><br><span class="line">等待异步结果超时</span><br><span class="line">使用完promise, 用时: 1.00624s</span><br><span class="line">Program ended with <span class="built_in">exit</span> code: 0</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>代码说明:</p>
+<blockquote>
+<p>与std::async不同的是，std::promise拿到的future，在promise还没设置值得时候， future的析构不会被阻塞。因此如果希望等待超时以后能立马退出作用域，更推荐使用 std::promise</p>
+</blockquote>
+<h3 id="使用std-packaged-task"><a href="#使用std-packaged-task" class="headerlink" title="使用std::packaged_task"></a>使用std::packaged_task</h3><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;future&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>::literals::chrono_literals;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">now</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::chrono::duration_cast&lt;<span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">double</span>&gt;&gt;(<span class="built_in">std</span>::chrono::system_clock::now().time_since_epoch()).count();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_something_with_packaged_task</span><span class="params">()</span> </span>{</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="built_in">std</span>::packaged_task&lt;<span class="title">int</span><span class="params">()</span>&gt; <span class="title">task</span><span class="params">([] {</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="built_in">std</span>::this_thread::sleep_for(<span class="number">5</span>s);</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">return</span> <span class="number">1000</span>;</span></span></span><br><span class="line"><span class="function"><span class="params">    })</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"发起异步操作:"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 使用std::thread模拟异步接口</span></span><br><span class="line">    <span class="built_in">std</span>::thread([&amp;] {</span><br><span class="line">        task();</span><br><span class="line">    }).detach();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> <span class="built_in">future</span> = task.get_future();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">future</span>.wait_for(<span class="number">1</span>s) == <span class="built_in">std</span>::future_status::timeout) {</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">std</span>::runtime_error(<span class="string">"等待异步结果超时"</span>);</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> result = <span class="built_in">future</span>.get();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"异步操作结果为: "</span> &lt;&lt; result &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">auto</span> n = now();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"开始使用packaged_task"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">try</span> {</span><br><span class="line">        do_something_with_packaged_task();</span><br><span class="line">    } <span class="keyword">catch</span>(<span class="keyword">const</span> <span class="built_in">std</span>::exception&amp; e) {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; e.what() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"使用完packaged_task, 用时: "</span> &lt;&lt; now() - n &lt;&lt; <span class="string">"s"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>输出:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">开始使用packaged_task</span><br><span class="line">发起异步操作:</span><br><span class="line">等待异步结果超时</span><br><span class="line">使用完packaged_task, 用时: 1.00114s</span><br><span class="line">Program ended with <span class="built_in">exit</span> code: 0</span><br></pre></td></tr></tbody></table></figure>
+
+<p>代码说明:</p>
+<blockquote>
+<p>其实std::packaged_task可以看成是std::function与std::promise的结合体, 可以理解为把一个 返回值为T类型的std::function的返回值存到内部的std::promise后，可以通过future获取到返回值</p>
+</blockquote>
+<h3 id="使用std-condition-variable"><a href="#使用std-condition-variable" class="headerlink" title="使用std::condition_variable"></a>使用std::condition_variable</h3><p>使用std::condition_variable的思路是: </p>
+<blockquote>
+<p>将异步操作的参数类型做一份拷贝，并和结果类型放在一起进行包装，创建一份包裹对象， 并在包裹对象内部使用 std::mutex和std::condition_variable对结果的访问加上条件限制。在包裹对象设置了结果值时，解除条件限制。因此可以利用 std::condition_variable的wait系列接口来限时等待或者无限等待结果的功能</p>
+</blockquote>
+<h2 id="综合使用示例代码"><a href="#综合使用示例代码" class="headerlink" title="综合使用示例代码"></a>综合使用示例代码</h2><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;condition_variable&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;future&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> std_srvs {</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SetIntegerRequest</span> {</span></span><br><span class="line">    <span class="keyword">int64_t</span> data;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SetIntegerResponse</span> {</span></span><br><span class="line">    <span class="keyword">bool</span> success;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> message;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SetInteger</span> {</span></span><br><span class="line">    <span class="keyword">using</span> Request = SetIntegerRequest;</span><br><span class="line">    <span class="keyword">using</span> Response = SetIntegerResponse;</span><br><span class="line">    </span><br><span class="line">    Request request;</span><br><span class="line">    Response response;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MREQ, <span class="keyword">typename</span> MRES&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Wrapper</span> {</span></span><br><span class="line">    <span class="keyword">using</span> Request = MREQ;</span><br><span class="line">    <span class="keyword">using</span> Response = MRES;</span><br><span class="line">    </span><br><span class="line">    Wrapper(<span class="keyword">const</span> Request&amp; req)</span><br><span class="line">        : m_request(req)</span><br><span class="line">        , m_response() {</span><br><span class="line">        </span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">const</span> Request&amp; <span class="title">request</span><span class="params">()</span> <span class="keyword">const</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> m_request;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">const</span> Response&amp; <span class="title">response</span><span class="params">()</span> <span class="keyword">const</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> m_response;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function">Response&amp; <span class="title">response</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> m_response;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">wait</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="function"><span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">lock</span><span class="params">(m_reponse_lock)</span></span>;</span><br><span class="line">        m_response_ready.wait(lock);</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Rep, <span class="keyword">typename</span> Period&gt;</span><br><span class="line">    <span class="function"><span class="built_in">std</span>::cv_status <span class="title">wait_for</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::chrono::duration&lt;Rep, Period&gt;&amp; duration)</span> </span>{</span><br><span class="line">        <span class="function"><span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">lock</span><span class="params">(m_reponse_lock)</span></span>;</span><br><span class="line">        <span class="keyword">return</span> m_response_ready.wait_for(lock, duration);</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Clock, <span class="keyword">typename</span> Duration&gt;</span><br><span class="line">    <span class="function"><span class="built_in">std</span>::cv_status <span class="title">wait_until</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::chrono::time_point&lt;Clock, Duration&gt;&amp; time_point)</span> </span>{</span><br><span class="line">        <span class="function"><span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">lock</span><span class="params">(m_reponse_lock)</span></span>;</span><br><span class="line">        <span class="keyword">return</span> m_response_ready.wait_until(lock, time_point);</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="function"><span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">lock</span><span class="params">(m_reponse_lock)</span></span>;</span><br><span class="line">        m_response_ready.notify_all();</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Request m_request;</span><br><span class="line">    Response m_response;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">std</span>::mutex m_reponse_lock;</span><br><span class="line">    <span class="built_in">std</span>::condition_variable m_response_ready;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> MREQ, <span class="keyword">typename</span> MRES&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PromiseWrapper</span> {</span></span><br><span class="line">    <span class="keyword">using</span> Request = MREQ;</span><br><span class="line">    <span class="keyword">using</span> Response = MRES;</span><br><span class="line">    </span><br><span class="line">    PromiseWrapper(<span class="keyword">const</span> Request&amp; req): m_request(req) {</span><br><span class="line">        </span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="built_in">std</span>::<span class="built_in">future</span>&lt;Response&gt; <span class="title">get_future</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> m_response.get_future();</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">const</span> Request&amp; <span class="title">request</span><span class="params">()</span> <span class="keyword">const</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> m_request;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">set_response</span><span class="params">(Response response)</span> </span>{</span><br><span class="line">        m_response.set_value(<span class="built_in">std</span>::move(response));</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Request m_request;</span><br><span class="line">    <span class="built_in">std</span>::promise&lt;Response&gt; m_response;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">handle</span><span class="params">(<span class="keyword">const</span> std_srvs::SetInteger::Request&amp; request, std_srvs::SetInteger::Response&amp; response)</span> </span>{</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> wrapper = <span class="built_in">std</span>::make_shared&lt;Wrapper&lt;std_srvs::SetInteger::Request, std_srvs::SetInteger::Response&gt;&gt;(request);</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 这里发起异步任务</span></span><br><span class="line">    <span class="built_in">std</span>::thread([=] {</span><br><span class="line">       </span><br><span class="line">        </span><br><span class="line">        <span class="comment">/// 模拟长时间，可以尝试将此处的时间和超时等待时间的长短交换看看结果</span></span><br><span class="line">        <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">5</span>));</span><br><span class="line">        </span><br><span class="line">        wrapper-&gt;response().success = <span class="literal">true</span>;</span><br><span class="line">        wrapper-&gt;response().message = <span class="string">"success"</span> + <span class="built_in">std</span>::to_string(wrapper-&gt;request().data);</span><br><span class="line">        </span><br><span class="line">        wrapper-&gt;accept(); <span class="comment">/// 接受任务结果</span></span><br><span class="line">        </span><br><span class="line">    }).detach();</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 这里等待异步任务的结果</span></span><br><span class="line">    <span class="keyword">if</span> (wrapper-&gt;wait_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">1</span>)) == <span class="built_in">std</span>::cv_status::no_timeout) {</span><br><span class="line">        response = wrapper-&gt;response();</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        response.success = <span class="literal">false</span>;</span><br><span class="line">        response.message = <span class="string">"timeout"</span>;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">promise_handle</span><span class="params">(<span class="keyword">const</span> std_srvs::SetInteger::Request&amp; request, std_srvs::SetInteger::Response&amp; response)</span> </span>{</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> wrapper = <span class="built_in">std</span>::make_shared&lt;PromiseWrapper&lt;std_srvs::SetInteger::Request, std_srvs::SetInteger::Response&gt;&gt;(request);</span><br><span class="line">    <span class="comment">/// 这里发起异步任务</span></span><br><span class="line">    <span class="built_in">std</span>::thread([=] {</span><br><span class="line">       </span><br><span class="line">        </span><br><span class="line">        <span class="comment">/// 模拟长时间，可以尝试将此处的时间和超时等待时间的长短交换看看结果</span></span><br><span class="line">        <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">5</span>));</span><br><span class="line">        </span><br><span class="line">        std_srvs::SetInteger::Response r;</span><br><span class="line">        r.success = <span class="literal">true</span>;</span><br><span class="line">        r.message = <span class="string">"success"</span> + <span class="built_in">std</span>::to_string(wrapper-&gt;request().data);</span><br><span class="line">        </span><br><span class="line">        wrapper-&gt;set_response(<span class="built_in">std</span>::move(r)); <span class="comment">/// 接受任务结果</span></span><br><span class="line">        </span><br><span class="line">    }).detach();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">auto</span> <span class="built_in">future</span> = wrapper-&gt;get_future();</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">future</span>.wait_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">1</span>)) == <span class="built_in">std</span>::future_status::timeout) {</span><br><span class="line">        response.success = <span class="literal">false</span>;</span><br><span class="line">        response.message = <span class="string">"promise timeout"</span>;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        response = <span class="built_in">future</span>.get();</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handle_test</span><span class="params">()</span> </span>{</span><br><span class="line">    std_srvs::SetInteger srv;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"start: "</span> &lt;&lt; <span class="built_in">std</span>::chrono::system_clock::now().time_since_epoch().count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    handle(srv.request, srv.response);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"end  : "</span> &lt;&lt; <span class="built_in">std</span>::chrono::system_clock::now().time_since_epoch().count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (srv.response.success) {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; srv.response.message &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; srv.response.message &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">promise_handle_test</span><span class="params">()</span> </span>{</span><br><span class="line">    std_srvs::SetInteger srv;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"start: "</span> &lt;&lt; <span class="built_in">std</span>::chrono::system_clock::now().time_since_epoch().count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    promise_handle(srv.request, srv.response);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"end  : "</span> &lt;&lt; <span class="built_in">std</span>::chrono::system_clock::now().time_since_epoch().count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (srv.response.success) {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; srv.response.message &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; srv.response.message &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>**)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line"></span><br><span class="line">    handle_test();</span><br><span class="line">    promise_handle_test();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h2><ol>
+<li>首先是Wrapper/PromiseWrapper类， 用于将同步处理中的请求参数进行包裹并作为异步参数。 对请求与相应进行包裹的目的，在于延长异步处理时的请求参数与相应参数的生命周期，使其在服务回调已经结束的情况下，仍旧有自己的生命周期，只有在服务结束并且异步处理也结束的情况下包裹的对象的生命周期才会结束</li>
+<li>Wrapper类使用的是<code>条件变量(std::condition_variable)</code>技术来实现等待, PromiseWrapper使用的是 <code>std::promise</code>技术来实现等待</li>
+<li>两个同步性质的服务处理函数handle/promise_handle，其中handle使用的是Wrapper技术， promise_handle用的是PromiseWrapper技术</li>
+<li>两种方式都有一个共同点, 都可以等待制定的时间后以超时错误结束服务处理流程</li>
+</ol>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="rosservice的服务程序"><a href="#rosservice的服务程序" class="headerlink" title="rosservice的服务程序"></a>rosservice的服务程序</h3><ul>
+<li>rosservice的服务程序不能阻塞，一旦阻塞，变回引起调用方连锁阻塞，会使系统进入僵死状态</li>
+</ul>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2019/12/15/C-tutorials/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -218,7 +889,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-20 13:56:33" itemprop="dateModified" datetime="2019-12-20T13:56:33+08:00">2019-12-20</time>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
               </span>
 
           <br>
@@ -246,28 +917,179 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="预备篇"><a href="#预备篇" class="headerlink" title="预备篇"></a>预备篇</h1><h2 id="编程技术预备知识"><a href="#编程技术预备知识" class="headerlink" title="编程技术预备知识"></a>编程技术预备知识</h2><h3 id="二进制、十进制、十六进制"><a href="#二进制、十进制、十六进制" class="headerlink" title="二进制、十进制、十六进制"></a>二进制、十进制、十六进制</h3><ol>
+          <html><head></head><body></body></html><html><head></head><body><h1 id="预备篇"><a href="#预备篇" class="headerlink" title="预备篇"></a>预备篇</h1><h2 id="编程技术预备知识"><a href="#编程技术预备知识" class="headerlink" title="编程技术预备知识"></a>编程技术预备知识</h2><h3 id="二进制、十进制、十六进制"><a href="#二进制、十进制、十六进制" class="headerlink" title="二进制、十进制、十六进制"></a>二进制、十进制、十六进制</h3><ol>
 <li><strong>十进制思想</strong>到<strong>n进制思想</strong>的转化</li>
 <li><strong>二进制</strong>、<strong>十进制</strong>、<strong>十六进制</strong>的书面表示, 比如：15,  二进制: 0b00001111, 十进制: 15, 十六进制: 0x0F</li>
 <li>进制之间的转化</li>
-</ol><h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><ol>
+</ol>
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><ol>
 <li>顺序结构 </li>
 <li>条件分支结构</li>
 <li>循环结构</li>
-</ol><h3 id="常见术语"><a href="#常见术语" class="headerlink" title="常见术语"></a>常见术语</h3><ol>
+</ol>
+<h3 id="常见术语"><a href="#常见术语" class="headerlink" title="常见术语"></a>常见术语</h3><ol>
 <li><strong>编辑器</strong>: 用来编写代码的工具，比如<code>vim</code> <code>vscode</code> <code>nodepad</code> <code>nodepad++</code> <code>sublime text</code> <code>atom</code> 等</li>
 <li><strong>编译器</strong>: 用来将源码装换为库文件和可执行二进制文件的命+令行工具套件, 比如 <code>gcc</code>, <code>g++</code>, <code>cl.exe</code>, <code>clang</code>, <code>clang++</code></li>
 <li>项目构建: 管理项目源码与编译生成脚本的工具软件, 比如 <code>make</code>, <code>cmake, scons</code>, <code>gradle</code>, <code>maven</code></li>
 <li><strong>IDE</strong>: 集成了<code>编辑器</code>、<code>编译器调用自动化</code>和<code>项目构建自动化</code>的一种功能更强大的软件, 比如<code>QtCreator</code>, <code>XCode</code>, <code>Visual Studio</code>, <code>Clion</code>, <code>Code Blocks</code>, <code>Eclipse</code></li>
 </ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/15/C-tutorials/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<h2 id="C-开发环境安装"><a href="#C-开发环境安装" class="headerlink" title="C++开发环境安装"></a>C++开发环境安装</h2><h3 id="Windows平台环境安装"><a href="#Windows平台环境安装" class="headerlink" title="Windows平台环境安装"></a>Windows平台环境安装</h3><ol>
+<li>winddows系统下环境安装(Visual Studio)</li>
+<li>WSL(Windows Subsystem Linux)下环境安装</li>
+</ol>
+<h3 id="Ubuntu-linux平台-环境安装"><a href="#Ubuntu-linux平台-环境安装" class="headerlink" title="Ubuntu(linux平台)环境安装"></a>Ubuntu(linux平台)环境安装</h3><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install build-essential git cmake qtcreator</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="macOS平台环境安装-XCode安装"><a href="#macOS平台环境安装-XCode安装" class="headerlink" title="macOS平台环境安装(XCode安装)"></a>macOS平台环境安装(XCode安装)</h3><p>打开<code>AppStore</code>, 搜索 <code>Xcode</code>, 找到右侧的<code>Xcode</code> 点击 <code>获取</code>, 待 <code>获取</code>变为 <code>安装</code>后, 点击安装</p>
+<h2 id="IDE的选择"><a href="#IDE的选择" class="headerlink" title="IDE的选择"></a>IDE的选择</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows:"></a>Windows:</h3><ul>
+<li><code>Visual Studio Community/Professional/Ultimate</code> <strong>(Windows平台开发必备)</strong></li>
+<li><code>Visual Studio Code</code> (跨平台可扩展的编辑器, 可以配置成像IDE一样功能强大)</li>
+<li><code>QtCreator</code></li>
+<li><code>Clion</code></li>
+</ul>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux:"></a>Linux:</h3><ul>
+<li><code>Visual Studio Code</code></li>
+<li><code>QtCreator</code></li>
+<li><code>Clion</code></li>
+<li><code>Code Blocks</code></li>
+</ul>
+<h3 id="macOS"><a href="#macOS" class="headerlink" title="macOS:"></a>macOS:</h3><ul>
+<li><code>XCode</code></li>
+<li><code>Clion</code></li>
+<li><code>Visual Studio Code</code></li>
+<li><code>QtCreator</code></li>
+</ul>
+<h1 id="入门篇"><a href="#入门篇" class="headerlink" title="入门篇"></a>入门篇</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h3><ol>
+<li><p>使用一部分参数经过特定的计算规则得到特定结果(可以没有结果值)的一句话， 通每行一条语句, 英文分号(;)结尾(仅当前C/C++语言, 部分其他编程语言语句法则不一样，有的无需分号结尾， 有的可有可无)</p>
+</li>
+<li><p>示例:</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">和 等于 参数<span class="number">1</span> + 参数<span class="number">2</span> +...+ 参数n</span><br></pre></td></tr></tbody></table></figure>
+
+<p>C/C++代码</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="number">2</span> + <span class="number">3</span>;</span><br><span class="line"><span class="number">10</span> * <span class="number">5</span> / <span class="number">2</span> + <span class="number">6</span> / <span class="number">3</span>;</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ol>
+<li>当我们需要临时保存记录下某个语句的结果时， 变量就应运而生了, 比如</li>
+</ol>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = <span class="number">1</span> + <span class="number">2</span> + <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> result = <span class="number">10</span> * <span class="number">5</span> / <span class="number">2</span> + <span class="number">6</span> / <span class="number">3</span>;</span><br></pre></td></tr></tbody></table></figure>
+<ol start="2">
+<li>为什么要用变量呢？比如, 你有<code>100</code>元人民币, 早上买早餐用掉<code>10</code>元，中午买午餐又花掉了<code>20</code>元， 晚上没忍住多吃了点， 花了<code>50</code>， 那么请问，你早上、中午、晚上分别剩下多少钱呢？</li>
+</ol>
+<p>不用变量时:</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 一开始100RMB</span></span><br><span class="line"></span><br><span class="line"><span class="number">100</span> - <span class="number">10</span>; <span class="comment">/// 这是早上剩余的</span></span><br><span class="line"></span><br><span class="line"><span class="number">100</span> - <span class="number">10</span> - <span class="number">20</span>; <span class="comment">///这是中午剩余的</span></span><br><span class="line"></span><br><span class="line"><span class="number">100</span> - <span class="number">10</span> - <span class="number">20</span> - <span class="number">50</span>; <span class="comment">///这是晚上剩下的</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>现在我们使用变量:</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> total = <span class="number">100</span>; <span class="comment">/// 一开始的100RMB</span></span><br><span class="line"></span><br><span class="line">total = total - <span class="number">10</span>; <span class="comment">/// 早上用掉10元， 剩下 total - 10 , 然后在吧剩下的值记录到total， 此时的total才是真正意义上的剩下的钱</span></span><br><span class="line"></span><br><span class="line">total = total - <span class="number">20</span>; <span class="comment">/// 在早上剩下的基础上中午再花20元, 剩下的再次记录到total</span></span><br><span class="line"></span><br><span class="line">total = total - <span class="number">50</span>; <span class="comment">/// 中午剩下的钱晚上再划掉 50元</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>对比发现:</strong></p>
+<ul>
+<li>当没有使用变量时, 如果是在同一个概念上的数值有变动, 每次变动都要把完整的变动过程写一遍，变动的次数越多， 书写的过程越繁琐, 如此下去，简直灭绝人性</li>
+<li>使用了变量以后, 我们不仅可以把变量当成我们的原始数值一样进行计算, 还能把计算的结果进行保存留到后续的变动，而且不管多少次的变动， 计算表达式的语句也能一直保持很简洁</li>
+</ul>
+<ol start="3">
+<li><p>变量与变量有时候是会有区别的， 比如你18岁, 身高1.60米, 名字叫二愣子, 这种变量与变量之间的区别叫 <code>变量类型</code>，<code>18</code>岁: 这是个整数, <code>1.60</code>米: 这是实数，<code>二愣子</code>:这是文本也叫字符串</p>
+</li>
+<li><p>变量有哪些类型呢？ 基本的变量类型有以下几种:</p>
+</li>
+</ol>
+<ul>
+<li><code>整形</code>: 对应整数 </li>
+<li><code>浮点型</code>: 对应实数 </li>
+<li><code>布尔型</code>: 表示具有对立属性的状态, 一般可以表示为<code>真</code>/<code>假</code>, 0 &lt; 1 真， 1 == 2 假 </li>
+<li><code>字符型</code>: 用来表示显示在屏幕上给我们看的文本</li>
+</ul>
+<ol start="5">
+<li>变量类型的具体C/C++语言中的类型有哪些呢？</li>
+</ol>
+<ul>
+<li><code>整形</code>: (unsigned ) char/short/int/long/long long</li>
+<li><code>浮点型</code>: float, double</li>
+<li><code>布尔型</code>: bool</li>
+<li><code>字符型</code>: char , wchar</li>
+</ul>
+<ol start="6">
+<li>有啥区别? 每种大类型里面的具体类型之间, 一般都只有存储空间和符号性的区别, 比如</li>
+</ol>
+<ul>
+<li><code>整形</code>: </li>
+</ul>
+<figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> (<span class="number">1</span>字节, <span class="number">-2</span>^<span class="number">7</span>~<span class="number">2</span>^<span class="number">7</span><span class="number">-1</span>), <span class="function"><span class="keyword">unsigned</span> <span class="title">char</span> <span class="params">(<span class="number">1</span>字节, <span class="number">0</span>~<span class="number">2</span>^<span class="number">8</span><span class="number">-1</span>)</span></span></span><br><span class="line">short(2字节，-2^15~2^15-1), unsigned char(2字节, 0~2^16-1)</span><br><span class="line"><span class="keyword">int</span> (<span class="number">4</span>字节, <span class="number">-2</span>^<span class="number">31</span>~ <span class="number">2</span>^<span class="number">31</span><span class="number">-1</span>), <span class="function"><span class="keyword">unsigned</span> <span class="title">int</span><span class="params">(<span class="number">4</span>字节, <span class="number">0</span>~<span class="number">2</span>^<span class="number">32</span><span class="number">-1</span>)</span></span></span><br><span class="line">long/ unsigned long(平台相关，一般不小于4字节，不大于 long long 的字节数)</span><br><span class="line">long long (8字节， -2^63~2^63-1), unsigned long long(8字节, 0~2^64-1)</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><code>浮点型</code>:</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span>(<span class="number">4</span>字节), <span class="keyword">double</span>(<span class="number">8</span>字节)</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><code>布尔型</code>:</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span>(<span class="number">1</span>字节), 只有两个值, <span class="literal">true</span>: 真，<span class="literal">false</span>: 假</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><code>字符型</code>(使用单引号引用起来的单个内容):<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>(<span class="number">1</span>字节): <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'0'</span> ...</span><br><span class="line"><span class="keyword">wchar_t</span>(<span class="number">2</span>字节): <span class="string">L'A'</span>, <span class="string">L'B'</span>, <span class="string">L'C'</span>...</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<ol start="7">
+<li>基本类型之间可否转换?</li>
+</ol>
+<ul>
+<li><code>整形</code> -&gt; <code>布尔型</code>: </li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>: <span class="literal">false</span></span><br><span class="line">非<span class="number">0</span>: <span class="literal">true</span></span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><code>整形</code> -&gt; <code>浮点型</code>: </li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> -&gt; <span class="number">0.0f</span>, <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span> -&gt; <span class="number">1.0f</span>, <span class="number">0.0</span></span><br><span class="line">n -&gt; n<span class="number">.0f</span>, n<span class="number">.0</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><code>浮点数</code> -&gt; <code>整数</code>, 直接取整数部分, 小数部分会直接丢弃， 因此可能会有精度损失, 比如<code>1.5</code>转化为<code>int</code>以后值为<code>1</code>, 并且不会有像我们数学意义上的四舍五入发生</li>
+</ul>
+<h3 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h3><ol>
+<li>操作符分为 一元操作符、二元操作符、三元操作符, 所谓的元， 就是参数，一元表示只有一个参数…以此类推</li>
+<li>一元操作符: <code>-</code>(取负, a = 1, -a = -1)  <code>~</code>(按位取反, ~0b00000000 = 0b11111111) <code>!</code>(逻辑取反, !true = false, !false = true)</li>
+<li>二元操作符: <code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>、<code>&lt;</code>、<code>&gt;</code> 、<code>&lt;=</code>、<code>&gt;=</code> 、<code>==</code> (相等)、<code>!=</code>(不等) 、<code>&lt;&lt;</code>(左移或者流输出)、<code>&gt;&gt;</code>(右移或者流输入) 、<code>+=</code> (自增)、<code>-=</code>(自减)、<code>*=</code> 、<code>/=</code> 、<code>&amp;</code>(位与)、<code>|</code>(位或)、<code>^</code>(异或)、<code>&amp;&amp;</code>(逻辑与)、<code>||</code>(逻辑或) 、<code>&amp;=</code> 、<code>|=</code>、<code>&lt;&lt;=</code> 、<code>&gt;&gt;=</code></li>
+<li>三元操作符: <code>?:</code>(用法, 条件 ? 值1: 值2, 表达含义: 条件成立时， 返回值1， 不成立则返回值2) </li>
+</ol>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ol>
+<li>如果从某些已有的值，计算得到某个结果值， 需要执行的语句超过<code>1条</code>时, 我们要怎么做呢？比如计算一个两个实数和的小数部分:</li>
+</ol>
+<p>如果直接把每一组都计算一遍</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> sum = <span class="number">1.5</span> + <span class="number">2.1</span>; <span class="comment">/// 结果为 3.6</span></span><br><span class="line"><span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line"><span class="keyword">double</span> result1 = sum - part; <span class="comment">/// 3.6 - 3 = 0.6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">///...中间还有很多组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> sum = <span class="number">9.5</span> + <span class="number">0.7</span>; <span class="comment">/// 结果为 10.2</span></span><br><span class="line"><span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line"><span class="keyword">double</span> resultn = sum - part; <span class="comment">/// 10.2- 10 = 0.2</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>改为使用函数</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">  <span class="keyword">double</span> sum = a + b; </span><br><span class="line">  <span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line">  <span class="keyword">return</span> sum - part; <span class="comment">/// </span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> result1 = calc(<span class="number">1.5</span>, <span class="number">2.1</span>); <span class="comment">/// 结果0.6</span></span><br><span class="line"><span class="comment">/// ...</span></span><br><span class="line"><span class="keyword">double</span> resultn = calc(<span class="number">9.5</span>, <span class="number">0.2</span>); <span class="comment">/// 结果时0.2</span></span><br></pre></td></tr></tbody></table></figure>
+<p>其中的<code>calc</code>便叫做函数, 所谓函数， 其实就是特定流程的多条语句的包装，使用函数可以避免编写大量重读的代码</p>
+<ol start="2">
+<li>函数的声明与定义</li>
+</ol>
+<ul>
+<li>函数声明: 告知下文函数的形式, 一般可以编写成</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">返回类型 函数名(参数<span class="number">1</span>类型 参数<span class="number">1</span>名称, ..., 参数n类型 参数名称)；</span><br></pre></td></tr></tbody></table></figure>
+<p>比如上面的<code>calc</code>函数:</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>返回类型是double, 有2个参数, 第一个参数名叫 a, double 类型, 第二个参数名叫b， 也是double类型</p>
+<ul>
+<li>函数定义: 函数的具体内容, 形式大致为:</li>
+</ul>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">返回值 函数名(参数<span class="number">1</span>类型 参数<span class="number">1</span>名称, ... , 参数n类型 参数n名称)</span><br><span class="line">{</span><br><span class="line">  具体实现细节，...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>比如上面的 <code>calc</code>函数的定义:</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">  <span class="keyword">double</span> sum = a + b; </span><br><span class="line">  <span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line">  <span class="keyword">return</span> sum - part; <span class="comment">/// </span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>注意: 同一个函数， 只能定义一次， 但是可以在多处声明</strong></p>
+<ol start="3">
+<li>只有 返回值、函数名、参数的类型、个数、位置完全一致的情况下，才能被称为同一个函数</li>
+</ol>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="comment">// 与</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> c, <span class="keyword">int</span> d)</span></span>;</span><br><span class="line"><span class="comment">// 是同一个函数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="comment">// 与</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">bool</span> b, <span class="keyword">char</span> c)</span></span>;</span><br><span class="line"><span class="comment">// 不是同一个函数</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="4">
+<li>在C中, 同一个函数名只能用在一个函数中，不支持使用同一个函数名字定义多个函数, 但是C++中却可以同一个函数名用于多个函数, 叫做<code>函数重载</code>， 比如:</li>
+</ol>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">  <span class="keyword">return</span> a &lt; b ? b: a;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">  <span class="keyword">return</span> a &lt; b ? b : a;</span><br><span class="line">}</span><br><span class="line"><span class="comment">//虽然用的函数名都是max</span></span><br><span class="line"><span class="comment">//但是</span></span><br><span class="line">max(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 与</span></span><br><span class="line">max(<span class="number">2.0</span>, <span class="number">3.0</span>);</span><br><span class="line"><span class="comment">// 使用的不是同一个函数</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><h3 id="原生数组"><a href="#原生数组" class="headerlink" title="原生数组"></a>原生数组</h3><h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><h3 id="枚举、-结构体、联合体"><a href="#枚举、-结构体、联合体" class="headerlink" title="枚举、 结构体、联合体"></a>枚举、 结构体、联合体</h3><h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><h1 id="提高篇"><a href="#提高篇" class="headerlink" title="提高篇"></a>提高篇</h1><h1 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h1><h1 id="高级篇"><a href="#高级篇" class="headerlink" title="高级篇"></a>高级篇</h1><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
       
     </div>
 
@@ -309,10 +1131,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-11-16 21:18:46 / 修改时间：21:52:59" itemprop="dateCreated datePublished" datetime="2019-11-16T21:18:46+08:00">2019-11-16</time>
+              <time title="创建时间：2019-11-16 21:18:46" itemprop="dateCreated datePublished" datetime="2019-11-16T21:18:46+08:00">2019-11-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -339,265 +1167,58 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><h2 id="安装gradle"><a href="#安装gradle" class="headerlink" title="安装gradle"></a>安装<code>gradle</code></h2><ol>
-<li><a href="https://gradle.org/releases" target="_blank" rel="noopener">下载</a><code>Gradle</code>的安装包(可选择<a href="https://gradle.org/next-steps/?version=6.0&format=bin" target="_blank" rel="noopener">二进制包</a>或者<a href="https://gradle.org/next-steps/?version=6.0&format=all" target="_blank" rel="noopener">完整包</a></li>
-<li>解压压缩包到安装路径, 如:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~$ mkdir -p /usr/local/gradle</span><br><span class="line">~$ cd /usr/local/gradle</span><br><span class="line">~$ unzip ~/Downloads/gradle-6.0-bin.zip</span><br></pre></td></tr></table></figure></li>
+          <html><head></head><body></body></html><html><head></head><body><h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><h2 id="安装gradle"><a href="#安装gradle" class="headerlink" title="安装gradle"></a>安装<code>gradle</code></h2><ol>
+<li><a href="https://gradle.org/releases" target="_blank" rel="noopener">下载</a><code>Gradle</code>的安装包(可选择<a href="https://gradle.org/next-steps/?version=6.0&amp;format=bin" target="_blank" rel="noopener">二进制包</a>或者<a href="https://gradle.org/next-steps/?version=6.0&amp;format=all" target="_blank" rel="noopener">完整包</a></li>
+<li>解压压缩包到安装路径, 如:<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~$ mkdir -p /usr/local/gradle</span><br><span class="line">~$ cd /usr/local/gradle</span><br><span class="line">~$ unzip ~/Downloads/gradle-6.0-bin.zip</span><br></pre></td></tr></tbody></table></figure></li>
 <li>导入环境 </li>
 </ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/16/gradle-create-springboot/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+<ul>
+<li>将<code>Gradle</code>的 <code>bin</code>目录添加到<code>PATH</code>环境变量<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~$ echo "export PATH=$GRADLE_HOME/bin:$PATH" &gt;&gt; ~/.bashrc # ~/.bash_profile ~/.zshrc</span><br><span class="line">~$ source ~/.bashrc</span><br></pre></td></tr></tbody></table></figure></li>
+<li>或者将 <code>Gradle</code>的可执行文件软连接到 <code>/usr/local/bin</code><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ ln -s $GRADLE_HOME/bin/gradle /usr/local/bin/gradle</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<p><strong>提示: <code>$GRADLE_HOME</code>指的是<code>gradle</code>解压后的目录, 比如 <code>/usr/local/gradle/6.0</code></strong></p>
+<h1 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h1><h2 id="使用gradle-创建初始工程"><a href="#使用gradle-创建初始工程" class="headerlink" title="使用gradle 创建初始工程"></a>使用<code>gradle</code> 创建初始工程</h2><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">➜  Kotlin mkdir project</span><br><span class="line">➜  Kotlin cd project</span><br><span class="line">➜  project gradle init</span><br><span class="line">Configuration on demand is an incubating feature.</span><br><span class="line"></span><br><span class="line">Select type of project to generate:</span><br><span class="line">  1: basic</span><br><span class="line">  2: application</span><br><span class="line">  3: library</span><br><span class="line">  4: Gradle plugin</span><br><span class="line">Enter selection (default: basic) [1..4] 2</span><br><span class="line"></span><br><span class="line">Select implementation language:</span><br><span class="line">  1: C++</span><br><span class="line">  2: Groovy</span><br><span class="line">  3: Java</span><br><span class="line">  4: Kotlin</span><br><span class="line">  5: Swift</span><br><span class="line">Enter selection (default: Java) [1..5] 4</span><br><span class="line"></span><br><span class="line">Select build script DSL:</span><br><span class="line">  1: Groovy</span><br><span class="line">  2: Kotlin</span><br><span class="line">Enter selection (default: Kotlin) [1..2] 2</span><br><span class="line"></span><br><span class="line">Project name (default: project): app</span><br><span class="line"></span><br><span class="line">Source package (default: app): com.oyoung</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BUILD SUCCESSFUL in 24s</span><br><span class="line">2 actionable tasks: 2 executed</span><br><span class="line">➜  project</span><br></pre></td></tr></tbody></table></figure>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+<h2 id="使用IntelliJ-Idea打开刚刚创建的项目"><a href="#使用IntelliJ-Idea打开刚刚创建的项目" class="headerlink" title="使用IntelliJ Idea打开刚刚创建的项目"></a>使用<code>IntelliJ Idea</code>打开刚刚创建的项目</h2><p><img src="/assets/images/open_gradle_proj.gif" alt="在这里插入图片描述"></p>
+<h1 id="配置工程"><a href="#配置工程" class="headerlink" title="配置工程"></a>配置工程</h1><h2 id="修改build-gradle-kts文件"><a href="#修改build-gradle-kts文件" class="headerlink" title="修改build.gradle.kts文件"></a>修改<code>build.gradle.kts</code>文件</h2><ol>
+<li>简化<code>kotlin</code>相关的依赖导入<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dependencies {</span><br><span class="line">  <span class="comment">// Align versions of all Kotlin components</span></span><br><span class="line">  implementation(platform(<span class="string">"org.jetbrains.kotlin:kotlin-bom"</span>))</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Use the Kotlin JDK 8 standard library.</span></span><br><span class="line">  implementation(<span class="string">"org.jetbrains.kotlin:kotlin-stdlib-jdk8"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Use the Kotlin test library.</span></span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Use the Kotlin JUnit integration.</span></span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test-junit"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+改为<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dependencies {</span><br><span class="line">  implementation(kotlin(<span class="string">"stdlib"</span>, <span class="string">"1.3.50"</span>))</span><br><span class="line">  implementation(kotlin(<span class="string">"reflect"</span>, <span class="string">"1.3.50"</span>)) <span class="comment">/// kotlin 反射机制需要的库</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/// 暂时不需要改动</span></span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test"</span>)</span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test-junit"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+<li>导入<code>springboot</code> 相关插件<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plugins {</span><br><span class="line">  kotlin(<span class="string">"jvm"</span>) version <span class="string">"1.3.50"</span></span><br><span class="line">  kotlin(<span class="string">"plugin.spring"</span>) version <span class="string">"1.3.50"</span>  </span><br><span class="line">  id(<span class="string">"org.springframework.boot"</span>) version <span class="string">"2.2.1.RELEASE"</span></span><br><span class="line">  id(<span class="string">"io.spring.dependency-management"</span>) version <span class="string">"1.0.8.RELEASE"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+其中 使用 <code>kotlin()</code>方法包裹的, 属于<code>kotlin</code>模块，使用 <code>id()</code>方法的是第三方模块</li>
+<li>增加 <code>mavenCentral()</code>仓库<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">repositories {</span><br><span class="line">  mavenCentral()</span><br><span class="line">  jcenter()</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+<li>导入 <code>"org.springframework.boot:spring-boot-starter-web"</code><figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dependencies {</span><br><span class="line">  <span class="comment">/// ...</span></span><br><span class="line">  implementation(<span class="string">"org.springframework.boot"</span>, <span class="string">"spring-boot-starter-web"</span>)</span><br><span class="line">  <span class="comment">/// implementation("org.springframework.boot:spring-boot-starter-web")</span></span><br><span class="line">  <span class="comment">/// ...</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2019/11/01/licecap-not-working/">
+</li>
+</ol>
+<h2 id="打开我们的程序入口App-kt"><a href="#打开我们的程序入口App-kt" class="headerlink" title="打开我们的程序入口App.kt"></a>打开我们的程序入口<code>App.kt</code></h2><figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oyoung</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>{</span><br><span class="line">    <span class="keyword">val</span> greeting: String</span><br><span class="line">        <span class="keyword">get</span>() {</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Hello world."</span></span><br><span class="line">        }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> {</span><br><span class="line">    println(App().greeting)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>改成如下:</p>
+<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oyoung <span class="comment">/// 这里改成自己明明的包</span></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.runApplication</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> {</span><br><span class="line">  runApplication&lt;App&gt;(*args)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>此刻我们看到<code>runApplication</code>这一行有红色波浪线，鼠标移到上面提示:<br><img src="/assets/images/run_app_error.png" alt="错误提示"><br>这表示我们的kotlin build的字节码的jvm版本与我们实际设定的不一致</p>
+<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">group = <span class="string">"com.oyoung"</span></span><br><span class="line">version = <span class="string">"0.0.1-SNAPSHOT"</span></span><br><span class="line">java.sourceCompatibility = JavaVersion.VERSION_1_8</span><br></pre></td></tr></tbody></table></figure>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/images/avatar.jpg">
-      <meta itemprop="name" content="逗神大人">
-      <meta itemprop="description" content="">
-    </span>
+<h2 id="按提示增加-jvm-target-参数"><a href="#按提示增加-jvm-target-参数" class="headerlink" title="按提示增加 -jvm-target 参数"></a>按提示增加 <code>-jvm-target</code> 参数</h2><ol>
+<li>删除最下面自动生成的     <code>application</code> 任务</li>
+<li>增加一个<code>KotlinCompile</code>任务<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tasks.withType&lt;KotlinCompile&gt;() {</span><br><span class="line">    kotlinOptions {</span><br><span class="line">        jvmTarget = <span class="string">"1.8"</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+建议自己敲上面的代码, 在敲代码的过程中会有一个自动导入的import 添加到文件开头<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.jetbrains.kotlin.gradle.tasks.KotlinCompile</span><br></pre></td></tr></tbody></table></figure>
+当然了, 如果IDE响应太慢没有自动import，也可以手动导入</li>
+</ol>
+<h2 id="首次尝试启动"><a href="#首次尝试启动" class="headerlink" title="首次尝试启动"></a>首次尝试启动</h2><p>打开定位为<code>App.kt</code>文件<br>在 <code>main</code> 函数的左侧, 显示行号的附近有一个<code>三角形</code>箭头, 点击, 然后会有弹出来的菜单, 之后的操作, 你懂的…<br><img src="/assets/images/run_main.png" alt="运行"></p>
+<p>此时, 如果一切正常的话, 将会以默认的8080端口号启动一个没有任何路由请求的SpringBoot应用程序, 如果需要修改为自定义的端口号, 需要在<code>$PROJECT/src/main/resources</code>路径下新建一个<code>application.yml</code>(或者<code>application.properties</code>)文件：</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">4000</span></span><br></pre></td></tr></tbody></table></figure>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逗神大人的个人小站">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/01/licecap-not-working/" class="post-title-link" itemprop="url">解决屏幕录制工具LICEcap在macOS 10.15 (Catalina) 无法工作问题记录</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-01 19:11:04" itemprop="dateCreated datePublished" datetime="2019-11-01T19:11:04+08:00">2019-11-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-07 18:44:02" itemprop="dateModified" datetime="2019-11-07T18:44:02+08:00">2019-11-07</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>792</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>从升级macOS升级到10.15(Catalina)以后, 针对屏幕录制增加了权限管理, 所有的会录制屏幕的程序, 在首次开始录制屏幕时， 都会出现请求屏幕录制权限的弹窗</p><p>但是升级LICEcap到1.29以后, 点击 <code>record</code> 输入文件名 <strong>没带.gif后缀, 因为有文件类型 Gif (*.gif)</strong> 然后点 <code>Save</code>， 发现并没有启动屏幕录制， 重试了好几次都无效</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/01/licecap-not-working/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2019/10/30/busuanzi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/images/avatar.jpg">
-      <meta itemprop="name" content="逗神大人">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逗神大人的个人小站">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/30/busuanzi/" class="post-title-link" itemprop="url">解决不蒜子(busuanzi)不显示数字问题记录</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-10-30 07:18:53 / 修改时间：07:46:30" itemprop="dateCreated datePublished" datetime="2019-10-30T07:18:53+08:00">2019-10-30</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在使用hexo开发个人博客时, 开启了不蒜子的统计选项， 但是在部署到Github Pages上或者本地使用serve -s 以及python -m SimpleHTTPServer的时候，经常会出现不显示数字问题<br>由于已经是使用最新的域名来下载的, 应该不存在busuanzi.pure.min.js 的URL不对的情况<br>使用最新的URL可以直接将脚本下载到本地</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/30/busuanzi/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2019/10/29/191029191500/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/images/avatar.jpg">
-      <meta itemprop="name" content="逗神大人">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逗神大人的个人小站">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/29/191029191500/" class="post-title-link" itemprop="url">C++网络库cpp-netlib的简单使用</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-10-29 19:14:48 / 修改时间：19:50:07" itemprop="dateCreated datePublished" datetime="2019-10-29T19:14:48+08:00">2019-10-29</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接:"></a>友情链接:</h1><p><a href="/2019/10/29/191029190000/">C++网络库cpp-netlib的安装</a></p><h1 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h1><p><strong>cpp-netlib</strong>是基于asio库的http网络库, 包含了HTTP/HTTPS客户端、服务端的接口支持</p><h1 id="cpp-netlib安装位置"><a href="#cpp-netlib安装位置" class="headerlink" title="cpp-netlib安装位置"></a>cpp-netlib安装位置</h1><p>头文件一般安装在 </p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;CMAKE_INSTALL_PREFIX&#125;/include/boost/network</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/29/191029191500/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<ul>
+<li>第二次启动应用时 端口号即可改为自定义的端口号</li>
+</ul>
+<h2 id="增加controller"><a href="#增加controller" class="headerlink" title="增加controller"></a>增加controller</h2><ol>
+<li>新建一个 <code>com.oyoung.controller</code>包 (或者使用自己的包前缀)</li>
+<li>新建一个 <code>Controller</code>类, 比如 <code>TestController</code></li>
+<li>在自定义的Controller上面添加注解 <code>@RestController</code>， 一般会自动导入 所需要的包, 没有自动导入的话, 可以按照提示按 <code>Alt + Enter</code>组合按键手动导入</li>
+<li>添加第一个路由，比如 /test, 返回任意一个对象</li>
+<li>重新启动程序</li>
+<li>如果在上面的依赖中没有添加 <figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dependencies {</span><br><span class="line">	<span class="comment">/// ...</span></span><br><span class="line">	implementation(kotlin(<span class="string">"reflect"</span>, <span class="string">"1.3.50"</span>))</span><br><span class="line">	<span class="comment">/// ...</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+的话, 一般会启动失败， 至于使用什么版本, 看具体情况，我自己选择的是当前最新的稳定版<br>至此一个完整的SpringBoot初始项目就创建完成了, </li>
+</ol>
+<h2 id="撒花✿✿ヽ-°▽°-ノ✿"><a href="#撒花✿✿ヽ-°▽°-ノ✿" class="headerlink" title="撒花✿✿ヽ(°▽°)ノ✿"></a>撒花✿✿ヽ(°▽°)ノ✿</h2><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
       
     </div>
 
@@ -662,25 +1283,29 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+        <a href="https://github.com/oyoungs" title="GitHub &rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+        <a href="https://weibo.com/u/3497551915" title="微博 &rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -710,7 +1335,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -759,9 +1384,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
   <script defer src="/lib/three/three.min.js"></script>
     <script defer src="/lib/three/canvas_lines.min.js"></script>

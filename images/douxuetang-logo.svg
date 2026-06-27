@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 400 400"
+   height="400px"
+   width="400px"
+   id="douxuetang-logo">
+
+  <defs>
+    <!-- 渐变定义 -->
+    <linearGradient id="inkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d2d44;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="sealGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#b83b3b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b2626;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#faf8f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0ebe3;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 纸张纹理滤镜 -->
+    <filter id="paperTexture">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise"/>
+      <feDiffuseLighting in="noise" lighting-color="#fff" surfaceScale="2">
+        <feDistantLight azimuth="45" elevation="60"/>
+      </feDiffuseLighting>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="400" height="400" fill="url(#bgGradient)"/>
+  
+  <!-- 装饰：书卷轴 -->
+  <g transform="translate(200, 200)">
+    <!-- 左轴 -->
+    <rect x="-170" y="-140" width="12" height="280" rx="3" fill="#5c4a32" opacity="0.8"/>
+    <circle cx="-164" cy="-120" r="8" fill="#8b7355"/>
+    <circle cx="-164" cy="120" r="8" fill="#8b7355"/>
+    
+    <!-- 右轴 -->
+    <rect x="158" y="-140" width="12" height="280" rx="3" fill="#5c4a32" opacity="0.8"/>
+    <circle cx="164" cy="-120" r="8" fill="#8b7355"/>
+    <circle cx="164" cy="120" r="8" fill="#8b7355"/>
+  </g>
+
+  <!-- 书卷主体 -->
+  <rect x="20" y="60" width="360" height="220" rx="2" fill="#f5f0e6" stroke="#c9b896" stroke-width="1"/>
+  <rect x="30" y="70" width="340" height="200" rx="1" fill="none" stroke="#e8dcc8" stroke-width="0.5"/>
+
+  <!-- 主标题：逗学堂 -->
+  <g transform="translate(200, 175)">
+    <!-- "逗" -->
+    <g transform="translate(-105, 0)">
+      <text x="0" y="0" 
+            font-family="'STKaiti', 'KaiTi', 'SimKai', 'Noto Serif SC', serif" 
+            font-size="68" 
+            font-weight="bold"
+            fill="url(#inkGradient)"
+            text-anchor="middle"
+            style="text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">
+        逗
+      </text>
+    </g>
+    
+    <!-- "学" -->
+    <g transform="translate(0, 0)">
+      <text x="0" y="0" 
+            font-family="'STKaiti', 'KaiTi', 'SimKai', 'Noto Serif SC', serif" 
+            font-size="68" 
+            font-weight="bold"
+            fill="url(#inkGradient)"
+            text-anchor="middle"
+            style="text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">
+        学
+      </text>
+    </g>
+    
+    <!-- "堂" -->
+    <g transform="translate(105, 0)">
+      <text x="0" y="0" 
+            font-family="'STKaiti', 'KaiTi', 'SimKai', 'Noto Serif SC', serif" 
+            font-size="68" 
+            font-weight="bold"
+            fill="url(#inkGradient)"
+            text-anchor="middle"
+            style="text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">
+        堂
+      </text>
+    </g>
+  </g>
+
+  <!-- 篆刻印章 -->
+  <g transform="translate(200, 285)">
+    <rect x="-28" y="-14" width="56" height="28" rx="2" 
+          fill="none" stroke="url(#sealGradient)" stroke-width="2"/>
+    <text x="0" y="8" 
+          font-family="'Noto Serif SC', 'SimSun', serif" 
+          font-size="18" 
+          font-weight="bold"
+          fill="url(#sealGradient)"
+          text-anchor="middle"
+          letter-spacing="4">
+      逗学
+    </text>
+  </g>
+
+  <!-- 装饰线 -->
+  <g stroke="#d4c4a8" stroke-width="0.5" opacity="0.6">
+    <line x1="50" y1="310" x2="350" y2="310"/>
+    <line x1="50" y1="315" x2="350" y2="315"/>
+  </g>
+
+  <!-- 墨点装饰（增添书卷气） -->
+  <circle cx="55" cy="55" r="3" fill="#1a1a2e" opacity="0.15"/>
+  <circle cx="345" cy="345" r="2" fill="#1a1a2e" opacity="0.1"/>
+  <circle cx="360" y="50" r="4" fill="#1a1a2e" opacity="0.08"/>
+
+</svg>

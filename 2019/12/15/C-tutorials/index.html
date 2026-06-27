@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="mask-icon" href="/images/douxuetang-favicon.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -50,15 +50,17 @@
   };
 </script>
 
-  <meta name="description" content="预备篇编程技术预备知识二进制、十进制、十六进制 十进制思想到n进制思想的转化 二进制、十进制、十六进制的书面表示, 比如：15,  二进制: 0b00001111, 十进制: 15, 十六进制: 0x0F 进制之间的转化 流程图 顺序结构  条件分支结构 循环结构 常见术语 编辑器: 用来编写代码的工具，比如vim vscode nodepad nodepad++ sublime text ato">
-<meta name="keywords" content="C++">
+  <meta name="description" content="预备篇编程技术预备知识二进制、十进制、十六进制 十进制思想到n进制思想的转化 二进制、十进制、十六进制的书面表示, 比如：15,  二进制: 0b00001111, 十进制: 15, 十六进制: 0x0F 进制之间的转化  流程图 顺序结构  条件分支结构 循环结构  常见术语 编辑器: 用来编写代码的工具，比如vim vscode nodepad nodepad++ sublime text a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C&#x2F;C++学习历程汇总">
-<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;2019&#x2F;12&#x2F;15&#x2F;C-tutorials&#x2F;index.html">
+<meta property="og:url" content="http://oyoung.cc/blogs/2019/12/15/C-tutorials/index.html">
 <meta property="og:site_name" content="逗神大人的个人小站">
-<meta property="og:description" content="预备篇编程技术预备知识二进制、十进制、十六进制 十进制思想到n进制思想的转化 二进制、十进制、十六进制的书面表示, 比如：15,  二进制: 0b00001111, 十进制: 15, 十六进制: 0x0F 进制之间的转化 流程图 顺序结构  条件分支结构 循环结构 常见术语 编辑器: 用来编写代码的工具，比如vim vscode nodepad nodepad++ sublime text ato">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-20T05:56:33.000Z">
+<meta property="og:description" content="预备篇编程技术预备知识二进制、十进制、十六进制 十进制思想到n进制思想的转化 二进制、十进制、十六进制的书面表示, 比如：15,  二进制: 0b00001111, 十进制: 15, 十六进制: 0x0F 进制之间的转化  流程图 顺序结构  条件分支结构 循环结构  常见术语 编辑器: 用来编写代码的工具，比如vim vscode nodepad nodepad++ sublime text a">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-15T12:00:06.000Z">
+<meta property="article:modified_time" content="2025-06-12T11:35:07.419Z">
+<meta property="article:author" content="逗神大人">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://oyoung.cc/blogs/2019/12/15/C-tutorials/">
@@ -116,7 +118,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -125,6 +127,9 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+      <a>
+        <img class="custom-logo-image" src="/images/douxuetang-logo.svg" alt="逗神大人的个人小站">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -147,12 +152,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">36</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -221,7 +226,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-20 13:56:33" itemprop="dateModified" datetime="2019-12-20T13:56:33+08:00">2019-12-20</time>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
               </span>
 
           
@@ -256,27 +261,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="预备篇"><a href="#预备篇" class="headerlink" title="预备篇"></a>预备篇</h1><h2 id="编程技术预备知识"><a href="#编程技术预备知识" class="headerlink" title="编程技术预备知识"></a>编程技术预备知识</h2><h3 id="二进制、十进制、十六进制"><a href="#二进制、十进制、十六进制" class="headerlink" title="二进制、十进制、十六进制"></a>二进制、十进制、十六进制</h3><ol>
+        <html><head></head><body></body></html><html><head></head><body><h1 id="预备篇"><a href="#预备篇" class="headerlink" title="预备篇"></a>预备篇</h1><h2 id="编程技术预备知识"><a href="#编程技术预备知识" class="headerlink" title="编程技术预备知识"></a>编程技术预备知识</h2><h3 id="二进制、十进制、十六进制"><a href="#二进制、十进制、十六进制" class="headerlink" title="二进制、十进制、十六进制"></a>二进制、十进制、十六进制</h3><ol>
 <li><strong>十进制思想</strong>到<strong>n进制思想</strong>的转化</li>
 <li><strong>二进制</strong>、<strong>十进制</strong>、<strong>十六进制</strong>的书面表示, 比如：15,  二进制: 0b00001111, 十进制: 15, 十六进制: 0x0F</li>
 <li>进制之间的转化</li>
-</ol><h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><ol>
+</ol>
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><ol>
 <li>顺序结构 </li>
 <li>条件分支结构</li>
 <li>循环结构</li>
-</ol><h3 id="常见术语"><a href="#常见术语" class="headerlink" title="常见术语"></a>常见术语</h3><ol>
+</ol>
+<h3 id="常见术语"><a href="#常见术语" class="headerlink" title="常见术语"></a>常见术语</h3><ol>
 <li><strong>编辑器</strong>: 用来编写代码的工具，比如<code>vim</code> <code>vscode</code> <code>nodepad</code> <code>nodepad++</code> <code>sublime text</code> <code>atom</code> 等</li>
 <li><strong>编译器</strong>: 用来将源码装换为库文件和可执行二进制文件的命+令行工具套件, 比如 <code>gcc</code>, <code>g++</code>, <code>cl.exe</code>, <code>clang</code>, <code>clang++</code></li>
 <li>项目构建: 管理项目源码与编译生成脚本的工具软件, 比如 <code>make</code>, <code>cmake, scons</code>, <code>gradle</code>, <code>maven</code></li>
 <li><strong>IDE</strong>: 集成了<code>编辑器</code>、<code>编译器调用自动化</code>和<code>项目构建自动化</code>的一种功能更强大的软件, 比如<code>QtCreator</code>, <code>XCode</code>, <code>Visual Studio</code>, <code>Clion</code>, <code>Code Blocks</code>, <code>Eclipse</code></li>
-</ol><a id="more"></a>
-
-
+</ol>
 <h2 id="C-开发环境安装"><a href="#C-开发环境安装" class="headerlink" title="C++开发环境安装"></a>C++开发环境安装</h2><h3 id="Windows平台环境安装"><a href="#Windows平台环境安装" class="headerlink" title="Windows平台环境安装"></a>Windows平台环境安装</h3><ol>
 <li>winddows系统下环境安装(Visual Studio)</li>
 <li>WSL(Windows Subsystem Linux)下环境安装</li>
 </ol>
-<h3 id="Ubuntu-linux平台-环境安装"><a href="#Ubuntu-linux平台-环境安装" class="headerlink" title="Ubuntu(linux平台)环境安装"></a>Ubuntu(linux平台)环境安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install build-essential git cmake qtcreator</span><br></pre></td></tr></table></figure>
+<h3 id="Ubuntu-linux平台-环境安装"><a href="#Ubuntu-linux平台-环境安装" class="headerlink" title="Ubuntu(linux平台)环境安装"></a>Ubuntu(linux平台)环境安装</h3><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install build-essential git cmake qtcreator</span><br></pre></td></tr></tbody></table></figure>
 
 
 
@@ -305,22 +310,22 @@
 <li><p>示例:</p>
 </li>
 </ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">和 等于 参数<span class="number">1</span> + 参数<span class="number">2</span> +...+ 参数n</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">和 等于 参数<span class="number">1</span> + 参数<span class="number">2</span> +...+ 参数n</span><br></pre></td></tr></tbody></table></figure>
 
 <p>C/C++代码</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="number">2</span> + <span class="number">3</span>;</span><br><span class="line"><span class="number">10</span> * <span class="number">5</span> / <span class="number">2</span> + <span class="number">6</span> / <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="number">2</span> + <span class="number">3</span>;</span><br><span class="line"><span class="number">10</span> * <span class="number">5</span> / <span class="number">2</span> + <span class="number">6</span> / <span class="number">3</span>;</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ol>
 <li>当我们需要临时保存记录下某个语句的结果时， 变量就应运而生了, 比如</li>
 </ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = <span class="number">1</span> + <span class="number">2</span> + <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> result = <span class="number">10</span> * <span class="number">5</span> / <span class="number">2</span> + <span class="number">6</span> / <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = <span class="number">1</span> + <span class="number">2</span> + <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> result = <span class="number">10</span> * <span class="number">5</span> / <span class="number">2</span> + <span class="number">6</span> / <span class="number">3</span>;</span><br></pre></td></tr></tbody></table></figure>
 <ol start="2">
 <li>为什么要用变量呢？比如, 你有<code>100</code>元人民币, 早上买早餐用掉<code>10</code>元，中午买午餐又花掉了<code>20</code>元， 晚上没忍住多吃了点， 花了<code>50</code>， 那么请问，你早上、中午、晚上分别剩下多少钱呢？</li>
 </ol>
 <p>不用变量时:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 一开始100RMB</span></span><br><span class="line"></span><br><span class="line"><span class="number">100</span> - <span class="number">10</span>; <span class="comment">/// 这是早上剩余的</span></span><br><span class="line"></span><br><span class="line"><span class="number">100</span> - <span class="number">10</span> - <span class="number">20</span>; <span class="comment">///这是中午剩余的</span></span><br><span class="line"></span><br><span class="line"><span class="number">100</span> - <span class="number">10</span> - <span class="number">20</span> - <span class="number">50</span>; <span class="comment">///这是晚上剩下的</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 一开始100RMB</span></span><br><span class="line"></span><br><span class="line"><span class="number">100</span> - <span class="number">10</span>; <span class="comment">/// 这是早上剩余的</span></span><br><span class="line"></span><br><span class="line"><span class="number">100</span> - <span class="number">10</span> - <span class="number">20</span>; <span class="comment">///这是中午剩余的</span></span><br><span class="line"></span><br><span class="line"><span class="number">100</span> - <span class="number">10</span> - <span class="number">20</span> - <span class="number">50</span>; <span class="comment">///这是晚上剩下的</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>现在我们使用变量:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> total = <span class="number">100</span>; <span class="comment">/// 一开始的100RMB</span></span><br><span class="line"></span><br><span class="line">total = total - <span class="number">10</span>; <span class="comment">/// 早上用掉10元， 剩下 total - 10 , 然后在吧剩下的值记录到total， 此时的total才是真正意义上的剩下的钱</span></span><br><span class="line"></span><br><span class="line">total = total - <span class="number">20</span>; <span class="comment">/// 在早上剩下的基础上中午再花20元, 剩下的再次记录到total</span></span><br><span class="line"></span><br><span class="line">total = total - <span class="number">50</span>; <span class="comment">/// 中午剩下的钱晚上再划掉 50元</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> total = <span class="number">100</span>; <span class="comment">/// 一开始的100RMB</span></span><br><span class="line"></span><br><span class="line">total = total - <span class="number">10</span>; <span class="comment">/// 早上用掉10元， 剩下 total - 10 , 然后在吧剩下的值记录到total， 此时的total才是真正意义上的剩下的钱</span></span><br><span class="line"></span><br><span class="line">total = total - <span class="number">20</span>; <span class="comment">/// 在早上剩下的基础上中午再花20元, 剩下的再次记录到total</span></span><br><span class="line"></span><br><span class="line">total = total - <span class="number">50</span>; <span class="comment">/// 中午剩下的钱晚上再划掉 50元</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>对比发现:</strong></p>
 <ul>
@@ -354,17 +359,17 @@
 <ul>
 <li><code>整形</code>: </li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> (<span class="number">1</span>字节, <span class="number">-2</span>^<span class="number">7</span>~<span class="number">2</span>^<span class="number">7</span><span class="number">-1</span>), <span class="function"><span class="keyword">unsigned</span> <span class="title">char</span> <span class="params">(<span class="number">1</span>字节, <span class="number">0</span>~<span class="number">2</span>^<span class="number">8</span><span class="number">-1</span>)</span></span></span><br><span class="line">short(2字节，-2^15~2^15-1), unsigned char(2字节, 0~2^16-1)</span><br><span class="line"><span class="keyword">int</span> (<span class="number">4</span>字节, <span class="number">-2</span>^<span class="number">31</span>~ <span class="number">2</span>^<span class="number">31</span><span class="number">-1</span>), <span class="function"><span class="keyword">unsigned</span> <span class="title">int</span><span class="params">(<span class="number">4</span>字节, <span class="number">0</span>~<span class="number">2</span>^<span class="number">32</span><span class="number">-1</span>)</span></span></span><br><span class="line">long/ unsigned long(平台相关，一般不小于4字节，不大于 long long 的字节数)</span><br><span class="line">long long (8字节， -2^63~2^63-1), unsigned long long(8字节, 0~2^64-1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> (<span class="number">1</span>字节, <span class="number">-2</span>^<span class="number">7</span>~<span class="number">2</span>^<span class="number">7</span><span class="number">-1</span>), <span class="function"><span class="keyword">unsigned</span> <span class="title">char</span> <span class="params">(<span class="number">1</span>字节, <span class="number">0</span>~<span class="number">2</span>^<span class="number">8</span><span class="number">-1</span>)</span></span></span><br><span class="line">short(2字节，-2^15~2^15-1), unsigned char(2字节, 0~2^16-1)</span><br><span class="line"><span class="keyword">int</span> (<span class="number">4</span>字节, <span class="number">-2</span>^<span class="number">31</span>~ <span class="number">2</span>^<span class="number">31</span><span class="number">-1</span>), <span class="function"><span class="keyword">unsigned</span> <span class="title">int</span><span class="params">(<span class="number">4</span>字节, <span class="number">0</span>~<span class="number">2</span>^<span class="number">32</span><span class="number">-1</span>)</span></span></span><br><span class="line">long/ unsigned long(平台相关，一般不小于4字节，不大于 long long 的字节数)</span><br><span class="line">long long (8字节， -2^63~2^63-1), unsigned long long(8字节, 0~2^64-1)</span><br></pre></td></tr></tbody></table></figure>
 <ul>
 <li><code>浮点型</code>:</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span>(<span class="number">4</span>字节), <span class="keyword">double</span>(<span class="number">8</span>字节)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span>(<span class="number">4</span>字节), <span class="keyword">double</span>(<span class="number">8</span>字节)</span><br></pre></td></tr></tbody></table></figure>
 <ul>
 <li><code>布尔型</code>:</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span>(<span class="number">1</span>字节), 只有两个值, <span class="literal">true</span>: 真，<span class="literal">false</span>: 假</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span>(<span class="number">1</span>字节), 只有两个值, <span class="literal">true</span>: 真，<span class="literal">false</span>: 假</span><br></pre></td></tr></tbody></table></figure>
 <ul>
-<li><code>字符型</code>(使用单引号引用起来的单个内容):<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>(<span class="number">1</span>字节): <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'0'</span> ...</span><br><span class="line">wchar_t(2字节): L'A', L'B', L'C'...</span><br></pre></td></tr></table></figure>
+<li><code>字符型</code>(使用单引号引用起来的单个内容):<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>(<span class="number">1</span>字节): <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'0'</span> ...</span><br><span class="line"><span class="keyword">wchar_t</span>(<span class="number">2</span>字节): <span class="string">L'A'</span>, <span class="string">L'B'</span>, <span class="string">L'C'</span>...</span><br></pre></td></tr></tbody></table></figure>
 </li>
 </ul>
 <ol start="7">
@@ -373,11 +378,11 @@
 <ul>
 <li><code>整形</code> -&gt; <code>布尔型</code>: </li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>: <span class="literal">false</span></span><br><span class="line">非<span class="number">0</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>: <span class="literal">false</span></span><br><span class="line">非<span class="number">0</span>: <span class="literal">true</span></span><br></pre></td></tr></tbody></table></figure>
 <ul>
 <li><code>整形</code> -&gt; <code>浮点型</code>: </li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> -&gt; <span class="number">0.0f</span>, <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span> -&gt; <span class="number">1.0f</span>, <span class="number">0.0</span></span><br><span class="line">n -&gt; n<span class="number">.0f</span>, n<span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> -&gt; <span class="number">0.0f</span>, <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span> -&gt; <span class="number">1.0f</span>, <span class="number">0.0</span></span><br><span class="line">n -&gt; n<span class="number">.0f</span>, n<span class="number">.0</span></span><br></pre></td></tr></tbody></table></figure>
 
 <ul>
 <li><code>浮点数</code> -&gt; <code>整数</code>, 直接取整数部分, 小数部分会直接丢弃， 因此可能会有精度损失, 比如<code>1.5</code>转化为<code>int</code>以后值为<code>1</code>, 并且不会有像我们数学意义上的四舍五入发生</li>
@@ -392,10 +397,10 @@
 <li>如果从某些已有的值，计算得到某个结果值， 需要执行的语句超过<code>1条</code>时, 我们要怎么做呢？比如计算一个两个实数和的小数部分:</li>
 </ol>
 <p>如果直接把每一组都计算一遍</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> sum = <span class="number">1.5</span> + <span class="number">2.1</span>; <span class="comment">/// 结果为 3.6</span></span><br><span class="line"><span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line"><span class="keyword">double</span> result1 = sum - part; <span class="comment">/// 3.6 - 3 = 0.6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">///...中间还有很多组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> sum = <span class="number">9.5</span> + <span class="number">0.7</span>; <span class="comment">/// 结果为 10.2</span></span><br><span class="line"><span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line"><span class="keyword">double</span> resultn = sum - part; <span class="comment">/// 10.2- 10 = 0.2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> sum = <span class="number">1.5</span> + <span class="number">2.1</span>; <span class="comment">/// 结果为 3.6</span></span><br><span class="line"><span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line"><span class="keyword">double</span> result1 = sum - part; <span class="comment">/// 3.6 - 3 = 0.6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">///...中间还有很多组</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> sum = <span class="number">9.5</span> + <span class="number">0.7</span>; <span class="comment">/// 结果为 10.2</span></span><br><span class="line"><span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line"><span class="keyword">double</span> resultn = sum - part; <span class="comment">/// 10.2- 10 = 0.2</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>改为使用函数</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">double</span> sum = a + b; </span><br><span class="line">  <span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line">  <span class="keyword">return</span> sum - part; <span class="comment">/// </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> result1 = calc(<span class="number">1.5</span>, <span class="number">2.1</span>); <span class="comment">/// 结果0.6</span></span><br><span class="line"><span class="comment">/// ...</span></span><br><span class="line"><span class="keyword">double</span> resultn = calc(<span class="number">9.5</span>, <span class="number">0.2</span>); <span class="comment">/// 结果时0.2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">  <span class="keyword">double</span> sum = a + b; </span><br><span class="line">  <span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line">  <span class="keyword">return</span> sum - part; <span class="comment">/// </span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> result1 = calc(<span class="number">1.5</span>, <span class="number">2.1</span>); <span class="comment">/// 结果0.6</span></span><br><span class="line"><span class="comment">/// ...</span></span><br><span class="line"><span class="keyword">double</span> resultn = calc(<span class="number">9.5</span>, <span class="number">0.2</span>); <span class="comment">/// 结果时0.2</span></span><br></pre></td></tr></tbody></table></figure>
 <p>其中的<code>calc</code>便叫做函数, 所谓函数， 其实就是特定流程的多条语句的包装，使用函数可以避免编写大量重读的代码</p>
 <ol start="2">
 <li>函数的声明与定义</li>
@@ -403,32 +408,32 @@
 <ul>
 <li>函数声明: 告知下文函数的形式, 一般可以编写成</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">返回类型 函数名(参数<span class="number">1</span>类型 参数<span class="number">1</span>名称, ..., 参数n类型 参数名称)；</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">返回类型 函数名(参数<span class="number">1</span>类型 参数<span class="number">1</span>名称, ..., 参数n类型 参数名称)；</span><br></pre></td></tr></tbody></table></figure>
 <p>比如上面的<code>calc</code>函数:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span>;</span><br></pre></td></tr></tbody></table></figure>
 
 <p>返回类型是double, 有2个参数, 第一个参数名叫 a, double 类型, 第二个参数名叫b， 也是double类型</p>
 <ul>
 <li>函数定义: 函数的具体内容, 形式大致为:</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">返回值 函数名(参数<span class="number">1</span>类型 参数<span class="number">1</span>名称, ... , 参数n类型 参数n名称)</span><br><span class="line">&#123;</span><br><span class="line">  具体实现细节，...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">返回值 函数名(参数<span class="number">1</span>类型 参数<span class="number">1</span>名称, ... , 参数n类型 参数n名称)</span><br><span class="line">{</span><br><span class="line">  具体实现细节，...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>比如上面的 <code>calc</code>函数的定义:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">double</span> sum = a + b; </span><br><span class="line">  <span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line">  <span class="keyword">return</span> sum - part; <span class="comment">/// </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">  <span class="keyword">double</span> sum = a + b; </span><br><span class="line">  <span class="keyword">int</span> part = sum; <span class="comment">/// 自动忽略小数部分</span></span><br><span class="line">  <span class="keyword">return</span> sum - part; <span class="comment">/// </span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p><strong>注意: 同一个函数， 只能定义一次， 但是可以在多处声明</strong></p>
 <ol start="3">
 <li>只有 返回值、函数名、参数的类型、个数、位置完全一致的情况下，才能被称为同一个函数</li>
 </ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="comment">// 与</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> c, <span class="keyword">int</span> d)</span></span>;</span><br><span class="line"><span class="comment">// 是同一个函数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="comment">// 与</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">bool</span> b, <span class="keyword">char</span> c)</span></span>;</span><br><span class="line"><span class="comment">// 不是同一个函数</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="comment">// 与</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> c, <span class="keyword">int</span> d)</span></span>;</span><br><span class="line"><span class="comment">// 是同一个函数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="comment">// 与</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">bool</span> b, <span class="keyword">char</span> c)</span></span>;</span><br><span class="line"><span class="comment">// 不是同一个函数</span></span><br></pre></td></tr></tbody></table></figure>
 
 <ol start="4">
 <li>在C中, 同一个函数名只能用在一个函数中，不支持使用同一个函数名字定义多个函数, 但是C++中却可以同一个函数名用于多个函数, 叫做<code>函数重载</code>， 比如:</li>
 </ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a &lt; b ? b: a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a &lt; b ? b : a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//虽然用的函数名都是max</span></span><br><span class="line"><span class="comment">//但是</span></span><br><span class="line">max(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 与</span></span><br><span class="line">max(<span class="number">2.0</span>, <span class="number">3.0</span>);</span><br><span class="line"><span class="comment">// 使用的不是同一个函数</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">  <span class="keyword">return</span> a &lt; b ? b: a;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">  <span class="keyword">return</span> a &lt; b ? b : a;</span><br><span class="line">}</span><br><span class="line"><span class="comment">//虽然用的函数名都是max</span></span><br><span class="line"><span class="comment">//但是</span></span><br><span class="line">max(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 与</span></span><br><span class="line">max(<span class="number">2.0</span>, <span class="number">3.0</span>);</span><br><span class="line"><span class="comment">// 使用的不是同一个函数</span></span><br></pre></td></tr></tbody></table></figure>
 
 
 
-<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><h3 id="原生数组"><a href="#原生数组" class="headerlink" title="原生数组"></a>原生数组</h3><h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><h3 id="枚举、-结构体、联合体"><a href="#枚举、-结构体、联合体" class="headerlink" title="枚举、 结构体、联合体"></a>枚举、 结构体、联合体</h3><h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><h1 id="提高篇"><a href="#提高篇" class="headerlink" title="提高篇"></a>提高篇</h1><h1 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h1><h1 id="高级篇"><a href="#高级篇" class="headerlink" title="高级篇"></a>高级篇</h1>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><h3 id="原生数组"><a href="#原生数组" class="headerlink" title="原生数组"></a>原生数组</h3><h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><h3 id="枚举、-结构体、联合体"><a href="#枚举、-结构体、联合体" class="headerlink" title="枚举、 结构体、联合体"></a>枚举、 结构体、联合体</h3><h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><h1 id="提高篇"><a href="#提高篇" class="headerlink" title="提高篇"></a>提高篇</h1><h1 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h1><h1 id="高级篇"><a href="#高级篇" class="headerlink" title="高级篇"></a>高级篇</h1><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
     </div>
 
     
@@ -548,25 +553,29 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+        <a href="https://github.com/oyoungs" title="GitHub &rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+        <a href="https://weibo.com/u/3497551915" title="微博 &rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -596,7 +605,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -645,9 +654,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
   <script defer src="/lib/three/three.min.js"></script>
     <script defer src="/lib/three/canvas_lines.min.js"></script>

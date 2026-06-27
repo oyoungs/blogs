@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="mask-icon" href="/images/douxuetang-favicon.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -50,15 +50,18 @@
   };
 </script>
 
-  <meta name="description" content="友情链接:C++网络库cpp-netlib的安装简单介绍cpp-netlib是基于asio库的http网络库, 包含了HTTP&#x2F;HTTPS客户端、服务端的接口支持cpp-netlib安装位置头文件一般安装在 1$&amp;#123;CMAKE_INSTALL_PREFIX&amp;#125;&#x2F;include&#x2F;boost&#x2F;network">
-<meta name="keywords" content="C++,cpp-netlib">
+  <meta name="description" content="友情链接:C++网络库cpp-netlib的安装 简单介绍cpp-netlib是基于asio库的http网络库, 包含了HTTP&#x2F;HTTPS客户端、服务端的接口支持 cpp-netlib安装位置头文件一般安装在  1${CMAKE_INSTALL_PREFIX}&#x2F;include&#x2F;boost&#x2F;network 库文件(.a, .so)一般在 1${CMAKE_INSTALL_PREFIX}&#x2F;lib&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++网络库cpp-netlib的简单使用">
-<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;2019&#x2F;10&#x2F;29&#x2F;191029191500&#x2F;index.html">
+<meta property="og:url" content="http://oyoung.cc/blogs/2019/10/29/191029191500/index.html">
 <meta property="og:site_name" content="逗神大人的个人小站">
-<meta property="og:description" content="友情链接:C++网络库cpp-netlib的安装简单介绍cpp-netlib是基于asio库的http网络库, 包含了HTTP&#x2F;HTTPS客户端、服务端的接口支持cpp-netlib安装位置头文件一般安装在 1$&amp;#123;CMAKE_INSTALL_PREFIX&amp;#125;&#x2F;include&#x2F;boost&#x2F;network">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-29T11:50:07.000Z">
+<meta property="og:description" content="友情链接:C++网络库cpp-netlib的安装 简单介绍cpp-netlib是基于asio库的http网络库, 包含了HTTP&#x2F;HTTPS客户端、服务端的接口支持 cpp-netlib安装位置头文件一般安装在  1${CMAKE_INSTALL_PREFIX}&#x2F;include&#x2F;boost&#x2F;network 库文件(.a, .so)一般在 1${CMAKE_INSTALL_PREFIX}&#x2F;lib&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-29T11:14:48.000Z">
+<meta property="article:modified_time" content="2025-06-12T11:35:07.419Z">
+<meta property="article:author" content="逗神大人">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="cpp-netlib">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://oyoung.cc/blogs/2019/10/29/191029191500/">
@@ -116,7 +119,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -125,6 +128,9 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+      <a>
+        <img class="custom-logo-image" src="/images/douxuetang-logo.svg" alt="逗神大人的个人小站">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -147,12 +153,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">36</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -213,10 +219,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-10-29 19:14:48 / 修改时间：19:50:07" itemprop="dateCreated datePublished" datetime="2019-10-29T19:14:48+08:00">2019-10-29</time>
+              <time title="创建时间：2019-10-29 19:14:48" itemprop="dateCreated datePublished" datetime="2019-10-29T19:14:48+08:00">2019-10-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -250,24 +262,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接:"></a>友情链接:</h1><p><a href="/2019/10/29/191029190000/">C++网络库cpp-netlib的安装</a></p><h1 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h1><p><strong>cpp-netlib</strong>是基于asio库的http网络库, 包含了HTTP/HTTPS客户端、服务端的接口支持</p><h1 id="cpp-netlib安装位置"><a href="#cpp-netlib安装位置" class="headerlink" title="cpp-netlib安装位置"></a>cpp-netlib安装位置</h1><p>头文件一般安装在 </p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;CMAKE_INSTALL_PREFIX&#125;/include/boost/network</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
+        <html><head></head><body></body></html><html><head></head><body><h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接:"></a>友情链接:</h1><p><a href="/2019/10/29/191029190000/">C++网络库cpp-netlib的安装</a></p>
+<h1 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h1><p><strong>cpp-netlib</strong>是基于asio库的http网络库, 包含了HTTP/HTTPS客户端、服务端的接口支持</p>
+<h1 id="cpp-netlib安装位置"><a href="#cpp-netlib安装位置" class="headerlink" title="cpp-netlib安装位置"></a>cpp-netlib安装位置</h1><p>头文件一般安装在 </p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">${CMAKE_INSTALL_PREFIX}/include/boost/network</span><br></pre></td></tr></tbody></table></figure>
 <p>库文件(.a, .so)一般在</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;CMAKE_INSTALL_PREFIX&#125;/lib/</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">${CMAKE_INSTALL_PREFIX}/lib/</span><br></pre></td></tr></tbody></table></figure>
 <p>其中<code>CMAKE_INSTALL_PREFIX</code>是执行安装脚本时候设定的路径， 比如 CMAKE_INSTALL_PREFIX=/usr/local时, 以上的目录则变为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/include/boost/network</span><br><span class="line">/usr/<span class="built_in">local</span>/lib</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/include/boost/network</span><br><span class="line">/usr/<span class="built_in">local</span>/lib</span><br></pre></td></tr></tbody></table></figure>
 
-<h1 id="写服务端程序时"><a href="#写服务端程序时" class="headerlink" title="写服务端程序时"></a>写服务端程序时</h1><h2 id="需要包含的头文件"><a href="#需要包含的头文件" class="headerlink" title="需要包含的头文件"></a>需要包含的头文件</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;network/uri.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/network/protocol/http/server.hpp&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="写服务端程序时"><a href="#写服务端程序时" class="headerlink" title="写服务端程序时"></a>写服务端程序时</h1><h2 id="需要包含的头文件"><a href="#需要包含的头文件" class="headerlink" title="需要包含的头文件"></a>需要包含的头文件</h2><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;network/uri.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/network/protocol/http/server.hpp&gt;</span></span></span><br></pre></td></tr></tbody></table></figure>
 
-<h2 id="需要引入的库"><a href="#需要引入的库" class="headerlink" title="需要引入的库"></a>需要引入的库</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">target_link_libraries</span>(app</span><br><span class="line">    boost_system</span><br><span class="line">    network-uri</span><br><span class="line">    cppnetlib-server-parsers</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+<h2 id="需要引入的库"><a href="#需要引入的库" class="headerlink" title="需要引入的库"></a>需要引入的库</h2><figure class="highlight cmake"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">target_link_libraries</span>(app</span><br><span class="line">    boost_system</span><br><span class="line">    network-uri</span><br><span class="line">    cppnetlib-server-parsers</span><br><span class="line">    )</span><br></pre></td></tr></tbody></table></figure>
 
 <p>其中<code>cppnetlib-server-parsers</code>时服务端解析请求时所需要的库<br><code>network-uri</code>是我们自己在解析请求参数的path、query、host、port、protocol等参数需要用到的库<br><code>boost_system</code>是cppnetlib-server-parsers以及我们在使用cpp-netlib是调用的一些借口内部依赖的库</p>
-<h1 id="示例代码-C-11-cpp-netlib-版本-0-12-0"><a href="#示例代码-C-11-cpp-netlib-版本-0-12-0" class="headerlink" title="示例代码(C++11, cpp-netlib 版本: 0.12.0)"></a>示例代码(C++11, cpp-netlib 版本: 0.12.0)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;network/uri.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;nlohmann/json.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sspdlog/sspdlog.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/network/protocol/http/server.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> http = boost::network::http;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> json = nlohmann::json;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Controller</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> SimpleHTTPServer = http::server&lt;Controller&gt;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Controller</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(SimpleHTTPServer::request <span class="keyword">const</span> &amp;request,</span></span></span><br><span class="line"><span class="function"><span class="params">                     SimpleHTTPServer::connection_ptr response)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>( request.method == <span class="string">"GET"</span>) &#123;</span><br><span class="line">            response-&gt;set_status(SimpleHTTPServer::connection::ok);</span><br><span class="line">            response-&gt;set_headers(<span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>, <span class="built_in">std</span>::<span class="built_in">string</span>&gt; &#123;</span><br><span class="line">                                      &#123;<span class="string">"Content-Type"</span>, <span class="string">"application/json;charset=utf-8"</span>&#125;</span><br><span class="line">                                  &#125;);</span><br><span class="line">            response-&gt;write(json&#123;</span><br><span class="line">                                &#123;<span class="string">"say"</span>, <span class="string">"Who are you?"</span>&#125;</span><br><span class="line">                            &#125;.dump(<span class="number">2</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[REQ] Source: "</span> &lt;&lt; request.source; <span class="comment">/// client info: &lt;ip&gt;:&lt;port&gt;</span></span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[REQ] Destination: "</span> &lt;&lt; request.destination; <span class="comment">/// path: /index?name=sb</span></span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[REQ] Body: "</span> &lt;&lt; request.body; <span class="comment">/// Body data: &#123;"data": [0, 0]&#125;</span></span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[REQ] Version: "</span> <span class="comment">/// HTTP version</span></span><br><span class="line">                      &lt;&lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">unsigned</span>&gt;(request.http_version_major)</span><br><span class="line">                      &lt;&lt; <span class="string">'.'</span></span><br><span class="line">                      &lt;&lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">unsigned</span>&gt;(request.http_version_minor);</span><br><span class="line"></span><br><span class="line">        network::<span class="function">uri <span class="title">uri</span><span class="params">(<span class="string">"http://localhost:9090"</span> + request.destination)</span></span>;</span><br><span class="line"></span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[URI] Host: "</span> &lt;&lt; uri.host();</span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[URI] Port: "</span> &lt;&lt; uri.port&lt;<span class="keyword">unsigned</span>&gt;();</span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[URI] Query: "</span> &lt;&lt; uri.query();</span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[URI] Route: "</span> &lt;&lt; uri.path();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">log</span><span class="params">(SimpleHTTPServer::string_type <span class="keyword">const</span> &amp;info)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"ERROR: "</span> &lt;&lt; info &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">char</span>**)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    Controller control&#123;&#125;;</span><br><span class="line">    SimpleHTTPServer::<span class="function">options <span class="title">options</span><span class="params">(control)</span></span>;</span><br><span class="line">    <span class="function">SimpleHTTPServer <span class="title">server</span><span class="params">(options.address(<span class="string">"0.0.0.0"</span>).port(<span class="string">"9090"</span>))</span></span>;</span><br><span class="line">    server.run();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="示例代码-C-11-cpp-netlib-版本-0-12-0"><a href="#示例代码-C-11-cpp-netlib-版本-0-12-0" class="headerlink" title="示例代码(C++11, cpp-netlib 版本: 0.12.0)"></a>示例代码(C++11, cpp-netlib 版本: 0.12.0)</h1><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;network/uri.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;nlohmann/json.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sspdlog/sspdlog.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/network/protocol/http/server.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> http = boost::network::http;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> json = nlohmann::json;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Controller</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> SimpleHTTPServer = http::server&lt;Controller&gt;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Controller</span> {</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(SimpleHTTPServer::request <span class="keyword">const</span> &amp;request,</span></span></span><br><span class="line"><span class="function"><span class="params">                     SimpleHTTPServer::connection_ptr response)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span>( request.method == <span class="string">"GET"</span>) {</span><br><span class="line">            response-&gt;set_status(SimpleHTTPServer::connection::ok);</span><br><span class="line">            response-&gt;set_headers(<span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>, <span class="built_in">std</span>::<span class="built_in">string</span>&gt; {</span><br><span class="line">                                      {<span class="string">"Content-Type"</span>, <span class="string">"application/json;charset=utf-8"</span>}</span><br><span class="line">                                  });</span><br><span class="line">            response-&gt;write(json{</span><br><span class="line">                                {<span class="string">"say"</span>, <span class="string">"Who are you?"</span>}</span><br><span class="line">                            }.dump(<span class="number">2</span>));</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[REQ] Source: "</span> &lt;&lt; request.source; <span class="comment">/// client info: &lt;ip&gt;:&lt;port&gt;</span></span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[REQ] Destination: "</span> &lt;&lt; request.destination; <span class="comment">/// path: /index?name=sb</span></span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[REQ] Body: "</span> &lt;&lt; request.body; <span class="comment">/// Body data: {"data": [0, 0]}</span></span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[REQ] Version: "</span> <span class="comment">/// HTTP version</span></span><br><span class="line">                      &lt;&lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">unsigned</span>&gt;(request.http_version_major)</span><br><span class="line">                      &lt;&lt; <span class="string">'.'</span></span><br><span class="line">                      &lt;&lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">unsigned</span>&gt;(request.http_version_minor);</span><br><span class="line"></span><br><span class="line">        <span class="function">network::uri <span class="title">uri</span><span class="params">(<span class="string">"http://localhost:9090"</span> + request.destination)</span></span>;</span><br><span class="line"></span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[URI] Host: "</span> &lt;&lt; uri.host();</span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[URI] Port: "</span> &lt;&lt; uri.port&lt;<span class="keyword">unsigned</span>&gt;();</span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[URI] Query: "</span> &lt;&lt; uri.query();</span><br><span class="line">        SSPD_LOG_INFO &lt;&lt; <span class="string">"[URI] Route: "</span> &lt;&lt; uri.path();</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">log</span><span class="params">(SimpleHTTPServer::string_type <span class="keyword">const</span> &amp;info)</span> </span>{</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"ERROR: "</span> &lt;&lt; info &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">char</span>**)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line"></span><br><span class="line">    Controller control{};</span><br><span class="line">    <span class="function">SimpleHTTPServer::options <span class="title">options</span><span class="params">(control)</span></span>;</span><br><span class="line">    <span class="function">SimpleHTTPServer <span class="title">server</span><span class="params">(options.address(<span class="string">"0.0.0.0"</span>).port(<span class="string">"9090"</span>))</span></span>;</span><br><span class="line">    server.run();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>所用到的工具库:<br><a href="https://github.com/nlohmann/json.git" target="_blank" rel="noopener">nlohmann/json</a><br><a href="/downloads/sspdlog_0.1.1-1_amd64.deb">sspdlog</a></p>
-
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
     </div>
 
     
@@ -388,25 +400,29 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+        <a href="https://github.com/oyoungs" title="GitHub &rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+        <a href="https://weibo.com/u/3497551915" title="微博 &rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -436,7 +452,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -485,9 +501,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
   <script defer src="/lib/three/three.min.js"></script>
     <script defer src="/lib/three/canvas_lines.min.js"></script>

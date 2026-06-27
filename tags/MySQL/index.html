@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="mask-icon" href="/images/douxuetang-favicon.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -52,9 +52,10 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="逗神大人的个人小站">
-<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;tags&#x2F;MySQL&#x2F;index.html">
+<meta property="og:url" content="http://oyoung.cc/blogs/tags/MySQL/index.html">
 <meta property="og:site_name" content="逗神大人的个人小站">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="逗神大人">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://oyoung.cc/blogs/tags/MySQL/">
@@ -112,7 +113,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -121,6 +122,9 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+      <a>
+        <img class="custom-logo-image" src="/images/douxuetang-logo.svg" alt="逗神大人的个人小站">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -143,12 +147,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">36</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -269,25 +273,29 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+        <a href="https://github.com/oyoungs" title="GitHub &rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+        <a href="https://weibo.com/u/3497551915" title="微博 &rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -317,7 +325,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -366,9 +374,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
   <script defer src="/lib/three/three.min.js"></script>
     <script defer src="/lib/three/canvas_lines.min.js"></script>

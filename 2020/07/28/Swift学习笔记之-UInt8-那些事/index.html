@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="mask-icon" href="/images/douxuetang-favicon.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -50,15 +50,17 @@
   };
 </script>
 
-  <meta name="description" content="简介[UInt8]是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等字符串编解码 [UInt8]（或[Int8]）转 String String有对应的直接从[UInt8]或[Int8]转换成String的构造函数123456&#x2F;&#x2F;&#x2F; &quot;这是一个字符串&quot; 的utf8编码let bytes: [UInt8] = [232">
-<meta name="keywords" content="Swift">
+  <meta name="description" content="简介[UInt8]是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等 字符串编解码 [UInt8]（或[Int8]）转 String  String有对应的直接从[UInt8]或[Int8]转换成String的构造函数 123456&#x2F;&#x2F;&#x2F; &quot;这是一个字符串&quot; 的utf8编码let bytes: [UInt8] &#x3D; [">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift学习笔记之[UInt8]&#x2F;[Int8]那些事">
-<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;2020&#x2F;07&#x2F;28&#x2F;Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B-UInt8-%E9%82%A3%E4%BA%9B%E4%BA%8B&#x2F;index.html">
+<meta property="og:url" content="http://oyoung.cc/blogs/2020/07/28/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B-UInt8-%E9%82%A3%E4%BA%9B%E4%BA%8B/index.html">
 <meta property="og:site_name" content="逗神大人的个人小站">
-<meta property="og:description" content="简介[UInt8]是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等字符串编解码 [UInt8]（或[Int8]）转 String String有对应的直接从[UInt8]或[Int8]转换成String的构造函数123456&#x2F;&#x2F;&#x2F; &quot;这是一个字符串&quot; 的utf8编码let bytes: [UInt8] = [232">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-28T02:43:14.688Z">
+<meta property="og:description" content="简介[UInt8]是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等 字符串编解码 [UInt8]（或[Int8]）转 String  String有对应的直接从[UInt8]或[Int8]转换成String的构造函数 123456&#x2F;&#x2F;&#x2F; &quot;这是一个字符串&quot; 的utf8编码let bytes: [UInt8] &#x3D; [">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-28T00:53:57.000Z">
+<meta property="article:modified_time" content="2025-06-12T11:35:07.419Z">
+<meta property="article:author" content="逗神大人">
+<meta property="article:tag" content="Swift">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://oyoung.cc/blogs/2020/07/28/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B-UInt8-%E9%82%A3%E4%BA%9B%E4%BA%8B/">
@@ -116,7 +118,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -125,6 +127,9 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+      <a>
+        <img class="custom-logo-image" src="/images/douxuetang-logo.svg" alt="逗神大人的个人小站">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -147,12 +152,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">36</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -213,10 +218,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-07-28 08:53:57 / 修改时间：10:43:14" itemprop="dateCreated datePublished" datetime="2020-07-28T08:53:57+08:00">2020-07-28</time>
+              <time title="创建时间：2020-07-28 08:53:57" itemprop="dateCreated datePublished" datetime="2020-07-28T08:53:57+08:00">2020-07-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -250,12 +261,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><code>[UInt8]</code>是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等</p><h1 id="字符串编解码"><a href="#字符串编解码" class="headerlink" title="字符串编解码"></a>字符串编解码</h1><ul>
+        <html><head></head><body></body></html><html><head></head><body><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><code>[UInt8]</code>是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等</p>
+<h1 id="字符串编解码"><a href="#字符串编解码" class="headerlink" title="字符串编解码"></a>字符串编解码</h1><ul>
 <li><code>[UInt8]</code>（或<code>[Int8]</code>）转 <code>String</code></li>
-</ul><p><strong>String有对应的直接从<code>[UInt8]</code>或<code>[Int8]</code>转换成String的构造函数</strong></p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// "这是一个字符串" 的utf8编码</span></span><br><span class="line"><span class="keyword">let</span> bytes: [<span class="type">UInt8</span>] = [<span class="number">232</span>, <span class="number">191</span>, <span class="number">153</span>, <span class="number">230</span>, <span class="number">152</span>, <span class="number">175</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">128</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">170</span>, <span class="number">229</span>, <span class="number">173</span>, <span class="number">151</span>, <span class="number">231</span>, <span class="number">172</span>, <span class="number">166</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">178</span>]</span><br><span class="line"><span class="comment">/// 转换成字符串</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> msg = <span class="type">String</span>(bytes: bytes, encoding: .utf8) &#123;</span><br><span class="line">	<span class="built_in">print</span>(msg)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-
+</ul>
+<p><strong>String有对应的直接从<code>[UInt8]</code>或<code>[Int8]</code>转换成String的构造函数</strong></p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// "这是一个字符串" 的utf8编码</span></span><br><span class="line"><span class="keyword">let</span> bytes: [<span class="type">UInt8</span>] = [<span class="number">232</span>, <span class="number">191</span>, <span class="number">153</span>, <span class="number">230</span>, <span class="number">152</span>, <span class="number">175</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">128</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">170</span>, <span class="number">229</span>, <span class="number">173</span>, <span class="number">151</span>, <span class="number">231</span>, <span class="number">172</span>, <span class="number">166</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">178</span>]</span><br><span class="line"><span class="comment">/// 转换成字符串</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> msg = <span class="type">String</span>(bytes: bytes, encoding: .utf8) {</span><br><span class="line">	<span class="built_in">print</span>(msg)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 
 
@@ -263,7 +274,7 @@
 <li><code>String</code> 转 <code>[UInt8]</code>(或<code>[Int8]</code>）</li>
 </ul>
 <p><strong><code>String</code>转<code>[UInt8]</code>或<code>[Int8]</code>时需要借助中间角色Data</strong></p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> msg = <span class="string">"这是一个字符串"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> data = msg.data(using: .utf8) &#123;</span><br><span class="line">  <span class="keyword">let</span> bytes = [<span class="type">UInt8</span>](data)</span><br><span class="line">  <span class="built_in">print</span>(bytes)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> msg = <span class="string">"这是一个字符串"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> data = msg.data(using: .utf8) {</span><br><span class="line">  <span class="keyword">let</span> bytes = [<span class="type">UInt8</span>](data)</span><br><span class="line">  <span class="built_in">print</span>(bytes)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 
 
@@ -312,39 +323,39 @@
 <p>那UnsafeBufferPointer&lt;Int&gt;对应 const int * 加 size, 表示该地址与内存大小所对应的一块缓冲区</p>
 </blockquote>
 <h3 id="从-UInt8-或-Int8-转换到-const-unsigned-char-或-const-char"><a href="#从-UInt8-或-Int8-转换到-const-unsigned-char-或-const-char" class="headerlink" title="从[UInt8]或[Int8] 转换到 const unsigned char*或 const char *"></a>从<code>[UInt8]</code>或<code>[Int8]</code> 转换到 <code>const unsigned char*</code>或 <code>const char *</code></h3><p><code>[UInt8]</code> -&gt; <code>UnsafeRawBufferPointer</code> -&gt; <code>UnsafeBufferPointer&lt;UInt8&gt;</code> -&gt; <code>UnsafePointer&lt;UInt8&gt;</code> (<strong>Int8同理</strong>)</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">let</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeRawBufferPointer</span></span><br><span class="line"><span class="keyword">let</span> unsafeRawBufferPointer = buffer.withUnsafeBytes &#123; $<span class="number">0</span> &#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2. UnsafeRawBufferPointer -&gt; UnsafeBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = unsafeRawBufferPointer.bindMemory(to: <span class="type">UInt8</span>.<span class="keyword">self</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 3. UnsafeBufferPointer&lt;UInt8&gt; -&gt; UnsafePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafePointer = unsafeBufferPointer.baseAddress</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">let</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeRawBufferPointer</span></span><br><span class="line"><span class="keyword">let</span> unsafeRawBufferPointer = buffer.withUnsafeBytes { $<span class="number">0</span> } </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2. UnsafeRawBufferPointer -&gt; UnsafeBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = unsafeRawBufferPointer.bindMemory(to: <span class="type">UInt8</span>.<span class="keyword">self</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 3. UnsafeBufferPointer&lt;UInt8&gt; -&gt; UnsafePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafePointer = unsafeBufferPointer.baseAddress</span><br></pre></td></tr></tbody></table></figure>
 
 <p>其中 <code>步骤1</code>和<code>步骤2</code>可以合并</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">let</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = buffer.withUnsafeBufferPointer &#123;$<span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2.. UnsafeBufferPointer&lt;UInt8&gt; -&gt; UnsafePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafePointer = unsafeBufferPointer.baseAddress</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">let</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = buffer.withUnsafeBufferPointer {$<span class="number">0</span>}</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2.. UnsafeBufferPointer&lt;UInt8&gt; -&gt; UnsafePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafePointer = unsafeBufferPointer.baseAddress</span><br></pre></td></tr></tbody></table></figure>
 
 
 
 <h3 id="从-UInt8-或-Int8-转换到-unsigned-char-或-char"><a href="#从-UInt8-或-Int8-转换到-unsigned-char-或-char" class="headerlink" title="从[UInt8]或[Int8]转换到 unsigned char *或 char *"></a>从<code>[UInt8]</code>或<code>[Int8]</code>转换到 <code>unsigned char *</code>或 <code>char *</code></h3><p><code>[UInt8]</code> -&gt; <code>UnsafeMutableRawBufferPointer</code> -&gt; <code>UnsafeMutableBufferPointer&lt;UInt8&gt;</code> -&gt; <code>UnsafeMutablePointer&lt;UInt8&gt;</code> (<strong>Int8同理</strong>)</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">var</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeMutableRawBufferPointer</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableRawBufferPointer = buffer.withUnsafeMutableBytes &#123; $<span class="number">0</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2. UnsafeMutableRawBufferPointer -&gt; UnsafeMutableBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableBufferPointer = unsafeMutableRawBufferPointer.bindMemory(to: <span class="type">UInt8</span>.<span class="keyword">self</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 3. UnsafeMutableBufferPointer&lt;UInt8&gt; -&gt; UnsafeMutablePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutablePointer = unsafeMutableBufferPointer.baseAddress</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">var</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeMutableRawBufferPointer</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableRawBufferPointer = buffer.withUnsafeMutableBytes { $<span class="number">0</span> }</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2. UnsafeMutableRawBufferPointer -&gt; UnsafeMutableBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableBufferPointer = unsafeMutableRawBufferPointer.bindMemory(to: <span class="type">UInt8</span>.<span class="keyword">self</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 3. UnsafeMutableBufferPointer&lt;UInt8&gt; -&gt; UnsafeMutablePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutablePointer = unsafeMutableBufferPointer.baseAddress</span><br></pre></td></tr></tbody></table></figure>
 
 <p>其中的步骤1和步骤2也是可以合并的</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// [UInt8] -&gt; UnsafeMutableBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableBufferPointer = buffer.withUnsafeMutableBufferPointer &#123;$<span class="number">0</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// [UInt8] -&gt; UnsafeMutableBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableBufferPointer = buffer.withUnsafeMutableBufferPointer {$<span class="number">0</span> }</span><br></pre></td></tr></tbody></table></figure>
 
 <h3 id="从-UInt8-或-Int8-转换成const-void-或者void"><a href="#从-UInt8-或-Int8-转换成const-void-或者void" class="headerlink" title="从[UInt8]或[Int8]转换成const void *或者void *"></a>从<code>[UInt8]</code>或<code>[Int8]</code>转换成<code>const void *</code>或者<code>void *</code></h3><p>在上述的步骤里, 在<code>步骤1</code>得到的<code>unsafeMutableRawBufferPointer</code>就可以通过该对象的<code>baseAddress</code>字段就能获取到对应的<code>void *</code></p>
 <p>如:</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 获取 const void *</span></span><br><span class="line"><span class="keyword">let</span> unsafeRawPointer = unsafeRawBufferPointer.baseAddress</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 获取void *</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableRawPointer = unsafeMutableRawBufferPointer.baseAddress</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 获取 const void *</span></span><br><span class="line"><span class="keyword">let</span> unsafeRawPointer = unsafeRawBufferPointer.baseAddress</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 获取void *</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableRawPointer = unsafeMutableRawBufferPointer.baseAddress</span><br></pre></td></tr></tbody></table></figure>
 
 
 
-<h2 id="2-从C语言中的const-char-char-const-unsigned-char-unsigned-char-const-void-void-对应缓冲区的数据创建-Data"><a href="#2-从C语言中的const-char-char-const-unsigned-char-unsigned-char-const-void-void-对应缓冲区的数据创建-Data" class="headerlink" title="2. 从C语言中的const char * , char *, const unsigned char *, unsigned char *, const void *, void *对应缓冲区的数据创建 Data"></a>2. 从C语言中的const char * , char *, const unsigned char *, unsigned char *, const void *, void *对应缓冲区的数据创建 Data</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 这里是示例， 类型为 UnsafeMutablePointer&lt;Int8&gt;， 也就是 char *</span></span><br><span class="line"><span class="comment">/// message可能来自任何C语言的接口</span></span><br><span class="line"><span class="keyword">let</span> message = strerror(errno) </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 通过指针和大小来构造 UnsafeBufferPointer&lt;Int8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = <span class="type">UnsafeBufferPointer</span>&lt;<span class="type">Int8</span>&gt;(start: message, <span class="built_in">count</span>: strlen(msg!))</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 构造Data</span></span><br><span class="line"><span class="keyword">let</span> data = <span class="type">Data</span>(buffer: unsafeBufferPointer)</span><br></pre></td></tr></table></figure>
+<h2 id="2-从C语言中的const-char-char-const-unsigned-char-unsigned-char-const-void-void-对应缓冲区的数据创建-Data"><a href="#2-从C语言中的const-char-char-const-unsigned-char-unsigned-char-const-void-void-对应缓冲区的数据创建-Data" class="headerlink" title="2. 从C语言中的const char * , char *, const unsigned char *, unsigned char *, const void *, void *对应缓冲区的数据创建 Data"></a>2. 从C语言中的const char * , char *, const unsigned char *, unsigned char *, const void *, void *对应缓冲区的数据创建 Data</h2><figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 这里是示例， 类型为 UnsafeMutablePointer&lt;Int8&gt;， 也就是 char *</span></span><br><span class="line"><span class="comment">/// message可能来自任何C语言的接口</span></span><br><span class="line"><span class="keyword">let</span> message = strerror(errno) </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 通过指针和大小来构造 UnsafeBufferPointer&lt;Int8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = <span class="type">UnsafeBufferPointer</span>&lt;<span class="type">Int8</span>&gt;(start: message, <span class="built_in">count</span>: strlen(msg!))</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 构造Data</span></span><br><span class="line"><span class="keyword">let</span> data = <span class="type">Data</span>(buffer: unsafeBufferPointer)</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="3-从Data得到-UInt8-或者-Int8-以及String"><a href="#3-从Data得到-UInt8-或者-Int8-以及String" class="headerlink" title="3. 从Data得到 [UInt8] 或者 [Int8]以及String"></a>3. 从<code>Data</code>得到 <code>[UInt8]</code> 或者 <code>[Int8]</code>以及String</h2><ul>
 <li>Data其实内部就是[UInt8]，在大部分情况下都可以直接当成[UInt8]来使用, 字节的append，remove, insert, find等等都有相同的操作</li>
 <li>但是如果需要拷贝出来一份 [UInt8]或者[Int8]，可以使用map函数</li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 缓冲区里的数据    </span></span><br><span class="line"><span class="keyword">let</span> data = <span class="type">Data</span>(buffer: unsafeBufferPointer)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// [UInt8]</span></span><br><span class="line"><span class="keyword">let</span> u8a = data.<span class="built_in">map</span> &#123;$<span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// [Int8]</span></span><br><span class="line"><span class="keyword">let</span> s8a = data.<span class="built_in">map</span> &#123;<span class="type">Int8</span>($<span class="number">0</span>)&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 缓冲区里的数据    </span></span><br><span class="line"><span class="keyword">let</span> data = <span class="type">Data</span>(buffer: unsafeBufferPointer)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// [UInt8]</span></span><br><span class="line"><span class="keyword">let</span> u8a = data.<span class="built_in">map</span> {$<span class="number">0</span>}</span><br><span class="line"></span><br><span class="line"><span class="comment">/// [Int8]</span></span><br><span class="line"><span class="keyword">let</span> s8a = data.<span class="built_in">map</span> {<span class="type">Int8</span>($<span class="number">0</span>)}</span><br></pre></td></tr></tbody></table></figure>
 
 <ul>
 <li>String也自带从data数据的构造函数</li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> text = <span class="type">String</span>(data: data, encoding: .utf8)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> text = <span class="type">String</span>(data: data, encoding: .utf8)</span><br></pre></td></tr></tbody></table></figure>
 
-
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
     </div>
 
     
@@ -464,25 +475,29 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+        <a href="https://github.com/oyoungs" title="GitHub &rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+        <a href="https://weibo.com/u/3497551915" title="微博 &rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -512,7 +527,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -561,9 +576,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
   <script defer src="/lib/three/three.min.js"></script>
     <script defer src="/lib/three/canvas_lines.min.js"></script>

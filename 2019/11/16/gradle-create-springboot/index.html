@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="mask-icon" href="/images/douxuetang-favicon.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -50,20 +50,24 @@
   };
 </script>
 
-  <meta name="description" content="环境搭建安装gradle 下载Gradle的安装包(可选择二进制包或者完整包 解压压缩包到安装路径, 如:123~$ mkdir -p &#x2F;usr&#x2F;local&#x2F;gradle~$ cd &#x2F;usr&#x2F;local&#x2F;gradle~$ unzip ~&#x2F;Downloads&#x2F;gradle-6.0-bin.zip 导入环境">
-<meta name="keywords" content="Gradle,Kotlin,SpringBoot">
+  <meta name="description" content="环境搭建安装gradle 下载Gradle的安装包(可选择二进制包或者完整包 解压压缩包到安装路径, 如:123~$ mkdir -p &#x2F;usr&#x2F;local&#x2F;gradle~$ cd &#x2F;usr&#x2F;local&#x2F;gradle~$ unzip ~&#x2F;Downloads&#x2F;gradle-6.0-bin.zip 导入环境    将Gradle的 bin目录添加到PATH环境变量12~$ echo &quot;export P">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Gradle从零开始创建SpringBoot项目">
-<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;2019&#x2F;11&#x2F;16&#x2F;gradle-create-springboot&#x2F;index.html">
+<meta property="og:url" content="http://oyoung.cc/blogs/2019/11/16/gradle-create-springboot/index.html">
 <meta property="og:site_name" content="逗神大人的个人小站">
-<meta property="og:description" content="环境搭建安装gradle 下载Gradle的安装包(可选择二进制包或者完整包 解压压缩包到安装路径, 如:123~$ mkdir -p &#x2F;usr&#x2F;local&#x2F;gradle~$ cd &#x2F;usr&#x2F;local&#x2F;gradle~$ unzip ~&#x2F;Downloads&#x2F;gradle-6.0-bin.zip 导入环境">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;assets&#x2F;images&#x2F;open_gradle_proj.gif">
-<meta property="og:image" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;assets&#x2F;images&#x2F;run_app_error.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;assets&#x2F;images&#x2F;run_main.png">
-<meta property="og:updated_time" content="2019-11-16T13:52:59.000Z">
+<meta property="og:description" content="环境搭建安装gradle 下载Gradle的安装包(可选择二进制包或者完整包 解压压缩包到安装路径, 如:123~$ mkdir -p &#x2F;usr&#x2F;local&#x2F;gradle~$ cd &#x2F;usr&#x2F;local&#x2F;gradle~$ unzip ~&#x2F;Downloads&#x2F;gradle-6.0-bin.zip 导入环境    将Gradle的 bin目录添加到PATH环境变量12~$ echo &quot;export P">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://oyoung.cc/assets/images/open_gradle_proj.gif">
+<meta property="og:image" content="http://oyoung.cc/assets/images/run_app_error.png">
+<meta property="og:image" content="http://oyoung.cc/assets/images/run_main.png">
+<meta property="article:published_time" content="2019-11-16T13:18:46.000Z">
+<meta property="article:modified_time" content="2025-06-12T11:35:07.419Z">
+<meta property="article:author" content="逗神大人">
+<meta property="article:tag" content="Gradle">
+<meta property="article:tag" content="Kotlin">
+<meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;assets&#x2F;images&#x2F;open_gradle_proj.gif">
+<meta name="twitter:image" content="http://oyoung.cc/assets/images/open_gradle_proj.gif">
 
 <link rel="canonical" href="http://oyoung.cc/blogs/2019/11/16/gradle-create-springboot/">
 
@@ -120,7 +124,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -129,6 +133,9 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+      <a>
+        <img class="custom-logo-image" src="/images/douxuetang-logo.svg" alt="逗神大人的个人小站">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -151,12 +158,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">36</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -217,10 +224,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-11-16 21:18:46 / 修改时间：21:52:59" itemprop="dateCreated datePublished" datetime="2019-11-16T21:18:46+08:00">2019-11-16</time>
+              <time title="创建时间：2019-11-16 21:18:46" itemprop="dateCreated datePublished" datetime="2019-11-16T21:18:46+08:00">2019-11-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -254,44 +267,44 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><h2 id="安装gradle"><a href="#安装gradle" class="headerlink" title="安装gradle"></a>安装<code>gradle</code></h2><ol>
-<li><a href="https://gradle.org/releases" target="_blank" rel="noopener">下载</a><code>Gradle</code>的安装包(可选择<a href="https://gradle.org/next-steps/?version=6.0&format=bin" target="_blank" rel="noopener">二进制包</a>或者<a href="https://gradle.org/next-steps/?version=6.0&format=all" target="_blank" rel="noopener">完整包</a></li>
-<li>解压压缩包到安装路径, 如:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~$ mkdir -p /usr/local/gradle</span><br><span class="line">~$ cd /usr/local/gradle</span><br><span class="line">~$ unzip ~/Downloads/gradle-6.0-bin.zip</span><br></pre></td></tr></table></figure></li>
+        <html><head></head><body></body></html><html><head></head><body><h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><h2 id="安装gradle"><a href="#安装gradle" class="headerlink" title="安装gradle"></a>安装<code>gradle</code></h2><ol>
+<li><a href="https://gradle.org/releases" target="_blank" rel="noopener">下载</a><code>Gradle</code>的安装包(可选择<a href="https://gradle.org/next-steps/?version=6.0&amp;format=bin" target="_blank" rel="noopener">二进制包</a>或者<a href="https://gradle.org/next-steps/?version=6.0&amp;format=all" target="_blank" rel="noopener">完整包</a></li>
+<li>解压压缩包到安装路径, 如:<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~$ mkdir -p /usr/local/gradle</span><br><span class="line">~$ cd /usr/local/gradle</span><br><span class="line">~$ unzip ~/Downloads/gradle-6.0-bin.zip</span><br></pre></td></tr></tbody></table></figure></li>
 <li>导入环境 </li>
-</ol><a id="more"></a>
+</ol>
 <ul>
-<li>将<code>Gradle</code>的 <code>bin</code>目录添加到<code>PATH</code>环境变量<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~$ echo "export PATH=$GRADLE_HOME/bin:$PATH" &gt;&gt; ~/.bashrc # ~/.bash_profile ~/.zshrc</span><br><span class="line">~$ source ~/.bashrc</span><br></pre></td></tr></table></figure></li>
-<li>或者将 <code>Gradle</code>的可执行文件软连接到 <code>/usr/local/bin</code><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ ln -s $GRADLE_HOME/bin/gradle /usr/local/bin/gradle</span><br></pre></td></tr></table></figure></li>
+<li>将<code>Gradle</code>的 <code>bin</code>目录添加到<code>PATH</code>环境变量<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~$ echo "export PATH=$GRADLE_HOME/bin:$PATH" &gt;&gt; ~/.bashrc # ~/.bash_profile ~/.zshrc</span><br><span class="line">~$ source ~/.bashrc</span><br></pre></td></tr></tbody></table></figure></li>
+<li>或者将 <code>Gradle</code>的可执行文件软连接到 <code>/usr/local/bin</code><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ ln -s $GRADLE_HOME/bin/gradle /usr/local/bin/gradle</span><br></pre></td></tr></tbody></table></figure></li>
 </ul>
 <p><strong>提示: <code>$GRADLE_HOME</code>指的是<code>gradle</code>解压后的目录, 比如 <code>/usr/local/gradle/6.0</code></strong></p>
-<h1 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h1><h2 id="使用gradle-创建初始工程"><a href="#使用gradle-创建初始工程" class="headerlink" title="使用gradle 创建初始工程"></a>使用<code>gradle</code> 创建初始工程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">➜  Kotlin mkdir project</span><br><span class="line">➜  Kotlin cd project</span><br><span class="line">➜  project gradle init</span><br><span class="line">Configuration on demand is an incubating feature.</span><br><span class="line"></span><br><span class="line">Select type of project to generate:</span><br><span class="line">  1: basic</span><br><span class="line">  2: application</span><br><span class="line">  3: library</span><br><span class="line">  4: Gradle plugin</span><br><span class="line">Enter selection (default: basic) [1..4] 2</span><br><span class="line"></span><br><span class="line">Select implementation language:</span><br><span class="line">  1: C++</span><br><span class="line">  2: Groovy</span><br><span class="line">  3: Java</span><br><span class="line">  4: Kotlin</span><br><span class="line">  5: Swift</span><br><span class="line">Enter selection (default: Java) [1..5] 4</span><br><span class="line"></span><br><span class="line">Select build script DSL:</span><br><span class="line">  1: Groovy</span><br><span class="line">  2: Kotlin</span><br><span class="line">Enter selection (default: Kotlin) [1..2] 2</span><br><span class="line"></span><br><span class="line">Project name (default: project): app</span><br><span class="line"></span><br><span class="line">Source package (default: app): com.oyoung</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BUILD SUCCESSFUL in 24s</span><br><span class="line">2 actionable tasks: 2 executed</span><br><span class="line">➜  project</span><br></pre></td></tr></table></figure>
+<h1 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h1><h2 id="使用gradle-创建初始工程"><a href="#使用gradle-创建初始工程" class="headerlink" title="使用gradle 创建初始工程"></a>使用<code>gradle</code> 创建初始工程</h2><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">➜  Kotlin mkdir project</span><br><span class="line">➜  Kotlin cd project</span><br><span class="line">➜  project gradle init</span><br><span class="line">Configuration on demand is an incubating feature.</span><br><span class="line"></span><br><span class="line">Select type of project to generate:</span><br><span class="line">  1: basic</span><br><span class="line">  2: application</span><br><span class="line">  3: library</span><br><span class="line">  4: Gradle plugin</span><br><span class="line">Enter selection (default: basic) [1..4] 2</span><br><span class="line"></span><br><span class="line">Select implementation language:</span><br><span class="line">  1: C++</span><br><span class="line">  2: Groovy</span><br><span class="line">  3: Java</span><br><span class="line">  4: Kotlin</span><br><span class="line">  5: Swift</span><br><span class="line">Enter selection (default: Java) [1..5] 4</span><br><span class="line"></span><br><span class="line">Select build script DSL:</span><br><span class="line">  1: Groovy</span><br><span class="line">  2: Kotlin</span><br><span class="line">Enter selection (default: Kotlin) [1..2] 2</span><br><span class="line"></span><br><span class="line">Project name (default: project): app</span><br><span class="line"></span><br><span class="line">Source package (default: app): com.oyoung</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BUILD SUCCESSFUL in 24s</span><br><span class="line">2 actionable tasks: 2 executed</span><br><span class="line">➜  project</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="使用IntelliJ-Idea打开刚刚创建的项目"><a href="#使用IntelliJ-Idea打开刚刚创建的项目" class="headerlink" title="使用IntelliJ Idea打开刚刚创建的项目"></a>使用<code>IntelliJ Idea</code>打开刚刚创建的项目</h2><p><img src="/assets/images/open_gradle_proj.gif" alt="在这里插入图片描述"></p>
 <h1 id="配置工程"><a href="#配置工程" class="headerlink" title="配置工程"></a>配置工程</h1><h2 id="修改build-gradle-kts文件"><a href="#修改build-gradle-kts文件" class="headerlink" title="修改build.gradle.kts文件"></a>修改<code>build.gradle.kts</code>文件</h2><ol>
-<li>简化<code>kotlin</code>相关的依赖导入<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">  <span class="comment">// Align versions of all Kotlin components</span></span><br><span class="line">  implementation(platform(<span class="string">"org.jetbrains.kotlin:kotlin-bom"</span>))</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Use the Kotlin JDK 8 standard library.</span></span><br><span class="line">  implementation(<span class="string">"org.jetbrains.kotlin:kotlin-stdlib-jdk8"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Use the Kotlin test library.</span></span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Use the Kotlin JUnit integration.</span></span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test-junit"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-改为<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">  implementation(kotlin(<span class="string">"stdlib"</span>, <span class="string">"1.3.50"</span>))</span><br><span class="line">  implementation(kotlin(<span class="string">"reflect"</span>, <span class="string">"1.3.50"</span>)) <span class="comment">/// kotlin 反射机制需要的库</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/// 暂时不需要改动</span></span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test"</span>)</span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test-junit"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>导入<code>springboot</code> 相关插件<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">  kotlin(<span class="string">"jvm"</span>) version <span class="string">"1.3.50"</span></span><br><span class="line">  kotlin(<span class="string">"plugin.spring"</span>) version <span class="string">"1.3.50"</span>  </span><br><span class="line">  id(<span class="string">"org.springframework.boot"</span>) version <span class="string">"2.2.1.RELEASE"</span></span><br><span class="line">  id(<span class="string">"io.spring.dependency-management"</span>) version <span class="string">"1.0.8.RELEASE"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>简化<code>kotlin</code>相关的依赖导入<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dependencies {</span><br><span class="line">  <span class="comment">// Align versions of all Kotlin components</span></span><br><span class="line">  implementation(platform(<span class="string">"org.jetbrains.kotlin:kotlin-bom"</span>))</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Use the Kotlin JDK 8 standard library.</span></span><br><span class="line">  implementation(<span class="string">"org.jetbrains.kotlin:kotlin-stdlib-jdk8"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Use the Kotlin test library.</span></span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Use the Kotlin JUnit integration.</span></span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test-junit"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+改为<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dependencies {</span><br><span class="line">  implementation(kotlin(<span class="string">"stdlib"</span>, <span class="string">"1.3.50"</span>))</span><br><span class="line">  implementation(kotlin(<span class="string">"reflect"</span>, <span class="string">"1.3.50"</span>)) <span class="comment">/// kotlin 反射机制需要的库</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/// 暂时不需要改动</span></span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test"</span>)</span><br><span class="line">  testImplementation(<span class="string">"org.jetbrains.kotlin:kotlin-test-junit"</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+<li>导入<code>springboot</code> 相关插件<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plugins {</span><br><span class="line">  kotlin(<span class="string">"jvm"</span>) version <span class="string">"1.3.50"</span></span><br><span class="line">  kotlin(<span class="string">"plugin.spring"</span>) version <span class="string">"1.3.50"</span>  </span><br><span class="line">  id(<span class="string">"org.springframework.boot"</span>) version <span class="string">"2.2.1.RELEASE"</span></span><br><span class="line">  id(<span class="string">"io.spring.dependency-management"</span>) version <span class="string">"1.0.8.RELEASE"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 其中 使用 <code>kotlin()</code>方法包裹的, 属于<code>kotlin</code>模块，使用 <code>id()</code>方法的是第三方模块</li>
-<li>增加 <code>mavenCentral()</code>仓库<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">  mavenCentral()</span><br><span class="line">  jcenter()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>导入 <code>&quot;org.springframework.boot:spring-boot-starter-web&quot;</code><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">  <span class="comment">/// ...</span></span><br><span class="line">  implementation(<span class="string">"org.springframework.boot"</span>, <span class="string">"spring-boot-starter-web"</span>)</span><br><span class="line">  <span class="comment">/// implementation("org.springframework.boot:spring-boot-starter-web")</span></span><br><span class="line">  <span class="comment">/// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>增加 <code>mavenCentral()</code>仓库<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">repositories {</span><br><span class="line">  mavenCentral()</span><br><span class="line">  jcenter()</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+<li>导入 <code>"org.springframework.boot:spring-boot-starter-web"</code><figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dependencies {</span><br><span class="line">  <span class="comment">/// ...</span></span><br><span class="line">  implementation(<span class="string">"org.springframework.boot"</span>, <span class="string">"spring-boot-starter-web"</span>)</span><br><span class="line">  <span class="comment">/// implementation("org.springframework.boot:spring-boot-starter-web")</span></span><br><span class="line">  <span class="comment">/// ...</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 </li>
 </ol>
-<h2 id="打开我们的程序入口App-kt"><a href="#打开我们的程序入口App-kt" class="headerlink" title="打开我们的程序入口App.kt"></a>打开我们的程序入口<code>App.kt</code></h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oyoung</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line">    <span class="keyword">val</span> greeting: String</span><br><span class="line">        <span class="keyword">get</span>() &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Hello world."</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(App().greeting)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="打开我们的程序入口App-kt"><a href="#打开我们的程序入口App-kt" class="headerlink" title="打开我们的程序入口App.kt"></a>打开我们的程序入口<code>App.kt</code></h2><figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oyoung</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>{</span><br><span class="line">    <span class="keyword">val</span> greeting: String</span><br><span class="line">        <span class="keyword">get</span>() {</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Hello world."</span></span><br><span class="line">        }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> {</span><br><span class="line">    println(App().greeting)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>改成如下:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oyoung <span class="comment">/// 这里改成自己明明的包</span></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.runApplication</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">  runApplication&lt;App&gt;(*args)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.oyoung <span class="comment">/// 这里改成自己明明的包</span></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.runApplication</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> {</span><br><span class="line">  runApplication&lt;App&gt;(*args)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>此刻我们看到<code>runApplication</code>这一行有红色波浪线，鼠标移到上面提示:<br><img src="/assets/images/run_app_error.png" alt="错误提示"><br>这表示我们的kotlin build的字节码的jvm版本与我们实际设定的不一致</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">group = <span class="string">"com.oyoung"</span></span><br><span class="line">version = <span class="string">"0.0.1-SNAPSHOT"</span></span><br><span class="line">java.sourceCompatibility = JavaVersion.VERSION_1_8</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">group = <span class="string">"com.oyoung"</span></span><br><span class="line">version = <span class="string">"0.0.1-SNAPSHOT"</span></span><br><span class="line">java.sourceCompatibility = JavaVersion.VERSION_1_8</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="按提示增加-jvm-target-参数"><a href="#按提示增加-jvm-target-参数" class="headerlink" title="按提示增加 -jvm-target 参数"></a>按提示增加 <code>-jvm-target</code> 参数</h2><ol>
 <li>删除最下面自动生成的     <code>application</code> 任务</li>
-<li>增加一个<code>KotlinCompile</code>任务<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tasks.withType&lt;KotlinCompile&gt;() &#123;</span><br><span class="line">    kotlinOptions &#123;</span><br><span class="line">        jvmTarget = <span class="string">"1.8"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-建议自己敲上面的代码, 在敲代码的过程中会有一个自动导入的import 添加到文件开头<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.jetbrains.kotlin.gradle.tasks.KotlinCompile</span><br></pre></td></tr></table></figure>
+<li>增加一个<code>KotlinCompile</code>任务<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tasks.withType&lt;KotlinCompile&gt;() {</span><br><span class="line">    kotlinOptions {</span><br><span class="line">        jvmTarget = <span class="string">"1.8"</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+建议自己敲上面的代码, 在敲代码的过程中会有一个自动导入的import 添加到文件开头<figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.jetbrains.kotlin.gradle.tasks.KotlinCompile</span><br></pre></td></tr></tbody></table></figure>
 当然了, 如果IDE响应太慢没有自动import，也可以手动导入</li>
 </ol>
 <h2 id="首次尝试启动"><a href="#首次尝试启动" class="headerlink" title="首次尝试启动"></a>首次尝试启动</h2><p>打开定位为<code>App.kt</code>文件<br>在 <code>main</code> 函数的左侧, 显示行号的附近有一个<code>三角形</code>箭头, 点击, 然后会有弹出来的菜单, 之后的操作, 你懂的…<br><img src="/assets/images/run_main.png" alt="运行"></p>
 <p>此时, 如果一切正常的话, 将会以默认的8080端口号启动一个没有任何路由请求的SpringBoot应用程序, 如果需要修改为自定义的端口号, 需要在<code>$PROJECT/src/main/resources</code>路径下新建一个<code>application.yml</code>(或者<code>application.properties</code>)文件：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">4000</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">4000</span></span><br></pre></td></tr></tbody></table></figure>
 
 <ul>
 <li>第二次启动应用时 端口号即可改为自定义的端口号</li>
@@ -302,10 +315,10 @@
 <li>在自定义的Controller上面添加注解 <code>@RestController</code>， 一般会自动导入 所需要的包, 没有自动导入的话, 可以按照提示按 <code>Alt + Enter</code>组合按键手动导入</li>
 <li>添加第一个路由，比如 /test, 返回任意一个对象</li>
 <li>重新启动程序</li>
-<li>如果在上面的依赖中没有添加 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">	<span class="comment">/// ...</span></span><br><span class="line">	implementation(kotlin(<span class="string">"reflect"</span>, <span class="string">"1.3.50"</span>))</span><br><span class="line">	<span class="comment">/// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>如果在上面的依赖中没有添加 <figure class="highlight kotlin"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dependencies {</span><br><span class="line">	<span class="comment">/// ...</span></span><br><span class="line">	implementation(kotlin(<span class="string">"reflect"</span>, <span class="string">"1.3.50"</span>))</span><br><span class="line">	<span class="comment">/// ...</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 的话, 一般会启动失败， 至于使用什么版本, 看具体情况，我自己选择的是当前最新的稳定版<br>至此一个完整的SpringBoot初始项目就创建完成了, </li>
 </ol>
-<h2 id="撒花✿✿ヽ-°▽°-ノ✿"><a href="#撒花✿✿ヽ-°▽°-ノ✿" class="headerlink" title="撒花✿✿ヽ(°▽°)ノ✿"></a>撒花✿✿ヽ(°▽°)ノ✿</h2>
+<h2 id="撒花✿✿ヽ-°▽°-ノ✿"><a href="#撒花✿✿ヽ-°▽°-ノ✿" class="headerlink" title="撒花✿✿ヽ(°▽°)ノ✿"></a>撒花✿✿ヽ(°▽°)ノ✿</h2><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
     </div>
 
     
@@ -427,25 +440,29 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+        <a href="https://github.com/oyoungs" title="GitHub &rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+        <a href="https://weibo.com/u/3497551915" title="微博 &rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -475,7 +492,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -524,9 +541,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
   <script defer src="/lib/three/three.min.js"></script>
     <script defer src="/lib/three/canvas_lines.min.js"></script>

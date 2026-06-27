@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="mask-icon" href="/images/douxuetang-favicon.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -50,15 +50,19 @@
   };
 </script>
 
-  <meta name="description" content="开发环境: Ubuntu 16.04 安装boost 1~$ sudo aptitude install libboost-all-dev 安装openssl 1~$ sudo aptitude install openssl libssl-dev下载cpp-netlib123~$ mkdir -p workspace~$ cd workspace~$ git clone https:&#x2F;&#x2F;gith">
-<meta name="keywords" content="cpp-netlib,asio,C++ Network">
+  <meta name="description" content="开发环境: Ubuntu 16.04 安装boost  1~$ sudo aptitude install libboost-all-dev   安装openssl  1~$ sudo aptitude install openssl libssl-dev  下载cpp-netlib123~$ mkdir -p workspace~$ cd workspace~$ git clone https:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++网络库cpp-netlib的安装">
-<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;2019&#x2F;10&#x2F;29&#x2F;191029190000&#x2F;index.html">
+<meta property="og:url" content="http://oyoung.cc/blogs/2019/10/29/191029190000/index.html">
 <meta property="og:site_name" content="逗神大人的个人小站">
-<meta property="og:description" content="开发环境: Ubuntu 16.04 安装boost 1~$ sudo aptitude install libboost-all-dev 安装openssl 1~$ sudo aptitude install openssl libssl-dev下载cpp-netlib123~$ mkdir -p workspace~$ cd workspace~$ git clone https:&#x2F;&#x2F;gith">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-29T11:58:57.000Z">
+<meta property="og:description" content="开发环境: Ubuntu 16.04 安装boost  1~$ sudo aptitude install libboost-all-dev   安装openssl  1~$ sudo aptitude install openssl libssl-dev  下载cpp-netlib123~$ mkdir -p workspace~$ cd workspace~$ git clone https:">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-29T11:02:19.000Z">
+<meta property="article:modified_time" content="2025-06-12T11:35:07.419Z">
+<meta property="article:author" content="逗神大人">
+<meta property="article:tag" content="cpp-netlib">
+<meta property="article:tag" content="asio">
+<meta property="article:tag" content="C++ Network">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://oyoung.cc/blogs/2019/10/29/191029190000/">
@@ -116,7 +120,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -125,6 +129,9 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+      <a>
+        <img class="custom-logo-image" src="/images/douxuetang-logo.svg" alt="逗神大人的个人小站">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -147,12 +154,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">36</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -213,10 +220,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-10-29 19:02:19 / 修改时间：19:58:57" itemprop="dateCreated datePublished" datetime="2019-10-29T19:02:19+08:00">2019-10-29</time>
+              <time title="创建时间：2019-10-29 19:02:19" itemprop="dateCreated datePublished" datetime="2019-10-29T19:02:19+08:00">2019-10-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -250,27 +263,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="开发环境-Ubuntu-16-04"><a href="#开发环境-Ubuntu-16-04" class="headerlink" title="开发环境: Ubuntu 16.04"></a>开发环境: Ubuntu 16.04</h1><ol>
+        <html><head></head><body></body></html><html><head></head><body><h1 id="开发环境-Ubuntu-16-04"><a href="#开发环境-Ubuntu-16-04" class="headerlink" title="开发环境: Ubuntu 16.04"></a>开发环境: Ubuntu 16.04</h1><ol>
 <li>安装boost</li>
-</ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ sudo aptitude install libboost-all-dev</span><br></pre></td></tr></table></figure><ol start="2">
+</ol>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ sudo aptitude install libboost-all-dev</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
 <li>安装openssl</li>
-</ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ sudo aptitude install openssl libssl-dev</span><br></pre></td></tr></table></figure><h1 id="下载cpp-netlib"><a href="#下载cpp-netlib" class="headerlink" title="下载cpp-netlib"></a>下载cpp-netlib</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~$ mkdir -p workspace</span><br><span class="line">~$ <span class="built_in">cd</span> workspace</span><br><span class="line">~$ git <span class="built_in">clone</span> https://github.com/cpp-netlib/cpp-netlib</span><br></pre></td></tr></table></figure><a id="more"></a>
+</ol>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ sudo aptitude install openssl libssl-dev</span><br></pre></td></tr></tbody></table></figure>
 
+<h1 id="下载cpp-netlib"><a href="#下载cpp-netlib" class="headerlink" title="下载cpp-netlib"></a>下载cpp-netlib</h1><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~$ mkdir -p workspace</span><br><span class="line">~$ <span class="built_in">cd</span> workspace</span><br><span class="line">~$ git <span class="built_in">clone</span> https://github.com/cpp-netlib/cpp-netlib</span><br></pre></td></tr></tbody></table></figure>
 
+<h1 id="更新cpp-netlib的三方依赖"><a href="#更新cpp-netlib的三方依赖" class="headerlink" title="更新cpp-netlib的三方依赖"></a>更新cpp-netlib的三方依赖</h1><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~$ <span class="built_in">cd</span> cpp-netlib</span><br><span class="line">~$ git submodule init</span><br><span class="line">~$ git submodule update</span><br></pre></td></tr></tbody></table></figure>
 
+<h1 id="修改-build-sh脚本适合自己的编译-如启动共享库，-启动HTTPS等选项"><a href="#修改-build-sh脚本适合自己的编译-如启动共享库，-启动HTTPS等选项" class="headerlink" title="修改 build.sh脚本适合自己的编译(如启动共享库， 启动HTTPS等选项)"></a>修改 build.sh脚本适合自己的编译(如启动共享库， 启动HTTPS等选项)</h1><figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line">cmake -Bbuild -H. \</span><br><span class="line">  -DCMAKE_BUILD_TYPE=Release \</span><br><span class="line">  -DBUILD_SHARED_LIBS=ON \</span><br><span class="line">  -DCPP-NETLIB_ENABLE_HTTPS=ON \</span><br><span class="line">  -DCPP-NETLIB_BUILD_EXAMPLES=OFF \</span><br><span class="line">  -DCPP-NETLIB_BUILD_DOCS=ON \</span><br><span class="line">  -DUri_BUILD_TESTS=OFF \</span><br><span class="line">  -DUri_BUILD_DOCS=ON \</span><br><span class="line">  -DUri_DISABLE_LIBCXX=ON \</span><br><span class="line">  -DCMAKE_CXX_FLAGS=<span class="string">"-std=c++11 <span class="variable">${CMAKE_CXX_FLAGS}</span>"</span> \</span><br><span class="line">  -DCMAKE_INSTALL_PREFIX=/usr/<span class="built_in">local</span></span><br><span class="line">cmake --build build</span><br></pre></td></tr></tbody></table></figure>
 
+<h1 id="执行build-sh脚本编译"><a href="#执行build-sh脚本编译" class="headerlink" title="执行build.sh脚本编译"></a>执行build.sh脚本编译</h1><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ ./build.sh</span><br></pre></td></tr></tbody></table></figure>
 
+<h1 id="编译没有报错的话-执行安装-可能要加上-sudo"><a href="#编译没有报错的话-执行安装-可能要加上-sudo" class="headerlink" title="编译没有报错的话, 执行安装(可能要加上 sudo)"></a>编译没有报错的话, 执行安装(可能要加上 <code>sudo</code>)</h1><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ $  cmake --build build --target install</span><br></pre></td></tr></tbody></table></figure>
 
-
-<h1 id="更新cpp-netlib的三方依赖"><a href="#更新cpp-netlib的三方依赖" class="headerlink" title="更新cpp-netlib的三方依赖"></a>更新cpp-netlib的三方依赖</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~$ <span class="built_in">cd</span> cpp-netlib</span><br><span class="line">~$ git submodule init</span><br><span class="line">~$ git submodule update</span><br></pre></td></tr></table></figure>
-
-<h1 id="修改-build-sh脚本适合自己的编译-如启动共享库，-启动HTTPS等选项"><a href="#修改-build-sh脚本适合自己的编译-如启动共享库，-启动HTTPS等选项" class="headerlink" title="修改 build.sh脚本适合自己的编译(如启动共享库， 启动HTTPS等选项)"></a>修改 build.sh脚本适合自己的编译(如启动共享库， 启动HTTPS等选项)</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line">cmake -Bbuild -H. \</span><br><span class="line">  -DCMAKE_BUILD_TYPE=Release \</span><br><span class="line">  -DBUILD_SHARED_LIBS=ON \</span><br><span class="line">  -DCPP-NETLIB_ENABLE_HTTPS=ON \</span><br><span class="line">  -DCPP-NETLIB_BUILD_EXAMPLES=OFF \</span><br><span class="line">  -DCPP-NETLIB_BUILD_DOCS=ON \</span><br><span class="line">  -DUri_BUILD_TESTS=OFF \</span><br><span class="line">  -DUri_BUILD_DOCS=ON \</span><br><span class="line">  -DUri_DISABLE_LIBCXX=ON \</span><br><span class="line">  -DCMAKE_CXX_FLAGS=<span class="string">"-std=c++11 <span class="variable">$&#123;CMAKE_CXX_FLAGS&#125;</span>"</span> \</span><br><span class="line">  -DCMAKE_INSTALL_PREFIX=/usr/<span class="built_in">local</span></span><br><span class="line">cmake --build build</span><br></pre></td></tr></table></figure>
-
-<h1 id="执行build-sh脚本编译"><a href="#执行build-sh脚本编译" class="headerlink" title="执行build.sh脚本编译"></a>执行build.sh脚本编译</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ ./build.sh</span><br></pre></td></tr></table></figure>
-
-<h1 id="编译没有报错的话-执行安装-可能要加上-sudo"><a href="#编译没有报错的话-执行安装-可能要加上-sudo" class="headerlink" title="编译没有报错的话, 执行安装(可能要加上 sudo)"></a>编译没有报错的话, 执行安装(可能要加上 <code>sudo</code>)</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ $  cmake --build build --target install</span><br></pre></td></tr></table></figure>
-
-<h1 id="至此cpp-netlib安装完成"><a href="#至此cpp-netlib安装完成" class="headerlink" title="至此cpp-netlib安装完成"></a>至此cpp-netlib安装完成</h1>
+<h1 id="至此cpp-netlib安装完成"><a href="#至此cpp-netlib安装完成" class="headerlink" title="至此cpp-netlib安装完成"></a>至此cpp-netlib安装完成</h1><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
     </div>
 
     
@@ -392,25 +405,29 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+        <a href="https://github.com/oyoungs" title="GitHub &rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+        <a href="https://weibo.com/u/3497551915" title="微博 &rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -440,7 +457,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -489,9 +506,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
   <script defer src="/lib/three/three.min.js"></script>
     <script defer src="/lib/three/canvas_lines.min.js"></script>

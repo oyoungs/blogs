@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="mask-icon" href="/images/douxuetang-favicon.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -52,9 +52,10 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="逗神大人的个人小站">
-<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;page&#x2F;6&#x2F;index.html">
+<meta property="og:url" content="http://oyoung.cc/blogs/page/6/index.html">
 <meta property="og:site_name" content="逗神大人的个人小站">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="逗神大人">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://oyoung.cc/blogs/page/6/">
@@ -112,7 +113,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -121,6 +122,9 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+      <a>
+        <img class="custom-logo-image" src="/images/douxuetang-logo.svg" alt="逗神大人的个人小站">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -143,12 +147,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">36</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -187,6 +191,250 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2017/11/09/171109110650/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/09/171109110650/" class="post-title-link" itemprop="url">cocos2d-x的运行框架思维导图</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-09 11:06:50" itemprop="dateCreated datePublished" datetime="2017-11-09T11:06:50+08:00">2017-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>123</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <html><head></head><body></body></html><html><head></head><body><p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/78487313" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/78487313</a></p>
+<p>花了点时间用思维导图将cocos2d-x游戏开发过程中cocos2d-x框架的大致的整个运行流程，以下内容为思维导图截图<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcxMTA5MTEwNDE1NDEw?x-oss-process=image/format,png" alt="思维导图"></p>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2017/07/31/170731114031/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/07/31/170731114031/" class="post-title-link" itemprop="url">科大讯飞语音SDK使用流程</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-07-31 11:40:31" itemprop="dateCreated datePublished" datetime="2017-07-31T11:40:31+08:00">2017-07-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>382</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <html><head></head><body></body></html><html><head></head><body><p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/76423309" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/76423309</a></p>
+<h2 id="语音识别部分"><a href="#语音识别部分" class="headerlink" title="语音识别部分"></a>语音识别部分</h2><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MSPLogin <span class="comment">// 登录讯飞服务器 </span></span><br><span class="line">MSPUploadData <span class="comment">//(可选): 上传语法文件</span></span><br><span class="line">QISRSessionBegin <span class="comment">// 创建语音识别会话</span></span><br><span class="line">QISRAudioWrite <span class="comment">// 上传语音数据</span></span><br><span class="line">QISRGetResult <span class="comment">// 获取识别的文本结果</span></span><br><span class="line">QISRSessionEnd <span class="comment">// 结束会话</span></span><br><span class="line">MSPLogout <span class="comment">// 注销登录</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="语音合成部分"><a href="#语音合成部分" class="headerlink" title="语音合成部分"></a>语音合成部分</h2><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MSPLogin <span class="comment">// 登录讯飞服务器</span></span><br><span class="line">QTTSSessionBegin <span class="comment">// 创建语音合成会话</span></span><br><span class="line">QTTSTextPut <span class="comment">// 上传需要合成语音的文本</span></span><br><span class="line">QTTSAudioGet <span class="comment">// 获取服务器合成的语音数据，数据格式为PCM或wav</span></span><br><span class="line">QTTSSessonEnd <span class="comment">// 结束语音合成会话</span></span><br><span class="line">MSPLogout <span class="comment">// 注销登录</span></span><br></pre></td></tr></tbody></table></figure><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2017/07/31/170731112804/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/07/31/170731112804/" class="post-title-link" itemprop="url">玩转树莓派之ROS下更新boost库</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-07-31 11:28:04" itemprop="dateCreated datePublished" datetime="2017-07-31T11:28:04+08:00">2017-07-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>440</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <html><head></head><body></body></html><html><head></head><body><p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/76422821" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/76422821</a></p>
+<h2 id="1-首先你需要下载boost的源码-下载完成解压"><a href="#1-首先你需要下载boost的源码-下载完成解压" class="headerlink" title="1. 首先你需要下载boost的源码,下载完成解压"></a>1. 首先你需要下载boost的源码,下载完成解压</h2><h2 id="2-打开终端，进入到解压目录，-执行以下命令对boost进行编译"><a href="#2-打开终端，进入到解压目录，-执行以下命令对boost进行编译" class="headerlink" title="2. 打开终端，进入到解压目录， 执行以下命令对boost进行编译"></a>2. 打开终端，进入到解压目录， 执行以下命令对boost进行编译</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~ $ ./bootstrap.sh —prefix=/usr</span><br><span class="line">~ $ ./b2 -j2</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="3-安装boost库"><a href="#3-安装boost库" class="headerlink" title="3. 安装boost库"></a>3. 安装boost库</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ $ sudo ./bjam install</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="4-由于是在已安装ros环境下更新boost库，所以更新之后需要重新编译ros，重新安装ros之前需要删除旧的"><a href="#4-由于是在已安装ros环境下更新boost库，所以更新之后需要重新编译ros，重新安装ros之前需要删除旧的" class="headerlink" title="4. 由于是在已安装ros环境下更新boost库，所以更新之后需要重新编译ros，重新安装ros之前需要删除旧的:"></a>4. 由于是在已安装ros环境下更新boost库，所以更新之后需要重新编译ros，重新安装ros之前需要删除旧的:</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ $ sudo rm -rf /opt/ros/*</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="5-最后一步就是进入到ros-ws安装源码目录重新安装ros了"><a href="#5-最后一步就是进入到ros-ws安装源码目录重新安装ros了" class="headerlink" title="5. 最后一步就是进入到ros_ws安装源码目录重新安装ros了"></a>5. 最后一步就是进入到ros_ws安装源码目录重新安装ros了</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~ $ ./src/catkin/bin/catkin_make_isolated --install </span><br><span class="line">-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/ros/kinetic -j2</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>安装完成之后可以执行ros的一些命令检查是否安装成功</strong></p>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2017/07/31/170731111833/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -218,7 +466,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-29 19:50:07" itemprop="dateModified" datetime="2019-10-29T19:50:07+08:00">2019-10-29</time>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
               </span>
 
           <br>
@@ -246,15 +494,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/76422994" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/76422994</a></p><h3 id="0-进入ROSWIKI官网"><a href="#0-进入ROSWIKI官网" class="headerlink" title="0. 进入ROSWIKI官网"></a>0. 进入ROSWIKI官网</h3><p>链接: <a href="http://wiki.ros.org/kinetic/Installation/Debian" target="_blank" rel="noopener">http://wiki.ros.org/kinetic/Installation/Debian</a>,<br>这里有英文文档，以下部分为个人理解下的中文步骤</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/07/31/170731111833/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <html><head></head><body></body></html><html><head></head><body><p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/76422994" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/76422994</a></p>
+<h3 id="0-进入ROSWIKI官网"><a href="#0-进入ROSWIKI官网" class="headerlink" title="0. 进入ROSWIKI官网"></a>0. 进入ROSWIKI官网</h3><p>链接: <a href="http://wiki.ros.org/kinetic/Installation/Debian" target="_blank" rel="noopener">http://wiki.ros.org/kinetic/Installation/Debian</a>,<br>这里有英文文档，以下部分为个人理解下的中文步骤</p>
+<h3 id="1-建立你的sources-list文件，使你的树莓派支持从ROS官方-站点下载软件，执行以下命令："><a href="#1-建立你的sources-list文件，使你的树莓派支持从ROS官方-站点下载软件，执行以下命令：" class="headerlink" title="1. 建立你的sources.list文件，使你的树莓派支持从ROS官方``站点下载软件，执行以下命令："></a>1. 建立你的sources.list文件，使你的树莓派支持从ROS官方``站点下载软件，执行以下命令：</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi: ~ $ sudo <span class="built_in">echo</span> “deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main” &gt; /etc/apt/sources.list.d/ros-latest.list</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="2-设置一下你的key"><a href="#2-设置一下你的key" class="headerlink" title="2. 设置一下你的key"></a>2. 设置一下你的key</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi: ~ $ sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers\.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="3-执行sudo-apt-get-update更新一下，然后执行安装命令"><a href="#3-执行sudo-apt-get-update更新一下，然后执行安装命令" class="headerlink" title="3. 执行sudo apt-get update更新一下，然后执行安装命令"></a>3. 执行sudo apt-get update更新一下，然后执行安装命令</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi: ~ $ sudo apt-get install ros-kinetic-desktop-full</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="4-初始化rosdep"><a href="#4-初始化rosdep" class="headerlink" title="4. 初始化rosdep"></a>4. 初始化rosdep</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi: ~ $ sudo rosdep init</span><br><span class="line">pi@raspberrypi: ~ $ rosdep update</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="5-如果你希望每次开启终端都可以使用ros环境的话，建议执行一下以下命令"><a href="#5-如果你希望每次开启终端都可以使用ros环境的话，建议执行一下以下命令" class="headerlink" title="5. 如果你希望每次开启终端都可以使用ros环境的话，建议执行一下以下命令"></a>5. 如果你希望每次开启终端都可以使用ros环境的话，建议执行一下以下命令</h3><figure class="highlight zsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi: ~ $ <span class="built_in">echo</span> <span class="string">"source /opt/ros/kinetic/setup.bash"</span> &gt;&gt; ~/.bashrc</span><br><span class="line">pi@raspberrypi: ~ $ <span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="6-当然你也可以在每次启动终端后手动执行环境配置命令"><a href="#6-当然你也可以在每次启动终端后手动执行环境配置命令" class="headerlink" title="6. 当然你也可以在每次启动终端后手动执行环境配置命令"></a>6. 当然你也可以在每次启动终端后手动执行环境配置命令</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi: ~ \$ <span class="built_in">source</span> /opt/ros/kinetic/setup.bash</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>注: 如果你是用的是zsh终端，则应该讲第5步中的.bashrc文件更改为 .zshrc文件</strong></p>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
       
     </div>
 
@@ -304,7 +554,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-29 19:50:07" itemprop="dateModified" datetime="2019-10-29T19:50:07+08:00">2019-10-29</time>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
               </span>
 
           <br>
@@ -332,283 +582,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/76423140" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/76423140</a></p><h3 id="进入官网下载页面，下载你需要的镜像-下载链接"><a href="#进入官网下载页面，下载你需要的镜像-下载链接" class="headerlink" title="进入官网下载页面，下载你需要的镜像, 下载链接:"></a>进入官网下载页面，下载你需要的镜像, 下载链接:</h3><p><a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="noopener">https://www.raspberrypi.org/downloads/raspbian/</a><br><img src="https://img-blog.csdnimg.cn/20191027104250810.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L295b3VuZ18yMDEy,size_16,color_FFFFFF,t_70" alt="树莓派下载页面"></p><h3 id="如上图所示，上面两个的jessie为带GUI桌面的，下面一个为纯命令行的，可以根据个人爱好选择"><a href="#如上图所示，上面两个的jessie为带GUI桌面的，下面一个为纯命令行的，可以根据个人爱好选择" class="headerlink" title="如上图所示，上面两个的jessie为带GUI桌面的，下面一个为纯命令行的，可以根据个人爱好选择"></a>如上图所示，上面两个的jessie为带GUI桌面的，下面一个为纯命令行的，可以根据个人爱好选择</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/07/31/170731110822/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2017/07/31/170731105358/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/images/avatar.jpg">
-      <meta itemprop="name" content="逗神大人">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逗神大人的个人小站">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/07/31/170731105358/" class="post-title-link" itemprop="url">macOS下搭建openGL开发环境</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-07-31 10:53:58" itemprop="dateCreated datePublished" datetime="2017-07-31T10:53:58+08:00">2017-07-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-29 19:50:07" itemprop="dateModified" datetime="2019-10-29T19:50:07+08:00">2019-10-29</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>889</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/76422589" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/76422589</a></p><h2 id="1-下载并安装GLFW"><a href="#1-下载并安装GLFW" class="headerlink" title="1. 下载并安装GLFW"></a>1. 下载并安装GLFW</h2><p>这里给个官网链接: <a href="http://www.glfw.org/download.html" target="_blank" rel="noopener">http://www.glfw.org/download.html</a><br>打开该页面后， 点击Source Package后会启动下载，下载完成后解压到你自己指定的目录<br>，比如笔者的解压路径为: ~/Downloads/glfw-3.2.1<br>打开终端，执行以下命令:</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/07/31/170731105358/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2017/01/20/170120143234/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/images/avatar.jpg">
-      <meta itemprop="name" content="逗神大人">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逗神大人的个人小站">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/01/20/170120143234/" class="post-title-link" itemprop="url">C#调用C/C++的dll须知</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-01-20 14:32:34" itemprop="dateCreated datePublished" datetime="2017-01-20T14:32:34+08:00">2017-01-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-29 19:50:07" itemprop="dateModified" datetime="2019-10-29T19:50:07+08:00">2019-10-29</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/54631165" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/54631165</a></p><h2 id="1-C-类型与C-C-类型的对应关系"><a href="#1-C-类型与C-C-类型的对应关系" class="headerlink" title="1. C#类型与C/C++类型的对应关系"></a>1. C#类型与C/C++类型的对应关系</h2><h3 id="基本数据类型-C-lt-—-gt-C-C"><a href="#基本数据类型-C-lt-—-gt-C-C" class="headerlink" title="基本数据类型(C# &lt;—&gt; C/C++)"></a>基本数据类型(C# &lt;—&gt; C/C++)</h3><ul>
-<li>System.Int32,int &lt;—&gt; int, long</li>
-<li>System.Int64,int64 &lt;—&gt; long long, __int64</li>
-<li>System.Char, char &lt;—&gt; char, byte, unsigned char</li>
-<li>System.Int16, short &lt;—&gt; short</li>
-<li>System.UInt32, uint &lt;—&gt; unsigned int, unsigned long</li>
-<li>System.UInt16, ushort &lt;—&gt; unsigned short, DWORD</li>
-<li>System.String, string &lt;—&gt; char[], char *, const char *</li>
-<li>System.IntPtr &lt;—&gt; void *, [Type]* </li>
-<li>Sytem.Boolean, bool &lt;—&gt; bool, BOOL</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/01/20/170120143234/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2017/01/18/170118150250/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/images/avatar.jpg">
-      <meta itemprop="name" content="逗神大人">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逗神大人的个人小站">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/01/18/170118150250/" class="post-title-link" itemprop="url">从C到C++看面相对象(深入了解C++的成员函数)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-01-18 15:02:50" itemprop="dateCreated datePublished" datetime="2017-01-18T15:02:50+08:00">2017-01-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-29 19:50:07" itemprop="dateModified" datetime="2019-10-29T19:50:07+08:00">2019-10-29</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/54601314" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/54601314</a></p><p> 我们都知道C是一门面相过程的语言，在C的世界里是没有面相对象这个概念的，但是C语言为我们提供的神兵利器，仍旧可以让我们使用面相对象的思维方式<br>在C语言里，我们每做一个操作，都需要写一个函数，但是该函数都是过程化的，但是我们有两种神兵利器，一个叫指针，一个叫结构体<br>为什么这么说呢？<br>面相对象的最基本的功能就是对数据的封装，在C语言的世界里，我们有结构体这个法宝，同样可以将数据打包整整体，然后通过指针的方式，将结构体作为参数在函数中进行传递<br>举个例子</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/01/18/170118150250/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <html><head></head><body></body></html><html><head></head><body><p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/76423140" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/76423140</a></p>
+<h3 id="进入官网下载页面，下载你需要的镜像-下载链接"><a href="#进入官网下载页面，下载你需要的镜像-下载链接" class="headerlink" title="进入官网下载页面，下载你需要的镜像, 下载链接:"></a>进入官网下载页面，下载你需要的镜像, 下载链接:</h3><p><a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="noopener">https://www.raspberrypi.org/downloads/raspbian/</a><br><img src="https://img-blog.csdnimg.cn/20191027104250810.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L295b3VuZ18yMDEy,size_16,color_FFFFFF,t_70" alt="树莓派下载页面"></p>
+<h3 id="如上图所示，上面两个的jessie为带GUI桌面的，下面一个为纯命令行的，可以根据个人爱好选择"><a href="#如上图所示，上面两个的jessie为带GUI桌面的，下面一个为纯命令行的，可以根据个人爱好选择" class="headerlink" title="如上图所示，上面两个的jessie为带GUI桌面的，下面一个为纯命令行的，可以根据个人爱好选择"></a>如上图所示，上面两个的jessie为带GUI桌面的，下面一个为纯命令行的，可以根据个人爱好选择</h3><h3 id="如果是windows系统，只需要使用UtralISO之类的软件将镜像文件烧录到SD即可，如果是在Mac-OS或者Linux系统，请按照以下步骤"><a href="#如果是windows系统，只需要使用UtralISO之类的软件将镜像文件烧录到SD即可，如果是在Mac-OS或者Linux系统，请按照以下步骤" class="headerlink" title="如果是windows系统，只需要使用UtralISO之类的软件将镜像文件烧录到SD即可，如果是在Mac OS或者Linux系统，请按照以下步骤:"></a>如果是windows系统，只需要使用UtralISO之类的软件将镜像文件烧录到SD即可，如果是在Mac OS或者Linux系统，请按照以下步骤:</h3><ol>
+<li>打开终端(ubuntu下的快捷键为Ctrl+Alt+T);</li>
+<li>敲命令： df -h, 查看SD卡所在的分区， 如在Mac下我的SD卡分区为/dev/disk5,Ubuntu下我的SD卡分区为/dev/sdc,具体根据个人情况而定，只需要自己能够找到对应分区即可</li>
+<li>使用umount命令卸载分区，Ubuntu下为”sudo umount /dev/sdc1”, macOS下为”diskutil umount /dev/disk5s1”</li>
+<li>使用cd命令进入到你下载的jessie镜像所在目录，如我的下载目录在/home/oyoung/downloads,然后执行命令sudo dd bs=4m if=&lt;你的镜像文件&gt; of=&lt;你的SD对应的块设备&gt;，比如我上面提到的，Ubuntu下的/dev/sdc以及macOS下的/dev/disk5, 然后等待一段时间，具体视你的SD卡写入速度而定，毕竟镜像文件超过1G</li>
+<li>以上步骤完成后，镜像的烧录工作基本完成，剩下的一些需要做的将SD卡插入树莓派并启动系统之后要做的系统设定工作，比如是否开启SSH，是否开启VNC，以及个别情况下需要设置系统启动屏幕分别率，一般触摸屏厂商的文档里面会提到如何设置</li>
+</ol>
+<h3 id="修改系统设置，-开机之后，使用HDMI将树莓派接上显示器，然后插入USB鼠标键盘，打开终端，输入sudo-raspi-config命令启动系统配置界面，具体配置自己摸索，然后连接上树莓派的无线网，通过ifconfig命令获取到树莓派的ip地址，记下来，后面一定会用到"><a href="#修改系统设置，-开机之后，使用HDMI将树莓派接上显示器，然后插入USB鼠标键盘，打开终端，输入sudo-raspi-config命令启动系统配置界面，具体配置自己摸索，然后连接上树莓派的无线网，通过ifconfig命令获取到树莓派的ip地址，记下来，后面一定会用到" class="headerlink" title="修改系统设置， 开机之后，使用HDMI将树莓派接上显示器，然后插入USB鼠标键盘，打开终端，输入sudo raspi-config命令启动系统配置界面，具体配置自己摸索，然后连接上树莓派的无线网，通过ifconfig命令获取到树莓派的ip地址，记下来，后面一定会用到"></a>修改系统设置， 开机之后，使用HDMI将树莓派接上显示器，然后插入USB鼠标键盘，打开终端，输入sudo raspi-config命令启动系统配置界面，具体配置自己摸索，然后连接上树莓派的无线网，通过ifconfig命令获取到树莓派的ip地址，记下来，后面一定会用到</h3><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
       
     </div>
 
@@ -673,25 +656,29 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+        <a href="https://github.com/oyoungs" title="GitHub &rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+        <a href="https://weibo.com/u/3497551915" title="微博 &rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -721,7 +708,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -770,9 +757,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
   <script defer src="/lib/three/three.min.js"></script>
     <script defer src="/lib/three/canvas_lines.min.js"></script>

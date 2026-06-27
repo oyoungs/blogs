@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/douxuetang-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一、concept是什么concept是C++20引入的一项革命性特性，它是一种编译期布尔表达式，用于指定模板参数必须满足的约束条件。concept本质上是一种类型谓词（type predicate），它可以在编译期对模板参数进行静态检查，如果参数不满足约束条件，编译器会给出清晰的错误信息，而不会触发复杂的模板错误实例化。 在传统的C++模板编程中，我们只能通过SFINAE（Substitutio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++20 concept使用介绍">
+<meta property="og:url" content="http://oyoung.cc/blogs/2021/02/02/cpp20-concept-intro/index.html">
+<meta property="og:site_name" content="逗神大人的个人小站">
+<meta property="og:description" content="一、concept是什么concept是C++20引入的一项革命性特性，它是一种编译期布尔表达式，用于指定模板参数必须满足的约束条件。concept本质上是一种类型谓词（type predicate），它可以在编译期对模板参数进行静态检查，如果参数不满足约束条件，编译器会给出清晰的错误信息，而不会触发复杂的模板错误实例化。 在传统的C++模板编程中，我们只能通过SFINAE（Substitutio">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-02T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-02T14:45:34.820Z">
+<meta property="article:author" content="逗神大人">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="C++20">
+<meta property="article:tag" content="concept">
+<meta property="article:tag" content="模板元编程">
+<meta property="article:tag" content="泛型编程">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://oyoung.cc/blogs/2021/02/02/cpp20-concept-intro/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>C++20 concept使用介绍 | 逗神大人的个人小站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta custom-logo">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">逗神大人的个人小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      <a>
+        <img class="custom-logo-image" src="/images/douxuetang-logo.svg" alt="逗神大人的个人小站">
+      </a>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/oyoungs" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2021/02/02/cpp20-concept-intro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++20 concept使用介绍
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-02 22:00:00" itemprop="dateCreated datePublished" datetime="2021-02-02T22:00:00+08:00">2021-02-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-02-02 22:45:34" itemprop="dateModified" datetime="2026-02-02T22:45:34+08:00">2026-02-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">技术笔记</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>27k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>24 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <html><head></head><body></body></html><html><head></head><body><h1 id="一、concept是什么"><a href="#一、concept是什么" class="headerlink" title="一、concept是什么"></a>一、concept是什么</h1><p>concept是C++20引入的一项革命性特性，它是一种编译期布尔表达式，用于指定模板参数必须满足的约束条件。concept本质上是一种类型谓词（type predicate），它可以在编译期对模板参数进行静态检查，如果参数不满足约束条件，编译器会给出清晰的错误信息，而不会触发复杂的模板错误实例化。</p>
+<p>在传统的C++模板编程中，我们只能通过SFINAE（Substitution Failure Is Not An Error）机制来限制模板参数的类型，这种方式通常会在模板实例化失败时产生冗长且难以理解的错误信息。concept的出现彻底改变了这一局面，它提供了一种更加直观、声明式的方式来表达模板约束条件，使得代码的可读性和可维护性得到了显著提升。</p>
+<p>concept的定义使用<code>concept</code>关键字 followed by a boolean constant expression。concept可以在命名空间中定义，也可以在类内部定义，但通常我们将其定义在全局命名空间或专门的命名空间中以便复用。下面是一个最基本的concept定义示例：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个检查类型是否可比较的concept</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Comparable = <span class="keyword">requires</span>(T a, T b) {</span><br><span class="line">    { a == b } -&gt; <span class="built_in">std</span>::convertible_to&lt;<span class="keyword">bool</span>&gt;;</span><br><span class="line">    { a != b } -&gt; <span class="built_in">std</span>::convertible_to&lt;<span class="keyword">bool</span>&gt;;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这个concept名为<code>Comparable</code>，它要求类型T必须支持<code>==</code>和<code>!=</code>运算符，并且这些运算符的返回类型必须可以转换为<code>bool</code>。<code>requires</code>表达式是concept定义的核心语法，它允许我们使用一种更加灵活和表达力更强的方式来指定约束条件。</p>
+<p>concept的求值结果是一个编译期的布尔常量，这意味着我们可以在条件语句中使用concept来选择不同的模板实现，也可以将多个concept组合成更复杂的约束条件。C++标准库在<code>&lt;concepts&gt;</code>头文件中提供了大量预定义的concept，涵盖了从基本类型特性到复杂关系约束的各种场景，这些标准concept为我们的日常编程提供了极大的便利。</p>
+<h1 id="二、concept有什么作用"><a href="#二、concept有什么作用" class="headerlink" title="二、concept有什么作用"></a>二、concept有什么作用</h1><p>concept的核心作用是提供编译期的类型检查和约束验证机制，它从根本上改变了我们编写和设计泛型代码的方式。通过使用concept，我们可以将模板参数的要求明确地表达出来，使得代码的意图更加清晰，同时也让编译器能够在编译期捕获类型不匹配的错误。</p>
+<p>第一个重要作用是改善编译错误信息。当传统的模板约束被违反时，编译器通常会产生大量令人困惑的错误信息，这些信息往往指向模板实例化的深层内部结构，使得定位问题变得异常困难。而当约束使用concept表达时，编译器可以在第一时间给出清晰的错误提示，告诉开发者哪个concept约束没有被满足，甚至可以指出具体是哪个操作无法编译。</p>
+<p>第二个重要作用是实现更精细的模板分派机制。通过将concept作为模板约束条件，我们可以在同一个函数名下提供多个重载版本参数，编译器会根据传入的类型自动选择最合适的实现。这种机制类似于函数重载，但是作用在模板层面，能够处理更广泛的类型场景。例如，我们可以为支持加法的类型提供一个版本，为不支持加法的类型提供另一个版本。</p>
+<p>第三个重要作用是提升代码的文档性和可读性。当我们查看一个使用concept约束的函数签名时，可以立即了解该函数对模板参数有哪些要求，而不需要深入阅读函数实现来推断这些约束。这种声明式的约束表达方式使得代码自文档化（self-documenting）成为可能，团队成员可以更快地理解和使用他人编写的泛型代码。</p>
+<p>第四个重要作用是支持更安全的泛型编程。在没有concept的时代，泛型代码往往会在模板实例化的深层位置出现难以追踪的错误，这些错误可能在代码部署后才被发现，给系统稳定性带来隐患。concept通过将类型检查提前到编译期，大大降低了运行时出现类型错误的风险，提高了整个代码库的健壮性。</p>
+<p>第五个重要作用是促进泛型库的标准化和互操作性。由于concept提供了一种标准化的约束表达方式，不同开发者编写的泛型组件可以更容易地相互配合使用。只要两个组件使用了相同的concept来表达它们的约束要求，它们就可以无缝地协同工作，这极大地促进了C++泛型编程生态系统的健康发展。</p>
+<h1 id="三、concept怎么使用"><a href="#三、concept怎么使用" class="headerlink" title="三、concept怎么使用"></a>三、concept怎么使用</h1><p>concept的使用是C++20泛型编程的核心技能，掌握它需要从定义、约束组合、函数模板约束、类模板约束、模板别名约束等多个维度进行学习。下面我们将详细讲解concept的各种使用方法，这些内容是本文的重点部分。</p>
+<h2 id="3-1-定义基本的concept"><a href="#3-1-定义基本的concept" class="headerlink" title="3.1 定义基本的concept"></a>3.1 定义基本的concept</h2><p>定义concept的基本语法使用<code>template</code>参数列表 followed by <code>concept</code>关键字和concept名称，最后是一个编译期布尔表达式。最简单的concept可以只包含一个布尔常量表达式：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 最简单的concept定义</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Integral = <span class="built_in">std</span>::is_integral_v&lt;T&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用类型别名简化concept定义</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Arithmetic = <span class="built_in">std</span>::is_arithmetic_v&lt;T&gt;;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然而，更强大和灵活的concept定义需要使用<code>requires</code>表达式。<code>requires</code>表达式允许我们使用一种类似于函数体的语法来指定约束条件，它可以包含多个约束子句，每个子句检查一个特定的要求是否被满足。<code>requires</code>表达式有四种形式，分别适用于不同的场景。</p>
+<p>第一种形式是简单约束（Simple Requirement），它只是要求某个表达式是有效的：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Hashable = <span class="keyword">requires</span>(T t) {</span><br><span class="line">    <span class="built_in">std</span>::hash&lt;T&gt;{}(t);  <span class="comment">// 要求T类型的对象可以用于std::hash</span></span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第二种形式是类型约束（Type Requirement），使用<code>typename</code>关键字来要求某个类型名是有效的：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Container = <span class="keyword">requires</span>(T t) {</span><br><span class="line">    <span class="keyword">typename</span> T::value_type;      <span class="comment">// 要求T有value_type类型成员</span></span><br><span class="line">    <span class="keyword">typename</span> T::iterator;        <span class="comment">// 要求T有iterator类型成员</span></span><br><span class="line">    { t.begin() };               <span class="comment">// 要求T有begin()成员函数</span></span><br><span class="line">    { t.end() };                 <span class="comment">// 要求T有end()成员函数</span></span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第三种形式是复合约束（Compound Requirement），使用大括号包围表达式，followed by约束后置条件：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Incrementable = <span class="keyword">requires</span>(T x) {</span><br><span class="line">    { x++ } -&gt; <span class="built_in">std</span>::same_as&lt;T&gt;;      <span class="comment">// 后置递增返回原类型</span></span><br><span class="line">    { ++x } -&gt; <span class="built_in">std</span>::same_as&lt;T&amp;&gt;;     <span class="comment">// 前置递增返回引用</span></span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第四种形式是嵌套约束（Nested Requirement），使用<code>requires</code>关键字嵌套更复杂的条件：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Addable = <span class="keyword">requires</span>(T a, T b) {</span><br><span class="line">    <span class="keyword">requires</span> <span class="built_in">std</span>::same_as&lt;<span class="keyword">decltype</span>(a + b), T&gt;;  <span class="comment">// 加法结果类型与操作数相同</span></span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="3-2-在函数模板中使用concept约束"><a href="#3-2-在函数模板中使用concept约束" class="headerlink" title="3.2 在函数模板中使用concept约束"></a>3.2 在函数模板中使用concept约束</h2><p>concept最常见的用途是约束函数模板。约束函数模板有三种主要语法，每种语法都有其适用场景和特点。第一种语法是将concept名称放在<code>template</code>参数列表后面：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用concept约束函数模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;Comparable T&gt;</span><br><span class="line"><span class="function">T <span class="title">max</span><span class="params">(T a, T b)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> (a &gt; b) ? a : b;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第二种语法是使用<code>requires</code>子句，这是最灵活的方式，允许指定多个concept的组合：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用requires子句约束函数模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="keyword">requires</span> Integral&lt;T&gt; || FloatingPoint&lt;T&gt;</span><br><span class="line"><span class="function">T <span class="title">abs</span><span class="params">(T value)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> value &gt;= <span class="number">0</span> ? value : -value;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第三种语法是使用尾置返回类型：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用尾置返回类型和concept约束</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">auto sum(T a, T b) -&gt; Addable&lt;T&gt; {</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>对于需要返回类型约束的情况，我们可以将concept与尾置返回类型结合使用，这特别适用于返回类型依赖于参数类型的场景：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回类型受concept约束</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="keyword">requires</span> Numeric&lt;T&gt;</span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="keyword">common_type_t</span>&lt;T&gt; <span class="title">multiply</span><span class="params">(T a, T b)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> a * b;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="3-3-在类模板中使用concept约束"><a href="#3-3-在类模板中使用concept约束" class="headerlink" title="3.3 在类模板中使用concept约束"></a>3.3 在类模板中使用concept约束</h2><p>concept同样可以用于约束类模板，这使得我们可以根据类型约束来选择不同的类实现：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 约束类模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="keyword">requires</span> Regular&lt;T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyContainer</span> {</span></span><br><span class="line">    <span class="comment">// T是常规类型（可默认构造、可赋值、可比较相等）</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="keyword">requires</span> (!Regular&lt;T&gt;)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyContainer</span> {</span></span><br><span class="line">    <span class="comment">// 处理非Regular类型的特化版本</span></span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>类模板的成员函数也可以独立地使用concept约束，这允许我们为某些成员函数提供更严格的要求：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataHolder</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 这个成员函数要求T是可拷贝的</span></span><br><span class="line">    <span class="function">T <span class="title">getCopy</span><span class="params">()</span> <span class="keyword">requires</span> Copyable&lt;T&gt; </span>{</span><br><span class="line">        <span class="keyword">return</span> data_;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这个成员函数要求T是可移动的</span></span><br><span class="line">    <span class="function">T <span class="title">getMoved</span><span class="params">()</span> <span class="keyword">requires</span> Moveable&lt;T&gt; </span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">std</span>::move(data_);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    T data_;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="3-4-concept的组合使用"><a href="#3-4-concept的组合使用" class="headerlink" title="3.4 concept的组合使用"></a>3.4 concept的组合使用</h2><p>多个concept可以通过逻辑运算符组合使用，这使得我们可以构建复杂的约束条件。C++提供了三种组合运算符：<code>&amp;&amp;</code>（逻辑与）、<code>||</code>（逻辑或）和<code>!</code>（逻辑非）：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 组合多个concept</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> NumericContainer = Container&lt;T&gt; &amp;&amp; Numeric&lt;<span class="keyword">typename</span> T::value_type&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用组合concept约束函数</span></span><br><span class="line"><span class="keyword">template</span>&lt;NumericContainer T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">process</span><span class="params">(T&amp; container)</span> </span>{</span><br><span class="line">    <span class="comment">// T既是容器，又包含数值类型元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; elem : container) {</span><br><span class="line">        <span class="comment">// 可以对elem进行数值运算</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>对于需要多个concept同时满足的场景，使用<code>&amp;&amp;</code>运算符可以优雅地表达这种需求。例如，我们需要一个类型既支持排序又支持随机访问：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> SortableRandomAccessContainer =</span><br><span class="line">    RandomAccessContainer&lt;T&gt; &amp;&amp; Sortable&lt;T&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;SortableRandomAccessContainer T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sortContainer</span><span class="params">(T&amp; container)</span> </span>{</span><br><span class="line">    <span class="built_in">std</span>::sort(container.begin(), container.end());</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>我们也可以使用<code>||</code>运算符来表达”或”的关系，这在需要支持多种类型接口的场景中非常有用：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> HasFirst = <span class="keyword">requires</span>(T t) { { t.first } -&gt; <span class="built_in">std</span>::convertible_to&lt;<span class="keyword">int</span>&gt;; };</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> HasValue = <span class="keyword">requires</span>(T t) { { t.value } -&gt; <span class="built_in">std</span>::convertible_to&lt;<span class="keyword">int</span>&gt;; };</span><br><span class="line"></span><br><span class="line"><span class="comment">// 只要满足其中一个即可</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="keyword">requires</span> HasFirst&lt;T&gt; || HasValue&lt;T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getIntValue</span><span class="params">(T t)</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">if</span> <span class="title">constexpr</span> <span class="params">(HasFirst&lt;T&gt;)</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> t.first;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="keyword">return</span> t.value;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="3-5-在requires表达式中检查可变参数模板"><a href="#3-5-在requires表达式中检查可变参数模板" class="headerlink" title="3.5 在requires表达式中检查可变参数模板"></a>3.5 在requires表达式中检查可变参数模板</h2><p>对于需要处理任意数量参数的模板函数，我们可以使用可变参数模板结合requires表达式来实现更灵活的约束：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 要求所有参数类型都支持加法</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Args&gt;</span><br><span class="line">    <span class="keyword">requires</span> (Addable&lt;Args&gt; &amp;&amp; ...)</span><br><span class="line"><span class="function">Args <span class="title">sumAll</span><span class="params">(Args... args)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> (args + ...);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要求至少有一个参数且所有参数可比较相等</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Rest&gt;</span><br><span class="line">    <span class="keyword">requires</span> (EqualityComparableWith&lt;T, Rest&gt; &amp;&amp; ...)</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">allEqual</span><span class="params">(T first, Rest... rest)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> ((first == rest) &amp;&amp; ...);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="3-6-使用concept选择函数重载"><a href="#3-6-使用concept选择函数重载" class="headerlink" title="3.6 使用concept选择函数重载"></a>3.6 使用concept选择函数重载</h2><p>concept的一个强大特性是允许编译器根据concept约束自动选择最优的函数重载。这种机制被称为约束分派（constrained dispatch），它使得我们可以为一组相关但不完全相同的类型提供不同的实现：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为支持加法的类型提供泛型实现</span></span><br><span class="line"><span class="keyword">template</span>&lt;Addable T&gt;</span><br><span class="line"><span class="function">T <span class="title">add</span><span class="params">(T a, T b)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为字符串类型提供特化实现（优先匹配）</span></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> add&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;(<span class="built_in">std</span>::<span class="built_in">string</span> a, <span class="built_in">std</span>::<span class="built_in">string</span> b) {</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用concept进行重载解析</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="keyword">requires</span> <span class="built_in">std</span>::same_as&lt;T, <span class="keyword">int</span>&gt;</span><br><span class="line"><span class="function">T <span class="title">add</span><span class="params">(T a, T b)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> a + b + <span class="number">1</span>;  <span class="comment">// 整数有特殊处理</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>当存在多个重载版本时，编译器会选择约束条件最具体（最严格）的那个版本。这种机制类似于函数重载的解析过程，但是作用在模板约束层面。</p>
+<h1 id="四、concept有哪些使用场景"><a href="#四、concept有哪些使用场景" class="headerlink" title="四、concept有哪些使用场景"></a>四、concept有哪些使用场景</h1><p>concept在实际编程中有广泛的应用场景，从简单的类型检查到复杂的泛型库设计，都能看到concept的身影。理解这些使用场景对于有效地运用concept至关重要。</p>
+<p>第一个常见场景是约束容器类型参数。当我们设计泛型容器算法时，通常需要确保传入的类型满足容器的基本要求，例如拥有<code>value_type</code>、<code>iterator</code>等类型成员，以及<code>begin()</code>、<code>end()</code>等成员函数。使用concept可以清晰地表达这些要求：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;Container C&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printContainer</span><span class="params">(<span class="keyword">const</span> C&amp; container)</span> </span>{</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; elem : container) {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; elem &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第二个常见场景是约束算法模板参数。不同的算法对操作数有不同的要求，例如排序算法要求元素支持<code>&lt;</code>运算符，数值算法要求元素支持算术运算符。使用concept可以明确地表达这些要求：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 要求容器元素支持小于比较</span></span><br><span class="line"><span class="keyword">template</span>&lt;Sortable T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec)</span> </span>{</span><br><span class="line">    <span class="comment">// 排序实现</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 要求元素支持加减运算</span></span><br><span class="line"><span class="keyword">template</span>&lt;Addable T&gt;</span><br><span class="line"><span class="function">T <span class="title">accumulate</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; vec)</span> </span>{</span><br><span class="line">    T sum = T{};</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; elem : vec) {</span><br><span class="line">        sum += elem;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第三个常见场景是实现策略模式（Strategy Pattern）。concept使得我们可以在运行时根据类型约束选择不同的策略，这是对传统策略模式的一种编译期扩展：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义不同的处理策略concept</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> ParallelProcessable = <span class="keyword">requires</span>(T t) {</span><br><span class="line">    { t.parallelProcess() };</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> SequentialProcessable = <span class="keyword">requires</span>(T t) {</span><br><span class="line">    { t.sequentialProcess() };</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据concept选择不同的处理方式</span></span><br><span class="line"><span class="keyword">template</span>&lt;Processor P&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">execute</span><span class="params">(P&amp; processor)</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">if</span> <span class="title">constexpr</span> <span class="params">(ParallelProcessable&lt;P&gt;)</span> </span>{</span><br><span class="line">        processor.parallelProcess();</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">constexpr</span> (SequentialProcessable&lt;P&gt;) {</span><br><span class="line">        processor.sequentialProcess();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第四个常见场景是约束模板元编程的输入类型。在模板元编程中，我们经常需要确保输入类型满足某些条件，否则后续的计算可能没有意义。concept提供了一种优雅的方式来表达这些先决条件：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 确保输入是有效的矩阵类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;Matrix M&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MatrixCalculator</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 矩阵乘法运算</span></span><br><span class="line">    auto multiply(const M&amp; other) -&gt; MatrixResult&lt;M&gt; {</span><br><span class="line">        <span class="keyword">static_assert</span>(M::rows == M::cols, <span class="string">"必须是方阵"</span>);</span><br><span class="line">        <span class="comment">// 乘法实现</span></span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第五个常见场景是实现概念检查库。许多现代C++库（如Ranges库、Eigen库等）都使用concept来定义它们的接口约束，这使得用户可以清楚地了解使用这些库需要满足的条件：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用Ranges库的concept</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ranges&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">processRange</span><span class="params">(<span class="built_in">std</span>::ranges::input_range <span class="keyword">auto</span>&amp; range)</span> </span>{</span><br><span class="line">    <span class="comment">// 处理输入范围</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sortRandomAccess</span><span class="params">(<span class="built_in">std</span>::ranges::random_access_range <span class="keyword">auto</span>&amp; range)</span> </span>{</span><br><span class="line">    <span class="built_in">std</span>::sort(range.begin(), range.end());</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第六个常见场景是在模板库中提供更好的错误信息。传统的模板库在类型不匹配时会产生冗长的错误信息，而使用concept可以显著改善这种情况：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没有concept约束时，错误信息可能指向模板内部的深处</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">legacyFunction</span><span class="params">(T t)</span> </span>{</span><br><span class="line">    t.complexOperation();  <span class="comment">// 如果T没有这个方法，错误信息可能很长</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用concept约束后，错误信息更加清晰</span></span><br><span class="line"><span class="keyword">template</span>&lt;HasComplexOperation T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">modernFunction</span><span class="params">(T t)</span> </span>{</span><br><span class="line">    t.complexOperation();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第七个常见场景是实现类型安全的异构容器。concept使得我们可以在编译期检查容器元素的类型约束，从而实现更严格的类型安全保证：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Serializable = <span class="keyword">requires</span>(T t) {</span><br><span class="line">    { t.serialize() } -&gt; <span class="built_in">std</span>::convertible_to&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;Serializable T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SerializationAwareContainer</span> {</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt; items_;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">const</span> T&amp; item)</span> </span>{</span><br><span class="line">        items_.push_back(item);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">saveAll</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; filename)</span> </span>{</span><br><span class="line">        <span class="function"><span class="built_in">std</span>::ofstream <span class="title">file</span><span class="params">(filename)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; item : items_) {</span><br><span class="line">            file &lt;&lt; item.serialize() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="五、concept与SFINAE之间的等效替代方式与优势"><a href="#五、concept与SFINAE之间的等效替代方式与优势" class="headerlink" title="五、concept与SFINAE之间的等效替代方式与优势"></a>五、concept与SFINAE之间的等效替代方式与优势</h1><p>SFINAE（Substitution Failure Is Not An Error）是C++11引入的一种机制，它允许在模板参数替换失败时不产生错误，而是简单地不匹配该模板。concept与SFINAE在功能上有很大的重叠，但concept提供了更加优雅和可维护的解决方案。理解两者的等效替代方式以及concept的优势，对于从传统SFINAE代码迁移到concept至关重要。</p>
+<h2 id="5-1-SFINAE的基本机制"><a href="#5-1-SFINAE的基本机制" class="headerlink" title="5.1 SFINAE的基本机制"></a>5.1 SFINAE的基本机制</h2><p>在concept出现之前，SFINAE是实现模板约束的主要方式。SFINAE有两种主要的表现形式：一种是使用<code>enable_if</code>模板，另一种是使用函数返回类型或参数列表中的表达式求值失败。</p>
+<p>使用<code>enable_if</code>进行约束的典型模式如下：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SFINAE模式：使用enable_if约束模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">typename</span> <span class="built_in">std</span>::enable_if&lt;<span class="built_in">std</span>::is_integral&lt;T&gt;::value, T&gt;::type</span><br><span class="line"><span class="built_in">abs</span>(T value) {</span><br><span class="line">    <span class="keyword">return</span> value &gt;= <span class="number">0</span> ? value : -value;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">typename</span> <span class="built_in">std</span>::enable_if&lt;<span class="built_in">std</span>::is_floating_point&lt;T&gt;::value, T&gt;::type</span><br><span class="line"><span class="built_in">abs</span>(T value) {</span><br><span class="line">    <span class="keyword">return</span> value &gt;= <span class="number">0</span> ? value : -value;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>另一种SFINAE模式是利用函数模板参数替换时的失败：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SFINAE模式：利用替换失败</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">auto process(T t) -&gt; decltype(t.compile_check(), void()) {</span><br><span class="line">    <span class="comment">// t必须支持compile_check成员函数</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">auto process(T t) -&gt; void(*)() {</span><br><span class="line">    <span class="comment">// T不支持compile_check时的替代实现</span></span><br><span class="line">    <span class="keyword">return</span> [] { <span class="comment">/* 默认行为 */</span> };</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="5-2-使用concept替代SFINAE"><a href="#5-2-使用concept替代SFINAE" class="headerlink" title="5.2 使用concept替代SFINAE"></a>5.2 使用concept替代SFINAE</h2><p>使用concept可以完全替代SFINAE的功能，同时代码更加清晰。下面的代码展示了如何用concept重写上面的例子：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Concept模式：使用concept约束模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;Integral T&gt;</span><br><span class="line"><span class="function">T <span class="title">abs</span><span class="params">(T value)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> value &gt;= <span class="number">0</span> ? value : -value;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;FloatingPoint T&gt;</span><br><span class="line"><span class="function">T <span class="title">abs</span><span class="params">(T value)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> value &gt;= <span class="number">0</span> ? value : -value;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>对于需要根据类型选择不同实现的场景，concept提供了更优雅的表达方式：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用concept的分派机制替代SFINAE分派</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">process</span><span class="params">(T t)</span> <span class="keyword">requires</span> HasCompileCheck&lt;T&gt; </span>{</span><br><span class="line">    t.compile_check();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">process</span><span class="params">(T t)</span> <span class="title">requires</span> <span class="params">(!HasCompileCheck&lt;T&gt;)</span> </span>{</span><br><span class="line">    <span class="comment">// 默认实现</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="5-3-concept相比SFINAE的优势"><a href="#5-3-concept相比SFINAE的优势" class="headerlink" title="5.3 concept相比SFINAE的优势"></a>5.3 concept相比SFINAE的优势</h2><p>concept相对于SFINAE有多个显著优势，这些优势使得concept成为现代C++编程的首选方案。</p>
+<p>第一个优势是错误信息的可读性。当SFINAE模板匹配失败时，错误信息往往包含大量的模板内部实现细节，开发者需要仔细分析才能找到问题根源。而concept失败时，编译器会明确指出哪个concept约束没有被满足：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SFINAE的错误信息示例（假设）</span></span><br><span class="line"><span class="comment">// error: no type named 'type' in 'struct std::enable_if&lt;false, void&gt;'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Concept的错误信息示例</span></span><br><span class="line"><span class="comment">// error: candidate function template not viable: requires 'Integral' concept was not satisfied</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>第二个优势是代码的可维护性。使用<code>enable_if</code>的代码往往冗长且难以理解，需要编写复杂的模板元代码来表达简单的类型约束。而concept允许我们使用声明式的语法来表达这些约束，代码更加简洁明了。</p>
+<p>第三个优势是命名和复用的便利性。一旦定义了concept，就可以在多个地方复用它，而SFINAE的约束条件通常是内联写的，难以复用和共享：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Concept可以定义后复用</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Numeric = <span class="built_in">std</span>::is_arithmetic_v&lt;T&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在多个地方使用同一个concept</span></span><br><span class="line"><span class="keyword">template</span>&lt;Numeric T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">process1</span><span class="params">(T value)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;Numeric T&gt;</span><br><span class="line"><span class="function">T <span class="title">calculate</span><span class="params">(T a, T b)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// SFINAE的条件难以复用</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="keyword">typename</span> <span class="built_in">std</span>::enable_if&lt;<span class="built_in">std</span>::is_arithmetic_v&lt;T&gt;&gt;::type</span><br><span class="line">process1(T value);</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">typename</span> <span class="built_in">std</span>::enable_if&lt;<span class="built_in">std</span>::is_arithmetic_v&lt;T&gt;, T&gt;::type</span><br><span class="line">calculate(T a, T b);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第四个优势是支持组合和逻辑运算。concept可以通过<code>&amp;&amp;</code>、<code>||</code>、<code>!</code>等运算符优雅地组合，而SFINAE需要嵌套使用<code>enable_if</code>来实现相同的逻辑：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Concept的组合使用</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> ComplexConstraint = SimpleConcept&lt;T&gt; &amp;&amp; OtherConcept&lt;T&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// SFINAE的组合使用</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">typename</span> <span class="built_in">std</span>::enable_if&lt;</span><br><span class="line">    SimpleConcept&lt;T&gt;::value &amp;&amp; OtherConcept&lt;T&gt;::value</span><br><span class="line">&gt;::type</span><br><span class="line">process(T t);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第五个优势是与C++20 Ranges库的深度集成。C++20引入的Ranges库大量使用concept来定义其接口，学习concept对于有效使用这些现代库是必不可少的。</p>
+<h2 id="5-4-渐进式的迁移策略"><a href="#5-4-渐进式的迁移策略" class="headerlink" title="5.4 渐进式的迁移策略"></a>5.4 渐进式的迁移策略</h2><p>从SFINAE迁移到concept可以采用渐进式的策略，不需要一次性重写所有代码。以下是一种推荐的迁移方法：</p>
+<p>首先，将现有的<code>enable_if</code>约束转换为简单的concept：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原始SFINAE代码</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">typename</span> <span class="built_in">std</span>::enable_if&lt;<span class="built_in">std</span>::is_copy_constructible_v&lt;T&gt;&gt;::type</span><br><span class="line">clone(T&amp; original) {</span><br><span class="line">    <span class="comment">// 实现</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一步：创建concept</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> CopyConstructible = <span class="built_in">std</span>::is_copy_constructible_v&lt;T&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二步：使用concept约束</span></span><br><span class="line"><span class="keyword">template</span>&lt;CopyConstructible T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clone</span><span class="params">(T&amp; original)</span> </span>{</span><br><span class="line">    <span class="comment">// 实现</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后，逐步将更复杂的SFINAE模式迁移到concept。对于需要多个条件组合的情况，可以定义组合concept：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 复杂的SFINAE条件</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">typename</span> <span class="built_in">std</span>::enable_if&lt;</span><br><span class="line">    <span class="built_in">std</span>::is_default_constructible_v&lt;T&gt; &amp;&amp;</span><br><span class="line">    <span class="built_in">std</span>::is_move_constructible_v&lt;T&gt;</span><br><span class="line">&gt;::type</span><br><span class="line">initialize();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 迁移到concept</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> MovableAndDefaultConstructible =</span><br><span class="line">    <span class="built_in">std</span>::is_default_constructible_v&lt;T&gt; &amp;&amp;</span><br><span class="line">    <span class="built_in">std</span>::is_move_constructible_v&lt;T&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;MovableAndDefaultConstructible T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initialize</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="comment">// 实现</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="六、如何避免滥用concept"><a href="#六、如何避免滥用concept" class="headerlink" title="六、如何避免滥用concept"></a>六、如何避免滥用concept</h1><p>虽然concept是一个强大的工具，但滥用concept会导致代码复杂度增加、维护困难等问题。了解常见的滥用模式以及如何避免它们，对于写出高质量的C++代码至关重要。</p>
+<p>第一个常见的滥用是将concept应用于所有模板参数。实际上，并非所有模板参数都需要concept约束。对于内部实现不需要了解类型细节的通用容器，可以使用无约束的模板参数，concept约束应该只在需要表达接口要求时使用：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 过度约束的例子</span></span><br><span class="line"><span class="keyword">template</span>&lt;DefaultConstructible T, Destructible T, Copyable T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OverConstrainedContainer</span> {</span></span><br><span class="line">    <span class="comment">// 可能过度约束</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更合理的约束方式</span></span><br><span class="line"><span class="keyword">template</span>&lt;Regular T&gt;  <span class="comment">// Regular已经包含了基本要求</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BetterContainer</span> {</span></span><br><span class="line">    <span class="comment">// Regular = DefaultConstructible + Copyable + Moveable + EqualityComparable</span></span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第二个常见的滥用是定义过于复杂的concept。concept应该保持简单和可读，过于复杂的concept难以理解和维护。如果一个concept需要表达大量的约束条件，可能意味着应该将其拆分成多个更小的concept：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 过于复杂的concept</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> ComplexConcept = <span class="keyword">requires</span>(T t) {</span><br><span class="line">    <span class="keyword">typename</span> T::value_type;</span><br><span class="line">    <span class="keyword">typename</span> T::reference;</span><br><span class="line">    <span class="keyword">typename</span> T::const_reference;</span><br><span class="line">    <span class="keyword">typename</span> T::iterator;</span><br><span class="line">    <span class="keyword">typename</span> T::const_iterator;</span><br><span class="line">    { t.begin() };</span><br><span class="line">    { t.end() };</span><br><span class="line">    { t.size() };</span><br><span class="line">    { t.empty() };</span><br><span class="line">    { t[<span class="number">0</span>] };</span><br><span class="line">    { t.at(<span class="number">0</span>) };</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 拆分成更小的concept</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> HasValueType = <span class="keyword">requires</span> { <span class="keyword">typename</span> T::value_type; };</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Iterable = <span class="keyword">requires</span>(T t) {</span><br><span class="line">    { t.begin() };</span><br><span class="line">    { t.end() };</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Sized = <span class="keyword">requires</span>(T t) {</span><br><span class="line">    { t.size() } -&gt; <span class="built_in">std</span>::convertible_to&lt;<span class="built_in">std</span>::<span class="keyword">size_t</span>&gt;;</span><br><span class="line">    { t.empty() } -&gt; <span class="built_in">std</span>::convertible_to&lt;<span class="keyword">bool</span>&gt;;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> RandomAccess = <span class="keyword">requires</span>(T t) {</span><br><span class="line">    { t[<span class="number">0</span>] };</span><br><span class="line">    { t.at(<span class="number">0</span>) };</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 组合使用</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Container = HasValueType&lt;T&gt; &amp;&amp; Iterable&lt;T&gt; &amp;&amp; Sized&lt;T&gt;;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第三个常见的滥用是在不需要的地方使用concept。concept主要用于模板代码的编译期约束，对于非模板代码或运行时多态，使用concept是不合适的：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不需要concept的场景</span></span><br><span class="line"><span class="comment">// 普通函数不需要concept约束</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类成员函数如果不需要模板化，也不应该使用concept</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SimpleClass</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">process</span><span class="params">()</span> </span>{ <span class="comment">/* 实现 */</span> }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第四个常见的滥用是忽略concept的命名规范。良好的命名可以使代码更加自文档化，concept名称应该清晰地表达它们检查的属性：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不好的命名</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> C1 = <span class="built_in">std</span>::is_integral_v&lt;T&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> C2 = <span class="keyword">requires</span>(T t) { { t.value() }; };</span><br><span class="line"></span><br><span class="line"><span class="comment">// 好的命名</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> IntegralNumber = <span class="built_in">std</span>::is_integral_v&lt;T&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> HasValueMethod = <span class="keyword">requires</span>(T t) { { t.value() }; };</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第五个常见的滥用是过度依赖concept而忽略运行时检查。concept只提供编译期检查，对于某些需要在运行时验证的条件，仍然需要使用断言或其他运行时检查机制：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只依赖concept是不够的</span></span><br><span class="line"><span class="keyword">template</span>&lt;PositiveNumber T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">process</span><span class="params">(T value)</span> </span>{</span><br><span class="line">    <span class="comment">// concept只保证T是数值类型，不保证value是正数</span></span><br><span class="line">    <span class="comment">// 需要添加运行时检查</span></span><br><span class="line">    <span class="keyword">if</span> (value &lt;= <span class="number">0</span>) {</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">std</span>::invalid_argument(<span class="string">"Value must be positive"</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>第六个常见的滥用是创建重复的标准concept。C++标准库在<code>&lt;concepts&gt;</code>头文件中提供了大量预定义的concept，在定义自己的concept之前，应该先检查标准库是否已经提供了相同或相似的concept：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 重复造轮子</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> MyIntegral = <span class="built_in">std</span>::is_integral_v&lt;T&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应该直接使用标准concept</span></span><br><span class="line"><span class="keyword">template</span>&lt;Integral T&gt;</span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="built_in">std</span>::integral&lt;T&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>为了避免滥用concept，遵循以下原则会有所帮助：</p>
+<p>保持concept简单：一个concept应该只检查一个特定的属性或能力。如果需要检查多个属性，使用组合。</p>
+<p>只在需要的地方使用concept：只有当模板代码需要表达对类型的要求时，才使用concept约束。不要为了使用concept而使用它。</p>
+<p>优先使用标准concept：在编写自己的concept之前，先查看标准库是否提供了类似的concept。标准concept经过充分的测试和优化。</p>
+<p>使concept的名称具有描述性：concept的名称应该清楚地表达它检查的属性，例如使用<code>Addable</code>而不是<code>C1</code>来表示支持加法的类型。</p>
+<p>区分编译期和运行期约束：concept提供编译期检查，某些运行时验证仍然需要使用断言或其他机制。</p>
+<h1 id="七、concept相关标准库"><a href="#七、concept相关标准库" class="headerlink" title="七、concept相关标准库"></a>七、concept相关标准库</h1><p>C++20标准库在<code>&lt;concepts&gt;</code>头文件中定义了一系列预定义的concept，这些concept涵盖了从基本类型属性到复杂关系的各种场景。熟悉这些标准concept对于高效使用concept至关重要。</p>
+<h2 id="7-1-基础类型concept"><a href="#7-1-基础类型concept" class="headerlink" title="7.1 基础类型concept"></a>7.1 基础类型concept</h2><p>基础类型concept用于检查类型的基本属性，这些concept是最常用也是最基础的：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查类型是否相同</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::same_as = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查类型是否可转换为另一种类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> From, <span class="keyword">typename</span> To&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::convertible_to = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是派生关系</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived, <span class="keyword">typename</span> Base&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::derived_from = <span class="comment">/* ... */</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="7-2-类型分类concept"><a href="#7-2-类型分类concept" class="headerlink" title="7.2 类型分类concept"></a>7.2 类型分类concept</h2><p>类型分类concept用于检查类型的分类属性：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查是否是整数类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::integral = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是浮点类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::floating_point = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是算术类型（整数或浮点）</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::arithmetic = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是对象类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::object = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是函数类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::function = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是引用类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::reference = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是成员指针类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::member_pointer = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是枚举类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::<span class="keyword">enum</span> = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是联合类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::union_type = <span class="comment">/* ... */</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="7-3-类型特性concept"><a href="#7-3-类型特性concept" class="headerlink" title="7.3 类型特性concept"></a>7.3 类型特性concept</h2><p>类型特性concept用于检查类型的更复杂特性：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查是否是移动构造的类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::move_constructible = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是拷贝构造的类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::copy_constructible = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是默认构造的类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::default_initializable = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是分配的类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::allocatable = <span class="comment">/* ... */</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="7-4-可调用概念"><a href="#7-4-可调用概念" class="headerlink" title="7.4 可调用概念"></a>7.4 可调用概念</h2><p>可调用concept用于检查类型是否可以被调用：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查是否是可调用类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::invocable = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查调用结果是否可以转换为指定类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span>... Args, <span class="keyword">typename</span> R&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::predicate = <span class="comment">/* ... */</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="7-5-比较概念"><a href="#7-5-比较概念" class="headerlink" title="7.5 比较概念"></a>7.5 比较概念</h2><p>比较concept用于检查类型的比较操作：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查是否可以比较相等</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::equality_comparable = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否可以严格弱序比较</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::strict_weak_order = <span class="comment">/* ... */</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="7-6-对象概念"><a href="#7-6-对象概念" class="headerlink" title="7.6 对象概念"></a>7.6 对象概念</h2><p>对象concept用于检查对象的属性：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查是否是可移动的类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::movable = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是可拷贝的类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::copyable = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是半常规类型（可移动、可拷贝、可默认构造）</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::semiregular = <span class="comment">/* ... */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查是否是常规类型（半常规 + 可相等比较）</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> <span class="built_in">std</span>::regular = <span class="comment">/* ... */</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="7-7-自定义标准concept"><a href="#7-7-自定义标准concept" class="headerlink" title="7.7 自定义标准concept"></a>7.7 自定义标准concept</h2><p>除了使用标准concept外，我们还可以基于标准concept创建自己的自定义concept：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基于标准concept创建自定义concept</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> MyPointer = <span class="built_in">std</span>::is_pointer_v&lt;T&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> MyContainer = <span class="keyword">requires</span>(T t) {</span><br><span class="line">    <span class="keyword">typename</span> T::value_type;</span><br><span class="line">    { t.begin() };</span><br><span class="line">    { t.end() };</span><br><span class="line">    { t.size() } -&gt; <span class="built_in">std</span>::convertible_to&lt;<span class="built_in">std</span>::<span class="keyword">size_t</span>&gt;;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 组合使用多个标准concept</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> MyNumericContainer =</span><br><span class="line">    <span class="built_in">std</span>::regular&lt;T&gt; &amp;&amp;</span><br><span class="line">    <span class="keyword">requires</span>(T t) {</span><br><span class="line">        <span class="keyword">typename</span> T::value_type;</span><br><span class="line">        <span class="built_in">std</span>::is_arithmetic_v&lt;<span class="keyword">typename</span> T::value_type&gt;;</span><br><span class="line">    };</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="7-8-使用标准库concept的完整示例"><a href="#7-8-使用标准库concept的完整示例" class="headerlink" title="7.8 使用标准库concept的完整示例"></a>7.8 使用标准库concept的完整示例</h2><p>下面是一个使用标准库concept的完整示例，展示了如何在实际编程中组合使用这些concept：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;concepts&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用标准concept定义函数模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="built_in">std</span>::regular T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Container</span> {</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt; data_;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">const</span> T&amp; value)</span> </span>{</span><br><span class="line">        data_.push_back(value);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="built_in">std</span>::strict_weak_order&lt;T&gt; Comp&gt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comp comp = <span class="built_in">std</span>::less&lt;T&gt;{})</span> </span>{</span><br><span class="line">        <span class="built_in">std</span>::sort(data_.begin(), data_.end(), comp);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">const</span> </span>{</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; elem : data_) {</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; elem &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    Container&lt;<span class="keyword">int</span>&gt; intContainer;</span><br><span class="line">    intContainer.add(<span class="number">5</span>);</span><br><span class="line">    intContainer.add(<span class="number">2</span>);</span><br><span class="line">    intContainer.add(<span class="number">8</span>);</span><br><span class="line">    intContainer.add(<span class="number">1</span>);</span><br><span class="line">    intContainer.sort();</span><br><span class="line">    intContainer.print();  <span class="comment">// 输出: 1 2 5 8</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="八、concept相关的设计模式"><a href="#八、concept相关的设计模式" class="headerlink" title="八、concept相关的设计模式"></a>八、concept相关的设计模式</h1><p>concept在设计模式中的应用为传统的面向对象设计模式注入了新的活力。通过concept，我们可以在编译期实现更加灵活和高效的变体，这些变体往往比传统的运行时多态具有更好的性能。下面介绍几种与concept密切相关的设计模式及其实现方式。</p>
+<h2 id="8-1-策略模式的概念化实现"><a href="#8-1-策略模式的概念化实现" class="headerlink" title="8.1 策略模式的概念化实现"></a>8.1 策略模式的概念化实现</h2><p>传统的策略模式通过接口和多态实现不同算法的切换，而使用concept可以在编译期实现类似的分派功能，同时保持零运行时开销：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义不同的策略concept</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Strategy&gt;</span><br><span class="line"><span class="keyword">concept</span> AdditionStrategy = <span class="keyword">requires</span>(Strategy s, <span class="keyword">int</span> a, <span class="keyword">int</span> b) {</span><br><span class="line">    { s.compute(a, b) } -&gt; <span class="built_in">std</span>::same_as&lt;<span class="keyword">int</span>&gt;;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Strategy&gt;</span><br><span class="line"><span class="keyword">concept</span> MultiplicationStrategy = <span class="keyword">requires</span>(Strategy s, <span class="keyword">int</span> a, <span class="keyword">int</span> b) {</span><br><span class="line">    { s.compute(a, b) } -&gt; <span class="built_in">std</span>::same_as&lt;<span class="keyword">int</span>&gt;;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 策略类</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AddStrategy</span> {</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">compute</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{ <span class="keyword">return</span> a + b; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">MultiplyStrategy</span> {</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">compute</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{ <span class="keyword">return</span> a * b; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SubtractStrategy</span> {</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">compute</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{ <span class="keyword">return</span> a - b; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用concept约束的策略计算器</span></span><br><span class="line"><span class="keyword">template</span>&lt;AdditionStrategy Strategy&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">calculate</span><span class="params">(Strategy strategy, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> strategy.compute(a, b);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;MultiplicationStrategy Strategy&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">calculate</span><span class="params">(Strategy strategy, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> strategy.compute(a, b);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通用策略计算器</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Strategy&gt;</span><br><span class="line">    <span class="keyword">requires</span> (!AdditionStrategy&lt;Strategy&gt; &amp;&amp; !MultiplicationStrategy&lt;Strategy&gt;)</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">calculate</span><span class="params">(Strategy strategy, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> strategy.compute(a, b);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="8-2-模板方法模式的概念化实现"><a href="#8-2-模板方法模式的概念化实现" class="headerlink" title="8.2 模板方法模式的概念化实现"></a>8.2 模板方法模式的概念化实现</h2><p>concept使得模板方法模式可以更加灵活地定义算法的各个步骤，而不需要使用虚函数：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Drawable = <span class="keyword">requires</span>(T t) {</span><br><span class="line">    { t.draw() };</span><br><span class="line">    { t.getColor() } -&gt; <span class="built_in">std</span>::convertible_to&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Resizable = <span class="keyword">requires</span>(T t, <span class="keyword">double</span> factor) {</span><br><span class="line">    { t.resize(factor) };</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;Drawable T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">render</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="comment">// 模板方法：draw()是虚函数般的存在</span></span><br><span class="line">        onBeforeDraw();</span><br><span class="line">        T&amp; self = <span class="keyword">static_cast</span>&lt;T&amp;&gt;(*<span class="keyword">this</span>);</span><br><span class="line">        self.draw();</span><br><span class="line">        onAfterDraw();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="built_in">std</span>::<span class="built_in">string</span> <span class="title">getDescription</span><span class="params">()</span> </span>{</span><br><span class="line">        T&amp; self = <span class="keyword">static_cast</span>&lt;T&amp;&gt;(*<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Shape with color: "</span> + self.getColor();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onBeforeDraw</span><span class="params">()</span> </span>{ <span class="comment">/* 通用前置处理 */</span> }</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onAfterDraw</span><span class="params">()</span> </span>{ <span class="comment">/* 通用后置处理 */</span> }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体形状类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> :</span> <span class="keyword">public</span> Shape&lt;Circle&gt; {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>{ <span class="comment">/* 绘制圆形 */</span> }</span><br><span class="line">    <span class="function"><span class="built_in">std</span>::<span class="built_in">string</span> <span class="title">getColor</span><span class="params">()</span> <span class="keyword">const</span> </span>{ <span class="keyword">return</span> <span class="string">"red"</span>; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> :</span> <span class="keyword">public</span> Shape&lt;Rectangle&gt; {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>{ <span class="comment">/* 绘制矩形 */</span> }</span><br><span class="line">    <span class="function"><span class="built_in">std</span>::<span class="built_in">string</span> <span class="title">getColor</span><span class="params">()</span> <span class="keyword">const</span> </span>{ <span class="keyword">return</span> <span class="string">"blue"</span>; }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="8-3-访问者模式的概念化实现"><a href="#8-3-访问者模式的概念化实现" class="headerlink" title="8.3 访问者模式的概念化实现"></a>8.3 访问者模式的概念化实现</h2><p>使用concept可以创建类型安全的访问者模式，避免传统访问者模式中的类型安全问题：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 前向声明</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Visitable</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Acceptable = <span class="keyword">requires</span>(T&amp; visitor) {</span><br><span class="line">    { visitor.visit(<span class="built_in">std</span>::declval&lt;Visitable&lt;<span class="keyword">typename</span> T::ElementType&gt;&gt;()) };</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Visitable</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">template</span>&lt;Acceptable Visitor&gt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(Visitor&amp; visitor)</span> </span>{</span><br><span class="line">        visitor.visit(<span class="keyword">static_cast</span>&lt;Derived&amp;&gt;(*<span class="keyword">this</span>));</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> :</span> <span class="keyword">public</span> Visitable&lt;Circle&gt; {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">double</span> radius = <span class="number">1.0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> :</span> <span class="keyword">public</span> Visitable&lt;Rectangle&gt; {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">double</span> width = <span class="number">1.0</span>;</span><br><span class="line">    <span class="keyword">double</span> height = <span class="number">1.0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问者类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShapeVisitor</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(Circle&amp; circle)</span> </span>{</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Circle with radius: "</span> &lt;&lt; circle.radius &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(Rectangle&amp; rectangle)</span> </span>{</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Rectangle: "</span> &lt;&lt; rectangle.width &lt;&lt; <span class="string">"x"</span> &lt;&lt; rectangle.height &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="8-4-工厂模式的概念化实现"><a href="#8-4-工厂模式的概念化实现" class="headerlink" title="8.4 工厂模式的概念化实现"></a>8.4 工厂模式的概念化实现</h2><p>concept使得工厂模式可以更加灵活地处理不同类型的产品，同时保持类型安全：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 产品concept</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Product = <span class="keyword">requires</span> {</span><br><span class="line">    <span class="keyword">typename</span> T::id;</span><br><span class="line">    { T::create() };</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 产品注册表</span></span><br><span class="line"><span class="keyword">template</span>&lt;Product T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProductRegistry</span> {</span></span><br><span class="line">    <span class="keyword">using</span> Id = <span class="keyword">typename</span> T::id;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> Id <span class="title">id</span><span class="params">()</span> </span>{ <span class="keyword">return</span> T::id; }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;T&gt; <span class="title">create</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">std</span>::make_unique&lt;T&gt;();</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 产品基类和产品类</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ProductBase</span> {</span></span><br><span class="line">    <span class="keyword">virtual</span> ~ProductBase() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ProductA</span> :</span> ProductBase {</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> id = <span class="string">"ProductA"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;ProductA&gt; <span class="title">create</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">std</span>::make_unique&lt;ProductA&gt;();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"ProductA operation"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ProductB</span> :</span> ProductBase {</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">auto</span> id = <span class="string">"ProductB"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;ProductB&gt; <span class="title">create</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">std</span>::make_unique&lt;ProductB&gt;();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"ProductB operation"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="8-5-装饰器模式的概念化实现"><a href="#8-5-装饰器模式的概念化实现" class="headerlink" title="8.5 装饰器模式的概念化实现"></a>8.5 装饰器模式的概念化实现</h2><p>使用concept可以创建更加灵活的装饰器模式，支持动态组合不同的装饰功能：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">concept</span> Decoratable = <span class="keyword">requires</span>(T t, <span class="keyword">int</span> v) {</span><br><span class="line">    { t.getValue() } -&gt; <span class="built_in">std</span>::convertible_to&lt;<span class="keyword">int</span>&gt;;</span><br><span class="line">    { t.setValue(v) };</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;Decoratable T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Decorator</span> {</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;T&gt; wrapped_;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Decorator</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;T&gt; wrapped)</span></span></span><br><span class="line"><span class="function">        : <span class="title">wrapped_</span><span class="params">(<span class="built_in">std</span>::move(wrapped))</span> </span>{}</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getValue</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> wrapped_-&gt;getValue();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setValue</span><span class="params">(<span class="keyword">int</span> v)</span> </span>{</span><br><span class="line">        wrapped_-&gt;setValue(v);</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TimestampingDecorator</span> :</span> <span class="keyword">public</span> Decorator&lt;TimestampingDecorator&gt; {</span><br><span class="line">    <span class="keyword">using</span> Decorator::Decorator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getValue</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">auto</span> val = Decorator::getValue();</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Timestamp: "</span> &lt;&lt; <span class="built_in">std</span>::chrono::system_clock::now() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> val;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ValidationDecorator</span> :</span> <span class="keyword">public</span> Decorator&lt;ValidationDecorator&gt; {</span><br><span class="line">    <span class="keyword">using</span> Decorator::Decorator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setValue</span><span class="params">(<span class="keyword">int</span> v)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (v &lt; <span class="number">0</span>) {</span><br><span class="line">            <span class="keyword">throw</span> <span class="built_in">std</span>::invalid_argument(<span class="string">"Value must be non-negative"</span>);</span><br><span class="line">        }</span><br><span class="line">        Decorator::setValue(v);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>通过这些设计模式的概念化实现，我们可以看到concept不仅是一种类型约束工具，更是一种设计思维方式的转变。它允许我们在编译期实现原本需要在运行时才能实现的多态和灵活性，同时带来更好的类型安全性和性能。这些模式在现代C++库（如Ranges库）中得到了广泛的应用，掌握它们对于编写高质量的泛型代码具有重要意义。</p>
+<p>concept作为C++20最重要的特性之一，它为泛型编程带来了革命性的变化。通过提供声明式的类型约束机制，concept使得代码更加清晰、错误信息更加友好、设计更加灵活。从基本类型检查到复杂的设计模式实现，concept都有其独特的价值。在实际开发中，我们应该充分利用concept的优势，同时注意避免滥用，以写出高质量、可维护的C++代码。</p>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>感谢您对本站的支持.</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/wxpay.jpg" alt="逗神大人 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/assets/images/alipay.jpg" alt="逗神大人 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>逗神大人
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://oyoung.cc/blogs/2021/02/02/cpp20-concept-intro/" title="C++20 concept使用介绍">http://oyoung.cc/blogs/2021/02/02/cpp20-concept-intro/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+              <a href="/tags/C-20/" rel="tag"><i class="fa fa-tag"></i> C++20</a>
+              <a href="/tags/concept/" rel="tag"><i class="fa fa-tag"></i> concept</a>
+              <a href="/tags/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> 模板元编程</a>
+              <a href="/tags/%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> 泛型编程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2021/02/01/SwiftUI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="SwiftUI学习笔记">
+                  <i class="fa fa-chevron-left"></i> SwiftUI学习笔记
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2021/02/02/cpp17-variant-intro/" rel="prev" title="C++17 variant使用介绍">
+                  C++17 variant使用介绍 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、concept是什么"><span class="nav-number">1.</span> <span class="nav-text">一、concept是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、concept有什么作用"><span class="nav-number">2.</span> <span class="nav-text">二、concept有什么作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、concept怎么使用"><span class="nav-number">3.</span> <span class="nav-text">三、concept怎么使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-定义基本的concept"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 定义基本的concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-在函数模板中使用concept约束"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 在函数模板中使用concept约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-在类模板中使用concept约束"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 在类模板中使用concept约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-concept的组合使用"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 concept的组合使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-在requires表达式中检查可变参数模板"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 在requires表达式中检查可变参数模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-使用concept选择函数重载"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 使用concept选择函数重载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、concept有哪些使用场景"><span class="nav-number">4.</span> <span class="nav-text">四、concept有哪些使用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、concept与SFINAE之间的等效替代方式与优势"><span class="nav-number">5.</span> <span class="nav-text">五、concept与SFINAE之间的等效替代方式与优势</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-SFINAE的基本机制"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 SFINAE的基本机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-使用concept替代SFINAE"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 使用concept替代SFINAE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-concept相比SFINAE的优势"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 concept相比SFINAE的优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-渐进式的迁移策略"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 渐进式的迁移策略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、如何避免滥用concept"><span class="nav-number">6.</span> <span class="nav-text">六、如何避免滥用concept</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、concept相关标准库"><span class="nav-number">7.</span> <span class="nav-text">七、concept相关标准库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-基础类型concept"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 基础类型concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-类型分类concept"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 类型分类concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-类型特性concept"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 类型特性concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-可调用概念"><span class="nav-number">7.4.</span> <span class="nav-text">7.4 可调用概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-5-比较概念"><span class="nav-number">7.5.</span> <span class="nav-text">7.5 比较概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-6-对象概念"><span class="nav-number">7.6.</span> <span class="nav-text">7.6 对象概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-7-自定义标准concept"><span class="nav-number">7.7.</span> <span class="nav-text">7.7 自定义标准concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-8-使用标准库concept的完整示例"><span class="nav-number">7.8.</span> <span class="nav-text">7.8 使用标准库concept的完整示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八、concept相关的设计模式"><span class="nav-number">8.</span> <span class="nav-text">八、concept相关的设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-策略模式的概念化实现"><span class="nav-number">8.1.</span> <span class="nav-text">8.1 策略模式的概念化实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-模板方法模式的概念化实现"><span class="nav-number">8.2.</span> <span class="nav-text">8.2 模板方法模式的概念化实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-访问者模式的概念化实现"><span class="nav-number">8.3.</span> <span class="nav-text">8.3 访问者模式的概念化实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-工厂模式的概念化实现"><span class="nav-number">8.4.</span> <span class="nav-text">8.4 工厂模式的概念化实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-装饰器模式的概念化实现"><span class="nav-number">8.5.</span> <span class="nav-text">8.5 装饰器模式的概念化实现</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="逗神大人"
+    src="/assets/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">逗神大人</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/oyoungs" title="GitHub &rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/3497551915" title="微博 &rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">逗神大人</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="/js/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '500px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

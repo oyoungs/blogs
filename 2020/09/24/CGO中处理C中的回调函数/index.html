@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="mask-icon" href="/images/douxuetang-favicon.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -50,15 +50,18 @@
   };
 </script>
 
-  <meta name="description" content="CGO中处理C中的回调函数假设有以下 C语言的接口api.h1234567891011121314151617#ifndef API_H#define API_H#ifdef __cplusplusextern &quot;C&quot; &amp;#123;#endiftypedef void (*IntCallback)(void *, int);void SetIntCallback(IntCallback cb, v">
-<meta name="keywords" content="CGO,Golang">
+  <meta name="description" content="CGO中处理C中的回调函数假设有以下 C语言的接口api.h 1234567891011121314151617#ifndef API_H#define API_H#ifdef __cplusplusextern &quot;C&quot; {#endiftypedef void (*IntCallback)(void *, int);void SetIntCallback(IntCallback cb, void">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CGO中处理C中的回调函数">
-<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;2020&#x2F;09&#x2F;24&#x2F;CGO%E4%B8%AD%E5%A4%84%E7%90%86C%E4%B8%AD%E7%9A%84%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0&#x2F;index.html">
+<meta property="og:url" content="http://oyoung.cc/blogs/2020/09/24/CGO%E4%B8%AD%E5%A4%84%E7%90%86C%E4%B8%AD%E7%9A%84%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="逗神大人的个人小站">
-<meta property="og:description" content="CGO中处理C中的回调函数假设有以下 C语言的接口api.h1234567891011121314151617#ifndef API_H#define API_H#ifdef __cplusplusextern &quot;C&quot; &amp;#123;#endiftypedef void (*IntCallback)(void *, int);void SetIntCallback(IntCallback cb, v">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-09-24T08:44:47.522Z">
+<meta property="og:description" content="CGO中处理C中的回调函数假设有以下 C语言的接口api.h 1234567891011121314151617#ifndef API_H#define API_H#ifdef __cplusplusextern &quot;C&quot; {#endiftypedef void (*IntCallback)(void *, int);void SetIntCallback(IntCallback cb, void">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-24T08:43:39.000Z">
+<meta property="article:modified_time" content="2025-06-12T11:35:07.419Z">
+<meta property="article:author" content="逗神大人">
+<meta property="article:tag" content="CGO">
+<meta property="article:tag" content="Golang">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://oyoung.cc/blogs/2020/09/24/CGO%E4%B8%AD%E5%A4%84%E7%90%86C%E4%B8%AD%E7%9A%84%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/">
@@ -116,7 +119,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -125,6 +128,9 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+      <a>
+        <img class="custom-logo-image" src="/images/douxuetang-logo.svg" alt="逗神大人的个人小站">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -147,12 +153,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">36</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -213,10 +219,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-09-24 16:43:39 / 修改时间：16:44:47" itemprop="dateCreated datePublished" datetime="2020-09-24T16:43:39+08:00">2020-09-24</time>
+              <time title="创建时间：2020-09-24 16:43:39" itemprop="dateCreated datePublished" datetime="2020-09-24T16:43:39+08:00">2020-09-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -250,8 +262,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="CGO中处理C中的回调函数"><a href="#CGO中处理C中的回调函数" class="headerlink" title="CGO中处理C中的回调函数"></a>CGO中处理C中的回调函数</h1><h2 id="假设有以下-C语言的接口"><a href="#假设有以下-C语言的接口" class="headerlink" title="假设有以下 C语言的接口"></a>假设有以下 C语言的接口</h2><p>api.h</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> API_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> API_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*IntCallback)</span><span class="params">(<span class="keyword">void</span> *, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SetIntCallback</span><span class="params">(IntCallback cb, <span class="keyword">void</span> *data)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DoIntCallback</span><span class="params">(<span class="keyword">int</span> value)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure><a id="more"></a>
-
+        <html><head></head><body></body></html><html><head></head><body><h1 id="CGO中处理C中的回调函数"><a href="#CGO中处理C中的回调函数" class="headerlink" title="CGO中处理C中的回调函数"></a>CGO中处理C中的回调函数</h1><h2 id="假设有以下-C语言的接口"><a href="#假设有以下-C语言的接口" class="headerlink" title="假设有以下 C语言的接口"></a>假设有以下 C语言的接口</h2><p>api.h</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> API_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> API_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> {</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*IntCallback)</span><span class="params">(<span class="keyword">void</span> *, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SetIntCallback</span><span class="params">(IntCallback cb, <span class="keyword">void</span> *data)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DoIntCallback</span><span class="params">(<span class="keyword">int</span> value)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">}</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>此时如果我们想要通过CGO来将上述的两个(尤其是设置回调函数的<code>SetIntCallback</code>)导入到<code>golang</code>中来使用，该怎么做呢？</p>
 <h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><ul>
@@ -262,20 +274,20 @@
 <li><code>C语言</code>中的 <code>void *</code>和 <code>Go</code>中的<code>unsafe.Pointer</code>对应</li>
 <li><code>C语言</code>中的函数和 <code>Go</code>中的函数可以通过 <code>//export NAME</code>的方式来建立对应关系</li>
 </ul>
-<h2 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h2><h3 id="1-先在CGO中声明一下回调函数需要用到的C函数"><a href="#1-先在CGO中声明一下回调函数需要用到的C函数" class="headerlink" title="1. 先在CGO中声明一下回调函数需要用到的C函数"></a>1. 先在<code>CGO</code>中声明一下回调函数需要用到的<code>C函数</code></h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">#include "api.h"</span></span><br><span class="line"><span class="comment">extern void cgoCall(void *, int); // 这里与api.h中的IntCallback保持类型一致</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br></pre></td></tr></table></figure>
+<h2 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h2><h3 id="1-先在CGO中声明一下回调函数需要用到的C函数"><a href="#1-先在CGO中声明一下回调函数需要用到的C函数" class="headerlink" title="1. 先在CGO中声明一下回调函数需要用到的C函数"></a>1. 先在<code>CGO</code>中声明一下回调函数需要用到的<code>C函数</code></h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">#include "api.h"</span></span><br><span class="line"><span class="comment">extern void cgoCall(void *, int); // 这里与api.h中的IntCallback保持类型一致</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="2-在Golang中通过-export方式实现上述的C函数"><a href="#2-在Golang中通过-export方式实现上述的C函数" class="headerlink" title="2. 在Golang中通过 //export方式实现上述的C函数"></a>2. 在<code>Golang</code>中通过 <code>//export</code>方式实现上述的<code>C函数</code></h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处省略上述重复代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//export cgoCall</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">cgoCall</span><span class="params">(p unsafe.Pointer, number C.<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="comment">// <span class="doctag">TODO:</span> 这里先留空，我们还没确定传进来的 p是什么具体类型</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-在Golang中通过-export方式实现上述的C函数"><a href="#2-在Golang中通过-export方式实现上述的C函数" class="headerlink" title="2. 在Golang中通过 //export方式实现上述的C函数"></a>2. 在<code>Golang</code>中通过 <code>//export</code>方式实现上述的<code>C函数</code></h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处省略上述重复代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//export cgoCall</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">cgoCall</span><span class="params">(p unsafe.Pointer, number C.<span class="keyword">int</span>)</span></span> {</span><br><span class="line">	<span class="comment">// <span class="doctag">TODO:</span> 这里先留空，我们还没确定传进来的 p是什么具体类型</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="3-在Golang中定义一个interface来接收上面的函数里的C-int类型的参数"><a href="#3-在Golang中定义一个interface来接收上面的函数里的C-int类型的参数" class="headerlink" title="3. 在Golang中定义一个interface来接收上面的函数里的C.int类型的参数"></a>3. 在<code>Golang</code>中定义一个<code>interface</code>来接收上面的函数里的<code>C.int</code>类型的参数</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处省略上述重复代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Caller <span class="keyword">interface</span> &#123;</span><br><span class="line">	Call(<span class="keyword">int</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-在Golang中定义一个interface来接收上面的函数里的C-int类型的参数"><a href="#3-在Golang中定义一个interface来接收上面的函数里的C-int类型的参数" class="headerlink" title="3. 在Golang中定义一个interface来接收上面的函数里的C.int类型的参数"></a>3. 在<code>Golang</code>中定义一个<code>interface</code>来接收上面的函数里的<code>C.int</code>类型的参数</h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处省略上述重复代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Caller <span class="keyword">interface</span> {</span><br><span class="line">	Call(<span class="keyword">int</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>此时我们可以将<code>Caller类型</code>作为<code>步骤2</code>中的p传进去作为参数了</p>
-<h3 id="4-在完善一下步骤2中的cgoCall"><a href="#4-在完善一下步骤2中的cgoCall" class="headerlink" title="4. 在完善一下步骤2中的cgoCall"></a>4. 在完善一下<code>步骤2</code>中的<code>cgoCall</code></h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处省略上述重复代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//export cgoCall</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">cgoCall</span><span class="params">(p unsafe.Pointer, number C.<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	caller := *(*Caller)(p)</span><br><span class="line">	caller.Call(<span class="keyword">int</span>(number))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-在完善一下步骤2中的cgoCall"><a href="#4-在完善一下步骤2中的cgoCall" class="headerlink" title="4. 在完善一下步骤2中的cgoCall"></a>4. 在完善一下<code>步骤2</code>中的<code>cgoCall</code></h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处省略上述重复代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//export cgoCall</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">cgoCall</span><span class="params">(p unsafe.Pointer, number C.<span class="keyword">int</span>)</span></span> {</span><br><span class="line">	caller := *(*Caller)(p)</span><br><span class="line">	caller.Call(<span class="keyword">int</span>(number))</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>说明:<br>我们在这里将<code>p</code>参数转化为 一个 <code>Caller</code>的<code>interface</code>类型，再调用 <code>Caller</code>类型的<code>Call(int)</code>函数。表明我们在调用 <code>C语言</code>中的<code>SetIntCallback</code>时， <code>data</code>参数给的是一个 <code>Caller</code>类型的指针</p>
-<h3 id="5-定义一个具体的类型实现-Caller接口测试一下"><a href="#5-定义一个具体的类型实现-Caller接口测试一下" class="headerlink" title="5. 定义一个具体的类型实现 Caller接口测试一下"></a>5. 定义一个具体的类型实现 Caller接口测试一下</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处省略上述重复代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> OneCaller <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"><span class="keyword">type</span> AnotherCaller <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(o OneCaller)</span> <span class="title">Call</span><span class="params">(value <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="built_in">println</span>(<span class="string">"one:"</span>, value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(o AnotherCaller)</span> <span class="title">Call</span><span class="params">(value <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="built_in">println</span>(<span class="string">"another:"</span>, value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SetCallback</span><span class="params">(caller Caller)</span></span> &#123;</span><br><span class="line">	C.SetIntCallback(C.IntCallback(C.cgoCall), unsafe.Pointer(&amp;caller))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DoCallback</span><span class="params">(value <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	C.DoIntCallback(C.<span class="keyword">int</span>(value))</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	one := OneCaller &#123;&#125;</span><br><span class="line"></span><br><span class="line">	SetCallback(one)	</span><br><span class="line">	DoCallback(<span class="number">1234</span>)</span><br><span class="line">	another := AnotherCaller &#123;&#125;</span><br><span class="line">	</span><br><span class="line">	SetCallback(another)	</span><br><span class="line">	DoCallback(<span class="number">5678</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-定义一个具体的类型实现-Caller接口测试一下"><a href="#5-定义一个具体的类型实现-Caller接口测试一下" class="headerlink" title="5. 定义一个具体的类型实现 Caller接口测试一下"></a>5. 定义一个具体的类型实现 Caller接口测试一下</h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处省略上述重复代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> OneCaller <span class="keyword">struct</span> {}</span><br><span class="line"><span class="keyword">type</span> AnotherCaller <span class="keyword">struct</span> {}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(o OneCaller)</span> <span class="title">Call</span><span class="params">(value <span class="keyword">int</span>)</span></span> {</span><br><span class="line">	<span class="built_in">println</span>(<span class="string">"one:"</span>, value)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(o AnotherCaller)</span> <span class="title">Call</span><span class="params">(value <span class="keyword">int</span>)</span></span> {</span><br><span class="line">	<span class="built_in">println</span>(<span class="string">"another:"</span>, value)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SetCallback</span><span class="params">(caller Caller)</span></span> {</span><br><span class="line">	C.SetIntCallback(C.IntCallback(C.cgoCall), unsafe.Pointer(&amp;caller))</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DoCallback</span><span class="params">(value <span class="keyword">int</span>)</span></span> {</span><br><span class="line">	C.DoIntCallback(C.<span class="keyword">int</span>(value))</span><br><span class="line">} </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> {</span><br><span class="line">	one := OneCaller {}</span><br><span class="line"></span><br><span class="line">	SetCallback(one)	</span><br><span class="line">	DoCallback(<span class="number">1234</span>)</span><br><span class="line">	another := AnotherCaller {}</span><br><span class="line">	</span><br><span class="line">	SetCallback(another)	</span><br><span class="line">	DoCallback(<span class="number">5678</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>完整的运行测试一下， 发现可以输出：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">one: 1234</span><br><span class="line">another: 5678</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">one: 1234</span><br><span class="line">another: 5678</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>为了使用<code>C语言</code>中的回调函数, 我们使用到了以下技术来实现</p>
 <ul>
@@ -283,7 +295,7 @@
 <li>//export XXX: 在<code>GO</code> 中实现 <code>C语言</code>中声明的函数</li>
 <li>通过<code>interface</code>技术将 <code>C语言</code>中的回调函数类型绑定实现了<code>多态</code>或<code>泛型</code></li>
 </ul>
-
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
     </div>
 
     
@@ -388,7 +400,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CGO中处理C中的回调函数"><span class="nav-number">1.</span> <span class="nav-text">CGO中处理C中的回调函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#假设有以下-C语言的接口"><span class="nav-number">1.1.</span> <span class="nav-text">假设有以下 C语言的接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考"><span class="nav-number">1.2.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考结果如下"><span class="nav-number">1.3.</span> <span class="nav-text">思考结果如下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际操作"><span class="nav-number">1.4.</span> <span class="nav-text">实际操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-先在CGO中声明一下回调函数需要用到的C函数"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 先在CGO中声明一下回调函数需要用到的C函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在Golang中通过-export方式实现上述的C函数"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. 在Golang中通过 //export方式实现上述的C函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在Golang中定义一个interface来接收上面的函数里的C-int类型的参数"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. 在Golang中定义一个interface来接收上面的函数里的C.int类型的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-在完善一下步骤2中的cgoCall"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. 在完善一下步骤2中的cgoCall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-定义一个具体的类型实现-Caller接口测试一下"><span class="nav-number">1.4.5.</span> <span class="nav-text">5. 定义一个具体的类型实现 Caller接口测试一下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CGO中处理C中的回调函数"><span class="nav-number">1.</span> <span class="nav-text">CGO中处理C中的回调函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#假设有以下-C语言的接口"><span class="nav-number">1.1.</span> <span class="nav-text">假设有以下 C语言的接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考"><span class="nav-number">1.2.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考结果如下"><span class="nav-number">1.3.</span> <span class="nav-text">思考结果如下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际操作"><span class="nav-number">1.4.</span> <span class="nav-text">实际操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-先在CGO中声明一下回调函数需要用到的C函数"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 先在CGO中声明一下回调函数需要用到的C函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在Golang中通过-export方式实现上述的C函数"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. 在Golang中通过 &#x2F;&#x2F;export方式实现上述的C函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在Golang中定义一个interface来接收上面的函数里的C-int类型的参数"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. 在Golang中定义一个interface来接收上面的函数里的C.int类型的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-在完善一下步骤2中的cgoCall"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. 在完善一下步骤2中的cgoCall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-定义一个具体的类型实现-Caller接口测试一下"><span class="nav-number">1.4.5.</span> <span class="nav-text">5. 定义一个具体的类型实现 Caller接口测试一下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -404,25 +416,29 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+        <a href="https://github.com/oyoungs" title="GitHub &rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+        <a href="https://weibo.com/u/3497551915" title="微博 &rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -452,7 +468,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -501,9 +517,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
   <script defer src="/lib/three/three.min.js"></script>
     <script defer src="/lib/three/canvas_lines.min.js"></script>

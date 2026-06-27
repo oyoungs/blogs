@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逗学堂 Logo Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'STKaiti', 'KaiTi', 'SimKai', serif;
+            background: linear-gradient(135deg, #faf8f5 0%, #f0ebe3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a1a2e;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .logo-section h2 {
+            color: #5c4a32;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8dcc8;
+        }
+
+        .logo-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: linear-gradient(180deg, #faf8f5 0%, #f0ebe3 100%);
+            border-radius: 8px;
+            border: 1px solid #e8dcc8;
+        }
+
+        .logo-display img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .dark-bg {
+            background: linear-gradient(180deg, #1a1a2e 0%, #2d2d44 100%) !important;
+        }
+
+        .sizes {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .size-item {
+            text-align: center;
+        }
+
+        .size-item img {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .size-label {
+            margin-top: 8px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .color-variants {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .color-variant {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .color-variant img {
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .color-name {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .info-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .info-section h2 {
+            color: #5c4a32;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8dcc8;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            padding: 15px;
+            background: #faf8f5;
+            border-radius: 8px;
+            border: 1px solid #e8dcc8;
+        }
+
+        .info-item dt {
+            font-weight: bold;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+
+        .info-item dd {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .usage-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .usage-section h2 {
+            color: #5c4a32;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8dcc8;
+        }
+
+        .code-block {
+            background: #2d2d44;
+            color: #f0ebe3;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .code-block .comment {
+            color: #8b7355;
+        }
+
+        .code-block .tag {
+            color: #b8833b;
+        }
+
+        .code-block .attr {
+            color: #6b9dc2;
+        }
+
+        .code-block .value {
+            color: #c9a86c;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #5c4a32;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #8b7355;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 逗学堂 Logo Design</h1>
+
+        <div class="logo-section">
+            <h2>📐 主 Logo</h2>
+            <div class="logo-display">
+                <img src="douxuetang-logo.svg" alt="逗学堂 Logo" width="300">
+            </div>
+        </div>
+
+        <div class="logo-section">
+            <h2>🎨 深色背景版本</h2>
+            <div class="logo-display dark-bg">
+                <img src="douxuetang-logo.svg" alt="逗学堂 Logo 深色版" width="300">
+            </div>
+        </div>
+
+        <div class="logo-section">
+            <h2>📏 不同尺寸</h2>
+            <div class="sizes">
+                <div class="size-item">
+                    <img src="douxuetang-logo.svg" alt="64px" width="64" height="64">
+                    <div class="size-label">64×64</div>
+                </div>
+                <div class="size-item">
+                    <img src="douxuetang-logo.svg" alt="128px" width="128" height="128">
+                    <div class="size-label">128×128</div>
+                </div>
+                <div class="size-item">
+                    <img src="douxuetang-logo.svg" alt="200px" width="200" height="200">
+                    <div class="size-label">200×200</div>
+                </div>
+                <div class="size-item">
+                    <img src="douxuetang-logo.svg" alt="300px" width="300" height="300">
+                    <div class="size-label">300×300</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="logo-section">
+            <h2>🔖 配色方案</h2>
+            <div class="color-variants">
+                <div class="color-variant">
+                    <img src="douxuetang-logo.svg" alt="默认配色" width="120">
+                    <span class="color-name">默认配色</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>📋 设计说明</h2>
+            <dl class="info-grid">
+                <div class="info-item">
+                    <dt>设计风格</dt>
+                    <dd>书卷气、古典文学气质、传统与现代结合</dd>
+                </div>
+                <div class="info-item">
+                    <dt>字体选择</dt>
+                    <dd>楷体（STKaiTi/KaiTi）—— 传统书法韵味</dd>
+                </div>
+                <div class="info-item">
+                    <dt>主色调</dt>
+                    <dd>墨色 #1a1a2e（深邃稳重）<br>朱砂红 #b83b3b（印章点缀）</dd>
+                </div>
+                <div class="info-item">
+                    <dt>设计元素</dt>
+                    <dd>书卷轴边框、篆刻印章、古典纹理</dd>
+                </div>
+                <div class="info-item">
+                    <dt>适用场景</dt>
+                    <dd>网站Logo、页头图标、社交媒体头像</dd>
+                </div>
+                <div class="info-item">
+                    <dt>文件格式</dt>
+                    <dd>SVG（可缩放矢量）<br>支持任意尺寸无损缩放</dd>
+                </div>
+            </dl>
+        </div>
+
+        <div class="usage-section">
+            <h2>💻 使用方式</h2>
+
+            <h3 style="color: #5c4a32; margin: 20px 0 15px; font-size: 1rem;">Hexo NexT 主题</h3>
+            <div class="code-block">
+<span class="comment"># 在 _config.yml 中配置</span>
+<span class="tag">title</span>: <span class="value">逗学堂</span>
+<span class="tag">subtitle</span>: <span class="value">"有趣的学"</span>
+<span class="tag">logo</span>: <span class="value">/images/douxuetang-logo.svg</span>
+            </div>
+
+            <h3 style="color: #5c4a32; margin: 20px 0 15px; font-size: 1rem;">HTML/Markdown</h3>
+            <div class="code-block">
+<span class="comment">&lt;!-- HTML 使用方式 --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"/images/douxuetang-logo.svg"</span> 
+     <span class="attr">alt</span>=<span class="value">"逗学堂"</span> 
+     <span class="attr">width</span>=<span class="value">"200"</span><span class="tag">/&gt;</span>
+
+<span class="comment"># Markdown 使用方式</span>
+<span class="tag">![逗学堂](/images/douxuetang-logo.svg)</span>
+            </div>
+
+            <h3 style="color: #5c4a32; margin: 20px 0 15px; font-size: 1rem;">CSS 背景</h3>
+            <div class="code-block">
+<span class="tag">.logo</span> {
+    <span class="attr">background</span>: <span class="value">url('/images/douxuetang-logo.svg') no-repeat center;</span>
+    <span class="attr">background-size</span>: <span class="value">contain;</span>
+}
+            </div>
+        </div>
+
+        <a href="/" class="back-link">← 返回首页</a>
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="mask-icon" href="/images/douxuetang-favicon.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -52,9 +52,10 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="逗神大人的个人小站">
-<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;page&#x2F;7&#x2F;index.html">
+<meta property="og:url" content="http://oyoung.cc/blogs/page/7/index.html">
 <meta property="og:site_name" content="逗神大人的个人小站">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="逗神大人">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://oyoung.cc/blogs/page/7/">
@@ -112,7 +113,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -121,6 +122,9 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+      <a>
+        <img class="custom-logo-image" src="/images/douxuetang-logo.svg" alt="逗神大人的个人小站">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -143,12 +147,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">36</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -187,6 +191,320 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2017/07/31/170731105358/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/07/31/170731105358/" class="post-title-link" itemprop="url">macOS下搭建openGL开发环境</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-07-31 10:53:58" itemprop="dateCreated datePublished" datetime="2017-07-31T10:53:58+08:00">2017-07-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>889</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <html><head></head><body></body></html><html><head></head><body><p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/76422589" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/76422589</a></p>
+<h2 id="1-下载并安装GLFW"><a href="#1-下载并安装GLFW" class="headerlink" title="1. 下载并安装GLFW"></a>1. 下载并安装GLFW</h2><p>这里给个官网链接: <a href="http://www.glfw.org/download.html" target="_blank" rel="noopener">http://www.glfw.org/download.html</a><br>打开该页面后， 点击Source Package后会启动下载，下载完成后解压到你自己指定的目录<br>，比如笔者的解压路径为: ~/Downloads/glfw-3.2.1<br>打开终端，执行以下命令:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~$ <span class="built_in">cd</span> ~/Downloads/glfw-3.2.1</span><br><span class="line">~$ cmake -Bbuild -H. -DCMAKE_INSTALL_PREFIX=/usr/<span class="built_in">local</span> </span><br><span class="line">~$ sudo cmake --build build --target install</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="2-下载安装GLEW"><a href="#2-下载安装GLEW" class="headerlink" title="2. 下载安装GLEW"></a>2. 下载安装GLEW</h2><p>下载链接: <a href="http://glew.sourceforge.net/index.html" target="_blank" rel="noopener">http://glew.sourceforge.net/index.html</a><br>打开页面，点击Source后面的ZIP 或者TGZ, 下载源码压缩包并解压<br>比如笔者解压目录为: ~/Downloads/glew-2.0.0<br>继续在终端中执行以下命令</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~$ <span class="built_in">cd</span> ~/Downloads/glew-2.0.0</span><br><span class="line">~$ make GLEW_DEST=/usr/<span class="built_in">local</span> -j4</span><br><span class="line">~$ sudo make install</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="3-使用Xcode新建C-Command-Line项目-并在项目的Build-Setting中设置User-Header-Search-Paths-添加一个-usr-local-include-和Library-Search-Paths-添加一个-usr-local-lib"><a href="#3-使用Xcode新建C-Command-Line项目-并在项目的Build-Setting中设置User-Header-Search-Paths-添加一个-usr-local-include-和Library-Search-Paths-添加一个-usr-local-lib" class="headerlink" title="3. 使用Xcode新建C++ Command Line项目,并在项目的Build Setting中设置User Header Search Paths(添加一个/usr/local/include)和Library Search Paths(添加一个/usr/local/lib)"></a>3. 使用Xcode新建C++ Command Line项目,并在项目的Build Setting中设置User Header Search Paths(添加一个/usr/local/include)和Library Search Paths(添加一个/usr/local/lib)</h2><h2 id="4-在Build-Phases的Link-Library-With-Libraries里面添加依赖库"><a href="#4-在Build-Phases的Link-Library-With-Libraries里面添加依赖库" class="headerlink" title="4. 在Build Phases的Link Library With Libraries里面添加依赖库"></a>4. 在Build Phases的Link Library With Libraries里面添加依赖库</h2><p>其中以下的依赖库为必需的:</p>
+<pre><code>IOKit.framework
+CoreVideo.framework
+Cocoa.framework
+OpenGL.framework
+libglfw3.a
+libGLEW.a</code></pre><h3 id="5-在main函数中调用glfwInit-编译，看是否报错，-没有报错则表示所需要的库都已经引入-安装环境就搭建好了，接下来你就可以尽情享受openGL带来的乐趣了"><a href="#5-在main函数中调用glfwInit-编译，看是否报错，-没有报错则表示所需要的库都已经引入-安装环境就搭建好了，接下来你就可以尽情享受openGL带来的乐趣了" class="headerlink" title="5. 在main函数中调用glfwInit(); 编译，看是否报错， 没有报错则表示所需要的库都已经引入,安装环境就搭建好了，接下来你就可以尽情享受openGL带来的乐趣了"></a>5. 在main函数中调用glfwInit(); 编译，看是否报错， 没有报错则表示所需要的库都已经引入,安装环境就搭建好了，接下来你就可以尽情享受openGL带来的乐趣了</h3><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2017/01/20/170120143234/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/01/20/170120143234/" class="post-title-link" itemprop="url">C#调用C/C++的dll须知</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-20 14:32:34" itemprop="dateCreated datePublished" datetime="2017-01-20T14:32:34+08:00">2017-01-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <html><head></head><body></body></html><html><head></head><body><p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/54631165" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/54631165</a></p>
+<h2 id="1-C-类型与C-C-类型的对应关系"><a href="#1-C-类型与C-C-类型的对应关系" class="headerlink" title="1. C#类型与C/C++类型的对应关系"></a>1. C#类型与C/C++类型的对应关系</h2><h3 id="基本数据类型-C-lt-—-gt-C-C"><a href="#基本数据类型-C-lt-—-gt-C-C" class="headerlink" title="基本数据类型(C# <—> C/C++)"></a>基本数据类型(C# &lt;—&gt; C/C++)</h3><ul>
+<li>System.Int32,int &lt;—&gt; int, long</li>
+<li>System.Int64,int64 &lt;—&gt; long long, __int64</li>
+<li>System.Char, char &lt;—&gt; char, byte, unsigned char</li>
+<li>System.Int16, short &lt;—&gt; short</li>
+<li>System.UInt32, uint &lt;—&gt; unsigned int, unsigned long</li>
+<li>System.UInt16, ushort &lt;—&gt; unsigned short, DWORD</li>
+<li>System.String, string &lt;—&gt; char[], char *, const char *</li>
+<li>System.IntPtr &lt;—&gt; void *, [Type]* </li>
+<li>Sytem.Boolean, bool &lt;—&gt; bool, BOOL</li>
+</ul>
+<h2 id="2-C-C-函数参数类型与C-类型对应关系"><a href="#2-C-C-函数参数类型与C-类型对应关系" class="headerlink" title="2.C/C++函数参数类型与C#类型对应关系"></a>2.C/C++函数参数类型与C#类型对应关系</h2><pre><code>① 基本的数据类型对应关系与1相同，但是也有一些不一样的地方
+② const char * 一般作为输入参数， C#直接使用string类型即可(StringBuilder也可以)
+③ char *作为输入参数的时候， C#需要使用ref string类型或者StringBuilder类型
+④ 结构体指针做输入参数的时候， C#一般使用ref + 对应的结构体类型</code></pre><h2 id="3-C-C-结构体与C-结构体的成员类型对应关系"><a href="#3-C-C-结构体与C-结构体的成员类型对应关系" class="headerlink" title="3. C/C++结构体与C#结构体的成员类型对应关系"></a>3. C/C++结构体与C#结构体的成员类型对应关系</h2><h3 id="A-如果C-C-结构体成员类型是基本数据类型，-C-中对应的结构体成员类型使用1中的对应关系即可，-如"><a href="#A-如果C-C-结构体成员类型是基本数据类型，-C-中对应的结构体成员类型使用1中的对应关系即可，-如" class="headerlink" title="A. 如果C/C++结构体成员类型是基本数据类型， C#中对应的结构体成员类型使用1中的对应关系即可， 如:"></a>A. 如果C/C++结构体成员类型是基本数据类型， C#中对应的结构体成员类型使用1中的对应关系即可， 如:</h3><p>C/C++代码</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Some</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">	<span class="keyword">int</span> number;</span><br><span class="line">	<span class="keyword">char</span> character;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">32</span>];	</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>C#代码</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Some</span><br><span class="line">{</span><br><span class="line">	<span class="keyword">int</span> number;</span><br><span class="line">	<span class="keyword">char</span> charactor;</span><br><span class="line">	[<span class="meta">MarshalAs(UnmanagedType.ByValTStr, SizeConst=32)</span>]</span><br><span class="line">	<span class="keyword">string</span> name;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="B-如果C-C-的结构体成员中包含的成员仍然是结构体-单个，非数组-则对应的C-结构体只需要同样包含结构体，-如："><a href="#B-如果C-C-的结构体成员中包含的成员仍然是结构体-单个，非数组-则对应的C-结构体只需要同样包含结构体，-如：" class="headerlink" title="B. 如果C/C++的结构体成员中包含的成员仍然是结构体(单个，非数组), 则对应的C#结构体只需要同样包含结构体， 如："></a>B. 如果C/C++的结构体成员中包含的成员仍然是结构体(单个，非数组), 则对应的C#结构体只需要同样包含结构体， 如：</h3><p>C/C++代码</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">	<span class="keyword">int</span> number;</span><br><span class="line">};</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">A</span> <span class="title">a</span>;</span></span><br><span class="line">	<span class="keyword">int</span> otherNumber;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>对应的C#代码</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> A</span><br><span class="line">{</span><br><span class="line">	 <span class="keyword">public</span> <span class="keyword">int</span> number;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> B</span><br><span class="line">{</span><br><span class="line">	<span class="keyword">public</span> A a;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> otherNumber;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="C-如果C-C-结构体成员中包含数组-长度固定-，则C-结构体中也使用数组对应的类型，-如："><a href="#C-如果C-C-结构体成员中包含数组-长度固定-，则C-结构体中也使用数组对应的类型，-如：" class="headerlink" title="C. 如果C/C++结构体成员中包含数组(长度固定)，则C#结构体中也使用数组对应的类型， 如："></a>C. 如果C/C++结构体成员中包含数组(长度固定)，则C#结构体中也使用数组对应的类型， 如：</h3><p>C/C++代码<br> </p><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">	<span class="keyword">int</span> number;</span><br><span class="line">};</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> </span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">	<span class="keyword">int</span> numbers[<span class="number">10</span>];</span><br><span class="line"> 	<span class="class"><span class="keyword">struct</span> <span class="title">A</span> <span class="title">alist</span>[5];</span></span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure><br>对应的C#代码<p></p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> A </span><br><span class="line">{</span><br><span class="line">	<span class="keyword">int</span> number;</span><br><span class="line">}</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> B</span><br><span class="line">{</span><br><span class="line">	[<span class="meta">MarshalAs(UnmanagedType.ByValArray, SizeConst=10, ArraySubType=UnmanagedType.SysInt)</span>]	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span>[] numbers;</span><br><span class="line">	[<span class="meta">MarshalAs(UnmanagedType.ByValArray, SizeConst=10, ArraySubType=UnmanagedType.Struct)</span>]</span><br><span class="line">	<span class="keyword">public</span> A[] alist;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="D-如果C-C-的结构体成员中包含另一个结构体的指针，C-对应的结构体中一律使用IntPtr类型，-如："><a href="#D-如果C-C-的结构体成员中包含另一个结构体的指针，C-对应的结构体中一律使用IntPtr类型，-如：" class="headerlink" title="D. 如果C/C++的结构体成员中包含另一个结构体的指针，C#对应的结构体中一律使用IntPtr类型， 如："></a>D. 如果C/C++的结构体成员中包含另一个结构体的指针，C#对应的结构体中一律使用IntPtr类型， 如：</h3><p>C/C++代码</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">	<span class="keyword">int</span> number;</span><br><span class="line">};</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">	<span class="keyword">int</span> tag;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">A</span> *<span class="title">pA</span>;</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>对应的C#代码</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> A</span><br><span class="line">{</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> number;</span><br><span class="line">}</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> B</span><br><span class="line">{</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> tag;</span><br><span class="line">	<span class="keyword">public</span> IntPtr pA;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p> 然后在使用的时候需要用到Marshal类的StructureToPtr和PtrToStructure方法进行转换<br>转换方法如下：<br>（1）结构体转换成IntPtr</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A a = <span class="keyword">new</span> A();</span><br><span class="line">B b = <span class="keyword">new</span> B();</span><br><span class="line">IntPtr pA= Marshal.AllocHGlobal(Marshal.SizeOf(a));</span><br><span class="line">Marshal.StructureToPtr(a, pA, <span class="literal">false</span>);</span><br><span class="line">b.pA = pA;</span><br></pre></td></tr></tbody></table></figure>
+<p>（2）IntPtr 转换成结构体</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">B b = <span class="keyword">new</span> B();</span><br><span class="line"><span class="comment">//...省略中间的操作过程</span></span><br><span class="line">A aInB = (A)Marshal.PtrToStructure(b.pA, <span class="keyword">typeof</span>(A))</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">A aInB = <span class="keyword">new</span> A();</span><br><span class="line">Marshal.PtrToStructure(b.pA, aInB);</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="4-关于类型转换中的数组长度"><a href="#4-关于类型转换中的数组长度" class="headerlink" title="4. 关于类型转换中的数组长度"></a>4. 关于类型转换中的数组长度</h2><ul>
+<li><p>C/C++中，如果是char类型的数组（一般表示最大长度不超过某个数字的字符串），那么在进行参数传递的时候，如果C#中的string字符串字节数超过了C/C++中的最大字节数，则会发生截断， 如C/C++中， char name[3]; 但是在C#中却使用了string name = “Jack”,实际传到C/C++中， name中的内容为“Ja”,多余的部分没有填充进来</p>
+</li>
+<li><p>C/C++中使用的数组为定长数组，在参数传递过程中，如果C#中使用的数组长度比C/C++中数组长度短，则会发生System.ArgumentException异常，提示“未能封送类型，因为嵌入数组实例的长度与布局中声明的长度不匹配“(C#的string到C/C++的char 数组不会，但是C#char[]到C/C++的char数组会有此异常)，因此, 我们要定义相同长度的数组才能正常工作（C#数组长度更大的时候，会忽略多余的部分）</p>
+</li>
+</ul>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2017/01/18/170118150250/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/01/18/170118150250/" class="post-title-link" itemprop="url">从C到C++看面相对象(深入了解C++的成员函数)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-18 15:02:50" itemprop="dateCreated datePublished" datetime="2017-01-18T15:02:50+08:00">2017-01-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <html><head></head><body></body></html><html><head></head><body><p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/54601314" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/54601314</a></p>
+<p> 我们都知道C是一门面相过程的语言，在C的世界里是没有面相对象这个概念的，但是C语言为我们提供的神兵利器，仍旧可以让我们使用面相对象的思维方式<br>在C语言里，我们每做一个操作，都需要写一个函数，但是该函数都是过程化的，但是我们有两种神兵利器，一个叫指针，一个叫结构体<br>为什么这么说呢？<br>面相对象的最基本的功能就是对数据的封装，在C语言的世界里，我们有结构体这个法宝，同样可以将数据打包整整体，然后通过指针的方式，将结构体作为参数在函数中进行传递<br>举个例子</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> {</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">32</span>]; <span class="comment">//书名</span></span><br><span class="line">	<span class="keyword">char</span> author[<span class="number">32</span>]; <span class="comment">//作者名</span></span><br><span class="line">	<span class="keyword">int</span> total; <span class="comment">//总页数</span></span><br><span class="line">	<span class="keyword">int</span> price;<span class="comment">//价格</span></span><br><span class="line">};</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">Book</span>;</span></span><br><span class="line"><span class="comment">//初始化一本书</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">book_init</span><span class="params">(Book *book, <span class="keyword">const</span> <span class="keyword">char</span> *name, <span class="keyword">const</span> <span class="keyword">char</span> *author, <span class="keyword">int</span> total, <span class="keyword">int</span> price)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">strcpy</span>(book-&gt;name, name);</span><br><span class="line">	<span class="built_in">strcpy</span>(book-&gt;author, author);</span><br><span class="line">	book-&gt;total = total;</span><br><span class="line">	book-&gt;price = price;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">book_update_price</span><span class="params">(Book *book, <span class="keyword">int</span> newPrice)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	book-&gt;price = price;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>以上的例子很简单，初始化一本书以及更新书价，在使用的时候，我们只需要像以下方式调用</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Book book;</span><br><span class="line">book_init(&amp;book, <span class="string">"WPF 编程宝典"</span>, <span class="string">"Matthew MacDonald"</span>, <span class="number">934</span>, <span class="number">128</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">book_update_price(&amp;book, <span class="number">100</span>); <span class="comment">//降价</span></span><br></pre></td></tr></tbody></table></figure>
+<p>以上的这些使用的都是面相过程的思维。<br>所谓面向过程编程，就好比“让某某去做某事”，而面向对象呢，就好比“某某去做某事”。从字面意思来看，面向过程貌似多了个“高级领导”，而面向对象显得更自由。<br>###我们再变一下：</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">32</span>];</span><br><span class="line">	<span class="keyword">char</span> author[<span class="number">32</span>];</span><br><span class="line">	<span class="keyword">int</span> price;</span><br><span class="line">	<span class="keyword">void</span> (*init)(Book *book, <span class="keyword">const</span> <span class="keyword">char</span> *name, <span class="keyword">const</span> <span class="keyword">char</span> *author, <span class="keyword">int</span> price);</span><br><span class="line">	<span class="keyword">void</span> (*update_price)(Book *book, <span class="keyword">int</span> newPrice);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化一本书</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">book_init</span><span class="params">(Book *book, <span class="keyword">const</span> <span class="keyword">char</span> *name, <span class="keyword">const</span> <span class="keyword">char</span> *author, <span class="keyword">int</span> price)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">strcpy</span>(book-&gt;name, name);</span><br><span class="line">	<span class="built_in">strcpy</span>(book-&gt;author, author);</span><br><span class="line">	book-&gt;total = total;</span><br><span class="line">	book-&gt;price = price;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">book_update_price</span><span class="params">(Book *book, <span class="keyword">int</span> newPrice)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	book-&gt;price = price;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一本书</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">book_create</span><span class="params">(Book *book)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	book-&gt;init = book_init;</span><br><span class="line">	book-&gt;update_price = book_update_price;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>然后你就可以像以下一样使用了</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Book book;</span><br><span class="line">book_create(&amp;book);</span><br><span class="line"></span><br><span class="line">book.init(&amp;book, <span class="string">"WPF 编程宝典"</span>, <span class="string">"Matthew MacDonald"</span>, <span class="number">128</span>);</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">book.update_price(&amp;book, <span class="number">100</span>);</span><br></pre></td></tr></tbody></table></figure>
+<p>使用这种方式来调用，看起来有了一种“书做了某某事”的面向对象的错觉<br>###C++正是借鉴了这一点，从而产生了Class（类）<br>当我们定义一个class的时候，我们自己定义的成员函数就使用了我们上面的思想，参考如下代码</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span> {</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">32</span>];</span><br><span class="line">	<span class="keyword">char</span> author[<span class="number">32</span>;</span><br><span class="line">	<span class="keyword">int</span> price;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name, <span class="keyword">const</span> <span class="keyword">char</span> *author, <span class="keyword">int</span> price)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="built_in">strcpy</span>(<span class="keyword">this</span>-&gt;name, name);</span><br><span class="line">		<span class="built_in">strcpy</span>(<span class="keyword">this</span>-&gt;author, author);</span><br><span class="line">		<span class="keyword">this</span>-&gt;price = price;</span><br><span class="line">	}</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">updatePrice</span><span class="params">(<span class="keyword">int</span> price)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="keyword">this</span>-&gt;price = price;</span><br><span class="line">	}</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>我们是用起来显得更简单</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Book book;</span><br><span class="line">book.init(<span class="string">"WPF 编程宝典"</span>, <span class="string">"Matthew MacDonald"</span>, <span class="number">128</span>):</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">book.updatePrice(<span class="number">100</span>);</span><br></pre></td></tr></tbody></table></figure>
+<p>看起来与我们使用C语言模仿的面向对象是不是很像？<br>接下来我们注意到一个关键字this, 指的是调用函数的某个对象，谁调用了，this指的就是谁，上面的book调用init和updatePrice的时候，this指的就是book这个对象。</p>
+<p>我想你应该明白了，C++的面向对象，就是使用了我们的上述模拟面向对象的思维，然后C++自己将对象本身作为一个隐含的参数传递给了我们的成员函数，当然，这些并不包括C++面向对象中更强大的继承和多态。<br>到此我觉得你应该明白了C++成员函数与普通函数之间的区别以及其内部的原理。<br>再看下面代码</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Student(<span class="keyword">const</span> <span class="keyword">char</span> *name) { <span class="built_in">strcpy</span>(<span class="keyword">this</span>-&gt;name, name);}</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">makeTest</span><span class="params">()</span> </span>{ <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"我在考试"</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;}</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">appear</span><span class="params">()</span> </span>{ <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"My name is "</span>&lt;&lt;name&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">32</span>];</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>我们在看如下调用</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Student *pStu;</span><br><span class="line"></span><br><span class="line">pStu-&gt;makeTest(); <span class="comment">// ①</span></span><br><span class="line">pStu-&gt;appear(); <span class="comment">// ②</span></span><br></pre></td></tr></tbody></table></figure>
+<p>很多人都会想到，pStu是一个未初始化的变量，以上①②两种调用都会导致崩溃。再仔细想想看，真的是这样吗？<br>比较细心的同学会发现，在某些编译器上运行，我们却可以看到①调用后的打印信息，而运行②以后，程序崩溃掉了，我想细心的你应该知道这是什么原因了。<br>很简单，我们在①处调用的makeTest()函数，翻译成C语言的形式应该是</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">makeTest</span><span class="params">(Student *<span class="keyword">this</span>)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="comment">//打印“我在考试”</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">makeTest(pStu);</span><br></pre></td></tr></tbody></table></figure>
+<p>在代码里面，pStu虽然没有初始化，但是在上面的C语言版的makeTest中，我们并没有使用到this这个参数，所以即使这个参数指针是一个野指针或者空指针，都不会出现崩溃现象，但是对于②处的调用，使用的appear()函数中使用到了this, 也就是说，此时的this是一个未初始化的指针（我们称为野指针，不是空指针），这个指针指向什么地方我们并不知道，可能是没有权限操作的一块内存，也可能正好是空指针，也可能是已经分配的某个内存</p>
+<p>我们再做一个小实验</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">this</span> != <span class="literal">nullptr</span>) <span class="comment">//C++11中引入的nullptr， 表示空指针，感兴趣的可以自己去多多了解C++11</span></span><br><span class="line">		{</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"我不是空的"</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		} <span class="keyword">else</span> {</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"我是空的"</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	Test t;</span><br><span class="line">	Test *p = <span class="literal">nullptr</span>; <span class="comment">//设置初始值，防止使用未初始化指针	</span></span><br><span class="line">	p-&gt;test();</span><br><span class="line">	</span><br><span class="line">	p = &amp;t;</span><br><span class="line">	p-&gt;test();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>你能猜出最终的打印信息吗？(</p>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2017/01/10/170110173549/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -218,7 +536,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-29 19:50:07" itemprop="dateModified" datetime="2019-10-29T19:50:07+08:00">2019-10-29</time>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
               </span>
 
           <br>
@@ -246,15 +564,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/54315963" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/54315963</a></p><h2 id="很多时候，会遇到第三方接口中本来需要使用const-char-类型参数的时候，却使用了char-类型，以至于我们原本可以使用如someFunction-“some”-却编译报错（如某康的SDK）"><a href="#很多时候，会遇到第三方接口中本来需要使用const-char-类型参数的时候，却使用了char-类型，以至于我们原本可以使用如someFunction-“some”-却编译报错（如某康的SDK）" class="headerlink" title="很多时候，会遇到第三方接口中本来需要使用const char *类型参数的时候，却使用了char *类型，以至于我们原本可以使用如someFunction(“some”), 却编译报错（如某康的SDK）"></a>很多时候，会遇到第三方接口中本来需要使用const char *类型参数的时候，却使用了char *类型，以至于我们原本可以使用如someFunction(“some”), 却编译报错（如某康的SDK）</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/01/10/170110173549/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <html><head></head><body></body></html><html><head></head><body><p>原文链接:<br><a href="https://blog.csdn.net/oyoung_2012/article/details/54315963" target="_blank" rel="noopener">https://blog.csdn.net/oyoung_2012/article/details/54315963</a></p>
+<h2 id="很多时候，会遇到第三方接口中本来需要使用const-char-类型参数的时候，却使用了char-类型，以至于我们原本可以使用如someFunction-“some”-却编译报错（如某康的SDK）"><a href="#很多时候，会遇到第三方接口中本来需要使用const-char-类型参数的时候，却使用了char-类型，以至于我们原本可以使用如someFunction-“some”-却编译报错（如某康的SDK）" class="headerlink" title="很多时候，会遇到第三方接口中本来需要使用const char *类型参数的时候，却使用了char *类型，以至于我们原本可以使用如someFunction(“some”), 却编译报错（如某康的SDK）"></a>很多时候，会遇到第三方接口中本来需要使用const char *类型参数的时候，却使用了char *类型，以至于我们原本可以使用如someFunction(“some”), 却编译报错（如某康的SDK）</h2><p>###针对以上的这种问题，我们可以在对第三方SDK进行本地封装的时候对参数类型进行修改，比如:</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//SDK 头文件</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Login</span><span class="params">(<span class="keyword">char</span> *ip, <span class="keyword">unsigned</span> short port, <span class="keyword">char</span> *userName, <span class="keyword">char</span> *password)</span></span>; <span class="comment">//这里本来应该要使用const char *类型代替char *类型，因为该函数根本不会修改参数的值，但是基于某某程序员的某某原因，却没有这样使用，以至于我们调用该接口时，并不能像以下方式调用</span></span><br><span class="line"></span><br><span class="line">Login(<span class="string">"127.0.0.1"</span>, <span class="number">8000</span>, <span class="string">"admin"</span>, <span class="string">"admin"</span>); <span class="comment">//编译报错</span></span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//我们应该将其进行正确参数类型的封装</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SDK</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *ip, <span class="keyword">unsigned</span> short port, <span class="keyword">const</span> <span class="keyword">char</span> *userName, <span class="keyword">const</span> <span class="keyword">char</span> *password)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">char</span> *<span class="title">transform</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pChar)</span></span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SDK::login</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *ip, <span class="keyword">unsigned</span> short port, <span class="keyword">const</span> <span class="keyword">char</span> *userName, <span class="keyword">const</span> <span class="keyword">char</span> *password)</span> </span>{</span><br><span class="line">		<span class="keyword">char</span> *newIp = transform(ip);</span><br><span class="line">		<span class="keyword">char</span> *newUserName = transform(userName);</span><br><span class="line">		<span class="keyword">char</span> *newPassword = transform(password);</span><br><span class="line">		Login(newIp, port, newUserName, newPassword);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">SDK::transform</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pChar)</span> </span>{</span><br><span class="line">	<span class="comment">//方案1，使用const_cast</span></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span> *&gt;(pChar);</span><br><span class="line">	<span class="comment">//方案2，使用联合体</span></span><br><span class="line">	<span class="keyword">union</span> { <span class="keyword">char</span> *p; <span class="keyword">const</span> <span class="keyword">char</span> *q;} t;</span><br><span class="line">	t.q = pChar;</span><br><span class="line">	<span class="keyword">return</span> t.p;</span><br><span class="line">	<span class="comment">//方案3， 利用整数类型</span></span><br><span class="line">	<span class="keyword">int</span> address = (<span class="keyword">int</span>)pChar;</span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">char</span> *)address;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
       
     </div>
 
@@ -319,25 +633,29 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+        <a href="https://github.com/oyoungs" title="GitHub &rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+        <a href="https://weibo.com/u/3497551915" title="微博 &rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -367,7 +685,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -416,9 +734,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
   <script defer src="/lib/three/three.min.js"></script>
     <script defer src="/lib/three/canvas_lines.min.js"></script>

@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="mask-icon" href="/images/douxuetang-favicon.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -52,9 +52,10 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="逗神大人的个人小站">
-<meta property="og:url" content="http:&#x2F;&#x2F;oyoung.cc&#x2F;blogs&#x2F;page&#x2F;2&#x2F;index.html">
+<meta property="og:url" content="http://oyoung.cc/blogs/page/2/index.html">
 <meta property="og:site_name" content="逗神大人的个人小站">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="逗神大人">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://oyoung.cc/blogs/page/2/">
@@ -112,7 +113,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -121,6 +122,9 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+      <a>
+        <img class="custom-logo-image" src="/images/douxuetang-logo.svg" alt="逗神大人的个人小站">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -143,12 +147,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">36</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">46</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -187,6 +191,311 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/09/24/CGO%E4%B8%AD%E5%A4%84%E7%90%86C%E4%B8%AD%E7%9A%84%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/24/CGO%E4%B8%AD%E5%A4%84%E7%90%86C%E4%B8%AD%E7%9A%84%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">CGO中处理C中的回调函数</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-24 16:43:39" itemprop="dateCreated datePublished" datetime="2020-09-24T16:43:39+08:00">2020-09-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <html><head></head><body></body></html><html><head></head><body><h1 id="CGO中处理C中的回调函数"><a href="#CGO中处理C中的回调函数" class="headerlink" title="CGO中处理C中的回调函数"></a>CGO中处理C中的回调函数</h1><h2 id="假设有以下-C语言的接口"><a href="#假设有以下-C语言的接口" class="headerlink" title="假设有以下 C语言的接口"></a>假设有以下 C语言的接口</h2><p>api.h</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> API_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> API_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> {</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*IntCallback)</span><span class="params">(<span class="keyword">void</span> *, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SetIntCallback</span><span class="params">(IntCallback cb, <span class="keyword">void</span> *data)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DoIntCallback</span><span class="params">(<span class="keyword">int</span> value)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">}</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>此时如果我们想要通过CGO来将上述的两个(尤其是设置回调函数的<code>SetIntCallback</code>)导入到<code>golang</code>中来使用，该怎么做呢？</p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><ul>
+<li><code>C语言</code>中的<code>void *</code>与 <code>GO</code>中的什么类型对应呢？</li>
+<li><code>C语言</code>中的函数指针与<code>GO</code>中的函数怎么对应呢？</li>
+</ul>
+<h2 id="思考结果如下"><a href="#思考结果如下" class="headerlink" title="思考结果如下"></a>思考结果如下</h2><ul>
+<li><code>C语言</code>中的 <code>void *</code>和 <code>Go</code>中的<code>unsafe.Pointer</code>对应</li>
+<li><code>C语言</code>中的函数和 <code>Go</code>中的函数可以通过 <code>//export NAME</code>的方式来建立对应关系</li>
+</ul>
+<h2 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h2><h3 id="1-先在CGO中声明一下回调函数需要用到的C函数"><a href="#1-先在CGO中声明一下回调函数需要用到的C函数" class="headerlink" title="1. 先在CGO中声明一下回调函数需要用到的C函数"></a>1. 先在<code>CGO</code>中声明一下回调函数需要用到的<code>C函数</code></h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">#include "api.h"</span></span><br><span class="line"><span class="comment">extern void cgoCall(void *, int); // 这里与api.h中的IntCallback保持类型一致</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="2-在Golang中通过-export方式实现上述的C函数"><a href="#2-在Golang中通过-export方式实现上述的C函数" class="headerlink" title="2. 在Golang中通过 //export方式实现上述的C函数"></a>2. 在<code>Golang</code>中通过 <code>//export</code>方式实现上述的<code>C函数</code></h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处省略上述重复代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//export cgoCall</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">cgoCall</span><span class="params">(p unsafe.Pointer, number C.<span class="keyword">int</span>)</span></span> {</span><br><span class="line">	<span class="comment">// <span class="doctag">TODO:</span> 这里先留空，我们还没确定传进来的 p是什么具体类型</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="3-在Golang中定义一个interface来接收上面的函数里的C-int类型的参数"><a href="#3-在Golang中定义一个interface来接收上面的函数里的C-int类型的参数" class="headerlink" title="3. 在Golang中定义一个interface来接收上面的函数里的C.int类型的参数"></a>3. 在<code>Golang</code>中定义一个<code>interface</code>来接收上面的函数里的<code>C.int</code>类型的参数</h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处省略上述重复代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Caller <span class="keyword">interface</span> {</span><br><span class="line">	Call(<span class="keyword">int</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>此时我们可以将<code>Caller类型</code>作为<code>步骤2</code>中的p传进去作为参数了</p>
+<h3 id="4-在完善一下步骤2中的cgoCall"><a href="#4-在完善一下步骤2中的cgoCall" class="headerlink" title="4. 在完善一下步骤2中的cgoCall"></a>4. 在完善一下<code>步骤2</code>中的<code>cgoCall</code></h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处省略上述重复代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//export cgoCall</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">cgoCall</span><span class="params">(p unsafe.Pointer, number C.<span class="keyword">int</span>)</span></span> {</span><br><span class="line">	caller := *(*Caller)(p)</span><br><span class="line">	caller.Call(<span class="keyword">int</span>(number))</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>说明:<br>我们在这里将<code>p</code>参数转化为 一个 <code>Caller</code>的<code>interface</code>类型，再调用 <code>Caller</code>类型的<code>Call(int)</code>函数。表明我们在调用 <code>C语言</code>中的<code>SetIntCallback</code>时， <code>data</code>参数给的是一个 <code>Caller</code>类型的指针</p>
+<h3 id="5-定义一个具体的类型实现-Caller接口测试一下"><a href="#5-定义一个具体的类型实现-Caller接口测试一下" class="headerlink" title="5. 定义一个具体的类型实现 Caller接口测试一下"></a>5. 定义一个具体的类型实现 Caller接口测试一下</h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处省略上述重复代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> OneCaller <span class="keyword">struct</span> {}</span><br><span class="line"><span class="keyword">type</span> AnotherCaller <span class="keyword">struct</span> {}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(o OneCaller)</span> <span class="title">Call</span><span class="params">(value <span class="keyword">int</span>)</span></span> {</span><br><span class="line">	<span class="built_in">println</span>(<span class="string">"one:"</span>, value)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(o AnotherCaller)</span> <span class="title">Call</span><span class="params">(value <span class="keyword">int</span>)</span></span> {</span><br><span class="line">	<span class="built_in">println</span>(<span class="string">"another:"</span>, value)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SetCallback</span><span class="params">(caller Caller)</span></span> {</span><br><span class="line">	C.SetIntCallback(C.IntCallback(C.cgoCall), unsafe.Pointer(&amp;caller))</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DoCallback</span><span class="params">(value <span class="keyword">int</span>)</span></span> {</span><br><span class="line">	C.DoIntCallback(C.<span class="keyword">int</span>(value))</span><br><span class="line">} </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> {</span><br><span class="line">	one := OneCaller {}</span><br><span class="line"></span><br><span class="line">	SetCallback(one)	</span><br><span class="line">	DoCallback(<span class="number">1234</span>)</span><br><span class="line">	another := AnotherCaller {}</span><br><span class="line">	</span><br><span class="line">	SetCallback(another)	</span><br><span class="line">	DoCallback(<span class="number">5678</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>完整的运行测试一下， 发现可以输出：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">one: 1234</span><br><span class="line">another: 5678</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>为了使用<code>C语言</code>中的回调函数, 我们使用到了以下技术来实现</p>
+<ul>
+<li>unsafe.Pointer：将<code>Go</code>中的指针传入到<code>C语言</code>中的 <code>void *</code></li>
+<li>//export XXX: 在<code>GO</code> 中实现 <code>C语言</code>中声明的函数</li>
+<li>通过<code>interface</code>技术将 <code>C语言</code>中的回调函数类型绑定实现了<code>多态</code>或<code>泛型</code></li>
+</ul>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/09/24/CGO-%E4%B8%AD%E5%AF%B9C%E8%AF%AD%E8%A8%80%E7%9A%84void-%E5%92%8Cvoid-%E7%9A%84%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/24/CGO-%E4%B8%AD%E5%AF%B9C%E8%AF%AD%E8%A8%80%E7%9A%84void-%E5%92%8Cvoid-%E7%9A%84%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">CGO 中对C语言的void *和void **的处理</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-24 16:42:23" itemprop="dateCreated datePublished" datetime="2020-09-24T16:42:23+08:00">2020-09-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <html><head></head><body></body></html><html><head></head><body><h1 id="CGO-中对C语言的void-和void-的处理"><a href="#CGO-中对C语言的void-和void-的处理" class="headerlink" title="CGO 中对C语言的void *和void **的处理"></a>CGO 中对C语言的<code>void *</code>和<code>void **</code>的处理</h1><h2 id="1-void-与unsafe-Pointer"><a href="#1-void-与unsafe-Pointer" class="headerlink" title="1. void *与unsafe.Pointer"></a>1. <code>void *</code>与<code>unsafe.Pointer</code></h2><ul>
+<li>CGO中的 <code>unsafe.Pointer</code>与C语言中的 <code>void *</code>是对应的</li>
+<li><code>Go</code>中的结构体如果要传入 <code>C语言</code>的某个函数作为参数, 可以使用 <code>unsafe.Pointer</code>来转化</li>
+</ul>
+<figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">//假设这段定义在外部C源码中对cgo不可见</span></span><br><span class="line"><span class="comment">//typedef struct User {</span></span><br><span class="line"><span class="comment">//	int id;</span></span><br><span class="line"><span class="comment">//	int age;</span></span><br><span class="line"><span class="comment">//	int number;</span></span><br><span class="line"><span class="comment">//} User;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">static void User_SetId(void *user, int id) {</span></span><br><span class="line"><span class="comment">	((User *)user)-&gt;id = id;</span></span><br><span class="line"><span class="comment">}</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">static void User_SetAge(void *user, int age) {</span></span><br><span class="line"><span class="comment">	((User *)user)-&gt;age = age;</span></span><br><span class="line"><span class="comment">}</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">static void User_SetNumber(void *user, int number) {</span></span><br><span class="line"><span class="comment">	((User *)user)-&gt;number = number;</span></span><br><span class="line"><span class="comment">}</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"unsafe"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> {</span><br><span class="line">	Id <span class="keyword">int32</span></span><br><span class="line">	Age <span class="keyword">int32</span></span><br><span class="line">	Number <span class="keyword">int32</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> {</span><br><span class="line">	<span class="keyword">var</span> user User</span><br><span class="line"></span><br><span class="line">	pointer := unsafe.Pointer(&amp;user)</span><br><span class="line"></span><br><span class="line">	C.User_SetId(pointer, C.<span class="keyword">int</span>(<span class="number">1</span>))</span><br><span class="line">	C.User_setAge(pointer, C.<span class="keyword">int</span>(<span class="number">25</span>))</span><br><span class="line">	C.User_setNumber(pointer, C.<span class="keyword">int</span>(<span class="number">10001</span>))</span><br><span class="line"></span><br><span class="line">	fmt.Println(user)	</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="2-对应的-void-只需要在现有的-void-类型-CGO中的unsafe-Pointer-的对象上取地址就可以了"><a href="#2-对应的-void-只需要在现有的-void-类型-CGO中的unsafe-Pointer-的对象上取地址就可以了" class="headerlink" title="2. 对应的 void **只需要在现有的 void *类型(CGO中的unsafe.Pointer)的对象上取地址就可以了"></a>2. 对应的 <code>void **</code>只需要在现有的 <code>void *</code>类型(CGO中的<code>unsafe.Pointer</code>)的对象上取地址就可以了</h2><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">typedef struct User {</span></span><br><span class="line"><span class="comment">	int id;</span></span><br><span class="line"><span class="comment">	int age;</span></span><br><span class="line"><span class="comment">	int number;</span></span><br><span class="line"><span class="comment">} User;</span></span><br><span class="line"><span class="comment">static void createUser(void **pUser) {</span></span><br><span class="line"><span class="comment">	if(pUser) *pUser = malloc(sizeof(User))</span></span><br><span class="line"><span class="comment">}</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"unsafe"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> User C.User</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> {</span><br><span class="line"></span><br><span class="line">	pointer := unsafe.Pointer(<span class="literal">nil</span>)</span><br><span class="line"></span><br><span class="line">	C.createUser(&amp;pointer)</span><br><span class="line"></span><br><span class="line">	user := (*User)(pointer)</span><br><span class="line"></span><br><span class="line">	fmt.Println(user)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/09/24/CGO%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/assets/images/avatar.jpg">
+      <meta itemprop="name" content="逗神大人">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逗神大人的个人小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/24/CGO%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="post-title-link" itemprop="url">CGO中的一些使用注意事项</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-24 16:40:20" itemprop="dateCreated datePublished" datetime="2020-09-24T16:40:20+08:00">2020-09-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <html><head></head><body></body></html><html><head></head><body><h1 id="CGO中的一些使用注意事项"><a href="#CGO中的一些使用注意事项" class="headerlink" title="CGO中的一些使用注意事项"></a>CGO中的一些使用注意事项</h1><h2 id="1-CGO中的内容必须紧挨着import-quot-C-quot-中间不得有其他import"><a href="#1-CGO中的内容必须紧挨着import-quot-C-quot-中间不得有其他import" class="headerlink" title="1. CGO中的内容必须紧挨着import &quot;C&quot;, 中间不得有其他import"></a>1. CGO中的内容必须紧挨着<code>import "C"</code>, 中间不得有其他<code>import</code></h2><ul>
+<li>错误示范</li>
+</ul>
+<figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">// #include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> {</span><br><span class="line"> fmt.Println(C.puts(C.CString(<span class="string">"这是一个golang字符串"</span>)))</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>应该改为</li>
+</ul>
+<figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">// #include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> {</span><br><span class="line"> fmt.Println(C.puts(C.CString(<span class="string">"这是一个golang字符串"</span>)))</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="2-import-“C”前面的注释与import-“C”之间不得有空行"><a href="#2-import-“C”前面的注释与import-“C”之间不得有空行" class="headerlink" title="2. import “C”前面的注释与import “C”之间不得有空行"></a>2. import “C”前面的注释与import “C”之间不得有空行</h2><ul>
+<li>错误示范</li>
+</ul>
+<figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">// #include &lt;stdio.h&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> {</span><br><span class="line"> fmt.Println(C.puts(C.CString(<span class="string">"这是一个golang字符串"</span>)))</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>正确应为</li>
+</ul>
+<figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">// #include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> {</span><br><span class="line"> fmt.Println(C.puts(C.CString(<span class="string">"这是一个golang字符串"</span>)))</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="3-go中无法直接使用C语言头文件中的-enum-struct和union-需要使用时，需要对相关的类型进行-typedef重定义"><a href="#3-go中无法直接使用C语言头文件中的-enum-struct和union-需要使用时，需要对相关的类型进行-typedef重定义" class="headerlink" title="3. go中无法直接使用C语言头文件中的 enum,struct和union, 需要使用时，需要对相关的类型进行 typedef重定义"></a>3. go中无法直接使用C语言头文件中的 <code>enum</code>,<code>struct</code>和<code>union</code>, 需要使用时，需要对相关的类型进行 <code>typedef</code>重定义</h2><ul>
+<li>错误示范</li>
+</ul>
+<figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">enum CEnum {</span></span><br><span class="line"><span class="comment"> zero,</span></span><br><span class="line"><span class="comment"> one,</span></span><br><span class="line"><span class="comment"> two,</span></span><br><span class="line"><span class="comment"> three</span></span><br><span class="line"><span class="comment">};</span></span><br><span class="line"><span class="comment">struct CStruct {</span></span><br><span class="line"><span class="comment"> int number;</span></span><br><span class="line"><span class="comment">};</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> {</span><br><span class="line"> <span class="keyword">var</span> cenum C.CEnum = C.zero</span><br><span class="line"> <span class="keyword">var</span> cstruct C.CStruct</span><br><span class="line"> fmt.Println(cenum, cstruct.number)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>正确应为</li>
+</ul>
+<figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">typedef enum CEnum {</span></span><br><span class="line"><span class="comment">	zero,</span></span><br><span class="line"><span class="comment">	one,</span></span><br><span class="line"><span class="comment">	two,</span></span><br><span class="line"><span class="comment">	three</span></span><br><span class="line"><span class="comment">} CEnum;</span></span><br><span class="line"><span class="comment">typedef struct CStruct {</span></span><br><span class="line"><span class="comment">	int number;</span></span><br><span class="line"><span class="comment">} CStruct;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> {</span><br><span class="line">	<span class="keyword">var</span> cenum C.CEnum = C.zero</span><br><span class="line">	<span class="keyword">var</span> cstruct C.CStruct</span><br><span class="line">	fmt.Println(cenum, cstruct.number)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="4-C中的union在CGO里面表现为-N-byte类型-其中N为该union类型占用的最大字节数"><a href="#4-C中的union在CGO里面表现为-N-byte类型-其中N为该union类型占用的最大字节数" class="headerlink" title="4. C中的union在CGO里面表现为[N]byte类型(其中N为该union类型占用的最大字节数)"></a>4. C中的union在CGO里面表现为<code>[N]byte</code>类型(其中N为该union类型占用的最大字节数)</h2><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">typedef union Val {</span></span><br><span class="line"><span class="comment">	int i;</span></span><br><span class="line"><span class="comment">	float f;</span></span><br><span class="line"><span class="comment">	double d;</span></span><br><span class="line"><span class="comment">} Val;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> {</span><br><span class="line">	<span class="keyword">var</span> value = C.Val {<span class="number">100</span>}</span><br><span class="line">	<span class="built_in">println</span>(<span class="built_in">len</span>(value), value[<span class="number">0</span>]) <span class="comment">// 8 100</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/09/24/C-%E5%B0%8F%E6%8A%80%E5%B7%A7-%E9%9B%86%E5%90%88-vector-list-map-set-%E7%9A%84%E5%8F%8D%E5%90%91%E9%81%8D%E5%8E%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -210,10 +519,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-09-24 16:06:34 / 修改时间：16:13:24" itemprop="dateCreated datePublished" datetime="2020-09-24T16:06:34+08:00">2020-09-24</time>
+              <time title="创建时间：2020-09-24 16:06:34" itemprop="dateCreated datePublished" datetime="2020-09-24T16:06:34+08:00">2020-09-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -240,15 +555,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="一般的正向集合遍历"><a href="#一般的正向集合遍历" class="headerlink" title="一般的正向集合遍历"></a>一般的正向集合遍历</h1><h2 id="for-index-size模式"><a href="#for-index-size模式" class="headerlink" title="for/index/size模式"></a>for/index/size模式</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; collection.size(); ++i) &#123;</span><br><span class="line"> <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; collection[i] &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>弊端</strong>: 只适合<code>std::vector</code>这种可以通过下标随机O(1)时间访问的集合类型</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/24/C-%E5%B0%8F%E6%8A%80%E5%B7%A7-%E9%9B%86%E5%90%88-vector-list-map-set-%E7%9A%84%E5%8F%8D%E5%90%91%E9%81%8D%E5%8E%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <html><head></head><body></body></html><html><head></head><body><h1 id="一般的正向集合遍历"><a href="#一般的正向集合遍历" class="headerlink" title="一般的正向集合遍历"></a>一般的正向集合遍历</h1><h2 id="for-index-size模式"><a href="#for-index-size模式" class="headerlink" title="for/index/size模式"></a>for/index/size模式</h2><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; collection.size(); ++i) {</span><br><span class="line"> <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; collection[i] &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>弊端</strong>: 只适合<code>std::vector</code>这种可以通过下标随机O(1)时间访问的集合类型</p>
+<h2 id="for-begin-end-模式"><a href="#for-begin-end-模式" class="headerlink" title="for/begin/end 模式"></a>for/begin/end 模式</h2><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> it = collection.begin(); it != collection.end(); ++it) {</span><br><span class="line"> <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *it &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"> <span class="comment">// std::cout &lt;&lt; it-&gt;first &lt;&lt; ", " &lt;&lt; it-&gt;second &lt;&lt; std::endl;</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这种适合大多数的集合遍历模式</p>
+<h2 id="for-in-模式-for-begin-end模式的精简版"><a href="#for-in-模式-for-begin-end模式的精简版" class="headerlink" title="for/in 模式(for/begin/end模式的精简版)"></a>for/in 模式(<code>for/begin/end</code>模式的精简版)</h2><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span>&amp; item: collection) {</span><br><span class="line"> <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; item &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"> <span class="comment">// std::cout &lt;&lt; item.first &lt;&lt; ", " &lt;&lt; item.second &lt;&lt; std::endl;</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>这种写法属于<code>C++11</code>开始出现的语法糖，只要集合(包括标准库的集合和用户自定义的集合甚至伪集合)能使用<code>for/begin/end模式</code>的遍历方式就能使用这种语法糖模式</strong></p>
+<h1 id="如果想反向遍历怎么办"><a href="#如果想反向遍历怎么办" class="headerlink" title="如果想反向遍历怎么办"></a>如果想反向遍历怎么办</h1><h2 id="可能的思路"><a href="#可能的思路" class="headerlink" title="可能的思路"></a>可能的思路</h2><ul>
+<li>将集合先反转再遍历：可能集合被限制为常量不可反转自身，受限</li>
+<li>将集合反向拷贝再遍历: 集合数量比较庞大时，会占用大量内存，慎用</li>
+<li>反向迭代器(rbegin+rend): 我觉得可以，推荐</li>
+</ul>
+<h2 id="反向迭代器"><a href="#反向迭代器" class="headerlink" title="反向迭代器"></a>反向迭代器</h2><p>示例代码:</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> it = collection.rbegin(); it != collection.rend(); ++it) {</span><br><span class="line"> <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *it &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"> <span class="comment">// std::cout &lt;&lt; it-&gt;first &lt;&lt; ", " &lt;&lt; it-&gt;second &lt;&lt; std::endl;</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>其实用法和<code>for/begin/end模式</code>几乎一样，只是需要使用<code>rbegin</code>和<code>rend</code>来代替<code>begin</code>和<code>end</code>, <code>rbegin()</code>表示反向迭代器的开始, 也就是正向的末尾, <code>rend()</code>表示反向迭代器的末尾也就是正向迭代器的开始</p>
+<h2 id="能不能使用语法糖"><a href="#能不能使用语法糖" class="headerlink" title="能不能使用语法糖"></a>能不能使用语法糖</h2><p>直接使用当然不行，但并不表示我们不能使用</p>
+<p>回想下上面的一句很关键的话: <code>只要集合(包括标准库的集合和用户自定义的集合甚至伪集合)能使用(for/begin/end模式)的遍历方式就能使用这种语法糖模式</code></p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>把当前集合<code>rbegin</code>和<code>rend</code>接口调用转换成另外一个对象的 <code>begin()</code>和<code>end()</code>接口调用， 并且返回的迭代器是不变的</p>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> oyoung {</span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">CollectionReverse</span> {</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">using</span> iterator = <span class="keyword">typename</span> T::reverse_iterator;</span><br><span class="line">        <span class="keyword">using</span> const_iterator = <span class="keyword">typename</span> T::const_reverse_iterator;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">explicit</span> <span class="title">CollectionReverse</span><span class="params">(T&amp; col)</span></span></span><br><span class="line"><span class="function">            : _<span class="title">M_collection</span><span class="params">(col)</span> </span>{}</span><br><span class="line"></span><br><span class="line">        <span class="function">iterator <span class="title">begin</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> _M_collection.rbegin();</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function">const_iterator <span class="title">begin</span><span class="params">()</span> <span class="keyword">const</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> _M_collection.rbegin();</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function">iterator <span class="title">end</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> _M_collection.rend();</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function">const_iterator <span class="title">end</span><span class="params">()</span> <span class="keyword">const</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> _M_collection.rend();</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        T &amp; _M_collection;</span><br><span class="line">    };</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function">CollectionReverse&lt;T&gt; <span class="title">reverse</span><span class="params">(T&amp; col)</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> CollectionReverse&lt;T&gt;(col);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="如何使用呢"><a href="#如何使用呢" class="headerlink" title="如何使用呢?"></a>如何使用呢?</h3><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>{</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi {<span class="number">0</span>,<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>};</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; li {<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">14</span>, <span class="number">15</span>};</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mii {</span><br><span class="line">        {<span class="number">0</span>, <span class="number">10</span>}, {<span class="number">1</span>, <span class="number">11</span>}, {<span class="number">2</span>, <span class="number">12</span>}, {<span class="number">3</span>, <span class="number">13</span>}, {<span class="number">4</span>,<span class="number">14</span>}, {<span class="number">5</span>,<span class="number">15</span>}</span><br><span class="line">    };</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; si {<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>};</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"reversed vector: "</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> i: oyoung::reverse(vi)) {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"reversed list: "</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> i: oyoung::reverse(li)) {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"reversed map: "</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> pair: oyoung::reverse(mii)) {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'('</span> &lt;&lt; pair.first &lt;&lt; <span class="string">": "</span> &lt;&lt; pair.second &lt;&lt; <span class="string">"),"</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"reversed set: "</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> i: oyoung::reverse(si)) {</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>输出结果对不对呢？ 😉</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">reversed vector: 5 4 3 2 1 0</span><br><span class="line">reversed list: 15 14 12 12 11 10</span><br><span class="line">reversed map: (5: 15),(4: 14),(3: 13),(2: 12),(1: 11),(0: 10),</span><br><span class="line">reversed <span class="built_in">set</span>: 5 4 3 2 1 0</span><br></pre></td></tr></tbody></table></figure>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
       
     </div>
 
@@ -290,10 +624,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-07-28 08:53:57 / 修改时间：10:43:14" itemprop="dateCreated datePublished" datetime="2020-07-28T08:53:57+08:00">2020-07-28</time>
+              <time title="创建时间：2020-07-28 08:53:57" itemprop="dateCreated datePublished" datetime="2020-07-28T08:53:57+08:00">2020-07-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-12 19:35:07" itemprop="dateModified" datetime="2025-06-12T19:35:07+08:00">2025-06-12</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -320,273 +660,101 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><code>[UInt8]</code>是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等</p><h1 id="字符串编解码"><a href="#字符串编解码" class="headerlink" title="字符串编解码"></a>字符串编解码</h1><ul>
+          <html><head></head><body></body></html><html><head></head><body><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><code>[UInt8]</code>是Swift中的数组类型，也是作用比较特殊的一种数组类型, 常用于底层交互与内存操作与管理。如: 字符串编解码, 充当字节缓冲区等等</p>
+<h1 id="字符串编解码"><a href="#字符串编解码" class="headerlink" title="字符串编解码"></a>字符串编解码</h1><ul>
 <li><code>[UInt8]</code>（或<code>[Int8]</code>）转 <code>String</code></li>
-</ul><p><strong>String有对应的直接从<code>[UInt8]</code>或<code>[Int8]</code>转换成String的构造函数</strong></p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// "这是一个字符串" 的utf8编码</span></span><br><span class="line"><span class="keyword">let</span> bytes: [<span class="type">UInt8</span>] = [<span class="number">232</span>, <span class="number">191</span>, <span class="number">153</span>, <span class="number">230</span>, <span class="number">152</span>, <span class="number">175</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">128</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">170</span>, <span class="number">229</span>, <span class="number">173</span>, <span class="number">151</span>, <span class="number">231</span>, <span class="number">172</span>, <span class="number">166</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">178</span>]</span><br><span class="line"><span class="comment">/// 转换成字符串</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> msg = <span class="type">String</span>(bytes: bytes, encoding: .utf8) &#123;</span><br><span class="line">	<span class="built_in">print</span>(msg)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/28/Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B-UInt8-%E9%82%A3%E4%BA%9B%E4%BA%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/06/28/SDL%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/images/avatar.jpg">
-      <meta itemprop="name" content="逗神大人">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逗神大人的个人小站">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/28/SDL%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C/" class="post-title-link" itemprop="url">SDL编程手册</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-06-28 14:56:27 / 修改时间：17:12:22" itemprop="dateCreated datePublished" datetime="2020-06-28T14:56:27+08:00">2020-06-28</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>11k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>10 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h1><p>进入<a href="https://www.libsdl.org/download-2.0.php" target="_blank" rel="noopener">官网下载页面</a></p><p>找到对应平台的下载链接, 比如:</p><p><a href="https://www.libsdl.org/release/SDL2-2.0.12.dmg" target="_blank" rel="noopener">macOS平台</a> </p><p><a href="https://www.libsdl.org/release/SDL2-devel-2.0.12-VC.zip" target="_blank" rel="noopener">Windows平台Visual C++ 32/64-bit</a></p><p><a href="https://www.libsdl.org/release/SDL2-devel-2.0.12-mingw.tar.gz" target="_blank" rel="noopener">Windows平台mingw</a></p><h1 id="接口说明"><a href="#接口说明" class="headerlink" title="接口说明"></a>接口说明</h1><h2 id="基础接口"><a href="#基础接口" class="headerlink" title="基础接口"></a>基础接口</h2><h3 id="初始化与退出-SDL-h"><a href="#初始化与退出-SDL-h" class="headerlink" title="初始化与退出(SDL.h)"></a>初始化与退出(SDL.h)</h3><h4 id="SDL-Init"><a href="#SDL-Init" class="headerlink" title="SDL_Init"></a>SDL_Init</h4><ul>
-<li>接口定义: </li>
-</ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SDL_Init</span><span class="params">(Uint32 flags)</span></span>;</span><br></pre></td></tr></table></figure><ul>
-<li>功能说明</li>
 </ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/28/SDL%E7%BC%96%E7%A8%8B%E6%89%8B%E5%86%8C/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+<p><strong>String有对应的直接从<code>[UInt8]</code>或<code>[Int8]</code>转换成String的构造函数</strong></p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// "这是一个字符串" 的utf8编码</span></span><br><span class="line"><span class="keyword">let</span> bytes: [<span class="type">UInt8</span>] = [<span class="number">232</span>, <span class="number">191</span>, <span class="number">153</span>, <span class="number">230</span>, <span class="number">152</span>, <span class="number">175</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">128</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">170</span>, <span class="number">229</span>, <span class="number">173</span>, <span class="number">151</span>, <span class="number">231</span>, <span class="number">172</span>, <span class="number">166</span>, <span class="number">228</span>, <span class="number">184</span>, <span class="number">178</span>]</span><br><span class="line"><span class="comment">/// 转换成字符串</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> msg = <span class="type">String</span>(bytes: bytes, encoding: .utf8) {</span><br><span class="line">	<span class="built_in">print</span>(msg)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/06/05/sfml-install/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/images/avatar.jpg">
-      <meta itemprop="name" content="逗神大人">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逗神大人的个人小站">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/05/sfml-install/" class="post-title-link" itemprop="url">SFML 在macOS的安装</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-06-05 17:00:00 / 修改时间：17:10:50" itemprop="dateCreated datePublished" datetime="2020-06-05T17:00:00+08:00">2020-06-05</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>823</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-下载SFML的SDK"><a href="#1-下载SFML的SDK" class="headerlink" title="1. 下载SFML的SDK"></a>1. 下载SFML的SDK</h2><p>进入SFML官网的<a href="https://www.sfml-dev.org/download.php" target="_blank" rel="noopener">下载页</a>下载最新稳定版的SFML SDK</p><p>选择对应的版本后，找到如下的下载链接:</p><p><img src="/assets/images/sfml-download.jpg" alt></p><p>下载完成后解压到指定目录</p><h2 id="2-安装SFML-SDK的头文件和库文件"><a href="#2-安装SFML-SDK的头文件和库文件" class="headerlink" title="2. 安装SFML SDK的头文件和库文件"></a>2. 安装SFML SDK的头文件和库文件</h2><h3 id="frameworks"><a href="#frameworks" class="headerlink" title="frameworks"></a>frameworks</h3><ul>
-<li>将解压目录下的Frameworks拷贝到系统目录下的 <code>/Library/Frameworks</code>（<code>/System/Library/Frameworks</code>也可以， 但不建议，这个是系统相关的框架）</li>
+<ul>
+<li><code>String</code> 转 <code>[UInt8]</code>(或<code>[Int8]</code>）</li>
 </ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/05/sfml-install/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+<p><strong><code>String</code>转<code>[UInt8]</code>或<code>[Int8]</code>时需要借助中间角色Data</strong></p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> msg = <span class="string">"这是一个字符串"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> data = msg.data(using: .utf8) {</span><br><span class="line">  <span class="keyword">let</span> bytes = [<span class="type">UInt8</span>](data)</span><br><span class="line">  <span class="built_in">print</span>(bytes)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://oyoung.cc/blogs/2020/05/19/%E5%BC%82%E6%AD%A5-%E8%B6%85%E6%97%B6%E7%AD%89%E5%BE%85%E7%9A%84C-%E5%AE%9E%E7%8E%B0/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/assets/images/avatar.jpg">
-      <meta itemprop="name" content="逗神大人">
-      <meta itemprop="description" content="">
-    </span>
+<h1 id="底层交互"><a href="#底层交互" class="headerlink" title="底层交互"></a>底层交互</h1><h2 id="1-转换到C语言中的const-char-char-void-const-void"><a href="#1-转换到C语言中的const-char-char-void-const-void" class="headerlink" title="1. 转换到C语言中的const char*, char*, void*,const void*"></a>1. 转换到C语言中的<code>const char*</code>, <code>char*</code>, <code>void*</code>,<code>const void*</code></h2><p><strong>这里的转换指的是使用同一块内存地址</strong></p>
+<h3 id="指针类型对应关系"><a href="#指针类型对应关系" class="headerlink" title="指针类型对应关系"></a>指针类型对应关系</h3><table>
+<thead>
+<tr>
+<th align="left">C语言指针类型</th>
+<th align="left">swift语言指针对象类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">char *</td>
+<td align="left"><strong>UnsafeMutablePointer&lt;Int8&gt;</strong></td>
+</tr>
+<tr>
+<td align="left">const char *</td>
+<td align="left"><strong>UnsafePointer&lt;Int8&gt;</strong></td>
+</tr>
+<tr>
+<td align="left">unsigned char *</td>
+<td align="left"><strong>UnsafeMutablePointer&lt;UInt8&gt;</strong></td>
+</tr>
+<tr>
+<td align="left">const unsigned char *</td>
+<td align="left"><strong>UnsafePointer&lt;UInt8&gt;</strong></td>
+</tr>
+<tr>
+<td align="left">void *</td>
+<td align="left"><strong>UnsafeMutableRawPointer</strong></td>
+</tr>
+<tr>
+<td align="left">const void *</td>
+<td align="left"><strong>UnsafeRawPointer</strong></td>
+</tr>
+</tbody></table>
+<h3 id="几种特殊的指针类型"><a href="#几种特殊的指针类型" class="headerlink" title="几种特殊的指针类型"></a>几种特殊的指针类型</h3><ul>
+<li><strong>UnsafeRawBufferPointer</strong></li>
+<li><strong>UnsafeMutableRawBufferPointer</strong></li>
+<li><strong>UnsafeBufferPointer</strong>&lt;<strong>T</strong>&gt;</li>
+<li><strong>UnsafeMutableBufferPointer</strong>&lt;<strong>T</strong>&gt;</li>
+</ul>
+<p><strong>这些带有Buffer的指针类型， 可以理解为对应的不带Buffer的指针类型加上了缓冲区大小</strong>, 比如:</p>
+<blockquote>
+<p>UnsafePointer&lt;Int&gt; 对应 const int *, 表示仅有地址</p>
+<p>那UnsafeBufferPointer&lt;Int&gt;对应 const int * 加 size, 表示该地址与内存大小所对应的一块缓冲区</p>
+</blockquote>
+<h3 id="从-UInt8-或-Int8-转换到-const-unsigned-char-或-const-char"><a href="#从-UInt8-或-Int8-转换到-const-unsigned-char-或-const-char" class="headerlink" title="从[UInt8]或[Int8] 转换到 const unsigned char*或 const char *"></a>从<code>[UInt8]</code>或<code>[Int8]</code> 转换到 <code>const unsigned char*</code>或 <code>const char *</code></h3><p><code>[UInt8]</code> -&gt; <code>UnsafeRawBufferPointer</code> -&gt; <code>UnsafeBufferPointer&lt;UInt8&gt;</code> -&gt; <code>UnsafePointer&lt;UInt8&gt;</code> (<strong>Int8同理</strong>)</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">let</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeRawBufferPointer</span></span><br><span class="line"><span class="keyword">let</span> unsafeRawBufferPointer = buffer.withUnsafeBytes { $<span class="number">0</span> } </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2. UnsafeRawBufferPointer -&gt; UnsafeBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = unsafeRawBufferPointer.bindMemory(to: <span class="type">UInt8</span>.<span class="keyword">self</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 3. UnsafeBufferPointer&lt;UInt8&gt; -&gt; UnsafePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafePointer = unsafeBufferPointer.baseAddress</span><br></pre></td></tr></tbody></table></figure>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="逗神大人的个人小站">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/19/%E5%BC%82%E6%AD%A5-%E8%B6%85%E6%97%B6%E7%AD%89%E5%BE%85%E7%9A%84C-%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">异步+超时等待的C++实现</a>
-        </h1>
+<p>其中 <code>步骤1</code>和<code>步骤2</code>可以合并</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">let</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = buffer.withUnsafeBufferPointer {$<span class="number">0</span>}</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2.. UnsafeBufferPointer&lt;UInt8&gt; -&gt; UnsafePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafePointer = unsafeBufferPointer.baseAddress</span><br></pre></td></tr></tbody></table></figure>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-05-19 17:37:39" itemprop="dateCreated datePublished" datetime="2020-05-19T17:37:39+08:00">2020-05-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-04 11:27:55" itemprop="dateModified" datetime="2020-06-04T11:27:55+08:00">2020-06-04</time>
-              </span>
 
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>12k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>11 分钟</span>
-            </span>
+<h3 id="从-UInt8-或-Int8-转换到-unsigned-char-或-char"><a href="#从-UInt8-或-Int8-转换到-unsigned-char-或-char" class="headerlink" title="从[UInt8]或[Int8]转换到 unsigned char *或 char *"></a>从<code>[UInt8]</code>或<code>[Int8]</code>转换到 <code>unsigned char *</code>或 <code>char *</code></h3><p><code>[UInt8]</code> -&gt; <code>UnsafeMutableRawBufferPointer</code> -&gt; <code>UnsafeMutableBufferPointer&lt;UInt8&gt;</code> -&gt; <code>UnsafeMutablePointer&lt;UInt8&gt;</code> (<strong>Int8同理</strong>)</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 0. 原始字节数据 8字节</span></span><br><span class="line"><span class="keyword">var</span> buffer = [<span class="type">UInt8</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 1. [UInt8] -&gt; UnsafeMutableRawBufferPointer</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableRawBufferPointer = buffer.withUnsafeMutableBytes { $<span class="number">0</span> }</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 2. UnsafeMutableRawBufferPointer -&gt; UnsafeMutableBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableBufferPointer = unsafeMutableRawBufferPointer.bindMemory(to: <span class="type">UInt8</span>.<span class="keyword">self</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 3. UnsafeMutableBufferPointer&lt;UInt8&gt; -&gt; UnsafeMutablePointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutablePointer = unsafeMutableBufferPointer.baseAddress</span><br></pre></td></tr></tbody></table></figure>
 
-        </div>
-      </header>
+<p>其中的步骤1和步骤2也是可以合并的</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// [UInt8] -&gt; UnsafeMutableBufferPointer&lt;UInt8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableBufferPointer = buffer.withUnsafeMutableBufferPointer {$<span class="number">0</span> }</span><br></pre></td></tr></tbody></table></figure>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+<h3 id="从-UInt8-或-Int8-转换成const-void-或者void"><a href="#从-UInt8-或-Int8-转换成const-void-或者void" class="headerlink" title="从[UInt8]或[Int8]转换成const void *或者void *"></a>从<code>[UInt8]</code>或<code>[Int8]</code>转换成<code>const void *</code>或者<code>void *</code></h3><p>在上述的步骤里, 在<code>步骤1</code>得到的<code>unsafeMutableRawBufferPointer</code>就可以通过该对象的<code>baseAddress</code>字段就能获取到对应的<code>void *</code></p>
+<p>如:</p>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 获取 const void *</span></span><br><span class="line"><span class="keyword">let</span> unsafeRawPointer = unsafeRawBufferPointer.baseAddress</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 获取void *</span></span><br><span class="line"><span class="keyword">let</span> unsafeMutableRawPointer = unsafeMutableRawBufferPointer.baseAddress</span><br></pre></td></tr></tbody></table></figure>
 
-      
-          <h1 id="异步-超时等待的C-实现与应用"><a href="#异步-超时等待的C-实现与应用" class="headerlink" title="异步+超时等待的C++实现与应用"></a>异步+超时等待的C++实现与应用</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在C++开发过程中，我们最常用的编程模式还是同步编程。原因很简单:</p><ul>
-<li>流程简介明了，能明确知道程序的步骤流程</li>
-<li>作用域简单，能够更好的控制作用域内对象的生命周期</li>
-<li>历史原因, C++11才有的lambda表达式，是的异步编程的复杂度降低, 在此之前都比较复杂</li>
-</ul><p>有了C++11以后，异步形式的接口越来越多，最基本就是 std::thread, std::async之类的接口</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/19/%E5%BC%82%E6%AD%A5-%E8%B6%85%E6%97%B6%E7%AD%89%E5%BE%85%E7%9A%84C-%E5%AE%9E%E7%8E%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+
+
+<h2 id="2-从C语言中的const-char-char-const-unsigned-char-unsigned-char-const-void-void-对应缓冲区的数据创建-Data"><a href="#2-从C语言中的const-char-char-const-unsigned-char-unsigned-char-const-void-void-对应缓冲区的数据创建-Data" class="headerlink" title="2. 从C语言中的const char * , char *, const unsigned char *, unsigned char *, const void *, void *对应缓冲区的数据创建 Data"></a>2. 从C语言中的const char * , char *, const unsigned char *, unsigned char *, const void *, void *对应缓冲区的数据创建 Data</h2><figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 这里是示例， 类型为 UnsafeMutablePointer&lt;Int8&gt;， 也就是 char *</span></span><br><span class="line"><span class="comment">/// message可能来自任何C语言的接口</span></span><br><span class="line"><span class="keyword">let</span> message = strerror(errno) </span><br><span class="line"></span><br><span class="line"><span class="comment">/// 通过指针和大小来构造 UnsafeBufferPointer&lt;Int8&gt;</span></span><br><span class="line"><span class="keyword">let</span> unsafeBufferPointer = <span class="type">UnsafeBufferPointer</span>&lt;<span class="type">Int8</span>&gt;(start: message, <span class="built_in">count</span>: strlen(msg!))</span><br><span class="line"></span><br><span class="line"><span class="comment">/// 构造Data</span></span><br><span class="line"><span class="keyword">let</span> data = <span class="type">Data</span>(buffer: unsafeBufferPointer)</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="3-从Data得到-UInt8-或者-Int8-以及String"><a href="#3-从Data得到-UInt8-或者-Int8-以及String" class="headerlink" title="3. 从Data得到 [UInt8] 或者 [Int8]以及String"></a>3. 从<code>Data</code>得到 <code>[UInt8]</code> 或者 <code>[Int8]</code>以及String</h2><ul>
+<li>Data其实内部就是[UInt8]，在大部分情况下都可以直接当成[UInt8]来使用, 字节的append，remove, insert, find等等都有相同的操作</li>
+<li>但是如果需要拷贝出来一份 [UInt8]或者[Int8]，可以使用map函数</li>
+</ul>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 缓冲区里的数据    </span></span><br><span class="line"><span class="keyword">let</span> data = <span class="type">Data</span>(buffer: unsafeBufferPointer)</span><br><span class="line"></span><br><span class="line"><span class="comment">/// [UInt8]</span></span><br><span class="line"><span class="keyword">let</span> u8a = data.<span class="built_in">map</span> {$<span class="number">0</span>}</span><br><span class="line"></span><br><span class="line"><span class="comment">/// [Int8]</span></span><br><span class="line"><span class="keyword">let</span> s8a = data.<span class="built_in">map</span> {<span class="type">Int8</span>($<span class="number">0</span>)}</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>String也自带从data数据的构造函数</li>
+</ul>
+<figure class="highlight swift"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> text = <span class="type">String</span>(data: data, encoding: .utf8)</span><br></pre></td></tr></tbody></table></figure>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
       
     </div>
 
@@ -651,25 +819,29 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/oyoungs" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+        <a href="https://github.com/oyoungs" title="GitHub &rarr; https:&#x2F;&#x2F;github.com&#x2F;oyoungs" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &amp;rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+        <a href="mailto:oyoung_2012@hotmail.com" title="邮箱 &rarr; mailto:oyoung_2012@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/u/3497551915" title="微博 &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+        <a href="https://weibo.com/u/3497551915" title="微博 &rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3497551915" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -699,7 +871,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -748,9 +920,19 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
 
   <script defer src="/lib/three/three.min.js"></script>
     <script defer src="/lib/three/canvas_lines.min.js"></script>
